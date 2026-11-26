@@ -1,0 +1,303 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "[\n    {\n        action: \"Action\",\n        performer: \"Performer\",\n        modifiedOn: \"Modified On\"\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "eventLogs",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        name: \"key\",\n        hide: false,\n        valueKey: \"key\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [{\n            condition: \"true\",\n            propertyName: \"font-weight\",\n            value: \"bold\"\n        }],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"value\",\n        hide: false,\n        valueKey: \"value\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [{\n            condition: \"value === 'YES'\",\n            propertyName: \"color\",\n            value: \"#006747\"\n        }, {\n            condition: \"value === 'NO'\",\n            propertyName: \"color\",\n            value: \"#D10000\"\n        }, {\n            condition: \"value === 'YES' || value === 'NO'\",\n            propertyName: \"font-weight\",\n            value: \"bold\"\n        }],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    }\n]",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tableColumns",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingEventLogs",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "back",
+                  "expressions": [
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"times\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "\"Close\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.onCloseButtonClick()",
+                      "to": "onClick"
+                    }
+                  ],
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [],
+              "comments": "buttons",
+              "name": "div"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [
+                {
+                  "expression": "$ctrl.eventLogInfo",
+                  "to": "data"
+                },
+                {
+                  "expression": "false",
+                  "to": "showTableHeader"
+                },
+                {
+                  "expression": "false",
+                  "to": "enableSorting"
+                },
+                {
+                  "expression": "$ctrl.tableColumns",
+                  "to": "columns"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "--bln-table-height",
+                  "value": "95%"
+                }
+              ],
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "event-log-info",
+          "conditionalClasses": [
+            {
+              "className": "is-active",
+              "condition": "$ctrl.displayEventLogInfo"
+            }
+          ],
+          "displayExpression": "$ctrl.displayEventLogInfo",
+          "elementId": "event-log-info-container",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [],
+              "name": "Spinner",
+              "nodeName": "bln-spinner",
+              "type": "core-component"
+            }
+          ],
+          "classList": [
+            "spinner-container"
+          ],
+          "displayExpression": "$ctrl.isLoadingEventLogs",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [
+                {
+                  "expression": "true",
+                  "to": "enableRowSelection"
+                },
+                {
+                  "expression": "$ctrl.onRowSelect(row)",
+                  "to": "onSelection"
+                },
+                {
+                  "expression": "false",
+                  "to": "enableSorting"
+                },
+                {
+                  "expression": "$ctrl.eventLogs",
+                  "to": "data"
+                },
+                {
+                  "expression": "$ctrl.selectedEventLog",
+                  "to": "selectedRow"
+                },
+                {
+                  "expression": "[{\n        name: \"Action\",\n        hide: false,\n        valueKey: \"action\",\n        textAlign: \"left\",\n        headerTextAlign: \"left\",\n        enableSorting: true,\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"Performer\",\n        hide: false,\n        textAlign: \"left\",\n        headerTextAlign: \"left\",\n        enableSorting: true,\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        valueKey: \"performer\"\n    },\n    {\n        name: \"Modified On\",\n        hide: false,\n        textAlign: \"left\",\n        headerTextAlign: \"left\",\n        enableSorting: true,\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        valueKey: \"modifiedOn\"\n    }\n]",
+                  "to": "columns"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "--bln-table-height",
+                  "value": "100%"
+                }
+              ],
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "event-logs",
+          "displayExpression": "$ctrl.displayEventLogs\n&&\n!$ctrl.isLoadingEventLogs\n",
+          "elementId": "event-logs-container",
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "event-log-wrapper"
+      ],
+      "name": "div"
+    }
+  ],
+  "localStylesheets": [
+    {
+      "path": "event-log-component-styles.css"
+    }
+  ],
+  "modules": [],
+  "name": "event-log-component",
+  "parentDirectoryId": "1RazoPSP8sShi8sWRi16c",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "description": "",
+      "name": "displayEventLogInfo",
+      "type": "property",
+      "value": "false"
+    },
+    {
+      "description": "",
+      "name": "displayEventLogs",
+      "type": "property",
+      "value": "true"
+    },
+    {
+      "description": "",
+      "name": "selectedEventLog",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "eventLogInfo",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "try {\n    if (!row) {\n        $ctrl.displayEventLogInfo = false;\n        $ctrl.eventLogInfo = {};\n        return;\n    }\n\n    $ctrl.displayEventLogInfo = true;\n    $ctrl.eventLogInfo = {};\n\n    const stateObj = row?.raw;\n    if (!stateObj || !stateObj.trackerDocumentStateContent) {\n        return;\n    }\n\n    const contentData = stateObj.trackerDocumentStateContent;\n    let rawPayload = null;\n\n    if (contentData.modelContent && contentData.modelContent.content) {\n        rawPayload = contentData.modelContent.content;\n    } \n    else if (contentData.content) {\n        try {\n            const decoded = atob(contentData.content);\n            const parsed = JSON.parse(decoded);\n            rawPayload = parsed.content || parsed;\n        } catch (e) {\n            rawPayload = contentData.content;\n        }\n    } \n    else if (contentData.stringContent) {\n        rawPayload = contentData.stringContent;\n    }\n\n    if (rawPayload) {\n        $ctrl.eventLogInfo = $ctrl.utilityService.formatEntityForDisplay(rawPayload);\n    }\n\n} catch (e) {\n    console.error(\"Error setting selected event details.\", e);\n    $ctrl.eventLogInfo = {};\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onRowSelect",
+      "parameters": [
+        "row"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.displayEventLogInfo = false;\n$ctrl.selectedEventLog = null;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCloseButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "body": "if ($ctrl.isLoadingEventLogs) {\n    $ctrl.onCloseButtonClick();\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchIsLoadingEventLogs",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.isLoadingEventLogs"
+      ]
+    }
+  ]
+}

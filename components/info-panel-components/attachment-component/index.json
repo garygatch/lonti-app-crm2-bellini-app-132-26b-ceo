@@ -1,0 +1,372 @@
+{
+  "bindings": [],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "upload",
+              "expressions": [
+                {
+                  "expression": "$ctrl.enService.components.attachmentComponent.buttons.UPLOAD.label",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.ALLOWED_FILE_TYPES",
+                  "to": "allowedFileTypes"
+                },
+                {
+                  "expression": "$ctrl.enService.components.attachmentComponent.fields.FILE_INPUT.placeholder",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"button\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "$ctrl.enService.components.attachmentComponent.buttons.UPLOAD.tooltip",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"cloud-upload-alt\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.handlers.onUpload($ctrl.attachmentService.attachmentForm.file)",
+                  "to": "onValueChange"
+                },
+                {
+                  "expression": "false",
+                  "to": "showFilePreview"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.attachmentForm.file",
+                  "to": "value"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.uiState.isUploading || $ctrl.attachmentService.uiState.isDeleting",
+                  "to": "disabled"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "File Input",
+              "nodeName": "bln-file-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "download",
+              "expressions": [
+                {
+                  "expression": "$ctrl.enService.components.attachmentComponent.buttons.DOWNLOAD.label",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"cloud-download-alt\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.handlers.onDownload($ctrl.attachmentService.uiState.selectedAttachment)",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.enService.components.attachmentComponent.buttons.DOWNLOAD.tooltip",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "!$ctrl.attachmentService.uiState.selectedAttachment || $ctrl.attachmentService.uiState.isUploading || $ctrl.attachmentService.uiState.isDeleting",
+                  "to": "isDisabled"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "delete",
+              "expressions": [
+                {
+                  "expression": "$ctrl.enService.global.buttons.DELETE.label",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"trash\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.handlers.onDelete($ctrl.attachmentService.uiState.selectedAttachment)",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.enService.global.buttons.DELETE.tooltip",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "!$ctrl.attachmentService.uiState.selectedAttachment || $ctrl.attachmentService.uiState.isUploading",
+                  "to": "isDisabled"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "--bln-button-primary-bg-color",
+                  "value": "#d10000"
+                },
+                {
+                  "enabled": true,
+                  "property": "--bln-button-primary-hovered-bg-color",
+                  "value": "#a70000"
+                },
+                {
+                  "enabled": true,
+                  "property": "--bln-button-primary-active-bg-color",
+                  "value": "#920000"
+                }
+              ],
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "reload",
+              "expressions": [
+                {
+                  "expression": "$ctrl.enService.global.buttons.RELOAD.label",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"sync\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.handlers.onPageChange($ctrl.attachmentService.uiState.currentPage)",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.enService.global.buttons.RELOAD.tooltip",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.uiState.isUploading || $ctrl.attachmentService.uiState.isDeleting",
+                  "to": "isDisabled"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            }
+          ],
+          "classList": [
+            "action-buttons-container"
+          ],
+          "name": "div"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "file-list",
+          "expressions": [
+            {
+              "expression": "$ctrl.attachmentService.uiState.currentAttachments",
+              "to": "data"
+            },
+            {
+              "expression": "[{\n        name: \"File Name\",\n        hide: false,\n        valueKey: \"fileName\",\n        textAlign: \"left\",\n        headerTextAlign: \"left\",\n        enableSorting: true,\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"Size\",\n        hide: false,\n        valueKey: \"size\",\n        textAlign: \"left\",\n        headerTextAlign: \"left\",\n        enableSorting: true,\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"js-expression\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        cellTemplateJsExpression: \"$ctrl.utilityService.formatBytes(value)\"\n    },\n    {\n        name: \"Uploaded\",\n        hide: false,\n        valueKey: \"uploadedOn\",\n        textAlign: \"left\",\n        headerTextAlign: \"left\",\n        enableSorting: true,\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"js-expression\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        cellTemplateJsExpression: \"$ctrl.utilityService.formatDisplayDate(value)\"\n    }\n]",
+              "to": "columns"
+            },
+            {
+              "expression": "true",
+              "to": "enableRowSelection"
+            },
+            {
+              "expression": "$ctrl.attachmentService.uiState.selectedAttachment",
+              "to": "selectedRow"
+            }
+          ],
+          "name": "Table",
+          "nodeName": "bln-table",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "false",
+              "to": "showFirstPageButton"
+            },
+            {
+              "expression": "false",
+              "to": "showLastPageButton"
+            },
+            {
+              "expression": "\"currentPageOnly\"",
+              "to": "display"
+            },
+            {
+              "expression": "$ctrl.attachmentService.uiState.currentPage",
+              "to": "currentPage"
+            },
+            {
+              "expression": "$ctrl.handlers.onPageChange(currentPage)",
+              "to": "onPageChange"
+            }
+          ],
+          "name": "Pagination",
+          "nodeName": "bln-pagination",
+          "type": "core-component"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "elementId": "progress",
+              "expressions": [
+                {
+                  "expression": "$ctrl.attachmentService.uiState.uploadProgress",
+                  "to": "step"
+                },
+                {
+                  "expression": "true",
+                  "to": "showPercent"
+                },
+                {
+                  "expression": "$ctrl.attachmentService.uiState.uploadMessage",
+                  "to": "message"
+                }
+              ],
+              "name": "Progress",
+              "nodeName": "bln-progress",
+              "type": "core-component"
+            }
+          ],
+          "classList": [
+            "progress-container"
+          ],
+          "displayExpression": "$ctrl.attachmentService.uiState.isUploading",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "elementId": "attachment-component-container",
+      "name": "div"
+    }
+  ],
+  "localStylesheets": [
+    {
+      "path": "attachment-component.css"
+    }
+  ],
+  "modules": [],
+  "name": "attachment-component",
+  "parentDirectoryId": "1RazoPSP8sShi8sWRi16c",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "attachmentService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/attachment-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "handlers",
+      "properties": [
+        {
+          "body": "$ctrl.attachmentService.loaders.loadAllAttachmentsByEntity(currentPage);",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onPageChange",
+          "parameters": [
+            "currentPage"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    }
+  ]
+}

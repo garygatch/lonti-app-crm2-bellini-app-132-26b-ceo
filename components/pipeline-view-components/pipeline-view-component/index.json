@@ -1,0 +1,649 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isMobile",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isPipelineViewActive",
+      "propertyType": "boolean",
+      "type": "=",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "back",
+          "expressions": [
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"angle-left\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            },
+            {
+              "expression": "$ctrl.isMobile ? \"Back\" : \"Close\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.onBackButtonClick()",
+              "to": "onClick"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "children": [
+            {
+              "evaluate": true,
+              "name": "text",
+              "textContent": "$ctrl.pipelineViewService.currentPipeline.name"
+            }
+          ],
+          "classList": [],
+          "comments": "pipeline-name",
+          "name": "h3"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "add-pipeline-stage",
+          "expressions": [
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"plus\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            },
+            {
+              "expression": "$ctrl.enService.components.pipelineViewComponent.buttons.ADD_PIPELINE_STAGE.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.enService.components.pipelineViewComponent.buttons.ADD_PIPELINE_STAGE.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "$ctrl.onAddPipelineStageButtonClick()",
+              "to": "onClick"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        }
+      ],
+      "classList": [
+        "pipeline-view-header-container"
+      ],
+      "comments": "buttons",
+      "name": "div"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "false",
+          "to": "displayConfigureTableAndQuickSearchButton"
+        },
+        {
+          "expression": "$ctrl.pipelineViewService.currentFilter.columnValues",
+          "to": "filterProperties"
+        },
+        {
+          "expression": "$ctrl.pipelineViewService.currentFilter.filtersApplied",
+          "to": "filtersApplied"
+        },
+        {
+          "expression": "$ctrl.pipelineViewService.currentFilter.sortsApplied",
+          "to": "sortsApplied"
+        },
+        {
+          "expression": "\"pipeline-management\"",
+          "to": "currentPageKey"
+        },
+        {
+          "expression": "$ctrl.pipelineViewService.onKanbanFilterChange(queryString)",
+          "to": "onFilterChange"
+        }
+      ],
+      "name": "advanced-filter-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/filter-components/advanced-filter-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "Loading pipeline stages..."
+            }
+          ],
+          "classList": [
+            "loading-shimmer"
+          ],
+          "displayExpression": "$ctrl.pipelineViewService.isLoadingData\n&&\n$ctrl.pipelineViewService.kanbanColumns.length === 0",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "No stages in this pipeline. Create one using the + Add Pipeline Stage button on the corner."
+            }
+          ],
+          "classList": [
+            "no-pipeline-stage"
+          ],
+          "displayExpression": "!$ctrl.pipelineViewService.isLoadingData\n&&\n$ctrl.pipelineViewService.kanbanColumns.length === 0",
+          "name": "div"
+        },
+        {
+          "attributes": [
+            {
+              "property": "draggable",
+              "value": "true"
+            }
+          ],
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "evaluate": true,
+                      "name": "text",
+                      "textContent": "stage.name"
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "stage-name",
+                  "displayExpression": "!stage.isEditingPipelineStageName",
+                  "events": {
+                    "dblclick": "$ctrl.onStageNameDoubleClick(stage)"
+                  },
+                  "name": "h3"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "stage-name",
+                  "displayExpression": "stage.isEditingPipelineStageName",
+                  "expressions": [
+                    {
+                      "expression": "stage.name",
+                      "to": "value"
+                    },
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "name": "Text Input",
+                  "nodeName": "bln-text-input",
+                  "type": "core-component"
+                },
+                {
+                  "children": [
+                    {
+                      "attributes": [
+                        {
+                          "property": "core",
+                          "value": ""
+                        }
+                      ],
+                      "children": [],
+                      "classList": [],
+                      "comments": "save-edit",
+                      "displayExpression": "stage.isEditingPipelineStageName",
+                      "expressions": [
+                        {
+                          "expression": "$ctrl.enService.components.pipelineViewComponent.buttons.SAVE_EDIT_PIPELINE_STAGE_NAME.label",
+                          "to": "label"
+                        },
+                        {
+                          "expression": "$ctrl.enService.components.pipelineViewComponent.buttons.SAVE_EDIT_PIPELINE_STAGE_NAME.tooltip",
+                          "to": "tooltip"
+                        },
+                        {
+                          "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"save\",\n  \"position\": \"left\"\n})",
+                          "to": "icon"
+                        },
+                        {
+                          "expression": "$ctrl.onSaveStageNameEditButtonClick(stage)",
+                          "to": "onClick"
+                        }
+                      ],
+                      "name": "Button",
+                      "nodeName": "bln-button",
+                      "type": "core-component"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "property": "core",
+                          "value": ""
+                        }
+                      ],
+                      "children": [],
+                      "classList": [],
+                      "comments": "cancel-edit",
+                      "displayExpression": "stage.isEditingPipelineStageName",
+                      "expressions": [
+                        {
+                          "expression": "$ctrl.enService.components.pipelineViewComponent.buttons.CANCEL_EDIT_PIPELINE_STAGE_NAME.label",
+                          "to": "label"
+                        },
+                        {
+                          "expression": "$ctrl.enService.components.pipelineViewComponent.buttons.CANCEL_EDIT_PIPELINE_STAGE_NAME.tooltip",
+                          "to": "tooltip"
+                        },
+                        {
+                          "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"times\",\n  \"position\": \"left\"\n})",
+                          "to": "icon"
+                        },
+                        {
+                          "expression": "$ctrl.onCancelStageNameEditButtonClick(stage)",
+                          "to": "onClick"
+                        }
+                      ],
+                      "name": "Button",
+                      "nodeName": "bln-button",
+                      "type": "core-component"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "property": "core",
+                          "value": ""
+                        }
+                      ],
+                      "children": [],
+                      "classList": [],
+                      "comments": "delete",
+                      "displayExpression": "!stage.isEditingPipelineStageName",
+                      "expressions": [
+                        {
+                          "expression": "$ctrl.enService.global.buttons.DELETE.label",
+                          "to": "label"
+                        },
+                        {
+                          "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"trash\",\n  \"position\": \"left\"\n})",
+                          "to": "icon"
+                        },
+                        {
+                          "expression": "$ctrl.pipelineViewService.deletePipelineStage(stage)",
+                          "to": "onClick"
+                        },
+                        {
+                          "expression": "$ctrl.enService.global.buttons.DELETE.tooltip",
+                          "to": "tooltip"
+                        },
+                        {
+                          "expression": "\"primary\"",
+                          "to": "type"
+                        }
+                      ],
+                      "name": "Button",
+                      "nodeName": "bln-button",
+                      "styles": [
+                        {
+                          "enabled": true,
+                          "property": "--bln-button-primary-bg-color",
+                          "value": "#cbd6e2"
+                        },
+                        {
+                          "enabled": true,
+                          "property": "--bln-button-primary-active-bg-color",
+                          "value": "#920000"
+                        },
+                        {
+                          "enabled": true,
+                          "property": "--bln-button-primary-hovered-bg-color",
+                          "value": "#a70000"
+                        }
+                      ],
+                      "type": "core-component"
+                    },
+                    {
+                      "children": [
+                        {
+                          "evaluate": true,
+                          "name": "text",
+                          "textContent": "stage.totalDealsInStage"
+                        }
+                      ],
+                      "classList": [
+                        "deal-count"
+                      ],
+                      "displayExpression": "!stage.isEditingPipelineStageName",
+                      "name": "span"
+                    }
+                  ],
+                  "classList": [
+                    "stage-header-button-container"
+                  ],
+                  "comments": "buttons-and-count",
+                  "name": "div"
+                }
+              ],
+              "classList": [
+                "stage-header"
+              ],
+              "events": {
+                "mouseleave": "",
+                "mouseover": ""
+              },
+              "name": "div"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "draggable",
+                      "value": "true"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "deal.name"
+                            }
+                          ],
+                          "classList": [
+                            "card-title"
+                          ],
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [
+                        "deal-card-header"
+                      ],
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "evaluate": true,
+                          "name": "text",
+                          "textContent": "\"Amount: \" + deal.currency + \" \" + deal.amount"
+                        }
+                      ],
+                      "classList": [
+                        "card-amount"
+                      ],
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "evaluate": true,
+                          "name": "text",
+                          "textContent": "\"Closes: \" + deal.expectedClose"
+                        }
+                      ],
+                      "classList": [
+                        "card-date"
+                      ],
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [
+                    "deal-card"
+                  ],
+                  "conditionalClasses": [
+                    {
+                      "className": "active",
+                      "condition": "$ctrl.pipelineViewService.selectedDeal.opportunityId === deal.opportunityId"
+                    }
+                  ],
+                  "events": {
+                    "click": "$ctrl.pipelineViewService.onDealSelect(deal)",
+                    "dblclick": "",
+                    "dragend": "$ctrl.pipelineViewService.dealCard.onDragEnd($event)",
+                    "dragstart": "$ctrl.pipelineViewService.dealCard.onDragStart($event, deal, stage)",
+                    "mousedown": "",
+                    "mouseleave": "$ctrl.pipelineViewService.dealCard.onMouseLeave(deal)",
+                    "mouseover": "$ctrl.pipelineViewService.dealCard.onMouseOver(deal)"
+                  },
+                  "iterate": {
+                    "array": "stage.deals",
+                    "variable": "deal"
+                  },
+                  "name": "div"
+                },
+                {
+                  "children": [
+                    {
+                      "evaluate": false,
+                      "name": "text",
+                      "textContent": "Loading more deals..."
+                    }
+                  ],
+                  "classList": [
+                    "loading-shimmer"
+                  ],
+                  "displayExpression": "stage.isLoadingDeals",
+                  "name": "div"
+                }
+              ],
+              "classList": [
+                "card-list"
+              ],
+              "name": "div"
+            }
+          ],
+          "classList": [
+            "stage-column"
+          ],
+          "events": {
+            "dragend": "$ctrl.pipelineViewService.stageColumn.onDragEnd($event)",
+            "dragleave": "$ctrl.pipelineViewService.stageColumn.onDragLeave($event)",
+            "dragover": "$ctrl.pipelineViewService.stageColumn.onDragOver($event)",
+            "dragstart": "$ctrl.pipelineViewService.stageColumn.onDragStart($event, stage)",
+            "drop": "$ctrl.pipelineViewService.stageColumn.onDrop($event, stage)",
+            "mouseleave": "",
+            "mouseover": ""
+          },
+          "iterate": {
+            "array": "$ctrl.pipelineViewService.kanbanColumns",
+            "variable": "stage"
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "pipeline-container"
+      ],
+      "conditionalClasses": [
+        {
+          "className": "loading",
+          "condition": "$ctrl.pipelineViewService.kanbanColumns.length === 0"
+        }
+      ],
+      "events": {
+        "dragleave": "",
+        "dragover": "",
+        "drop": ""
+      },
+      "name": "div"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [],
+      "name": "inline-alert-bar-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/alert-bar-components/inline-alert-bar-component",
+      "type": "custom-component"
+    }
+  ],
+  "localStylesheets": [
+    {
+      "path": "pipeline-view-component.css"
+    }
+  ],
+  "modules": [],
+  "name": "pipeline-view-component",
+  "parentDirectoryId": "sAyZzUqsykbBh-abqR00l",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "pipelineViewService",
+      "resourceIdentity": "services/core/ui/component/pipeline-view-service",
+      "type": "service"
+    },
+    {
+      "body": "$ctrl.pipelineViewService.currentFilter.columnValues = $ctrl.opportunityService.getFilterColumnValues();",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "onComponentInit",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.pipelineViewService.stageColumn.detachScrollListeners();\n$ctrl.pipelineViewService.clearKanbanFilter();\n$ctrl.pipelineViewService.selectedDeal = null;\n$ctrl.pipelineViewService.isAddingPipelineStage = false;\n$ctrl.isPipelineViewActive = false;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onBackButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "opportunityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/opportunity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    },
+    {
+      "body": "stage.isEditingPipelineStageName = true;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onStageNameDoubleClick",
+      "parameters": [
+        "stage"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.pipelineViewService.updateStageName(stage.pipelineStageId, stage.name);\nstage.isEditingPipelineStageName = false;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onSaveStageNameEditButtonClick",
+      "parameters": [
+        "stage"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "stage.name = stage.originalName;\nstage.isEditingPipelineStageName = false;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancelStageNameEditButtonClick",
+      "parameters": [
+        "stage"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.pipelineViewService.isAddingPipelineStage = true;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onAddPipelineStageButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

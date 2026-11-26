@@ -1,0 +1,197 @@
+{
+  "description": "",
+  "name": "pipeline-stage-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "id": "service",
+      "name": "activityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/activity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"pipelinestage\""
+    },
+    {
+      "description": "",
+      "name": "pipelineStageForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "general",
+          "properties": [
+            {
+              "description": "",
+              "name": "name",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "order",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "pipelineId",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Deal Id\",\n        value: \"opportunityId\"\n    },\n    {\n        label: \"Name\",\n        value: \"name\"\n    },\n    {\n        label: \"Actual Close Date\",\n        value: \"actualCloseDate\"\n    },\n    {\n        label: \"Expected Close Date\",\n        value: \"expectedClose\"\n    },\n    {\n        label: \"Amount\",\n        value: \"amount\"\n    },\n    {\n        label: \"Currency\",\n        value: \"currency\"\n    },\n    {\n        label: \"Probability\",\n        value: \"probability\"\n    },\n    {\n        label: \"Annual Recurring Revenue\",\n        value: \"annualRecurringRevenue\"\n    },\n    {\n        label: \"Status\",\n        value: \"status\"\n    },\n    {\n        label: \"Forecast Category\",\n        value: \"forecastCategory\"\n    },\n    {\n        label: \"Last Activity Date\",\n        value: \"lastActivityDate\"\n    },\n    {\n        label: \"Next Activity Date\",\n        value: \"nextActivityDate\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Owner Name\",\n        value: \"ownerName\"\n    },\n    {\n        label: \"Owner Email\",\n        value: \"ownerEmail\"\n    },\n    {\n        label: \"Hubspot Id\",\n        value: \"hubspotId\"\n    },\n    {\n        label: \"Tenant Id\",\n        value: \"tenantId\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Modified On\",\n        value: \"modifiedOn\"\n    }\n];",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Name\",\n    \"Status\",\n    \"Amount\",\n    \"Expected Close Date\",\n    \"Pipeline Stage\",\n    \"Next Activity Date\"\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"Expected Close Date\": \"expectedClose\",\n        \"Pipeline Stage\": \"pipelineStageId\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entity = this.entity;\nconst columnConfig = this.getDisplayColumnConfig();\n\n// if (clearCache) this.entityCacheService.clearCache();\n\nconst entityAction = this.utilityService.buildEntityAction(entity, \"SelectAll\");\nreturn this.entityCacheService.getAll(entityAction, entity, page, limit, columnConfig, query);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getAllPipelineStages",
+      "parameters": [
+        "page",
+        "limit",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entityType = this.entity;\nconst entityId = opportunityId;\n\n// if (clearCache) this.entityCacheService.clearCache();\n\nreturn this.activityService.getAllActivitiesByEntityByEntityId(page, limit, entityType, entityId, activityType, query);",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getAllPipelineStageActivities",
+      "parameters": [
+        "page",
+        "limit",
+        "opportunityId",
+        "activityType",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entityUrl = `${this.entity}/pipeline/${pipelineId}`;\n// const baseQuery = activityType ? `activityType=${activityType}` : undefined;\n// const combinedQuery = query ? baseQuery.concat(\"&\".concat(query)) : baseQuery;\n\nreturn this.entityCacheService.getAll(undefined, entityUrl, page, limit, undefined, query, clearCache);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getAllPipelineStagesByPipelineId",
+      "parameters": [
+        "page",
+        "limit",
+        "query",
+        "clearCache",
+        "pipelineId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return this.entityCacheService.getCachedEntityValue(this.entity, \"entities\");",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedPipelineStages",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entityActivities = this.activityService.getCachedActivities(activityType, \"Opportunity\", opportunityId);\nreturn this.utilityService.sortEntitiesByDateProperty(entityActivities, \"createdOn\");",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedPipelineStageActivities",
+      "parameters": [
+        "activityType",
+        "opportunityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return this.entityCacheService.getCachedEntityValue(this.entity, \"columns\")",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedPipelineStageColumns",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "entity",
+    "getAllPipelineStages",
+    "getCachedPipelineStages",
+    "getAllPipelineStagesByPipelineId",
+    "pipelineStageForm"
+  ]
+}

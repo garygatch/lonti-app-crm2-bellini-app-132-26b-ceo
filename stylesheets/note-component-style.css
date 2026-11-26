@@ -1,0 +1,88 @@
+/*
+  --------------------------------------------------
+  Note Styles
+  --------------------------------------------------
+*/
+#note-rich-text-editor-container {
+  position: sticky;
+  top: 7.3rem;
+  background-color: white;
+  border-bottom-style: var(--bln-rich-text-editor-border-style);
+  border-bottom-color: var(--bln-rich-text-editor-border-color);
+  border-bottom-width: var(--bln-rich-text-editor-border-width);
+  border-right-style: var(--bln-rich-text-editor-border-style);
+  border-right-color: var(--bln-rich-text-editor-border-color);
+  border-right-width: var(--bln-rich-text-editor-border-width);
+  z-index: 10;
+}
+
+#new-note-button-container {
+  position: sticky;
+  top: 4.8rem;
+  background-color: white;
+  display: flex;
+  max-height: fit-content;
+  z-index: 10;
+  border-bottom-style: var(--bln-rich-text-editor-border-style);
+  border-bottom-color: var(--bln-rich-text-editor-border-color);
+  border-bottom-width: var(--bln-rich-text-editor-border-width);
+  border-right-style: var(--bln-rich-text-editor-border-style);
+  border-right-color: var(--bln-rich-text-editor-border-color);
+  border-right-width: var(--bln-rich-text-editor-border-width);
+}
+#notes-filter {
+  width: 100%;
+}
+
+#new-note-button-container #filter-container {
+  border: none;
+  padding: 0px;
+}
+
+#note-rich-text-editor-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#existing-notes-container {
+  padding: 0.5rem;
+}
+
+.existing-note {
+  padding: 0.5rem;
+  word-wrap: break-word;
+  max-height: fit-content;
+  background-color: var(--bln-rich-text-editor-bg-color);
+  color: var(--bln-rich-text-editor-text-color);
+  border-style: var(--bln-rich-text-editor-border-style);
+  border-color: var(--bln-rich-text-editor-border-color);
+  border-width: var(--bln-rich-text-editor-border-width);
+  border-radius: var(--bln-rich-text-editor-border-radius);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* .existing-note em {
+  color: var(--bln-button-primary-bg-color);
+} */
+
+.note-buttons {
+  opacity: 0; /* Initially hide the buttons */
+}
+
+.existing-note:hover {
+  /* transform: translateY(-0.2rem); */
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+  /* cursor: pointer; */
+}
+
+.existing-note:hover .note-buttons {
+  opacity: 1; /* Show the buttons on hover */
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+/* @media (min-width: 1024px) {
+} */

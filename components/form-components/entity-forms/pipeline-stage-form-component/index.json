@@ -1,0 +1,305 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "enumOptions": [
+        {
+          "label": "ADD",
+          "value": "ADD"
+        },
+        {
+          "label": "EDIT",
+          "value": "EDIT"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "multi": false,
+      "name": "action",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "pipelineStageForm",
+      "propertyType": "object",
+      "type": "=",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "[{\n        label: \"General\",\n        closable: false\n    }\n]",
+          "to": "tabItems"
+        },
+        {
+          "expression": "$ctrl.currentFormTab",
+          "to": "currentFormTab"
+        },
+        {
+          "expression": "$ctrl.action.concat(\" PIPELINE STAGE\")",
+          "to": "formTitle"
+        },
+        {
+          "expression": "$ctrl.currentFormTabName",
+          "to": "currentFormTabName"
+        },
+        {
+          "expression": "[{\n        label: $ctrl.currentFormTabName,\n        onClick: \"function\",\n        function: () => $ctrl.utilityService.clearForm($ctrl.pipelineStageForm[$ctrl.currentFormTabName.toLowerCase()])\n    },\n    {\n        label: \"All\",\n        onClick: \"function\",\n        function: () => $ctrl.utilityService.clearForm($ctrl.pipelineStageForm)\n    }\n]",
+          "to": "resetItems"
+        },
+        {
+          "expression": "$ctrl.backButtonOnClick()",
+          "to": "backButtonOnClick"
+        },
+        {
+          "expression": "$ctrl.backButtonDisabled",
+          "to": "backButtonDisabled"
+        },
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "backButtonLoading"
+        }
+      ],
+      "name": "form-header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-header-component",
+      "type": "custom-component"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        },
+        {
+          "property": "name",
+          "value": "form"
+        }
+      ],
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "name",
+              "expressions": [
+                {
+                  "expression": "\"Name *\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.pipelineStageForm.general.name",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Marketing Qualified Lead\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the name of the pipeline stage.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "order",
+              "expressions": [
+                {
+                  "expression": "\"Order *\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.pipelineStageForm.general.order",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"number\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., 3\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Defines where the stage will be within the pipeline\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "0",
+                  "to": "min"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "general",
+          "displayExpression": "$ctrl.currentFormTab === 1",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "comments": "pipeline-stage-form",
+      "elementId": "form",
+      "name": "form"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.action",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onActionButtonClick()",
+          "to": "onActionButtonClick"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "pipeline-stage-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "currentFormTab",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentFormTabName",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "body": "const tabNameLookup = {\n    1: \"General\"\n}\n\n$ctrl.currentFormTabName = tabNameLookup[$ctrl.currentFormTab];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchCurrentFormTab",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.currentFormTab"
+      ]
+    }
+  ]
+}

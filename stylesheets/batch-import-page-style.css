@@ -1,0 +1,40 @@
+/*
+  --------------------------------------------------
+  Batch Import Page Styles
+  --------------------------------------------------
+*/
+#main-header-container {
+  border-bottom: 1px solid var(--color-border);
+}
+
+#batch-import-form {
+  padding: 1rem;
+}
+
+.error {
+  padding: 0.3rem;
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+@media (min-width: 1024px) {
+  #batch-import-header {
+    margin-top: var(--header-offset);
+    margin-left: var(--nav-offset);
+    width: var(--width-offset);
+    height: var(--height-offset);
+  }
+
+  #batch-import-form {
+    margin-left: var(--nav-offset);
+  }
+
+  #batch-import-form-footer #form-footer-container {
+    width: var(--width-offset);
+    position: fixed;
+    bottom: 0;
+  }
+}

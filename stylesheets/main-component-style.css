@@ -1,0 +1,104 @@
+/*
+  --------------------------------------------------
+  Main Body Container
+  --------------------------------------------------
+*/
+/* bln-pagination {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-white);
+} */
+
+#main-component-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-header-container {
+  padding: 0rem 1rem;
+}
+
+#main-body-container {
+  padding: 1rem;
+  flex-grow: 1;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* Consider how this interacts with fixed headers/footers */
+}
+
+#main-body-container .table-container {
+  height: 80%;
+  margin-top: 1rem;
+}
+
+#export-form-footer-component #form-footer-container {
+  position: static;
+  bottom: auto;
+  width: auto;
+  height: auto;
+  z-index: auto;
+  padding: initial;
+  background-color: initial;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+}
+
+.pagination-with-export-footer {
+  bottom: calc(var(--header-offset) - 0.6rem);
+}
+
+.table-container-for-export {
+  height: 75% !important;
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+@media (min-width: 1024px) {
+
+  /* bln-pagination {
+    width: 100%;
+  } */
+
+  /* #export-form-footer-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    position: fixed;
+    bottom: 0;
+    width: var(--width-offset);
+    height: calc(var(--header-offset) - 0.6rem);
+    z-index: 1;
+  } */
+
+  /* #export-form-footer-component #form-footer-container {
+    width: var(--width-offset);
+  } */
+}
+
+@media (min-height: 700px) {
+  #main-body-container .table-container {
+    height: 85%;
+  }
+
+  .table-container-for-export {
+    height: 80% !important;
+  }
+}
+
+@media (min-height: 1024px) {
+  #main-body-container .table-container {
+    height: 90%;
+  }
+
+  .table-container-for-export {
+    height: 85% !important;
+  }
+}

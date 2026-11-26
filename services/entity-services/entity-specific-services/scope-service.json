@@ -1,0 +1,66 @@
+{
+  "description": "",
+  "name": "scope-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"scope\""
+    },
+    {
+      "description": "",
+      "name": "scopeForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "apiEndpoint",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "description",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Id\",\n        value: \"id\"\n    },\n    {\n        label: \"API Endpoint\",\n        value: \"apiEndpoint\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Updated On\",\n        value: \"updatedOn\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"API Endpoint\",\n    \"Description\",\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"API Endpoint\": \"apiEndpoint\"\n    }\n    // type: {\n    //     \"Active\": \"boolean\"\n    // }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "entity",
+    "scopeForm",
+    "getFilterColumnValues",
+    "getDisplayColumnConfig"
+  ]
+}

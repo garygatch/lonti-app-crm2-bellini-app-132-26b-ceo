@@ -1,0 +1,999 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "enumOptions": [
+        {
+          "label": "ADD",
+          "value": "ADD"
+        },
+        {
+          "label": "EDIT",
+          "value": "EDIT"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "multi": false,
+      "name": "action",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "opportunityForm",
+      "propertyType": "object",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isAdmin",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "hasPipelineRole",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "opportunityId",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "[\n    {\n        label: \"General\",\n        closable: false\n    },\n    {\n        label: \"Finance\",\n        closable: false\n    },\n    {\n        label: \"Timeline\",\n        closable: false\n    },\n    {\n        label: \"Engagement\",\n        closable: false\n    }\n]",
+          "to": "tabItems"
+        },
+        {
+          "expression": "$ctrl.currentFormTab",
+          "to": "currentFormTab"
+        },
+        {
+          "expression": "$ctrl.action.concat(\" DEAL\")",
+          "to": "formTitle"
+        },
+        {
+          "expression": "$ctrl.currentFormTabName",
+          "to": "currentFormTabName"
+        },
+        {
+          "expression": "[\n    {\n        label: $ctrl.currentFormTabName,\n        onClick: \"function\",\n        function: () => {\n            const lowerCasedCurrentFormTabName = $ctrl.currentFormTabName.toLowerCase();\n            if (lowerCasedCurrentFormTabName === \"general\") {\n                $ctrl.currentPipelineValue = undefined;\n            }\n            $ctrl.utilityService.clearForm($ctrl.opportunityForm[lowerCasedCurrentFormTabName]);\n        }\n    },\n    {\n        label: \"All\",\n        onClick: \"function\",\n        function: () => {\n            $ctrl.currentPipelineValue = undefined;\n            $ctrl.utilityService.clearForm($ctrl.opportunityForm);\n        }\n    }\n]",
+          "to": "resetItems"
+        },
+        {
+          "expression": "$ctrl.backButtonOnClick()",
+          "to": "backButtonOnClick"
+        },
+        {
+          "expression": "$ctrl.backButtonDisabled",
+          "to": "backButtonDisabled"
+        },
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "backButtonLoading"
+        }
+      ],
+      "name": "form-header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-header-component",
+      "type": "custom-component"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        },
+        {
+          "property": "name",
+          "value": "form"
+        }
+      ],
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "name",
+              "expressions": [
+                {
+                  "expression": "\"Name *\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.general.name",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Q2 Cloud Software Deal\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the name of the deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "description",
+              "expressions": [
+                {
+                  "expression": "\"Description\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.general.description",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"text-area\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., Enterprise license for 500 users with premium support.\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Provide a detailed description of the deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "status",
+              "expressions": [
+                {
+                  "expression": "true",
+                  "to": "allowOtherValues"
+                },
+                {
+                  "expression": "\"Status\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.general.status",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"Select status\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Specify the current status of the deal (e.g., Open, Won, Lost).\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "[{\n        \"label\": \"Open\",\n        \"value\": \"Open\"\n    },\n    {\n        \"label\": \"In Progress\",\n        \"value\": \"In Progress\"\n    },\n    {\n        \"label\": \"Negotiation\",\n        \"value\": \"Negotiation\"\n    },\n    {\n        \"label\": \"Pending Approval\",\n        \"value\": \"Pending Approval\"\n    },\n    {\n        \"label\": \"Closed Won\",\n        \"value\": \"Closed Won\"\n    },\n    {\n        \"label\": \"Closed Lost\",\n        \"value\": \"Closed Lost\"\n    },\n    {\n        \"label\": \"On Hold\",\n        \"value\": \"On Hold\"\n    },\n    {\n        \"label\": \"Qualified\",\n        \"value\": \"Qualified\"\n    },\n    {\n        \"label\": \"Unqualified\",\n        \"value\": \"Unqualified\"\n    },\n    {\n        \"label\": \"Stopped\",\n        \"value\": \"Stopped\"\n    }\n]",
+                  "to": "values"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "forecast-category",
+              "expressions": [
+                {
+                  "expression": "true",
+                  "to": "allowOtherValues"
+                },
+                {
+                  "expression": "\"Forecast Category\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.general.forecastCategory",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"Select forecast category\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Indicate the sales forecast category for this deal (e.g., Pipeline, Best Case, Commit).\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "[{\n        \"label\": \"Pipeline\",\n        \"value\": \"Pipeline\"\n    },\n    {\n        \"label\": \"Best Case\",\n        \"value\": \"Best Case\"\n    },\n    {\n        \"label\": \"Commit\",\n        \"value\": \"Commit\"\n    },\n    {\n        \"label\": \"Closed\",\n        \"value\": \"Closed\"\n    },\n    {\n        \"label\": \"Omitted\",\n        \"value\": \"Omitted\"\n    },\n    {\n        \"label\": \"Most Likely\",\n        \"value\": \"Most Likely\"\n    }\n]",
+                  "to": "values"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "pipeline",
+              "displayExpression": "$ctrl.isAdmin || $ctrl.hasPipelineRole",
+              "expressions": [
+                {
+                  "expression": "\"Pipeline\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.currentPipelineValue",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Sales Pipeline, Prospecting Pipeline\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Select the Pipeline for this deal\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.pipelineValues",
+                  "to": "values"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "pipeline-stage",
+              "displayExpression": "$ctrl.isAdmin || $ctrl.hasPipelineRole",
+              "expressions": [
+                {
+                  "expression": "\"Pipeline Stage\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.general.pipelineStageId",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Lead Qualification, Proposal, Negotiation\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "$ctrl.currentPipelineValue ? \"Select the current stage in the Pipeline.\" : \"Select a Pipeline to load its stages.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.pipelineStageValues",
+                  "to": "values"
+                },
+                {
+                  "expression": "!$ctrl.currentPipelineValue",
+                  "to": "disabled"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "general",
+          "displayExpression": "$ctrl.currentFormTab === 1",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "amount",
+              "expressions": [
+                {
+                  "expression": "\"Amount\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.finance.amount",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 50000.00\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the total monetary amount of the deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "currency",
+              "expressions": [
+                {
+                  "expression": "\"Currency\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.finance.currency",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., PHP, USD, AUD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the currency for the deal amount (e.g., USD, EUR, PHP).\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "probability",
+              "expressions": [
+                {
+                  "expression": "\"Probability\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.finance.probability",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 75\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the probability (percentage) of closing the deal (0-100).\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "annual-recurring-revenue",
+              "expressions": [
+                {
+                  "expression": "\"Annual Recurring Revenue\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.finance.annualRecurringRevenue",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 12000.00\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the annual recurring revenue (ARR) associated with this deal, if applicable.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "finance",
+          "displayExpression": "$ctrl.currentFormTab === 2",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "expected-close",
+              "expressions": [
+                {
+                  "expression": "\"Expected Close Date\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.timeline.expectedClose",
+                  "to": "dateValue"
+                },
+                {
+                  "expression": "\"YYYY-MM-DD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the expected date of closing the deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Date Time Picker",
+              "nodeName": "bln-date-time-picker",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "actual-close-date",
+              "expressions": [
+                {
+                  "expression": "\"Actual Close Date\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.timeline.actualCloseDate",
+                  "to": "dateValue"
+                },
+                {
+                  "expression": "\"YYYY-MM-DD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the actual date the deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Date Time Picker",
+              "nodeName": "bln-date-time-picker",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "last-activity-date",
+              "expressions": [
+                {
+                  "expression": "\"Last Activity Date\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.timeline.lastActivityDate",
+                  "to": "dateValue"
+                },
+                {
+                  "expression": "\"YYYY-MM-DD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the date of the last activity related to this deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Date Time Picker",
+              "nodeName": "bln-date-time-picker",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "next-activity-date",
+              "expressions": [
+                {
+                  "expression": "\"Next Activity Date\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.timeline.nextActivityDate",
+                  "to": "dateValue"
+                },
+                {
+                  "expression": "\"YYYY-MM-DD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the date of the next planned activity for this deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Date Time Picker",
+              "nodeName": "bln-date-time-picker",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "timeline",
+          "displayExpression": "$ctrl.currentFormTab === 3",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "owner-name",
+              "expressions": [
+                {
+                  "expression": "\"Owner Name\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.engagement.ownerName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Sarah Johnson\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the name of the sales representative or owner of this deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "owner-email",
+              "expressions": [
+                {
+                  "expression": "\"Owner Email\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.engagement.ownerEmail",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"email\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., sarah.johnson@example.com\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the email address of the sales representative or owner of this deal.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "hubspot-id",
+              "expressions": [
+                {
+                  "expression": "\"Hubspot Id\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.opportunityForm.engagement.hubspotId",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 987654\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the HubSpot ID for this deal, if applicable.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "crm-and-engagement",
+          "displayExpression": "$ctrl.currentFormTab === 4",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "comments": "opportunity-form",
+      "elementId": "form",
+      "name": "form"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.action",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onActionButtonClick()",
+          "to": "onActionButtonClick"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "opportunity-form-component",
+  "nodeName": "opportunity-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "currentFormTab",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentFormTabName",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentPipelineValue",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "children": [],
+      "description": "[\n    {\n        \"label\": \"Lead Qualification\",\n        \"value\": 1\n    },\n    {\n        \"label\": \"Proposal\",\n        \"value\": 2\n    },\n    {\n        \"label\": \"Negotiation\",\n        \"value\": 3\n    }\n]",
+      "name": "pipelineStageValues",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "[\n    {\n        \"label\": \"Sales Pipeline\",\n        \"value\": 1\n    },\n    {\n        \"label\": \"Prospecting Pipeline\",\n        \"value\": 2\n    }\n]",
+      "name": "pipelineValues",
+      "type": "array"
+    },
+    {
+      "body": "const requestedOpportunityId = $ctrl.opportunityId;\n\nif (!$ctrl.isAdmin && !$ctrl.hasPipelineRole) return;\n$ctrl.pipelineValues = [];\n\ntry {\n  const { entities: fetchedPipelines } = await $ctrl.pipelineService.getAllPipelines(page, limit, query, clearCache);\n\n  if (requestedOpportunityId !== $ctrl.opportunityId) {\n    return;\n  }\n\n  if (fetchedPipelines && fetchedPipelines.length > 0) {\n    $ctrl.pipelineValues = fetchedPipelines.map(pipeline => ({\n      label: pipeline.name,\n      value: pipeline.pipelineId\n    }));\n\n    const currentPipelineStageId = $ctrl.opportunityForm.general.pipelineStageId;\n    if (currentPipelineStageId) {\n      const pipelineStages = $ctrl.pipelineStageService.getCachedPipelineStages()\n      const pipelineStage = pipelineStages.find(pipelineStage => pipelineStage.pipelineStageId === currentPipelineStageId);\n      $ctrl.currentPipelineValue = pipelineStage.pipelineId;\n    }\n\n  } else {\n    $ctrl.pipelineValues = [];\n    console.warn(\"Pipeline service returned no data or an empty array.\");\n  }\n\n} catch (error) {\n  console.error(\"Error fetching pipelines:\", error);\n  $ctrl.utilityService.toast(\"Failed to load pipelines. Please try again.\", \"ERROR\");\n  $ctrl.pipelineValues = [];\n}",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": true,
+      "name": "onInit",
+      "parameters": [
+        "page",
+        "limit",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const tabNameLookup = {\n    1: \"General\",\n    2: \"Finance\",\n    3: \"Timeline\",\n    4: \"Engagement\"\n}\n\n$ctrl.currentFormTabName = tabNameLookup[$ctrl.currentFormTab];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchCurrentFormTab",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.currentFormTab"
+      ]
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "pipelineService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/pipeline-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "pipelineStageService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/pipeline-stage-service",
+      "type": "service"
+    },
+    {
+      "body": "if (!$ctrl.currentPipelineValue) {\n    $ctrl.pipelineStageValues = [];\n    return;\n}\n\nconst storedPipelineStage = $ctrl.opportunityForm.general.pipelineStageId;\nconst requestedPipelineValue = $ctrl.currentPipelineValue;\n\n$ctrl.pipelineStageValues = [];\n$ctrl.opportunityForm.general.pipelineStageId = undefined;\n\ntry {\n    const { entities: fetchedStages } = await $ctrl.pipelineStageService.getAllPipelineStagesByPipelineId(\n        undefined,\n        undefined,\n        undefined,\n        undefined,\n        requestedPipelineValue\n    );\n\n    if ($ctrl.currentPipelineValue !== requestedPipelineValue) {\n        return;\n    }\n\n    if (fetchedStages && fetchedStages.length > 0) {\n        const originalPipelineStage = fetchedStages.find(pipelineStage => pipelineStage.pipelineStageId === storedPipelineStage);\n\n        if (originalPipelineStage) {\n            $ctrl.opportunityForm.general.pipelineStageId = storedPipelineStage;\n        }\n\n        $ctrl.pipelineStageValues = fetchedStages.map(pipelineStage => ({\n            label: pipelineStage.name,\n            value: pipelineStage.pipelineStageId\n        }));\n    } else {\n        $ctrl.pipelineStageValues = [];\n        console.warn(`No stages found for pipeline ID: ${$ctrl.currentPipelineValue}`);\n    }\n    \n} catch (error) {\n    console.error(`Error loading stages for pipeline ID: ${$ctrl.currentPipelineValue}`, error);\n    $ctrl.utilityService.toast(`Failed to load stages for selected Pipeline. Please try again.`, \"ERROR\");\n    $ctrl.pipelineStageValues = [];\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "watchCurrentPipelineValue",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.currentPipelineValue"
+      ]
+    },
+    {
+      "body": "if (!$ctrl.opportunityId) return;\n\n$ctrl.currentPipelineValue = undefined;\n$ctrl.onInit();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchOpportunityId",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.opportunityId"
+      ]
+    }
+  ]
+}

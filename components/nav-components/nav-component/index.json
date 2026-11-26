@@ -1,0 +1,124 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isMobile",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "loadData",
+      "parameters": [
+        "currentPageParam",
+        "externalQueryParam",
+        "clearCacheParam",
+        "options"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        }
+      ],
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.isMobile\n? \"Lonti CRM\"\n: null",
+          "to": "label"
+        },
+        {
+          "expression": "$ctrl.isMobile\n? \"horizontal\"\n: \"vertical\"",
+          "to": "orientation"
+        },
+        {
+          "expression": "true",
+          "to": "showMenuToggle"
+        },
+        {
+          "expression": "\"side-panel\"",
+          "to": "menuType"
+        },
+        {
+          "expression": "true",
+          "to": "visible"
+        },
+        {
+          "expression": "[{\n        label: \"Contacts\",\n        evaluateLabel: false,\n        icon: {\n            name: \"address-book\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"link\",\n        link: {\n            type: \"state\",\n            state: \"contact-management\",\n            parameters: {}\n        },\n        openIn: \"current-window\",\n        whenMissingScopes: \"hide\"\n    },\n    {\n        label: \"Companies\",\n        evaluateLabel: false,\n        icon: {\n            name: \"building\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"link\",\n        link: {\n            type: \"state\",\n            state: \"company-management\",\n            parameters: {}\n        },\n        openIn: \"current-window\"\n    },\n    {\n        label: \"Deals\",\n        evaluateLabel: false,\n        icon: {\n            name: \"handshake\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"link\",\n        link: {\n            type: \"state\",\n            state: \"deal-management\",\n            parameters: {}\n        },\n        openIn: \"current-window\",\n        whenMissingScopes: \"hide\"\n    },\n    {\n        label: \"Pipelines\",\n        evaluateLabel: false,\n        icon: {\n            name: \"funnel-dollar\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"link\",\n        link: {\n            type: \"state\",\n            state: \"pipeline-management\",\n            parameters: {}\n        },\n        openIn: \"current-window\",\n        whenMissingScopes: \"hide\"\n    },\n    {\n        evaluateLabel: false,\n        onClick: \"function\"\n    },\n    {\n        label: \"Settings\",\n        evaluateLabel: false,\n        onClick: \"function\",\n        hideWhen: !$ctrl.authService.isCurrentUserAdmin,\n        icon: {\n            name: \"cog\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        menuItems: [{\n            label: \"User Access Management\",\n            evaluateLabel: false,\n            icon: {\n                name: \"users-cog\",\n                style: \"solid\",\n                type: \"font-icon\",\n                position: \"left\"\n            },\n            onClick: \"link\",\n            link: {\n                type: \"state\",\n                state: \"user-access-management\",\n                parameters: {}\n            },\n            openIn: \"current-window\",\n            whenMissingScopes: \"hide\"\n        }]\n    },\n    {\n        evaluateLabel: false,\n        onClick: \"function\",\n        hideWhen: \"!$ctrl.isMobile\"\n    },\n    {\n        label: $ctrl.authService.loggedInUser ?? \"User\",\n        evaluateLabel: true,\n        icon: {\n            name: \"user\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        hideWhen: !$ctrl.isMobile,\n        menuItems: [{\n                label: \"Tenants (\" + ($ctrl.authService\n                    .currentTenantName ?? \"NONE\") + \")\",\n                evaluateLabel: false,\n                icon: {\n                    name: \"house-user\",\n                    style: \"solid\",\n                    type: \"font-icon\",\n                    position: \"left\"\n                },\n                onClick: \"function\",\n                function:  async () => {\n            const response = await $ctrl.onOpenTenantSelectionModal();\n            if (response.result !== \"cancel\") {\n                $ctrl.loadData({\n                    options: {\n                        changedTenant: true\n                    }\n                });\n            }\n        }\n            },\n            {\n                label: \"Logout\",\n                evaluateLabel: false,\n                onClick: \"function\",\n                function: $ctrl.authService.logout,\n                openIn: \"current-window\",\n                icon: {\n                    name: \"sign-out-alt\",\n                    style: \"solid\",\n                    type: \"font-icon\",\n                    position: \"left\"\n                }\n            }\n        ]\n    }\n]",
+          "to": "menuItems"
+        }
+      ],
+      "name": "Navigation",
+      "nodeName": "bln-navigation",
+      "type": "core-component"
+    }
+  ],
+  "modules": [],
+  "name": "nav-component",
+  "parentDirectoryId": "f7Iqv2_hFSXtuyhrS5Tcy",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$cookies",
+      "type": "service"
+    },
+    {
+      "name": "$modal",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "body": "$ctrl.authService.setIsCurrentUserAdmin();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchCurrentTenantCode",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.authService.currentTenantCode"
+      ]
+    },
+    {
+      "body": "return $ctrl.$modal.open(\"select-tenant-modal\");",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onOpenTenantSelectionModal",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

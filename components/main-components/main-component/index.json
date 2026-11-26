@@ -1,0 +1,1109 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "autocomplete": [],
+      "default": "\"Page Title\"",
+      "description": "",
+      "example": "",
+      "group": "",
+      "includeAssets": false,
+      "label": "",
+      "name": "pageTitle",
+      "propertyType": "text",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "autocomplete": [],
+      "default": "\"Page description\"",
+      "description": "",
+      "example": "",
+      "group": "",
+      "includeAssets": false,
+      "label": "",
+      "name": "pageDescription",
+      "propertyType": "text",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        label: \"Add\",\n        icon: {\n            name: \"plus\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\"\n    },\n    {\n        label: \"Reload\",\n        onClick: \"function\",\n        hideWhen: \"!$ctrl.isMobile\",\n        icon: {\n            name: \"sync\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        }\n    }\n]",
+      "description": "```\n[{\n        label: \"Add\",\n        icon: {\n            name: \"plus\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\"\n    },\n    {\n        label: \"Reload\",\n        onClick: \"function\",\n        hideWhen: \"!$ctrl.isMobile\",\n        icon: {\n            name: \"sync\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        }\n    }\n]\n```",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "actionDropdown",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "selectedTabIndex",
+      "propertyType": "number",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onSelectedTabChange",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        label: \"View 1\",\n        closable: false\n    },\n    {\n        label: \"View 2\",\n        closable: false\n    },\n    {\n        label: \"View 3\",\n        closable: false\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tabItems",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tableData",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        name: \"First Name\",\n        hide: false,\n        valueKey: 'firstName',\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: '',\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"Last Name\",\n        hide: false,\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        valueKey: 'lastName'\n    },\n    {\n        name: \"Gender\",\n        hide: false,\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        valueKey: 'gender'\n    },\n    {\n        name: \"Company\",\n        hide: false,\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        valueKey: 'company'\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tableColumns",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "enableRowSelection",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onSelection",
+      "parameters": [
+        "row"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "1",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentPage",
+      "propertyType": "number",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onPageChange",
+      "parameters": [
+        "currentPage"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isMobile",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onReloadButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterTarget",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onFilterChange",
+      "parameters": [
+        "queryString"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterOperation",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterColumn",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterColumnValues",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayColumnDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayFilterInputField",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayOperationDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displaySearchButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "selectedRows",
+      "propertyType": "array",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "enableMultiSelection",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isExporting",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onExportButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onCancelExportButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "exportButtonLabel",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayTabBar",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "totalPages",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "[\n    {\n        label: \"Label\",\n        value: \"Value\"\n    }\n]",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterTargetValues",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayFilterWithDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "exportDropdownValue",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "exportDropdownValues",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayExportDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "exportDropdownTooltip",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "exportDropdownPlaceholder",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayResetButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayFilter",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filtersApplied",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentPageKey",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "defaultConfig",
+      "propertyType": "object",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "columns",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onColumnConfigChange",
+      "parameters": [
+        "columns"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "sortsApplied",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.pageTitle"
+                            }
+                          ],
+                          "classList": [],
+                          "name": "h3"
+                        },
+                        {
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.pageDescription"
+                            }
+                          ],
+                          "classList": [],
+                          "name": "p"
+                        }
+                      ],
+                      "classList": [],
+                      "elementId": "main-header-text-container",
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "core",
+                              "value": ""
+                            }
+                          ],
+                          "children": [],
+                          "classList": [],
+                          "comments": "action",
+                          "expressions": [
+                            {
+                              "expression": "$ctrl.actionDropdown",
+                              "to": "menuItems"
+                            },
+                            {
+                              "expression": "\"Action\"",
+                              "to": "label"
+                            }
+                          ],
+                          "name": "Dropdown Menu",
+                          "nodeName": "bln-dropdown-menu",
+                          "type": "core-component"
+                        },
+                        {
+                          "attributes": [
+                            {
+                              "property": "core",
+                              "value": ""
+                            }
+                          ],
+                          "children": [],
+                          "classList": [],
+                          "comments": "reload",
+                          "displayExpression": "!$ctrl.isMobile",
+                          "expressions": [
+                            {
+                              "expression": "$ctrl.enService.global.buttons.RELOAD.label",
+                              "to": "label"
+                            },
+                            {
+                              "expression": "\"primary\"",
+                              "to": "type"
+                            },
+                            {
+                              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"sync\",\n  \"position\": \"left\"\n})",
+                              "to": "icon"
+                            },
+                            {
+                              "expression": "$ctrl.onReloadButtonClick()",
+                              "to": "onClick"
+                            },
+                            {
+                              "expression": "$ctrl.enService.global.buttons.RELOAD.tooltip",
+                              "to": "tooltip"
+                            }
+                          ],
+                          "name": "Button",
+                          "nodeName": "bln-button",
+                          "type": "core-component"
+                        }
+                      ],
+                      "classList": [],
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [],
+                  "elementId": "main-header-container",
+                  "name": "div"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "displayExpression": "$ctrl.displayTabBar",
+                  "expressions": [
+                    {
+                      "expression": "\"bottom\"",
+                      "to": "position"
+                    },
+                    {
+                      "expression": "$ctrl.selectedTabIndex",
+                      "to": "selectedTab"
+                    },
+                    {
+                      "expression": "$ctrl.onSelectedTabChange({\n    selectedTab: selectedTab\n})",
+                      "to": "onSelectedTabChange"
+                    },
+                    {
+                      "expression": "$ctrl.tabItems",
+                      "to": "tabItems"
+                    }
+                  ],
+                  "name": "Tab Bar",
+                  "nodeName": "bln-tab-bar",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [],
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "false",
+              "expressions": [
+                {
+                  "expression": "$ctrl.filterColumn",
+                  "to": "filterColumn"
+                },
+                {
+                  "expression": "$ctrl.filterColumnValues",
+                  "to": "filterColumnValues"
+                },
+                {
+                  "expression": "$ctrl.filterOperation",
+                  "to": "filterOperation"
+                },
+                {
+                  "expression": "$ctrl.filterTarget",
+                  "to": "filterTarget"
+                },
+                {
+                  "expression": "$ctrl.onFilterChange({\n    newColumnValue: newColumnValue,\n    newOperationValue: newOperationValue,\n    newTargetValue: newTargetValue\n})",
+                  "to": "onFilterChange"
+                },
+                {
+                  "expression": "$ctrl.displayColumnDropdown",
+                  "to": "displayColumnDropdown"
+                },
+                {
+                  "expression": "$ctrl.displayOperationDropdown",
+                  "to": "displayOperationDropdown"
+                },
+                {
+                  "expression": "$ctrl.displayFilterInputField",
+                  "to": "displayFilterInputField"
+                },
+                {
+                  "expression": "$ctrl.filterTargetValues",
+                  "to": "filterTargetValues"
+                },
+                {
+                  "expression": "$ctrl.displayFilterWithDropdown",
+                  "to": "displayFilterWithDropdown"
+                },
+                {
+                  "expression": "$ctrl.displayResetButton",
+                  "to": "displayResetButton"
+                }
+              ],
+              "name": "filter-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/filter-components/filter-component",
+              "type": "custom-component"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "$ctrl.displayFilter",
+              "expressions": [
+                {
+                  "expression": "$ctrl.filterColumnValues",
+                  "to": "filterProperties"
+                },
+                {
+                  "expression": "$ctrl.onFilterChange({\n    queryString: queryString\n})",
+                  "to": "onFilterChange"
+                },
+                {
+                  "expression": "$ctrl.filtersApplied",
+                  "to": "filtersApplied"
+                },
+                {
+                  "expression": "$ctrl.currentPageKey",
+                  "to": "currentPageKey"
+                },
+                {
+                  "expression": "$ctrl.defaultConfig",
+                  "to": "defaultConfig"
+                },
+                {
+                  "expression": "$ctrl.filterTargetValues",
+                  "to": "filterValueChoices"
+                },
+                {
+                  "expression": "$ctrl.columns",
+                  "to": "columns"
+                },
+                {
+                  "expression": "$ctrl.onColumnConfigChange({\n    columns: columns\n})",
+                  "to": "onColumnConfigChange"
+                },
+                {
+                  "expression": "$ctrl.sortsApplied",
+                  "to": "sortsApplied"
+                }
+              ],
+              "name": "advanced-filter-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/filter-components/advanced-filter-component",
+              "type": "custom-component"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "expressions": [
+                    {
+                      "expression": "\"5rem\"",
+                      "to": "size"
+                    }
+                  ],
+                  "name": "Spinner",
+                  "nodeName": "bln-spinner",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [
+                "spinner-container"
+              ],
+              "conditionalClasses": [
+                {
+                  "className": "spinner-container-for-export",
+                  "condition": "$ctrl.isExporting"
+                }
+              ],
+              "displayExpression": "$ctrl.isLoading",
+              "name": "div"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.tableData",
+                      "to": "data"
+                    },
+                    {
+                      "expression": "$ctrl.tableColumns && $ctrl.isMobile ? $ctrl.tableColumns.slice(\n    0, 3) : $ctrl.tableColumns",
+                      "to": "columns"
+                    },
+                    {
+                      "expression": "$ctrl.enableRowSelection",
+                      "to": "enableRowSelection"
+                    },
+                    {
+                      "expression": "$ctrl.onSelection({\n    row: row\n})",
+                      "to": "onSelection"
+                    },
+                    {
+                      "expression": "true",
+                      "to": "enablePagination"
+                    },
+                    {
+                      "expression": "$ctrl.currentPage",
+                      "to": "currentPage"
+                    },
+                    {
+                      "expression": "",
+                      "to": "configuration"
+                    },
+                    {
+                      "expression": "false",
+                      "to": "enableFiltering"
+                    },
+                    {
+                      "expression": "$ctrl.selectedRows",
+                      "to": "selectedRow"
+                    },
+                    {
+                      "expression": "$ctrl.enableMultiSelection",
+                      "to": "enableMultiSelection"
+                    },
+                    {
+                      "expression": "false",
+                      "to": "enableSorting"
+                    }
+                  ],
+                  "name": "Table",
+                  "nodeName": "bln-table",
+                  "styles": [
+                    {
+                      "enabled": true,
+                      "property": "--bln-table-height",
+                      "value": "100%"
+                    },
+                    {
+                      "enabled": true,
+                      "property": "--bln-table-secondary-bg-color",
+                      "value": "#f9f9f9"
+                    }
+                  ],
+                  "type": "core-component"
+                }
+              ],
+              "classList": [
+                "table-container"
+              ],
+              "conditionalClasses": [
+                {
+                  "className": "table-container-for-export",
+                  "condition": "$ctrl.isExporting"
+                }
+              ],
+              "displayExpression": "!$ctrl.isLoading",
+              "name": "div"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "expressions": [],
+              "name": "inline-alert-bar-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/alert-bar-components/inline-alert-bar-component",
+              "type": "custom-component"
+            },
+            {
+              "children": [
+                {
+                  "children": [],
+                  "classList": [],
+                  "displayExpression": "$ctrl.isExporting",
+                  "elementId": "export-form-footer-component",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.exportButtonLabel",
+                      "to": "action"
+                    },
+                    {
+                      "expression": "$ctrl.isLoading",
+                      "to": "isLoading"
+                    },
+                    {
+                      "expression": "$ctrl.onExportButtonClick()",
+                      "to": "onActionButtonClick"
+                    },
+                    {
+                      "expression": "$ctrl.onCancelExportButtonClick()",
+                      "to": "onCancelButtonClick"
+                    },
+                    {
+                      "expression": "true",
+                      "to": "displayCancelButton"
+                    },
+                    {
+                      "expression": "$ctrl.exportDropdownValue",
+                      "to": "dropdownValue"
+                    },
+                    {
+                      "expression": "$ctrl.exportDropdownValues",
+                      "to": "dropdownValues"
+                    },
+                    {
+                      "expression": "$ctrl.exportDropdownTooltip",
+                      "to": "dropdownTooltip"
+                    },
+                    {
+                      "expression": "$ctrl.exportDropdownPlaceholder",
+                      "to": "dropdownPlaceholder"
+                    },
+                    {
+                      "expression": "$ctrl.displayExportDropdown",
+                      "to": "displayDropdown"
+                    }
+                  ],
+                  "name": "form-footer-component",
+                  "ownerId": "6b07c32e48cd88e32d307995",
+                  "ownerType": "app",
+                  "resourceIdentity": "components/form-components/form-footer-component",
+                  "type": "custom-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "conditionalClasses": [
+                    {
+                      "className": "pagination-with-export-footer",
+                      "condition": "$ctrl.isExporting"
+                    }
+                  ],
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.currentPage",
+                      "to": "currentPage"
+                    },
+                    {
+                      "expression": "$ctrl.onPageChange({ currentPage: currentPage })",
+                      "to": "onPageChange"
+                    },
+                    {
+                      "expression": "$ctrl.totalPages",
+                      "to": "totalPages"
+                    }
+                  ],
+                  "name": "Pagination",
+                  "nodeName": "bln-pagination",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [],
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "elementId": "main-body-container",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "elementId": "main-component-container",
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "main-component",
+  "nodeName": "main-component",
+  "parentDirectoryId": "Z_sFxIulGvGqV4buK1WEU",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    }
+  ]
+}

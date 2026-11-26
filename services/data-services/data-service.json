@@ -1,0 +1,226 @@
+{
+  "description": "",
+  "name": "data-service",
+  "parentDirectoryId": "vNppa4hFdSWuu-9EN5-t1",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "body": "// Helper function to safely construct a full URL from a base and a path\nconst getFullApiUrl = (base, path) => {\n  if (!base || !path) {\n    return null;\n  }\n  const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;\n  const cleanPath = path.startsWith('/') ? path : `/${path}`;\n  return cleanBase + cleanPath;\n};\n\n// Get the single base URL from the environment\nconst apiBaseUrlFromEnv = this.$env.getProperty(\"apiBaseUrl\");\n\n// Central validation for the base URL\nif (!apiBaseUrlFromEnv || apiBaseUrlFromEnv.trim() === \"\") {\n  console.warn(\"The 'apiBaseUrl' environment variable is not set. API URLs cannot be configured.\");\n} else {\n  // Array of API endpoint configurations\n  const apiEndpoints = [\n    {\n      path: \"/api/lonti_app_crm/1.0\",\n      urlProperty: 'apiBaseUrl',\n      service: this.lontiAppCrmApi,\n      serviceName: 'lontiAppCrmApi'\n    },\n    {\n      path: \"/api/lonti_util_saas_app_authorization/1.0\",\n      urlProperty: 'authApiBaseUrl',\n      service: this.lontiUtilSaasAppAuthorizationApi, // Assumed to exist\n      serviceName: 'lontiUtilSaasAppAuthorizationApi'\n    }\n  ];\n\n  // Iterate over each configuration to set the URL and configure the service\n  apiEndpoints.forEach(endpoint => {\n    const fullApiUrl = getFullApiUrl(apiBaseUrlFromEnv, endpoint.path);\n    this[endpoint.urlProperty] = fullApiUrl;\n\n    if (endpoint.service && typeof endpoint.service.setServerUrl === 'function') {\n      endpoint.service.setServerUrl(fullApiUrl);\n    } else {\n      console.warn(`The '${endpoint.serviceName}' service or its 'setServerUrl' method is not available.`);\n    }\n  });\n}",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "setApiBaseUrl",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "apiBaseUrl",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "// --- 1. Setup & Configuration ---\nconst {\n    page,\n    limit = 25,\n    query,\n    apiType = 'crm',\n    customEntityKey\n} = options;\n\n// Select the appropriate base URL based on apiType\nconst baseUrl = apiType === 'auth' ? this.authApiBaseUrl : this.apiBaseUrl;\n\nif (!baseUrl) {\n    const errorMessage = `The base URL for the '${apiType}' API is not configured.`;\n    console.error(errorMessage);\n    this.utilityService.toast(errorMessage, \"ERROR\");\n    throw new Error(errorMessage);\n}\n\n// --- 2. URL Construction ---\nlet url = new URL(`${baseUrl}/${entity}`);\nconst params = url.searchParams;\n\n// 1. Handle the 'eventlog' outlier first\nif (entity === \"eventlog\") {\n    params.set('page', 0);\n    params.set('pageSize', limit);\n}\n// 2. Apply standard pagination if a page is provided\n// We remove the \"/\" and \"attachment\" checks because sub-resources \n// (like attachment/Contact/1) usually support limit/offset too.\nelse if (page !== undefined && page !== null) {\n    const offset = (page - 1) * limit;\n\n    params.set('limit', limit);\n    params.set('offset', offset);\n}\n\n// Append query parameters from the options object\nif (query) {\n    const tempSearchParams = new URLSearchParams(query);\n\n    // --- 1. Handle the special 'pipelineId_eq' case first ---\n    // Check if the specific pipeline ID parameter exists.\n    if (tempSearchParams.has('pipelineId_eq') && entity !== \"pipeline\") {\n        const pipelineId = tempSearchParams.get('pipelineId_eq');\n\n        // If a value exists, append it to the URL's path.\n        if (pipelineId) {\n            url.pathname += `/pipeline/${pipelineId}`;\n        }\n\n        // IMPORTANT: Delete the parameter so it isn't added as a regular search param later.\n        tempSearchParams.delete('pipelineId_eq');\n    }\n\n    // --- 2. Iterate over the REMAINING parameters ---\n    tempSearchParams.forEach((value, key) => {\n        if (key.endsWith('_in') || key.endsWith('_notin')) {\n            // This part remains the same to handle your list parameters.\n            let currentUrlString = url.toString();\n            currentUrlString += currentUrlString.includes('?') ? '&' : '?';\n            currentUrlString += `${encodeURIComponent(key)}=${value}`;\n            url = new URL(currentUrlString);\n        } else {\n            // All other parameters are appended normally.\n            url.searchParams.append(key, value);\n        }\n    });\n}\n\n// --- 3. API Request & Response Handling ---\ntry {\n    const headers = this.authService.getHeaders();\n    const response = await fetch(url.toString(), {\n        method: 'GET',\n        headers: headers\n    });\n\n    if (!response.ok) {\n        let errorData;\n        try {\n            errorData = await response.json();\n        } catch (e) {\n            errorData = await response.text();\n        }\n        const errorMessage = errorData?.message || (typeof errorData === 'string' ? errorData : `HTTP error! status: ${response.status}`);\n        throw new Error(errorMessage);\n    \n    \n    }\n\n    // NOTE: this.$timeout is a legacy AngularJS feature for triggering a digest cycle.\n    // It is generally not needed in modern JavaScript frameworks and can likely be removed.\n    this.$timeout(100);\n\n    if (response.status === 204) {\n        return response;\n    }\n\n    const res = await response.json();\n\n    const entityKey = customEntityKey ?? entity.split(\"/\")[0];\n\n    // Get the array of entities, handling different possible response shapes.\n    const entities = res?.[entityKey] ?? res ?? [];\n\n    // Get the total and totalFiltered counts, providing a default if they don't exist.\n    const total = res?.metadata?.totalCount ?? 0;\n    const totalFiltered = res?.metadata?.totalFiltered ?? entities.length; // Default to the returned count if not provided\n    const pageCount = res?.metadata?.pageCount ?? 1;\n    const hasNextPage = res?.metadata?.hasNextPage ?? false;\n\n    // Return a single object containing all the data.\n    if (Array.isArray(entities)) {\n        return {\n            entities,\n            total,\n            totalFiltered,\n            pageCount,\n            hasNextPage\n        };\n    } else {\n        return res;\n    }\n\n} catch (error) {\n    const errorMessage = error?.message || \"An unexpected API error occurred.\";\n    console.error(`API Error in getData for entity '${entity}':`, error);\n    this.utilityService.toast(errorMessage, \"ERROR\");\n    throw error; // Re-throw the error for the calling function to handle\n}",
+      "description": "Fetches data from a Lonti API endpoint.\n* @param {string} entity The resource path (e.g., 'contacts', 'companies/123/notes').\n* @param {object} [options={}] Configuration object for the API request.\n* @param {number} [options.page] The page number for pagination (starts at 1).\n* @param {number} [options.limit=25] The number of items per page.\n* @param {object} [options.query] Key-value pairs to be used as URL query parameters.\n* @param {string} [options.apiType='crm'] The API to use. Accepts 'crm' or 'auth'.\n* @returns {Promise<any>} A promise that resolves with the extracted API data.",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "getData",
+      "parameters": [
+        "entity",
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "processData",
+      "properties": [
+        {
+          "body": "return columnNames.map(columnName => {\n    let valueKey = columnName.toLowerCase().replace(/ (\\w)/g, (match, letter) => letter.toUpperCase());\n    valueKey = valueKey.charAt(0).toLowerCase() + valueKey.slice(1);\n\n    return {\n        name: columnName,\n        hide: options.hide !== undefined ? options.hide : false,\n        valueKey: options.valueKey ? options.valueKey[columnName] || valueKey : valueKey,\n        textAlign: options.textAlign !== undefined ? options.textAlign : \"left\",\n        enableSorting: options.enableSorting !== undefined ? options.enableSorting : true,\n        sortBy: options.sortBy !== undefined ? options.sortBy : \"none\",\n        enableFiltering: options.enableFiltering !== undefined ? options.enableFiltering : false,\n        enablePinning: options.enablePinning !== undefined ? options.enablePinning : false,\n        type: options.type ? options.type[columnName] : \"string\",\n        cellTemplate: options.cellTemplate !== undefined ? options.cellTemplate : \"default\",\n        cellTooltip: options.cellTooltip !== undefined ? options.cellTooltip : '',\n        cellConditionalStyle: options.cellConditionalStyle !== undefined ? options.cellConditionalStyle : [],\n        cellActions: options.cellActions !== undefined ? options.cellActions : [],\n        classes: options.classes !== undefined ? options.classes : [],\n        conditionalClasses: options.conditionalClasses !== undefined ? options.conditionalClasses : []\n    };\n});\n",
+          "description": "## `generateColumnDefinitions` Options\n\nThis function takes an optional second argument, `options`, which is an object allowing you to customize the default properties of the generated column definitions. If a property is not specified in the `options` object, a default value will be used.\n\nHere's a breakdown of the available options:\n\n* **`hide`**: `boolean` - Sets the initial visibility of all columns. Default: `false`.\n* **`textAlign`**: `string` - Sets the text alignment for all columns. Default: `\"left\"`.\n* **`valueKey`**: `object` - An object where keys are `columnName` strings and values are the desired `valueKey` strings for those specific columns. If a `columnName` is not found as a key in this object, the `valueKey` will be automatically generated (lowercase with spaces removed).\n* **`enableSorting`**: `boolean` - Enables sorting for all columns. Default: `true`.\n* **`sortBy`**: `string` - Sets the initial sort order for all columns. Default: `\"none\"`.\n* **`enableFiltering`**: `object` - An object where keys are `columnName` strings and values are `boolean` indicating whether filtering should be enabled for those specific columns. Default: `false` for all columns.\n* **`enablePinning`**: `boolean` - Enables pinning for all columns. Default: `false`.\n* **`type`**: `object` - An object where keys are `columnName` strings and values are the data `type` (`\"string\"`, `\"number\"`, `\"date\"`, etc.) for those specific columns. Default: `\"string\"` for all columns.\n* **`cellTemplate`**: `string` - Sets the cell template for all columns. Default: `\"default\"`.\n* **`cellTooltip`**: `string` - Sets the cell tooltip for all columns. Default: `''`.\n* **`cellConditionalStyle`**: `array` - Sets the conditional styles for all columns. Default: `[]`.\n* **`cellActions`**: `array` - Sets the cell actions for all columns. Default: `[]`.\n* **`classes`**: `array` - Sets the CSS classes for all columns. Default: `[]`.\n* **`conditionalClasses`**: `array` - Sets the conditional CSS classes for all columns. Default: `[]`.\n\n**Example Usage:**\n\n```javascript\nconst columnNames = [\"First Name\", \"Last Name\", \"Email\"];\nconst customOptions = {\n  hide: false, // Show all columns\n  textAlign: \"center\", // Center align all text\n  valueKey: {\n    \"First Name\": \"firstName\",\n    \"Last Name\": \"lastName\",\n    \"Email\": \"emailAddress\"\n  },\n  enableFiltering: {\n    \"Last Name\": true,\n    \"Email\": true\n  }\n};\n\nconst columnDefinitions = generateColumnDefinitions(columnNames, customOptions);\n```",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "generateColumnDefinitions",
+          "parameters": [
+            "columnNames",
+            "options"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "const defaultOptions = { apiType: 'crm' };\nconst defaultParameters = {};\noptions = options ?? defaultOptions;\nparameters = parameters ?? defaultParameters;\nconst { apiType } = options;\n\n// --- 3. Construct Function Name and Execute ---\ntry {\n    // Determine the action (e.g., \"Insert\", \"Update\")\n    const actionVerb = method.toUpperCase() === \"POST\" ? \"Insert\" : \"Update\";\n    const entityAction = this.utilityService.buildEntityAction(type, actionVerb);\n    const functionPrefix = this.getFunctionPrefix({\n        apiType: apiType,\n        entityType: type\n    });\n    const selectedApi = this.getSelectedApi({\n        apiType: apiType\n    });\n\n    // Construct the full function name (e.g., \"lonti_app_crm_service_contact_Insert\")\n    const apiFunction = `${functionPrefix}${entityAction}`;\n\n    if (typeof selectedApi.service[apiFunction] !== 'function') {\n        const errorMessage = `The function '${apiFunction}' does not exist on the '${apiType}' service.`;\n        console.error(errorMessage);\n        throw new Error(errorMessage);\n    }\n\n    const apiHeaders = { headers: this.authService.getHeaders() };\n\n    // Dynamically call the correct function on the selected API service\n    let response;\n    if (apiType === \"auth\" || type === \"tenant\") {\n        response = await selectedApi.service[apiFunction](requestBody, apiHeaders);\n    } else {\n        response = await selectedApi.service[apiFunction](parameters, requestBody, apiHeaders);\n    }\n\n    return response.data;\n\n} catch (error) {\n    const errorData = error?.data || error;\n    // const errorMessage = errorData?.message || \"An unexpected API error occurred.\";\n    // console.error(`API Error in sendData for type '${type}':`, errorData);\n    // this.utilityService.toast(errorMessage, \"ERROR\");\n    // Re-throw the error data so the calling function's catch block receives it\n    return errorData;\n}\n\n// const apiHeaders = { headers: this.authService.getHeaders() };\n// const entityAction = this.utilityService.buildEntityAction(type, method === \"POST\" ? \"Insert\" : \"Update\");\n// const apiFunction = \"lonti_app_crm_service_\".concat(entityAction);\n\n// return this.lontiAppCrmApi[apiFunction](\n//     {},\n//     requestBody,\n//     apiHeaders\n// )\n//     .then(res => res.data)\n//     .catch(rej => rej.data)\n",
+      "description": "Sends data (creates or updates an entity) to a Lonti API endpoint.\n * @param {string} type The entity type (e.g., 'contact', 'company').\n * @param {'POST' | 'PUT' | 'PATCH'} method The HTTP method used for the action.\n * @param {object} requestBody The data payload to send.\n * @param {object} [options={}] Configuration object for the request.\n * @param {string} [options.apiType='crm'] The API to use. Accepts 'crm' or 'auth'.\n * @returns {Promise<any>} A promise that resolves with the response data or rejects with the error data.\n */",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "sendData",
+      "parameters": [
+        "type",
+        "method",
+        "requestBody",
+        "options",
+        "parameters"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const {\n    displayName = type,\n    modalData,\n    modalColumns,\n    apiType = 'crm',\n    skipModal\n} = options;\n\n// --- 1. User Confirmation ---\nif (!skipModal) {\n    const modalResult = await this.$modal.open(\"confirm-action-modal\", {\n        modalHeaderTitle: `Delete ${displayName}?`,\n        modalBodyTableData: modalData,\n        modalBodyTableColumns: modalColumns\n    });\n\n    // Exit if the user did not confirm the action\n    if (modalResult.result !== \"ok\") {\n        return modalResult;\n    }\n}\n\n// --- 3. API Deletion Request ---\ntry {\n    const authRelatedEntities = this.authRelatedEntities;\n    const entityAction = this.utilityService.buildEntityAction(type, \"Delete\");\n    \n    const functionPrefix = this.getFunctionPrefix({\n        apiType: apiType,\n        entityType: type\n    });\n    const selectedApi = this.getSelectedApi({\n        apiType: apiType\n    });\n\n    const apiFunction = `${functionPrefix}${entityAction}`;\n    \n    let idKey;\n\n    if (typeof selectedApi.service[apiFunction] !== 'function') {\n        const errorMessage = `The function '${apiFunction}' does not exist on the '${apiType}' service.`;\n        console.error(errorMessage);\n        throw new Error(errorMessage);\n    }\n\n    if (authRelatedEntities.includes(type) && (apiType === \"auth\")) {\n        idKey = \"id\";\n    } else {\n        idKey = `${type === \"pipelinestage\" ? \"pipelineStage\" : type}Id`;\n    }\n\n    const parameters = {\n        [idKey]: id,\n        ...additionalParameters\n    };\n    \n    const apiHeaders = { headers: this.authService.getHeaders() };\n\n    // Call the delete function on the dynamically selected API\n    const response = await selectedApi.service[apiFunction](parameters, apiHeaders);\n\n    // this.utilityService.toast(`${displayName} deleted successfully.`, \"SUCCESS\");\n    return response.data;\n\n} catch (error) {\n    const errorData = error?.data || error;\n    const errorMessage = errorData?.message || \"An error occurred while deleting.\";\n    console.error(`API Error deleting '${type}' with ID '${id}':`, errorData);\n    this.utilityService.toast(errorMessage, \"ERROR\");\n    throw errorData;\n}\n\n// return this.$modal.open(\"confirm-action-modal\", {\n//     modalHeaderTitle: \"Delete \".concat(name, \"?\"),\n//     modalBodyTableData: data,\n//     modalBodyTableColumns: columns\n// }).then(res => {\n//     if (res.result !== \"ok\") return res;\n\n//     const apiHeaders = { headers: this.authService.getHeaders() };\n//     const entityAction = this.utilityService.buildEntityAction(type, \"Delete\");\n//     const apiFunction = \"lonti_app_crm_service_\".concat(entityAction);\n\n//     const idKey = type.concat(\"Id\");\n//     const requestBody = { [idKey]: id }\n\n//     return this.lontiAppCrmApi[apiFunction](\n//         requestBody,\n//         apiHeaders\n//     )\n//         .then(res => res.data)\n//         .catch(rej => rej.data)\n\n// });\n",
+      "description": "Opens a confirmation modal and, upon user confirmation, deletes an entity.\n* @param {string} type The entity type (e.g., 'contact', 'userRole').\n* @param {string|number} id The unique identifier of the entity to delete.\n* @param {object} [options={}] Configuration object for the delete action.\n* @param {string} [options.displayName] The name to display in the modal title (e.g., \"John Doe's contact\"). Defaults to the entity type.\n* @param {object} [options.modalData] Data to display in the modal's body.\n* @param {object[]} [options.modalColumns] Column definitions for the modal's data table.\n* @param {string} [options.apiType='crm'] The API to use. Accepts 'crm' or 'auth'.\n* @returns {Promise<any>} A promise that resolves with the API response, or the modal result if the action is cancelled.",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "deleteData",
+      "parameters": [
+        "type",
+        "id",
+        "options",
+        "additionalParameters"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const result = {};\nconst authRelatedEntities = this.authRelatedEntities;\n\nlet idKey;\n\nif (method === \"PUT\") {\n    if (authRelatedEntities.includes(type)) {\n        idKey = \"id\";\n    } else {\n        idKey = type?.concat(\"Id\");\n    }\n\n    result[idKey] = id;\n}\n\nfunction processValue(currentKey, value) {\n    if (typeof value === 'object' && value !== null && !(value instanceof Date)) {\n        // If it's a nested object (not a Date), iterate through its properties\n        for (const nestedKey in value) {\n            if (value.hasOwnProperty(nestedKey)) {\n                const titleCaseNestedKey = nestedKey.charAt(0).toUpperCase() + nestedKey.slice(1);\n                processValue(nestedKey, value[nestedKey]); // Recursive call\n            }\n        }\n    } else {\n        // For primitive values or Dates, apply the logic\n        const titleCaseKey = currentKey.charAt(0).toUpperCase() + currentKey.slice(1);\n\n        if (value === \"\") return; // Skip empty values\n\n        // if (method === \"PUT\" && [\"offCycle\", \"payScheduleId\", \"startDate\", \"endDate\", \"payDate\", \"payPeriodId\", \"runType\", \"finalPayEligibleWorker\"].includes(currentKey)) {\n        //     return;\n        // }\n\n        if (method === \"POST\" && /^(is|need|with|can|allow|active|salaried|enabled|final|employercontribution)$/i.test(currentKey) && currentKey !== \"finalPayEligibleWorker\") {\n            result[currentKey] = value || false;\n        // } else if (currentKey === \"workingDays\" && value && Object.values(value).find(day => day)) {\n        //     result[titleCaseKey] = $ctrl.convertWorkingDaysToString(value);\n        // } else if (currentKey.includes(\"Date\") && value) {\n        //     result[titleCaseKey] = $ctrl.utils.parseDate(value);\n        } else {\n            result[currentKey] = value;\n        }\n    }\n}\n\nfor (const key in form) {\n    if (form.hasOwnProperty(key)) {\n        processValue(key, form[key]);\n    }\n}\n\nreturn result;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "buildRequestBody",
+      "parameters": [
+        "method",
+        "form",
+        "type",
+        "id"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "name": "$env",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "name": "$modal",
+      "type": "service"
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    },
+    {
+      "id": "open-api",
+      "name": "lontiAppCrmApi",
+      "resourceIdentity": "apis/lontiAppCrmApi",
+      "type": "open-api"
+    },
+    {
+      "id": "open-api",
+      "name": "lontiUtilSaasAppAuthorizationApi",
+      "resourceIdentity": "apis/lontiUtilSaasAppAuthorizationApi",
+      "type": "open-api"
+    },
+    {
+      "description": "",
+      "name": "authApiBaseUrl",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "authRelatedEntities",
+      "type": "property",
+      "value": "[\n    \"user\",\n    \"tenant\",\n    \"role\",\n    \"user_role\",\n    \"scope\",\n    \"role_scope\"\n]"
+    },
+    {
+      "body": "const {\n    apiType,\n    entityType,\n    apiConfig = this.getApiConfig()\n} = options;\n\nconst selectedApi = apiConfig[apiType];\n\nif (!selectedApi) {\n    throw new Error(`Invalid or misconfigured apiType: '${apiType}'`);\n}\n\n// Check the type of the prefix property to handle both cases\nif (typeof selectedApi.prefix === 'function') {\n    return selectedApi.prefix(entityType); // Call it if it's a function\n} else {\n    return selectedApi.prefix; // Return it directly if it's a string\n}",
+      "description": "Determines the correct API function prefix from the configuration.\nIt handles cases where the prefix is a static string or a dynamic function.\n * @private\n * @param {object} options - The required options.\n * @param {string} options.apiType - The type of API ('crm', 'auth', etc.).\n * @param {string} options.entityType - The entity being processed (e.g., 'Activity').\n * @param {object} options.apiConfig - The API configuration map.\n * @returns {string} The resolved API function name prefix.\n */",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFunctionPrefix",
+      "parameters": [
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return {\n    crm: {\n        service: this.lontiAppCrmApi,\n        prefix: (entityType) => {\n            if (entityType === 'activity' || entityType === \"attachment\") {\n                return 'workflow_lonti_app_crm_workflow_';\n            }\n            // Return the default prefix for all other CRM entities.\n            return 'lonti_app_crm_service_';\n        }\n    },\n    auth: {\n        service: this.lontiUtilSaasAppAuthorizationApi,\n        prefix: 'lonti_util_saas_app_authorization_service_'\n    }\n};",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getApiConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const {\n    apiType,\n    apiConfig = this.getApiConfig()\n} = options;\n\nconst selectedApi = apiConfig[apiType];\n\nif (!selectedApi) {\n    throw new Error(`Invalid or misconfigured apiType: '${apiType}'`);\n}\n\nreturn selectedApi;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getSelectedApi",
+      "parameters": [
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "apiBaseUrl",
+    "buildRequestBody",
+    "processData",
+    "getDataActivity",
+    "getEntityActivities",
+    "exportData",
+    "test",
+    "authApiBaseUrl",
+    "getData",
+    "sendData",
+    "deleteData"
+  ]
+}

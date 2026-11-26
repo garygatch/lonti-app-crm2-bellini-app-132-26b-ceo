@@ -1,0 +1,334 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "enumOptions": [
+        {
+          "label": "ADD",
+          "value": "ADD"
+        },
+        {
+          "label": "EDIT",
+          "value": "EDIT"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "multi": false,
+      "name": "action",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "userForm",
+      "propertyType": "object",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.currentFormTab",
+          "to": "currentFormTab"
+        },
+        {
+          "expression": "$ctrl.action.concat(\" USER\")",
+          "to": "formTitle"
+        },
+        {
+          "expression": "$ctrl.currentFormTabName",
+          "to": "currentFormTabName"
+        },
+        {
+          "expression": "$ctrl.backButtonOnClick()",
+          "to": "backButtonOnClick"
+        },
+        {
+          "expression": "$ctrl.backButtonDisabled",
+          "to": "backButtonDisabled"
+        },
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "backButtonLoading"
+        },
+        {
+          "expression": "false",
+          "to": "displayTabBar"
+        },
+        {
+          "expression": "false",
+          "to": "displayFieldResetDropdown"
+        }
+      ],
+      "name": "form-header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-header-component",
+      "type": "custom-component"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        },
+        {
+          "property": "name",
+          "value": "form"
+        }
+      ],
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "active",
+          "expressions": [
+            {
+              "expression": "\"Active\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.userForm.active",
+              "to": "toggled"
+            },
+            {
+              "expression": "\"Determines whether the user can log in or not\"",
+              "to": "tooltip"
+            }
+          ],
+          "formControl": {
+            "modelName": "toggled"
+          },
+          "name": "Toggle",
+          "nodeName": "bln-toggle",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "name",
+          "expressions": [
+            {
+              "expression": "\"Name *\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.userForm.name",
+              "to": "value"
+            },
+            {
+              "expression": "\"e.g., John Doe\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "\"The name of the user\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "true",
+              "to": "isRequired"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "email",
+          "expressions": [
+            {
+              "expression": "\"Email *\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.userForm.email",
+              "to": "value"
+            },
+            {
+              "expression": "\"e.g., john.doe@mail.com\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "\"The email of the user\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "true",
+              "to": "isRequired"
+            },
+            {
+              "expression": "\"email\"",
+              "to": "type"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "directory-user-id",
+          "expressions": [
+            {
+              "expression": "\"Directory User ID\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.userForm.directoryUserId",
+              "to": "value"
+            },
+            {
+              "expression": "\"e.g., 1a2b3c-4d5e-6f7g8h\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "\"The directory user ID of the user\"",
+              "to": "tooltip"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "comments": "user-form",
+      "elementId": "form",
+      "name": "form"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.action",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onActionButtonClick()",
+          "to": "onActionButtonClick"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "user-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    }
+  ]
+}

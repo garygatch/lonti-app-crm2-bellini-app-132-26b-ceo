@@ -1,0 +1,84 @@
+/*
+  --------------------------------------------------
+  Panel Content Styles (e.g., Side Panels)
+  --------------------------------------------------
+*/
+div[bln-panel-content] {
+    --bln-panel-width: 100%;
+    /* Default width */
+}
+
+/*
+  --------------------------------------------------
+  Info Panel Styles
+  --------------------------------------------------
+*/
+#info-panel-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-right-style: var(--bln-rich-text-editor-border-style);
+    border-right-color: var(--bln-rich-text-editor-border-color);
+    border-right-width: var(--bln-rich-text-editor-border-width)
+}
+
+#info-panel-header-tab-bar-container {
+    max-height: fit-content;
+    position: sticky;
+    top: 2.6rem;
+    z-index: 10;
+    border-right-style: var(--bln-rich-text-editor-border-style);
+    border-right-color: var(--bln-rich-text-editor-border-color);
+    border-right-width: var(--bln-rich-text-editor-border-width);
+}
+
+#info-panel-body-container {
+    height: 80%;
+    word-break: break-all;
+    padding: 0.5rem;
+}
+
+#info-panel-body-notice {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+@media (min-width: 1024px) {
+    div[bln-panel-content] {
+        --bln-panel-width: 30%;
+        /* Wider on desktop */
+    }
+
+    #side-panel {
+        max-height: var(--height-offset);
+        /* Add other side panel specific styles here */
+    }
+
+    #info-panel-header-tab-bar-container {
+        z-index: 0;
+        /* justify-content: flex-end; */
+        /* Align items to the right on desktop */
+    }
+}
+
+@media (min-height: 800px) {
+    #info-panel-body-container {
+        height: 85%;
+    }
+}

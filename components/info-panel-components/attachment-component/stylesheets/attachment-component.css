@@ -1,0 +1,31 @@
+attachment-component {
+    /* Bellini Overrides */
+    .bln-file-input .file-list .file-list-item {
+            display: none;
+            margin-top: unset;
+        }
+
+    #attachment-component-container {
+        padding: 1rem;
+    }
+
+    .action-buttons-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: 6px;
+        padding: 6px 4px;
+        margin: 0.5rem auto;
+    }
+
+    .progress-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: 6px;
+        padding: 6px 4px;
+        margin: 1rem;
+    }
+}

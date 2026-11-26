@@ -1,0 +1,171 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "loadData",
+      "parameters": [
+        "currentPageParam",
+        "externalQueryParam",
+        "clearCacheParam",
+        "options"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "Lonti CRM"
+            }
+          ],
+          "classList": [],
+          "name": "h3"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "elementId": "user-profile-container",
+              "expressions": [
+                {
+                  "expression": "[{\n        label: \"Tenants (\" + ($ctrl.authService.currentTenantName ??\n            \"NONE\") + \")\",\n        evaluateLabel: false,\n        icon: {\n            name: \"house-user\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: async () => {\n            const response = await $ctrl.onOpenTenantSelectionModal();\n            if (response.result !== \"cancel\") {\n                $ctrl.loadData({\n                    options: { changedTenant: true }\n                });\n            }\n        }\n    },\n    {\n        label: \"Log out\",\n        evaluateLabel: false,\n        icon: {\n            name: \"sign-out-alt\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: $ctrl.authService.logout\n    }\n]",
+                  "to": "menuItems"
+                },
+                {
+                  "expression": "$ctrl.authService.loggedInUser || \"User\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"user\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "displayExpression": "false",
+              "expressions": [
+                {
+                  "expression": "\"\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"Select a Tenant\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "$ctrl.currentTenant",
+                  "to": "value"
+                },
+                {
+                  "expression": "500",
+                  "to": "debounceDelay"
+                },
+                {
+                  "expression": "$ctrl.onTenantCodeChange(value)",
+                  "to": "onValueChange"
+                },
+                {
+                  "expression": "$ctrl.currentTenants",
+                  "to": "values"
+                },
+                {
+                  "expression": "\"Select Tenant to view its corresponding data\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "elementId": "temporary-fields-container",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "name": "header"
+    }
+  ],
+  "modules": [],
+  "name": "header-component",
+  "nodeName": "header-component",
+  "parentDirectoryId": "-9j3f8gMi52iIWx6Uy4VM",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "name": "$cookies",
+      "type": "service"
+    },
+    {
+      "body": "try {\n    await $ctrl.authService.setSaasAuth();\n\n    $ctrl.authService.currentTenantCode = $ctrl.$cookies.get(\"x_tenant_code\");\n    $ctrl.authService.currentTenantName = $ctrl.$cookies.get(\"x_tenant_name\") ?? \"NONE\";\n\n    if (!$ctrl.authService.currentTenantCode) {\n        await $ctrl.onOpenTenantSelectionModal();\n        $ctrl.loadData();\n    } else {\n        $ctrl.loadData();\n    }\n\n} catch (error) {\n    console.error(\"Failed to initialize header component due to an authentication error:\", error);\n}",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": true,
+      "name": "initializeComponent",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "name": "$modal",
+      "type": "service"
+    },
+    {
+      "body": "return $ctrl.$modal.open(\"select-tenant-modal\");",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onOpenTenantSelectionModal",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

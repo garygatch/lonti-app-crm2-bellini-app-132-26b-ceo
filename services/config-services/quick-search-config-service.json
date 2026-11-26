@@ -1,0 +1,81 @@
+{
+  "description": "",
+  "name": "quick-search-config-service",
+  "parentDirectoryId": "ktp_8ciNpY4P99RJXNxOQ",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "STORAGE_KEY",
+      "type": "property",
+      "value": "\"lonti_app_crm_quick_search_config\""
+    },
+    {
+      "body": "try {\n    const stored = localStorage.getItem(this.STORAGE_KEY);\n    return stored ? JSON.parse(stored) : {};\n} catch (e) {\n    console.error(\"Errors parsing search config from localStorage\", e);\n    return {};\n}",
+      "description": "Helper to get entire config object",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "_getAllConfigs",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const allConfigs = this._getAllConfigs();\n\nallConfigs[pageKey] = {\n    property,\n    operation,\n    lastUpdated: new Date().toISOString()\n}\n\nlocalStorage.setItem(this.STORAGE_KEY, JSON.stringify(allConfigs));",
+      "description": "Saves the configuration for a specific page.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "saveConfig",
+      "parameters": [
+        "pageKey",
+        "property",
+        "operation"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const allConfigs = this._getAllConfigs();\nreturn allConfigs[pageKey] || defaultSettings;",
+      "description": "Retrieves the configuration for a specific page",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getConfig",
+      "parameters": [
+        "pageKey",
+        "defaultSettings"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const allConfigs = this._getAllConfigs();\n\nif (allConfigs[pageKey]) {\n    delete allConfigs[pageKey];\n    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(allConfigs));\n}",
+      "description": "Removes the custom configuration for a specific page",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "clearConfig",
+      "parameters": [
+        "pageKey"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "saveConfig",
+    "getConfig",
+    "clearConfig"
+  ]
+}

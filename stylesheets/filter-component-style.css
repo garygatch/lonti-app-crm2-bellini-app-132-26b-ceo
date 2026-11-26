@@ -1,0 +1,13 @@
+/*
+  --------------------------------------------------
+  Filter Container
+  --------------------------------------------------
+*/
+#filter-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 6px;
+  padding: 6px 4px;
+  background-color: var(--color-white, #fff);
+}

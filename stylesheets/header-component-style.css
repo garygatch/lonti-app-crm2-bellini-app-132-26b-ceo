@@ -1,0 +1,72 @@
+/*
+  --------------------------------------------------
+  Header Styles
+  --------------------------------------------------
+*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem 0.5rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--header-offset);
+    z-index: 1087;
+}
+
+#main-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem;
+}
+
+#main-header-text-container {
+    padding: 0.1rem 0.3rem;
+}
+
+#main-header-text-container p {
+    margin-top: -1rem;
+    /* Adjust as needed */
+}
+
+#temporary-fields-container {
+    display: flex;
+    align-items: center;
+}
+
+/*
+  --------------------------------------------------
+  User Profile Dropdown
+  --------------------------------------------------
+*/
+#user-profile-container {
+    --bln-dropdown-menu-border-radius: 32px;
+    --bln-dropdown-menu-button-margin: 1rem;
+    --bln-dropdown-menu-button-bg-color: var(--bln-button-primary-bg-color);
+    --bln-dropdown-menu-button-text-color: var(--bln-button-primary-text-color);
+    --bln-dropdown-menu-icon-color: var(--bln-button-primary-text-color);
+    --bln-dropdown-menu-button-hovered-bg-color: var(--bln-button-primary-hovered-bg-color);
+    --bln-dropdown-menu-button-hovered-text-color: var(--bln-button-primary-hovered-text-color);
+    --bln-dropdown-menu-button-active-bg-color: var(--bln-button-primary-active-bg-color);
+    --bln-dropdown-menu-button-active-text-color: var(--bln-button-primary-active-text-color);
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+@media (min-width: 1024px) {
+    header-component {
+        position: fixed;
+        top: var(--header-offset);
+        height: var(--height-offset);
+        z-index: 1087;
+        margin-top: 0;
+        /* Reset margin-top */
+    }
+}

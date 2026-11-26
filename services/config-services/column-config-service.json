@@ -1,0 +1,81 @@
+{
+  "description": "",
+  "name": "column-config-service",
+  "parentDirectoryId": "ktp_8ciNpY4P99RJXNxOQ",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "STORAGE_KEY",
+      "type": "property",
+      "value": "\"lonti_app_crm_column_config\""
+    },
+    {
+      "body": "const json = window.localStorage.getItem(this.STORAGE_KEY);\nif (!json) return {};\n\ntry {\n    return JSON.parse(json);\n} catch (e) {\n    console.error('Error parsing column configuration:', e);\n    return {};\n}",
+      "description": "Get the entire config object",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "_getAllConfigs",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const allConfigs = this._getAllConfigs();\n\nif (allConfigs[pageKey]) {\n    return {\n        columnNames: allConfigs[pageKey],\n        options: {}\n    };\n} else {\n    return defaultColumns;\n}",
+      "description": "Loads configuration for a specific page",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getConfig",
+      "parameters": [
+        "pageKey",
+        "defaultColumns"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const allConfigs = this._getAllConfigs();\nallConfigs[pageKey] = columns;\n\nwindow.localStorage.setItem(this.STORAGE_KEY, JSON.stringify(allConfigs));",
+      "description": "Saves the current column configuration",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "saveConfig",
+      "parameters": [
+        "pageKey",
+        "columns"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const allConfigs = this._getAllConfigs();\nif (allConfigs[pageKey]) {\n    delete allConfigs[pageKey];\n    window.localStorage.setItem(this.STORAGE_KEY, JSON.stringify(allConfigs));\n}",
+      "description": "Resets configuration to default",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "clearConfig",
+      "parameters": [
+        "pageKey"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "getConfig",
+    "saveConfig",
+    "STORAGE_KEY",
+    "clearConfig"
+  ]
+}

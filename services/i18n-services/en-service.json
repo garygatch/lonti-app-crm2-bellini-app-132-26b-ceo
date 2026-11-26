@@ -1,0 +1,1045 @@
+{
+  "description": "",
+  "name": "en-service",
+  "parentDirectoryId": "apF8nc7jWb9yv7Ig7KjLh",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "global",
+      "properties": [
+        {
+          "description": "",
+          "name": "buttons",
+          "properties": [
+            {
+              "description": "",
+              "name": "SAVE",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "label",
+                  "type": "property",
+                  "value": ""
+                },
+                {
+                  "description": "",
+                  "name": "tooltip",
+                  "type": "property",
+                  "value": ""
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "CANCEL",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "label",
+                  "type": "property",
+                  "value": ""
+                },
+                {
+                  "description": "",
+                  "name": "tooltip",
+                  "type": "property",
+                  "value": ""
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "DELETE",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "label",
+                  "type": "property",
+                  "value": "\"\""
+                },
+                {
+                  "description": "",
+                  "name": "tooltip",
+                  "type": "property",
+                  "value": "\"Delete\""
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "RELOAD",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "label",
+                  "type": "property",
+                  "value": "\"\""
+                },
+                {
+                  "description": "",
+                  "name": "tooltip",
+                  "type": "property",
+                  "value": "\"Reload Data\""
+                }
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "notifications",
+          "properties": [],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "pages",
+      "properties": [
+        {
+          "description": "",
+          "name": "batchImport",
+          "properties": [
+            {
+              "description": "",
+              "name": "title",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "description",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "companyManagement",
+          "properties": [],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "contactManagement",
+          "properties": [],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "dealManagement",
+          "properties": [],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "userAccessManagement",
+          "properties": [],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "components",
+      "properties": [
+        {
+          "description": "",
+          "name": "filterComponent",
+          "properties": [
+            {
+              "description": "",
+              "name": "buttons",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "RESET_FILTER",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Clear Filter and Reload Data\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "ADVANCED_FILTERS",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Filters & Sorts\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Open advanced filtering and sorting options\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "CONFIGURE_TABLE_AND_QUICK_SEARCH",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Choose which columns to show or hide and configure quick search\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "fields",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "QUICK_SEARCH",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Enter the value to filter against\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Search by: \""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "APPLIED_ADVANCED_FILTERS",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Displays current applied advanced filters and allows removal\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Advanced filters applied will show up here\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "APPLIED_SORTS",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Displays current applied sorts and allows removal\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Sorts applied will show up here\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "attachmentComponent",
+          "properties": [
+            {
+              "description": "",
+              "name": "buttons",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "UPLOAD",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Upload\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Upload and Attach Files\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "DOWNLOAD",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Download selected attachment\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "fields",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "FILE_INPUT",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": ""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Select a file to attach\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "messages",
+              "properties": [
+                {
+                  "body": "return `Preparing to upload ${fileName}...`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getPreparingUpload",
+                  "parameters": [
+                    "fileName"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `Uploading ${fileName}...`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getUploading",
+                  "parameters": [
+                    "fileName"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `Finalizing ${fileName} upload...`",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getFinalizingUpload",
+                  "parameters": [
+                    "fileName"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `Successfully uploaded ${fileName} to ${entityName}.`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getUploadSuccess",
+                  "parameters": [
+                    "fileName",
+                    "entityName"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `Failed to upload ${fileName} to ${entityName}. Please try again.`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getUploadFailed",
+                  "parameters": [
+                    "fileName",
+                    "entityName"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `Invalid file type. Please upload a supported format (${allowedFileTypes.join(', ')}).`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getInvalidTypeError",
+                  "parameters": [
+                    "allowedFileTypes"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `File is too large. Maximum size allowed is ${maxFileSize}MB.`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getFileSizeError",
+                  "parameters": [
+                    "maxFileSize"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `Successfully deleted ${fileName} from ${entityName}.`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getDeleteSuccess",
+                  "parameters": [
+                    "fileName",
+                    "entityName"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "return `Failed to delete ${fileName} from ${entityName}. Please try again.`;",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "getDeleteFailed",
+                  "parameters": [
+                    "fileName",
+                    "entityName"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                }
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "pipelineViewComponent",
+          "properties": [
+            {
+              "description": "",
+              "name": "buttons",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "ADD_PIPELINE_STAGE",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Add Pipeline Stage\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Create a new Pipeline Stage\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "SAVE_EDIT_PIPELINE_STAGE_NAME",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Save Pipeline Stage Name\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "CANCEL_EDIT_PIPELINE_STAGE_NAME",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Cancel Editing Pipeline Stage Name\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "DEAL_INFO",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"View more information about this deal\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "modals",
+      "properties": [
+        {
+          "description": "",
+          "name": "advancedFilterModal",
+          "properties": [
+            {
+              "description": "",
+              "name": "dropdowns",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "FILTER_PROPERTY",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Select the property to filter by\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Property\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "FILTER_OPERATION",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Choose how the selected property should be compared\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Operation\""
+                    },
+                    {
+                      "description": "",
+                      "name": "values",
+                      "type": "property",
+                      "value": "[{\n        label: \"EQUALS\",\n        value: \"eq\"\n    },\n    {\n        label: \"NOT EQUALS\",\n        value: \"noteq\"\n    },\n    {\n        label: \"CONTAINS\",\n        value: \"contains\"\n    },\n    {\n        label: \"STARTS WITH\",\n        value: \"startswith\"\n    },\n    {\n        label: \"ENDS WITH\",\n        value: \"endswith\"\n    },\n    {\n        label: \"GREATER THAN\",\n        value: \"gt\"\n    },\n    {\n        label: \"LESS THAN\",\n        value: \"lt\"\n    },\n    {\n        label: \"BETWEEN\",\n        value: \"between\"\n    },\n    {\n        label: \"BEFORE\",\n        value: \"before\"\n    },\n    {\n        label: \"AFTER\",\n        value: \"after\"\n    },\n    {\n        label: \"IS EMPTY\",\n        value: \"isnull\"\n    },\n    {\n        label: \"IS NOT EMPTY\",\n        value: \"isnotnull\"\n    },\n    {\n        label: \"IN\",\n        value: \"in\"\n    },\n    {\n        label: \"NOT IN\",\n        value: \"notin\"\n    }\n]"
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "SORT_PROPERTY",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Select the property to sort by\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Property\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "SORT_ORDER",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Choose how the selected property should be sorted\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Order\""
+                    },
+                    {
+                      "description": "",
+                      "name": "values",
+                      "type": "property",
+                      "value": "[\n    {\n        label: \"ASCENDING\",\n        value: \"ASC\"\n    },\n    {\n        label: \"DESCENDING\",\n        value: \"DESC\"\n    }\n]"
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "fields",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "FILTER_VALUE",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Enter the value to filter against\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Value\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "buttons",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "ADD_FILTER",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Add a new filter to refine results\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "REMOVE_FILTER",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Remove this filter\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "ADD_SORT",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Add a new sort to order results\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "REMOVE_SORT",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Remove this sort\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "CANCEL",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Cancel\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Discard filters and close the modal\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "CLEAR",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Clear\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Remove all applied filters\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "SHOW_RESULTS",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Show Results\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Apply filters and view results\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "configureTableAndQuickSearchModal",
+          "properties": [
+            {
+              "description": "",
+              "name": "buttons",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "CANCEL",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Cancel\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Discard changes and close the modal\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "SAVE",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Save\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Save configuration and apply changes\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "RESTORE_DEFAULTS",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Restore Defaults\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Restore default table and quick search configuration\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "description": "",
+              "name": "dropdowns",
+              "properties": [
+                {
+                  "description": "",
+                  "name": "QUICK_SEARCH_PROPERTY_CONFIG",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Search Property\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Determines the property to search by\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Select property\""
+                    }
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "",
+                  "name": "QUICK_SEARCH_OPERATION_CONFIG",
+                  "properties": [
+                    {
+                      "description": "",
+                      "name": "label",
+                      "type": "property",
+                      "value": "\"Search Operation\""
+                    },
+                    {
+                      "description": "",
+                      "name": "tooltip",
+                      "type": "property",
+                      "value": "\"Determines the operation to use for quick searching\""
+                    },
+                    {
+                      "description": "",
+                      "name": "placeholder",
+                      "type": "property",
+                      "value": "\"Select operation\""
+                    }
+                  ],
+                  "type": "object"
+                }
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    }
+  ],
+  "visible": [
+    "global",
+    "pages",
+    "components",
+    "modals",
+    "buttons"
+  ]
+}

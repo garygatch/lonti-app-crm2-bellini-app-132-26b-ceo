@@ -1,0 +1,350 @@
+{
+  "description": "",
+  "name": "contact-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"contact\""
+    },
+    {
+      "description": "",
+      "name": "contactForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "personal",
+          "properties": [
+            {
+              "description": "",
+              "name": "salutation",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "firstName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "nickName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "middleName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "lastName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "suffix",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "birthDate",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "gender",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "description",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "contact",
+          "properties": [
+            {
+              "description": "",
+              "name": "emailAddress1",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "emailAddress2",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "emailAddress3",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "mobilePhone",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "phone",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "address",
+          "properties": [
+            {
+              "description": "",
+              "name": "addressStreet",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressPrimaryContactName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressCity",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressStateOrProvince",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressCountry",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressPostalCode",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressFax",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "profession",
+          "properties": [
+            {
+              "description": "",
+              "name": "department",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "jobTitle",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "engagement",
+          "properties": [
+            {
+              "description": "",
+              "name": "contactType",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "notes",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "hubspotId",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "leadStatus",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "ownerName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "ownerEmail",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "linkedIn",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "lifeCycleStage",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "lastContacted",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "lastActivityDate",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Contact Id\",\n        value: \"contactId\"\n    },\n    {\n        label: \"Salutation\",\n        value: \"salutation\"\n    },\n    {\n        label: \"Job Title\",\n        value: \"jobTitle\"\n    },\n    {\n        label: \"First Name\",\n        value: \"firstName\"\n    },\n    {\n        label: \"Department\",\n        value: \"department\"\n    },\n    {\n        label: \"Nick Name\",\n        value: \"nickName\"\n    },\n    {\n        label: \"Middle Name\",\n        value: \"middleName\"\n    },\n    {\n        label: \"Last Name\",\n        value: \"lastName\"\n    },\n    {\n        label: \"Suffix\",\n        value: \"suffix\"\n    },\n    {\n        label: \"Full Name\",\n        value: \"fullName\"\n    },\n    {\n        label: \"Birth Date\",\n        value: \"birthDate\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Gender\",\n        value: \"gender\"\n    },\n    {\n        label: \"Email Address 1\",\n        value: \"emailAddress1\"\n    },\n    {\n        label: \"Email Address 2\",\n        value: \"emailAddress2\"\n    },\n    {\n        label: \"Email Address 3\",\n        value: \"emailAddress3\"\n    },\n    {\n        label: \"Mobile Phone\",\n        value: \"mobilePhone\"\n    },\n    {\n        label: \"Address Street\",\n        value: \"addressStreet\"\n    },\n    {\n        label: \"Address Primary Contact Name\",\n        value: \"addressPrimaryContactName\"\n    },\n    {\n        label: \"Address City\",\n        value: \"addressCity\"\n    },\n    {\n        label: \"Address State Or Province\",\n        value: \"addressStateOrProvince\"\n    },\n    {\n        label: \"Address Country\",\n        value: \"addressCountry\"\n    },\n    {\n        label: \"Address Postal Code\",\n        value: \"addressPostalCode\"\n    },\n    {\n        label: \"Address Fax\",\n        value: \"addressFax\"\n    },\n    {\n        label: \"Contact Type\",\n        value: \"contactType\"\n    },\n    {\n        label: \"Notes\",\n        value: \"notes\"\n    },\n    {\n        label: \"Hubspot Id\",\n        value: \"hubspotid\"\n    },\n    {\n        label: \"Lead Status\",\n        value: \"leadStatus\"\n    },\n    {\n        label: \"Owner Name\",\n        value: \"ownerName\"\n    },\n    {\n        label: \"Owner Email\",\n        value: \"ownerEmail\"\n    },\n    {\n        label: \"Linkedin\",\n        value: \"linkedin\"\n    },\n    {\n        label: \"Life Cycle Stage\",\n        value: \"lifeCycleStage\"\n    },\n    {\n        label: \"Last Contacted\",\n        value: \"lastContacted\"\n    },\n    {\n        label: \"Last Activity Date\",\n        value: \"lastActivityDate\"\n    },\n    {\n        label: \"Phone\",\n        value: \"phone\"\n    },\n    {\n        label: \"Tenant Id\",\n        value: \"tenantId\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Modified On\",\n        value: \"modifiedOn\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const defaultColumnConfig = this.getDefaultDisplayColumnConfig();\nreturn this.columnConfigService.getConfig(this.entity + \"-management\", defaultColumnConfig);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "activityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/activity-service",
+      "type": "service"
+    },
+    {
+      "body": "return {\n    \"property\": \"fullName\",\n    \"operation\": \"contains\"\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultSearchConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "columnConfigService",
+      "resourceIdentity": "services/config-services/column-config-service",
+      "type": "service"
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Full Name\",\n    \"Email Address 1\",\n    \"Mobile Phone\",\n    \"Job Title\",\n    \"Life Cycle Stage\",\n    \"Last Activity Date\"\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"Email\": \"emailAddress1\",\n        \"Phone\": \"mobilePhone\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "cachedContacts",
+    "lastFetched",
+    "ttl",
+    "getAllContacts",
+    "getCachedContacts",
+    "entity",
+    "columnOptions",
+    "getDisplayColumnConfig",
+    "getCachedContactColumns",
+    "getFilterColumnValues",
+    "notesQueryString",
+    "getAllContactCalls",
+    "getAllContactActivities",
+    "getCachedContactActivities",
+    "contactForm",
+    "getDefaultSearchConfig",
+    "getDefaultDisplayColumnConfig"
+  ]
+}

@@ -1,0 +1,1167 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "[\n    {\n        label: \"Overview\",\n        onClick: () => console.log(\"Overview\")\n    },\n    {\n        label: \"Details\",\n        onClick: () => console.log(\"Details\")\n    },\n    {\n        label: \"Recent Activities\",\n        onClick: () => console.log(\"Recent Activities\")\n    },\n    {\n        label: \"Recent Conversations\",\n        onClick: () => console.log(\"Recent Conversations\")\n    },\n    {\n        label: \"Deals\",\n        onClick: () => console.log(\"Deals\")\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "navItems",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentEntity",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "recentActivities",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "callNotes",
+      "propertyType": "array",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "calls",
+      "propertyType": "array",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "deleteCall",
+      "parameters": [
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "deleteCallNote",
+      "parameters": [
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "deleteNote",
+      "parameters": [
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingCallNotes",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingCalls",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingNotes",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "linkPrimaryEntity",
+      "propertyType": "object",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "linkPrimaryEntityType",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "loadCallNotes",
+      "parameters": [
+        "activityId",
+        "currentPage",
+        "query"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[]",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "notes",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onCallFilterChange",
+      "parameters": [
+        "newTargetValue"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "o",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onCallNoteFilterChange",
+      "parameters": [
+        "newTargetValue",
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onNoteFilterChange",
+      "parameters": [
+        "newTargetValue"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "saveCall",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "saveCallNote",
+      "parameters": [
+        "callActivityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "saveNote",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        label: \"Edit\",\n        icon: {\n            name: \"edit\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\"\n    },\n    {\n        label: \"Delete\",\n        icon: {\n            name: \"trash\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\"\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "actionDropdown",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentEntityName",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentEntityDescription",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingEventLogs",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "back",
+              "expressions": [
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"angle-left\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.isMobile ? \"Back\" : \"Close\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.backButtonDisabled || $ctrl.isLinking",
+                  "to": "isDisabled"
+                },
+                {
+                  "expression": "$ctrl.backButtonOnClick()",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.backButtonLoading",
+                  "to": "showLoading"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "log-call",
+                  "expressions": [
+                    {
+                      "expression": "\"Log Call\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "\"primary\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"phone-alt\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "\"Log a Call\"",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.onLogCallButtonClick()",
+                      "to": "onClick"
+                    },
+                    {
+                      "expression": "$ctrl.isLinking",
+                      "to": "isDisabled"
+                    }
+                  ],
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "action",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.actionDropdown",
+                      "to": "menuItems"
+                    },
+                    {
+                      "expression": "\"Action\"",
+                      "to": "label"
+                    }
+                  ],
+                  "name": "Dropdown Menu",
+                  "nodeName": "bln-dropdown-menu",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [],
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "comments": "buttons",
+          "elementId": "entity-360-degree-view-header-container",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "classList": [
+                            "avatar-circle"
+                          ],
+                          "name": "img",
+                          "source": {
+                            "evaluate": false,
+                            "url": "https://dummyimage.com/120/777777/dfdfdf.png"
+                          }
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "evaluate": true,
+                                  "name": "text",
+                                  "textContent": "$ctrl.currentEntityName"
+                                }
+                              ],
+                              "classList": [
+                                "avatar-name"
+                              ],
+                              "name": "div"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "evaluate": true,
+                                  "name": "text",
+                                  "textContent": "$ctrl.currentEntityDescription"
+                                }
+                              ],
+                              "classList": [
+                                "avatar-description"
+                              ],
+                              "name": "div"
+                            }
+                          ],
+                          "classList": [
+                            "avatar-text-container"
+                          ],
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [],
+                      "elementId": "entity-360-degree-view-left-panel-profile-container",
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "profile",
+                  "elementId": "entity-360-degree-view-left-panel-profile",
+                  "name": "div"
+                },
+                {
+                  "children": [],
+                  "classList": [],
+                  "comments": "metric",
+                  "elementId": "entity-360-degree-view-left-panel-metric",
+                  "name": "div"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "evaluate": true,
+                          "name": "text",
+                          "textContent": "navItem.label"
+                        }
+                      ],
+                      "classList": [
+                        "entity-360-degree-view-left-panel-nav-item"
+                      ],
+                      "displayExpression": "false",
+                      "events": {
+                        "click": "navItem.onClick()"
+                      },
+                      "iterate": {
+                        "array": "$ctrl.navItems",
+                        "variable": "navItem"
+                      },
+                      "layout": {
+                        "cell": {
+                          "growFactor": 1,
+                          "mainSize": "100%",
+                          "shrinkFactor": 1,
+                          "type": "box-item"
+                        }
+                      },
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "nav",
+                  "elementId": "entity-360-degree-view-left-panel-nav",
+                  "layout": {
+                    "container": {
+                      "crossAxisAlignment": "stretch",
+                      "items": [],
+                      "orientation": "column",
+                      "type": "box"
+                    }
+                  },
+                  "name": "div",
+                  "styles": [
+                    {
+                      "enabled": true,
+                      "property": "height",
+                      "value": "100% !important"
+                    },
+                    {
+                      "enabled": true,
+                      "property": "width",
+                      "value": "100% !important"
+                    }
+                  ]
+                }
+              ],
+              "classList": [],
+              "comments": "left-panel",
+              "elementId": "entity-360-degree-view-left-panel",
+              "layout": {
+                "cell": {
+                  "growFactor": 1,
+                  "mainSize": "40%",
+                  "shrinkFactor": 1,
+                  "type": "box-item"
+                }
+              },
+              "name": "div"
+            },
+            {
+              "children": [
+                {
+                  "children": [],
+                  "classList": [],
+                  "comments": "type-status-bar",
+                  "displayExpression": "false",
+                  "elementId": "entity-360-degree-view-center-panel-status-bar",
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "div"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "evaluate": true,
+                                  "name": "text",
+                                  "textContent": "prop.key"
+                                }
+                              ],
+                              "classList": [],
+                              "comments": "key",
+                              "name": "strong"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "evaluate": true,
+                                  "name": "text",
+                                  "textContent": "prop.value"
+                                }
+                              ],
+                              "classList": [],
+                              "comments": "value",
+                              "name": "div"
+                            }
+                          ],
+                          "classList": [
+                            "entity-360-degree-view-center-panel-detail-window-item"
+                          ],
+                          "comments": "key-value",
+                          "iterate": {
+                            "array": "$ctrl.currentEntity",
+                            "variable": "prop"
+                          },
+                          "layout": {
+                            "cell": {
+                              "type": "grid-item"
+                            }
+                          },
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [],
+                      "layout": {
+                        "container": {
+                          "columns": [
+                            {
+                              "type": "span",
+                              "value": 1
+                            },
+                            {
+                              "type": "span",
+                              "value": 1
+                            },
+                            {
+                              "type": "span",
+                              "value": 1
+                            }
+                          ],
+                          "items": [],
+                          "rows": [],
+                          "type": "grid"
+                        }
+                      },
+                      "name": "div",
+                      "styles": [
+                        {
+                          "enabled": true,
+                          "property": "height",
+                          "value": "100% !important"
+                        },
+                        {
+                          "enabled": true,
+                          "property": "width",
+                          "value": "100% !important"
+                        }
+                      ]
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "detail-window",
+                  "elementId": "entity-360-degree-view-center-panel-detail-window",
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "div"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "evaluate": false,
+                              "name": "text",
+                              "textContent": "Activity Feed"
+                            }
+                          ],
+                          "classList": [],
+                          "name": "h3"
+                        }
+                      ],
+                      "classList": [
+                        "entity-360-degree-view-section-header-container"
+                      ],
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "core",
+                              "value": ""
+                            }
+                          ],
+                          "children": [],
+                          "classList": [],
+                          "expressions": [],
+                          "name": "Spinner",
+                          "nodeName": "bln-spinner",
+                          "type": "core-component"
+                        }
+                      ],
+                      "classList": [
+                        "spinner-container"
+                      ],
+                      "displayExpression": "$ctrl.isLoadingEventLogs",
+                      "name": "div"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "property": "core",
+                          "value": ""
+                        }
+                      ],
+                      "children": [],
+                      "classList": [],
+                      "expressions": [
+                        {
+                          "expression": "true",
+                          "to": "showTableHeader"
+                        },
+                        {
+                          "expression": "false",
+                          "to": "enableSorting"
+                        },
+                        {
+                          "expression": "$ctrl.recentActivities",
+                          "to": "data"
+                        },
+                        {
+                          "expression": "[{\n        name: \"Action\",\n        hide: false,\n        valueKey: 'action',\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: '',\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"Performer\",\n        hide: false,\n        valueKey: 'performer',\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: '',\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"Modified Date\",\n        hide: false,\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: [],\n        valueKey: 'modifiedOn'\n    }\n]",
+                          "to": "columns"
+                        },
+                        {
+                          "expression": "true",
+                          "to": "enableRowSelection"
+                        },
+                        {
+                          "expression": "$ctrl.selectedEvent",
+                          "to": "selectedRow"
+                        },
+                        {
+                          "expression": "$ctrl.onEventSelect(row)",
+                          "to": "onSelection"
+                        }
+                      ],
+                      "name": "Table",
+                      "nodeName": "bln-table",
+                      "styles": [
+                        {
+                          "enabled": true,
+                          "property": "--bln-table-height",
+                          "value": "100%"
+                        }
+                      ],
+                      "type": "core-component"
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "timeline-recent-activities",
+                  "elementId": "entity-360-degree-view-center-panel-timeline",
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "div"
+                }
+              ],
+              "classList": [],
+              "comments": "center-panel",
+              "elementId": "entity-360-degree-view-center-panel",
+              "layout": {
+                "cell": {
+                  "growFactor": 1,
+                  "mainSize": "100%",
+                  "shrinkFactor": 1,
+                  "type": "box-item"
+                },
+                "container": {
+                  "crossAxisAlignment": "stretch",
+                  "items": [],
+                  "orientation": "column",
+                  "type": "box"
+                }
+              },
+              "name": "div",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "height",
+                  "value": "100% !important"
+                },
+                {
+                  "enabled": true,
+                  "property": "width",
+                  "value": "100% !important"
+                }
+              ]
+            },
+            {
+              "children": [
+                {
+                  "children": [],
+                  "classList": [],
+                  "expressions": [
+                    {
+                      "expression": "false",
+                      "to": "displayHeader"
+                    },
+                    {
+                      "expression": "$ctrl.currentInfoPanelTab",
+                      "to": "currentInfoPanelTab"
+                    },
+                    {
+                      "expression": "$ctrl.callNotes",
+                      "to": "callNotes"
+                    },
+                    {
+                      "expression": "$ctrl.calls",
+                      "to": "calls"
+                    },
+                    {
+                      "expression": "$ctrl.deleteCall({\n    activityId: activityId\n})",
+                      "to": "deleteCall"
+                    },
+                    {
+                      "expression": "$ctrl.deleteCallNote({\n    activityId: activityId\n})",
+                      "to": "deleteCallNote"
+                    },
+                    {
+                      "expression": "$ctrl.deleteNote({\n    activityId: activityId\n})",
+                      "to": "deleteNote"
+                    },
+                    {
+                      "expression": "$ctrl.isLoadingCallNotes",
+                      "to": "isLoadingCallNotes"
+                    },
+                    {
+                      "expression": "$ctrl.isLoadingCalls",
+                      "to": "isLoadingCalls"
+                    },
+                    {
+                      "expression": "$ctrl.isLoadingNotes",
+                      "to": "isLoadingNotes"
+                    },
+                    {
+                      "expression": "$ctrl.linkPrimaryEntity",
+                      "to": "linkPrimaryEntity"
+                    },
+                    {
+                      "expression": "$ctrl.linkPrimaryEntityType",
+                      "to": "linkPrimaryEntityType"
+                    },
+                    {
+                      "expression": "$ctrl.loadCallNotes({\n    activityId: activityId,\n    currentPage: currentPage,\n    query: query\n})",
+                      "to": "loadCallNotes"
+                    },
+                    {
+                      "expression": "$ctrl.notes",
+                      "to": "notes"
+                    },
+                    {
+                      "expression": "$ctrl.onCallFilterChange({\n    newTargetValue: newTargetValue\n})",
+                      "to": "onCallFilterChange"
+                    },
+                    {
+                      "expression": "$ctrl.onCallNoteFilterChange({\n    newTargetValue: newTargetValue,\n    activityId: activityId\n})",
+                      "to": "onCallNoteFilterChange"
+                    },
+                    {
+                      "expression": "$ctrl.onNoteFilterChange({\n    newTargetValue: newTargetValue\n})",
+                      "to": "onNoteFilterChange"
+                    },
+                    {
+                      "expression": "$ctrl.saveCall()",
+                      "to": "saveCall"
+                    },
+                    {
+                      "expression": "$ctrl.saveCallNote({\n    callActivityId: callActivityId\n})",
+                      "to": "saveCallNote"
+                    },
+                    {
+                      "expression": "$ctrl.saveNote()",
+                      "to": "saveNote"
+                    },
+                    {
+                      "expression": "$ctrl.isAddingCall",
+                      "to": "isAddingCall"
+                    },
+                    {
+                      "expression": "$ctrl.isLinking",
+                      "to": "isLinking"
+                    },
+                    {
+                      "expression": "$ctrl.currentTabIndex",
+                      "to": "currentTabIndex"
+                    },
+                    {
+                      "expression": "$ctrl.tabItems",
+                      "to": "tabItems"
+                    },
+                    {
+                      "expression": "$ctrl.selectedEventDetails",
+                      "to": "tableData"
+                    }
+                  ],
+                  "layout": {},
+                  "name": "info-panel-component",
+                  "nodeName": "info-panel-component",
+                  "ownerId": "6b07c32e48cd88e32d307995",
+                  "ownerType": "app",
+                  "resourceIdentity": "components/info-panel-components/info-panel-component",
+                  "type": "custom-component"
+                }
+              ],
+              "classList": [],
+              "elementId": "entity-360-degree-view-right-panel",
+              "layout": {
+                "cell": {
+                  "growFactor": 1,
+                  "mainSize": "63%",
+                  "shrinkFactor": 1,
+                  "type": "box-item"
+                }
+              },
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "layout": {
+            "container": {
+              "crossAxisAlignment": "stretch",
+              "items": [],
+              "orientation": "row",
+              "type": "box"
+            }
+          },
+          "name": "div",
+          "styles": [
+            {
+              "enabled": true,
+              "property": "height",
+              "value": "100% !important"
+            },
+            {
+              "enabled": true,
+              "property": "width",
+              "value": "100% !important"
+            }
+          ]
+        }
+      ],
+      "classList": [],
+      "elementId": "entity-360-degree-view-container",
+      "name": "div"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [],
+      "name": "inline-alert-bar-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/alert-bar-components/inline-alert-bar-component",
+      "type": "custom-component"
+    }
+  ],
+  "localStylesheets": [
+    {
+      "path": "entity-360-degree-view-component-styles.css"
+    }
+  ],
+  "modules": [],
+  "name": "entity-360-degree-view-component",
+  "parentDirectoryId": "rlYEKcCpmyuJB1IRKl-xr",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "description": "",
+      "name": "currentTabIndex",
+      "type": "property",
+      "value": "1"
+    },
+    {
+      "description": "",
+      "name": "currentInfoPanelTab",
+      "type": "property",
+      "value": "\"Links\""
+    },
+    {
+      "description": "",
+      "name": "isLinking",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isAddingCall",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "tabItems",
+      "type": "property",
+      "value": "[\n    {\n        label: \"Links\",\n        closable: false\n    },\n    {\n        label: \"Notes\",\n        closable: false\n    },\n    // {\n    //     label: \"Tasks\",\n    //     closable: false\n    // },\n    {\n        label: \"Calls\",\n        closable: false\n    },\n    // {\n    //     label: \"Meetings\",\n    //     closable: false\n    // },\n    {\n        label: \"Attachments\",\n        closable: false\n    },\n    {\n        label: \"Activity Details\",\n        closable: false\n    }\n]"
+    },
+    {
+      "body": "if ($ctrl.currentInfoPanelTab !== \"Calls\") {\n    $ctrl.currentTabIndex = $ctrl.tabItems.findIndex(tab => tab.label === \"Calls\");\n    const tabToSelect = $ctrl.currentTabIndex + 1;\n    $ctrl.onTabChange(tabToSelect);\n    $ctrl.currentTabIndex += 1;\n    $ctrl.isAddingCall = true;\n    return;\n}\n\n$ctrl.isAddingCall = !$ctrl.isAddingCall;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onLogCallButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const tabItemIndex = selectedTab - 1;\nif ($ctrl.isAddingCall) $ctrl.isAddingCall = false;\n$ctrl.currentInfoPanelTab = $ctrl.tabItems[tabItemIndex].label;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onTabChange",
+      "parameters": [
+        "selectedTab"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    $ctrl.selectedEventDetails = {};\n\n    const stateObj = selectedEvent?.raw;\n    if (!stateObj || !stateObj.trackerDocumentStateContent) {\n        return;\n    }\n\n    const contentData = stateObj.trackerDocumentStateContent;\n    let rawPayload = null;\n\n    if (contentData.modelContent && contentData.modelContent.content) {\n        rawPayload = contentData.modelContent.content;\n    }\n    else if (contentData.content) {\n        try {\n            const decoded = atob(contentData.content);\n            const parsed = JSON.parse(decoded);\n            rawPayload = parsed.content || parsed;\n        } catch (e) {\n            rawPayload = contentData.content;\n        }\n    }\n    else if (contentData.stringContent) {\n        rawPayload = contentData.stringContent;\n    }\n\n    if (rawPayload) {\n        if (typeof $ctrl.onTabChange === 'function') {\n            const activityDetailsTabPosition = $ctrl.tabItems.findIndex((tab) => tab.label === \"Activity Details\") + 1;\n            $ctrl.currentTabIndex = activityDetailsTabPosition;\n            $ctrl.onTabChange(activityDetailsTabPosition);\n        }\n\n        $ctrl.selectedEventDetails = $ctrl.utilityService.formatEntityForDisplay(rawPayload);\n    }\n\n} catch (e) {\n    console.error(\"Error setting selected event details.\", e);\n    $ctrl.selectedEventDetails = {};\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onEventSelect",
+      "parameters": [
+        "selectedEvent"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "selectedEvent",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "selectedEventDetails",
+      "type": "property",
+      "value": ""
+    }
+  ]
+}

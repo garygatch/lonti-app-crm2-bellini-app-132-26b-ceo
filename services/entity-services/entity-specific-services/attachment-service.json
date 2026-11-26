@@ -1,0 +1,409 @@
+{
+  "description": "",
+  "name": "attachment-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"attachment\""
+    },
+    {
+      "description": "",
+      "name": "MAX_FILE_SIZE_IN_MB",
+      "type": "property",
+      "value": "25"
+    },
+    {
+      "description": "",
+      "name": "ALLOWED_FILE_TYPES",
+      "type": "property",
+      "value": "[\n    // Docs\n    \".pdf\",\n    \".doc\",\n    \".docx\",\n    \".xls\",\n    \".xlsx\",\n    \".ppt\",\n    \".pptx\",\n    \".txt\",\n    \".rtf\",\n\n    // Apple Docs\n    \".pages\",\n    \".key\",\n    \".numbers\",\n\n    // Media\n    \".jpg\",\n    \".jpeg\",\n    \".png\",\n    \".svg\",\n    \".gif\",\n    \".tiff\",\n    \".bmp\",\n    \".webp\",\n    \".mp4\",\n    \".mov\",\n\n    // Others\n    \".csv\",\n    \".msg\",\n    \".eml\",\n    \".json\"\n    // \".zip\", removing as this can be used for trojan horse attacks\n]"
+    },
+    {
+      "description": "",
+      "name": "notifyConfig",
+      "properties": [
+        {
+          "description": "",
+          "name": "dismissInMs",
+          "properties": [
+            {
+              "description": "",
+              "name": "SUCCESS",
+              "type": "property",
+              "value": "3_000"
+            },
+            {
+              "description": "",
+              "name": "ERROR",
+              "type": "property",
+              "value": "5_000"
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "attachmentForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "file",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "uiState",
+      "properties": [
+        {
+          "description": "",
+          "name": "targetEntityId",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "targetEntityName",
+          "type": "property",
+          "value": "\"\""
+        },
+        {
+          "description": "",
+          "name": "targetEntityType",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "selectedAttachment",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "currentAttachments",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "currentPage",
+          "type": "property",
+          "value": "1"
+        },
+        {
+          "description": "",
+          "name": "lastAttachmentRequest",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "attachmentsInternalData",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "uploadProgress",
+          "type": "property",
+          "value": "0"
+        },
+        {
+          "description": "",
+          "name": "uploadMessage",
+          "type": "property",
+          "value": "\"\""
+        },
+        {
+          "description": "",
+          "name": "isUploading",
+          "type": "property",
+          "value": "false"
+        },
+        {
+          "description": "",
+          "name": "isDeleting",
+          "type": "property",
+          "value": "false"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "loaders",
+      "properties": [
+        {
+          "body": "try {\n    this.uiState.selectedAttachment = undefined;\n\n    if (!page) {\n        this.uiState.currentPage = 1;\n    }\n\n    const pageNumber = page ?? this.uiState.currentPage ?? 1;\n    entityType = entityType ?? this.uiState.targetEntityType;\n    entityId = entityId ?? this.uiState.targetEntityId;\n\n    const capitalizedEntityType = entityType[0].toUpperCase() + entityType.slice(1);\n    const entityUrl = `attachment/${capitalizedEntityType}/${entityId}`;\n\n    // 1. Track the ID of the request\n    const requestIdentity = { entityId, page: pageNumber };\n    this.uiState.lastAttachmentRequest = requestIdentity;\n\n    // 2. Start the loading state by assigning the Promise\n    this.uiState.currentAttachments = this.entityCacheService.getAll(\n        undefined, entityUrl, pageNumber, limit, undefined, query, clearCache, 'attachment'\n    ).then((result) => {\n        \n        // 3. RACE CONDITION CHECK\n        const isLatest = (\n            this.uiState.lastAttachmentRequest.entityId === requestIdentity.entityId &&\n            this.uiState.lastAttachmentRequest.page === requestIdentity.page\n        );\n\n        if (isLatest) {\n            // ONLY assign if no newer request has started.\n            this.uiState.attachmentsInternalData = result.entities ?? [];\n            this.uiState.currentAttachments = this.uiState.attachmentsInternalData;\n        }\n\n        return result.entities ?? [];\n\n    }).catch((e) => {\n        console.error(\"Error fetching attachments:\", e);\n        if (this.uiState.lastAttachmentRequest.page === pageNumber) {\n            this.notificationService.notify({ \n                alertType: \"error\",\n                alertDescription: \"Failed to load attachments.\",\n                dismissIn: 5_000\n            });\n            this.uiState.currentAttachments = [];\n        }\n        return []; \n    });\n\n} catch (e) {\n    console.error(`Critical error:`, e);\n    this.uiState.currentAttachments = [];\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": true,
+          "name": "loadAllAttachmentsByEntity",
+          "parameters": [
+            "page",
+            "limit",
+            "entityType",
+            "entityId",
+            "query",
+            "clearCache"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "handlers",
+      "properties": [
+        {
+          "body": "if (!file) return;\n\nconst entityType = this.uiState.targetEntityType;\nconst capitalizedEntityType = entityType[0].toUpperCase() + entityType.slice(1);\nconst entityId = this.uiState.targetEntityId;\nconst entityName = this.uiState.targetEntityName;\n\nconst fileName = file.name;\nconst isFileTypeValid = this.helpers._isFileTypeValid(file, this.ALLOWED_FILE_TYPES);\nconst isFileSizeValid = this.helpers._isFileSizeValid(file, this.MAX_FILE_SIZE_IN_MB);\n\n// 1. Check File Type\nif (!isFileTypeValid) {\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: this.enService.components.attachmentComponent.messages.getInvalidTypeError(this.ALLOWED_FILE_TYPES),\n        dismissIn: this.notifyConfig.dismissInMs.ERROR\n    });\n    this.attachmentForm.file = null;\n    return;\n}\n\n// 2. Check File Size\nif (!isFileSizeValid) {\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: this.enService.components.attachmentComponent.messages.getFileSizeError(this.MAX_FILE_SIZE_IN_MB),\n        dismissIn: this.notifyConfig.dismissInMs.ERROR\n    });\n    this.attachmentForm.file = null;\n    return;\n}\n\nreturn new Promise((resolve) => {\n    try {\n        // 1. Prepare the Data\n        const formData = new FormData();\n        formData.append('file', file);\n\n        // 2. Initialize XHR\n        const xhr = new XMLHttpRequest();\n        const url = `${this.dataService.apiBaseUrl}/attachment/${capitalizedEntityType}/${entityId}`;\n\n        // 3. Track Progress\n        this.helpers._resetUploadState();\n        this.uiState.uploadMessage = this.enService.components.attachmentComponent.messages.getPreparingUpload(fileName);\n        this.uiState.isUploading = true;\n\n        xhr.upload.addEventListener(\"progress\", (event) => {\n            if (event.lengthComputable) {\n                // Calculate percentage\n                const percentComplete = Math.round((event.loaded / event.total) * 100);\n\n                if (percentComplete === 100) {\n                    this.uiState.uploadMessage = this.enService.components.attachmentComponent.messages.getFinalizingUpload(fileName);\n                }\n\n                // Update the UI state\n                // Use $timeout because XHR events run outside Angular's digest cycle\n                this.$timeout(() => {\n                    this.uiState.uploadProgress = percentComplete;\n                });\n            }\n        });\n\n        // 4. Handle Completion\n        xhr.addEventListener(\"load\", () => {\n            this.$timeout(() => {\n                this.helpers._resetUploadState();\n\n                if (xhr.status >= 200 && xhr.status < 300) {\n\n                    // Only reload table if same entity\n                    if (entityType === this.uiState.targetEntityType && entityId === this.uiState.targetEntityId) {\n                        this.uiState.currentPage = 1;\n                        this.loaders.loadAllAttachmentsByEntity();\n                    }\n\n                    const successMessage = this.enService.components.attachmentComponent.messages.getUploadSuccess(fileName, entityName);\n                    this.uiState.uploadMessage = successMessage;\n                    this.notificationService.notify({\n                        alertType: \"success\",\n                        alertDescription: successMessage,\n                        dismissIn: this.notifyConfig.dismissInMs.SUCCESS\n                    });\n                    const response = JSON.parse(xhr.responseText);\n                    resolve(response);\n                } else {\n                    this.helpers._onUploadFailure(fileName, entityName, this.notifyConfig.dismissInMs.ERROR);\n                    resolve({ success: false, status: xhr.status, error: `Upload failed with status ${xhr.status}` });\n                }\n            });\n        });\n\n        // 5. Handle Errors\n        xhr.addEventListener(\"error\", () => {\n            this.$timeout(() => {\n                this.helpers._resetUploadState();\n                this.helpers._onUploadFailure(fileName, entityName, this.notifyConfig.dismissInMs.ERROR);\n                resolve({ success: false, error: \"Network error during upload.\" });\n            });\n        });\n\n        // 6. Send the Request\n        this.uiState.uploadMessage = this.enService.components.attachmentComponent.messages.getUploading(fileName);\n        xhr.open(\"POST\", url);\n\n        // Set Headers\n        const headers = this.authService.getHeaders();\n        Object.keys(headers).forEach(key => {\n            // Note: Do NOT manually set 'Content-Type' for FormData; \n            // the browser needs to set the boundary string itself.\n            if (key.toLowerCase() !== 'content-type') {\n                xhr.setRequestHeader(key, headers[key]);\n            }\n        });\n\n        xhr.send(formData);\n\n    } catch (e) {\n        this.helpers._resetUploadState();\n        this.helpers._onUploadFailure(fileName, entityName, this.notifyConfig.dismissInMs.ERROR);\n        resolve({ success: false, error: e });\n    }\n});",
+          "description": "Handles the end-to-end lifecycle of a file upload, including pre-flight validation, real-time progress tracking, and UI state management. It utilizes a raw `XMLHttpRequest` to monitor binary upload progress while integrating with Angular's digest cycle for UI updates and centralized notification timeout configurations.\n\n- **file**: The `File` object to be uploaded.\n- **Logic**:\n    - **Pre-flight Validation**: Validates the file against allowed extensions and maximum size limits. Triggers error notifications via `notifyConfig` and resets the form if validation fails.\n    - **Data Preparation**: Wraps the file in a `FormData` object and dynamically constructs the API endpoint based on the target entity type (e.g., `'Position'`, `'Worker'`).\n    - **Progress Tracking**: Hooks into the `xhr.upload` \"progress\" event to calculate the completion percentage and update the progress bar in the UI.\n    - **Lifecycle Hooks**:\n        - **Success**: Resets the upload state, resets pagination to page 1 (`currentPage = 1`), reloads the attachment list for the current entity, and displays a success notification.\n        - **Failure/Error**: Resets the upload state, triggers `_onUploadFailure`, and gracefully resolves with a failure payload.\n    - **Header Management**: Injects authentication headers while allowing the browser to manage the `Content-Type` boundary for multipart requests.\n- **Returns**: A `Promise` that always resolves—returning the parsed JSON response on success, or an error status object (e.g., `{ success: false, status: ..., error: ... }`) on failure.",
+          "invokeOnLoad": false,
+          "isAsync": true,
+          "name": "onUpload",
+          "parameters": [
+            "file"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "if (!attachment || !attachment.url) {\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: \"Download URL is missing or invalid.\",\n        dismissIn: 5_000\n    });\n    return;\n}\n\nconst { url, fileName } = attachment;\n\ntry {\n    // Create a hidden anchor element\n    const link = document.createElement('a');\n    link.href = url;\n\n    // The 'download' attribute suggests a filename to the browser.\n    link.setAttribute('download', fileName);\n\n    // Ensure it opens/downloads in a way that doesn't replace the current app state\n    link.target = '_blank';\n\n    // Append to body, click, and remove\n    document.body.appendChild(link);\n    link.click();\n    document.body.removeChild(link);\n\n} catch (e) {\n    console.error(\"Manual download failed, falling back to window.open\", e);\n    window.open(url, '_blank');\n}",
+          "description": "Triggers a file download by programmatically interacting with the browser's Document Object Model (DOM). It utilizes a temporary anchor element to enforce specific filenames and ensures the application state remains uninterrupted during the process.\n\n- **attachment**: An object containing the file metadata, specifically the `url` (source) and `fileName` (desired name).\n- **Logic**:\n    - **Validation**: Verifies the existence of a valid download URL, triggering an error notification if the metadata is incomplete.\n    - **DOM Manipulation**: \n        - Creates a hidden `<a>` element in memory.\n        - Sets the `href` to the attachment URL and applies the `download` attribute to suggest the target filename to the browser.\n        - Sets `target=\"_blank\"` to prevent the browser from navigating away from the current application page.\n    - **Execution**: Briefly appends the link to the document body, simulates a click event, and immediately cleans up the element.\n    - **Fallback**: In the event of a DOM exception, the function falls back to a standard `window.open` call to ensure the user can still access the file.\n- **Returns**: `void`",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDownload",
+          "parameters": [
+            "attachment"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "if (!attachment || !attachment.attachmentId) {\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: \"Attachment ID is missing or invalid.\",\n        dismissIn: 5_000\n    });\n    return;\n}\n\nconst { attachmentId, fileName } = attachment;\nconst entityType = this.uiState.targetEntityType;\nconst entityName = this.uiState.targetEntityName;\n\ntry {\n    this.uiState.isDeleting = true;\n    const options = {\n        displayName: fileName,\n        modalData: this.utilityService.formatEntityForDisplay(attachment)\n    };\n\n    const result = await this.dataService.deleteData(\n        \"attachment\",\n        attachmentId,\n        options,\n        {\n            entityType: entityType[0].toUpperCase() + entityType.slice(1)\n        }\n    );\n\n    if (result?.result !== 'cancel') {\n        const successMessage = this.enService.components.attachmentComponent.messages.getDeleteSuccess(fileName, entityName);\n        this.notificationService.notify({\n            alertType: \"success\",\n            alertDescription: successMessage,\n            dismissIn: this.notifyConfig.dismissInMs.SUCCESS\n        });\n        this.loaders.loadAllAttachmentsByEntity();\n    }\n\n} catch (e) {\n    console.error(\"Failed to delete attachment: \", e);\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: this.enService.components.attachmentComponent.messages.getDeleteFailed(fileName, entityName),\n        dismissIn: this.notifyConfig.dismissInMs.ERROR\n    });\n} finally {\n    this.uiState.isDeleting = false;\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": true,
+          "name": "onDelete",
+          "parameters": [
+            "attachment"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "helpers",
+      "properties": [
+        {
+          "body": "limitInMB = limitInMB ?? this.MAX_FILE_SIZE_IN_MB;\n\nif (!file || !file.size) return false;\n\n// 1MB = 1024 * 1024 bytes\nconst limitInBytes = limitInMB * 1024 * 1024;\n\nreturn file.size <= limitInBytes;",
+          "description": "Validates whether a provided file object stays within a specific data size threshold. This is commonly used as a pre-upload check to prevent server-side errors or to enforce storage quotas in the UI.\n\n- **file**: The `File` object (typically from an `<input type=\"file\">` change event).\n- **limitInMB**: The maximum permitted size expressed in Megabytes (defaults to `25`).\n- **Logic**:\n    - **Validation**: Immediately returns `false` if the file object or its size property is missing.\n    - **Conversion**: Converts the Megabyte limit into bytes using the binary standard ($1024 \\times 1024$).\n    - **Comparison**: Performs a simple binary comparison against the file's raw byte count.\n- **Returns**: `true` if the file size is less than or equal to the limit; otherwise, `false`.",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "_isFileSizeValid",
+          "parameters": [
+            "file",
+            "limitInMB"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "allowedTypes = allowedTypes ?? this.ALLOWED_FILE_TYPES;\n\nif (!file || !file.name || !allowedTypes.length) return false;\n\nconst fileName = file.name.toLowerCase();\n// Check if the filename ends with any of the allowed extensions\nreturn allowedTypes.some(ext => fileName.endsWith(ext.toLowerCase()));",
+          "description": "Performs a case-insensitive validation of a file's extension against a whitelist of permitted types. This internal helper ensures that uploaded documents conform to system requirements before they are processed by the server.\n\n- **file**: The `File` object containing the metadata to be checked.\n- **allowedTypes**: An array of strings representing valid extensions (e.g., `[\".pdf\", \".jpg\", \".docx\"]`).\n- **Logic**:\n    - **Guard Clause**: Returns `false` if the file, the filename, or the whitelist is missing or empty.\n    - **Normalization**: Converts both the filename and the allowed extensions to lowercase to ensure the check is not bypassed by variations in casing (e.g., `.JPG` vs `.jpg`).\n    - **Matching**: Uses a suffix check to determine if the filename ends with any of the strings provided in the `allowedTypes` array.\n- **Returns**: `true` if the file extension matches one of the allowed types; otherwise, `false`.",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "_isFileTypeValid",
+          "parameters": [
+            "file",
+            "allowedTypes"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "const failedMessage = this.enService.components.attachmentComponent.messages.getUploadFailed(fileName, entityName);\nthis.uiState.uploadMessage = failedMessage;\nthis.notificationService.notify({\n    alertType: \"error\",\n    alertDescription: failedMessage,\n    dismissIn\n});\n",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "_onUploadFailure",
+          "parameters": [
+            "fileName",
+            "entityName",
+            "dismissIn"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "this.uiState.isUploading = false;\nthis.uiState.uploadProgress = 0;\nthis.uiState.uploadMessage = \"\";\nthis.attachmentForm.file = null;",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "_resetUploadState",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Attachment Id\",\n        value: \"attachmentId\"\n    },\n    {\n        label: \"File Name\",\n        value: \"fileName\"\n    },\n    {\n        label: \"File Type\",\n        value: \"mimeType\"\n    },\n    {\n        label: \"Size\",\n        value: \"size\"\n    },\n    {\n        label: \"Uploaded\",\n        value: \"uploadedOn\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return {\n    \"property\": \"fileName\",\n    \"operation\": \"contains\"\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultSearchConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"File Name\",\n    \"Size\",\n    \"Uploaded\"\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"Uploaded\": \"uploadedOn\"\n    },\n    cellTemplateJsExpression: {\n        \"Uploaded\": \"$ctrl.utilityService.formatDisplayDate(value)\",\n        \"Size\": \"$ctrl.utilityService.formatBytes(value)\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "notificationService",
+      "resourceIdentity": "services/util-services/notification-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "open-api",
+      "name": "lontiAppCrmApi",
+      "resourceIdentity": "apis/lontiAppCrmApi",
+      "type": "open-api"
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    }
+  ],
+  "visible": [
+    "getFilterColumnValues",
+    "getDisplayColumnConfig",
+    "getDefaultSearchConfig",
+    "getDefaultDisplayColumnConfig",
+    "attachmentForm",
+    "MAX_FILE_SIZE_IN_MB",
+    "isFileSizeValid",
+    "helpers",
+    "uiState",
+    "handler",
+    "handlers",
+    "ALLOWED_FILE_TYPES",
+    "loaders",
+    "DISMISS_ERROR_NOTIFY_IN_MS",
+    "DISMISS_SUCCESS_NOTIFY_IN_MS",
+    "notifyConfig"
+  ]
+}

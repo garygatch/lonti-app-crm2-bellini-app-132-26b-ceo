@@ -1,0 +1,1929 @@
+{
+  "authenticationRequired": true,
+  "children": [
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        },
+        {
+          "property": "name",
+          "value": "form"
+        }
+      ],
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "\"X-Authorization\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.form.xAuthorizationToken",
+              "to": "value"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "\"Tenant Code\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.form.tenantCode",
+              "to": "value"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "$ctrl.form.tenantApplication",
+              "to": "value"
+            },
+            {
+              "expression": "\"Tenant Application\"",
+              "to": "label"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": [
+                        {
+                          "property": "ng-if",
+                          "value": "$ctrl.hasLabel()"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "title",
+                              "value": "{{ $ctrl.tooltip || '' }}"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.label"
+                            }
+                          ],
+                          "classList": [],
+                          "name": "label"
+                        }
+                      ],
+                      "classList": [
+                        "label-container"
+                      ],
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "attributes": [
+                                    {
+                                      "property": "ng-readonly",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "property": "ng-if",
+                                      "value": "$ctrl.leftAddon"
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "evaluate": true,
+                                      "name": "text",
+                                      "textContent": "$ctrl.leftAddon"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "left-addon-container"
+                                  ],
+                                  "name": "span"
+                                }
+                              ],
+                              "classList": [
+                                "left-input-container"
+                              ],
+                              "name": "div"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "type",
+                                  "value": "{{ $ctrl.type }}"
+                                },
+                                {
+                                  "property": "ng-model-options",
+                                  "value": "{ allowInvalid: true }"
+                                },
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type !== 'text-area' && $ctrl.type !== 'number'"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-blur",
+                                  "value": "$ctrl.value.$setTouched()"
+                                },
+                                {
+                                  "property": "ng-style",
+                                  "value": "$ctrl.getInputStyle()"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "$ctrl.value.$valid"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "$ctrl.value.$invalid"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "formValue": "",
+                              "name": "input"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "type",
+                                  "value": "{{ $ctrl.type }}"
+                                },
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type === 'number'"
+                                },
+                                {
+                                  "property": "min",
+                                  "value": "{{ $ctrl.min }}"
+                                },
+                                {
+                                  "property": "max",
+                                  "value": "{{ $ctrl.max }}"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                },
+                                {
+                                  "property": "ng-style",
+                                  "value": "$ctrl.getInputStyle()"
+                                },
+                                {
+                                  "property": "ng-mouseup",
+                                  "value": "$event.stopPropagation()"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "$ctrl.value.$valid"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "$ctrl.value.$invalid"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "formValue": "",
+                              "name": "input"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type === 'text-area'"
+                                },
+                                {
+                                  "property": "cols",
+                                  "value": "{{ $ctrl.columns }}"
+                                },
+                                {
+                                  "property": "rows",
+                                  "value": "{{ $ctrl.rows }}"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "invalid",
+                                  "condition": "!!$ctrl.error"
+                                },
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "!$ctrl.error"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "!!$ctrl.error"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "name": "textarea"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "$ctrl.type === 'search'"
+                                        },
+                                        {
+                                          "property": "ng-show",
+                                          "value": "$ctrl.hasValue()"
+                                        },
+                                        {
+                                          "property": "ng-click",
+                                          "value": "$ctrl.clearInput()"
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "evaluate": false,
+                                              "name": "text",
+                                              "textContent": "×"
+                                            }
+                                          ],
+                                          "classList": [
+                                            "search-clear-icon"
+                                          ],
+                                          "name": "span"
+                                        }
+                                      ],
+                                      "classList": [
+                                        "search-clear-icon-container"
+                                      ],
+                                      "name": "div"
+                                    },
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "$ctrl.type === \"password\""
+                                        },
+                                        {
+                                          "property": "ng-click",
+                                          "value": "$ctrl.handleToggle()"
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "attributes": [
+                                            {
+                                              "property": "bln-icon"
+                                            },
+                                            {
+                                              "property": "icon-type",
+                                              "value": "font-icon"
+                                            },
+                                            {
+                                              "property": "icon-style",
+                                              "value": "solid"
+                                            },
+                                            {
+                                              "property": "icon-name",
+                                              "value": "eye"
+                                            }
+                                          ],
+                                          "children": [],
+                                          "classList": [
+                                            "toggle-icon-show"
+                                          ],
+                                          "name": "span"
+                                        },
+                                        {
+                                          "attributes": [
+                                            {
+                                              "property": "bln-icon"
+                                            },
+                                            {
+                                              "property": "icon-type",
+                                              "value": "font-icon"
+                                            },
+                                            {
+                                              "property": "icon-style",
+                                              "value": "solid"
+                                            },
+                                            {
+                                              "property": "icon-name",
+                                              "value": "eye-slash"
+                                            }
+                                          ],
+                                          "children": [],
+                                          "classList": [
+                                            "toggle-icon-hide"
+                                          ],
+                                          "name": "span"
+                                        }
+                                      ],
+                                      "classList": [
+                                        "password-toggle-icon-container"
+                                      ],
+                                      "name": "div"
+                                    },
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "!!$ctrl.error"
+                                        },
+                                        {
+                                          "property": "bln-icon"
+                                        },
+                                        {
+                                          "property": "icon-type",
+                                          "value": "font-icon"
+                                        },
+                                        {
+                                          "property": "icon-style",
+                                          "value": "solid"
+                                        },
+                                        {
+                                          "property": "icon-name",
+                                          "value": "exclamation-circle"
+                                        }
+                                      ],
+                                      "children": [],
+                                      "classList": [
+                                        "error-icon"
+                                      ],
+                                      "name": "span"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "icons-container"
+                                  ],
+                                  "name": "div"
+                                },
+                                {
+                                  "attributes": [
+                                    {
+                                      "property": "ng-readonly",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "property": "ng-if",
+                                      "value": "$ctrl.rightAddon"
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "evaluate": true,
+                                      "name": "text",
+                                      "textContent": "$ctrl.rightAddon"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "right-addon-container"
+                                  ],
+                                  "name": "span"
+                                }
+                              ],
+                              "classList": [
+                                "right-input-container"
+                              ],
+                              "name": "div"
+                            }
+                          ],
+                          "classList": [
+                            "input"
+                          ],
+                          "name": "div"
+                        },
+                        {
+                          "attributes": [
+                            {
+                              "property": "ng-if",
+                              "value": "!!$ctrl.error"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.error"
+                            }
+                          ],
+                          "classList": [
+                            "error"
+                          ],
+                          "name": "div"
+                        },
+                        {
+                          "attributes": [
+                            {
+                              "property": "ng-if",
+                              "value": "!!$ctrl.errors"
+                            },
+                            {
+                              "property": "ng-repeat",
+                              "value": "error in $ctrl.errors track by $index"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "error.message"
+                            }
+                          ],
+                          "classList": [
+                            "error"
+                          ],
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [
+                        "input-container"
+                      ],
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [
+                    "bln-core-component",
+                    "bln-text-input"
+                  ],
+                  "conditionalClasses": [
+                    {
+                      "className": "label-top",
+                      "condition": "$ctrl.labelPosition === 'top'"
+                    },
+                    {
+                      "className": "label-left",
+                      "condition": "$ctrl.labelPosition === 'left'"
+                    },
+                    {
+                      "className": "label-right",
+                      "condition": "$ctrl.labelPosition === 'right'"
+                    },
+                    {
+                      "className": "label-bottom",
+                      "condition": "$ctrl.labelPosition === 'bottom'"
+                    },
+                    {
+                      "className": "flex-auto",
+                      "condition": "$ctrl.type !== 'text-area' ? true : !($ctrl.columns > 0)"
+                    }
+                  ],
+                  "name": "div"
+                }
+              ],
+              "classList": [
+                "bln-core-component",
+                "bln-text-input"
+              ],
+              "conditionalClasses": [
+                {
+                  "className": "label-top",
+                  "condition": "$ctrl.labelPosition === 'top'"
+                },
+                {
+                  "className": "label-left",
+                  "condition": "$ctrl.labelPosition === 'left'"
+                },
+                {
+                  "className": "label-right",
+                  "condition": "$ctrl.labelPosition === 'right'"
+                },
+                {
+                  "className": "label-bottom",
+                  "condition": "$ctrl.labelPosition === 'bottom'"
+                },
+                {
+                  "className": "flex-auto",
+                  "condition": "$ctrl.type !== 'text-area' ? true : !($ctrl.columns > 0)"
+                }
+              ],
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "\"Provider\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.form.provider",
+              "to": "value"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": [
+                        {
+                          "property": "ng-if",
+                          "value": "$ctrl.hasLabel()"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "title",
+                              "value": "{{ $ctrl.tooltip || '' }}"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.label"
+                            }
+                          ],
+                          "classList": [],
+                          "name": "label"
+                        }
+                      ],
+                      "classList": [
+                        "label-container"
+                      ],
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "attributes": [
+                                    {
+                                      "property": "ng-readonly",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "property": "ng-if",
+                                      "value": "$ctrl.leftAddon"
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "evaluate": true,
+                                      "name": "text",
+                                      "textContent": "$ctrl.leftAddon"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "left-addon-container"
+                                  ],
+                                  "name": "span"
+                                }
+                              ],
+                              "classList": [
+                                "left-input-container"
+                              ],
+                              "name": "div"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "type",
+                                  "value": "{{ $ctrl.type }}"
+                                },
+                                {
+                                  "property": "ng-model-options",
+                                  "value": "{ allowInvalid: true }"
+                                },
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type !== 'text-area' && $ctrl.type !== 'number'"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-blur",
+                                  "value": "$ctrl.value.$setTouched()"
+                                },
+                                {
+                                  "property": "ng-style",
+                                  "value": "$ctrl.getInputStyle()"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "$ctrl.value.$valid"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "$ctrl.value.$invalid"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "formValue": "",
+                              "name": "input"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "type",
+                                  "value": "{{ $ctrl.type }}"
+                                },
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type === 'number'"
+                                },
+                                {
+                                  "property": "min",
+                                  "value": "{{ $ctrl.min }}"
+                                },
+                                {
+                                  "property": "max",
+                                  "value": "{{ $ctrl.max }}"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                },
+                                {
+                                  "property": "ng-style",
+                                  "value": "$ctrl.getInputStyle()"
+                                },
+                                {
+                                  "property": "ng-mouseup",
+                                  "value": "$event.stopPropagation()"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "$ctrl.value.$valid"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "$ctrl.value.$invalid"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "formValue": "",
+                              "name": "input"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type === 'text-area'"
+                                },
+                                {
+                                  "property": "cols",
+                                  "value": "{{ $ctrl.columns }}"
+                                },
+                                {
+                                  "property": "rows",
+                                  "value": "{{ $ctrl.rows }}"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "invalid",
+                                  "condition": "!!$ctrl.error"
+                                },
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "!$ctrl.error"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "!!$ctrl.error"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "name": "textarea"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "$ctrl.type === 'search'"
+                                        },
+                                        {
+                                          "property": "ng-show",
+                                          "value": "$ctrl.hasValue()"
+                                        },
+                                        {
+                                          "property": "ng-click",
+                                          "value": "$ctrl.clearInput()"
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "evaluate": false,
+                                              "name": "text",
+                                              "textContent": "×"
+                                            }
+                                          ],
+                                          "classList": [
+                                            "search-clear-icon"
+                                          ],
+                                          "name": "span"
+                                        }
+                                      ],
+                                      "classList": [
+                                        "search-clear-icon-container"
+                                      ],
+                                      "name": "div"
+                                    },
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "$ctrl.type === \"password\""
+                                        },
+                                        {
+                                          "property": "ng-click",
+                                          "value": "$ctrl.handleToggle()"
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "attributes": [
+                                            {
+                                              "property": "bln-icon"
+                                            },
+                                            {
+                                              "property": "icon-type",
+                                              "value": "font-icon"
+                                            },
+                                            {
+                                              "property": "icon-style",
+                                              "value": "solid"
+                                            },
+                                            {
+                                              "property": "icon-name",
+                                              "value": "eye"
+                                            }
+                                          ],
+                                          "children": [],
+                                          "classList": [
+                                            "toggle-icon-show"
+                                          ],
+                                          "name": "span"
+                                        },
+                                        {
+                                          "attributes": [
+                                            {
+                                              "property": "bln-icon"
+                                            },
+                                            {
+                                              "property": "icon-type",
+                                              "value": "font-icon"
+                                            },
+                                            {
+                                              "property": "icon-style",
+                                              "value": "solid"
+                                            },
+                                            {
+                                              "property": "icon-name",
+                                              "value": "eye-slash"
+                                            }
+                                          ],
+                                          "children": [],
+                                          "classList": [
+                                            "toggle-icon-hide"
+                                          ],
+                                          "name": "span"
+                                        }
+                                      ],
+                                      "classList": [
+                                        "password-toggle-icon-container"
+                                      ],
+                                      "name": "div"
+                                    },
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "!!$ctrl.error"
+                                        },
+                                        {
+                                          "property": "bln-icon"
+                                        },
+                                        {
+                                          "property": "icon-type",
+                                          "value": "font-icon"
+                                        },
+                                        {
+                                          "property": "icon-style",
+                                          "value": "solid"
+                                        },
+                                        {
+                                          "property": "icon-name",
+                                          "value": "exclamation-circle"
+                                        }
+                                      ],
+                                      "children": [],
+                                      "classList": [
+                                        "error-icon"
+                                      ],
+                                      "name": "span"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "icons-container"
+                                  ],
+                                  "name": "div"
+                                },
+                                {
+                                  "attributes": [
+                                    {
+                                      "property": "ng-readonly",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "property": "ng-if",
+                                      "value": "$ctrl.rightAddon"
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "evaluate": true,
+                                      "name": "text",
+                                      "textContent": "$ctrl.rightAddon"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "right-addon-container"
+                                  ],
+                                  "name": "span"
+                                }
+                              ],
+                              "classList": [
+                                "right-input-container"
+                              ],
+                              "name": "div"
+                            }
+                          ],
+                          "classList": [
+                            "input"
+                          ],
+                          "name": "div"
+                        },
+                        {
+                          "attributes": [
+                            {
+                              "property": "ng-if",
+                              "value": "!!$ctrl.error"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.error"
+                            }
+                          ],
+                          "classList": [
+                            "error"
+                          ],
+                          "name": "div"
+                        },
+                        {
+                          "attributes": [
+                            {
+                              "property": "ng-if",
+                              "value": "!!$ctrl.errors"
+                            },
+                            {
+                              "property": "ng-repeat",
+                              "value": "error in $ctrl.errors track by $index"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "error.message"
+                            }
+                          ],
+                          "classList": [
+                            "error"
+                          ],
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [
+                        "input-container"
+                      ],
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [
+                    "bln-core-component",
+                    "bln-text-input"
+                  ],
+                  "conditionalClasses": [
+                    {
+                      "className": "label-top",
+                      "condition": "$ctrl.labelPosition === 'top'"
+                    },
+                    {
+                      "className": "label-left",
+                      "condition": "$ctrl.labelPosition === 'left'"
+                    },
+                    {
+                      "className": "label-right",
+                      "condition": "$ctrl.labelPosition === 'right'"
+                    },
+                    {
+                      "className": "label-bottom",
+                      "condition": "$ctrl.labelPosition === 'bottom'"
+                    },
+                    {
+                      "className": "flex-auto",
+                      "condition": "$ctrl.type !== 'text-area' ? true : !($ctrl.columns > 0)"
+                    }
+                  ],
+                  "name": "div"
+                }
+              ],
+              "classList": [
+                "bln-core-component",
+                "bln-text-input"
+              ],
+              "conditionalClasses": [
+                {
+                  "className": "label-top",
+                  "condition": "$ctrl.labelPosition === 'top'"
+                },
+                {
+                  "className": "label-left",
+                  "condition": "$ctrl.labelPosition === 'left'"
+                },
+                {
+                  "className": "label-right",
+                  "condition": "$ctrl.labelPosition === 'right'"
+                },
+                {
+                  "className": "label-bottom",
+                  "condition": "$ctrl.labelPosition === 'bottom'"
+                },
+                {
+                  "className": "flex-auto",
+                  "condition": "$ctrl.type !== 'text-area' ? true : !($ctrl.columns > 0)"
+                }
+              ],
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "\"Feature\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.form.feature",
+              "to": "value"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": [
+                        {
+                          "property": "ng-if",
+                          "value": "$ctrl.hasLabel()"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "title",
+                              "value": "{{ $ctrl.tooltip || '' }}"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.label"
+                            }
+                          ],
+                          "classList": [],
+                          "name": "label"
+                        }
+                      ],
+                      "classList": [
+                        "label-container"
+                      ],
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "attributes": [
+                                    {
+                                      "property": "ng-readonly",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "property": "ng-if",
+                                      "value": "$ctrl.leftAddon"
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "evaluate": true,
+                                      "name": "text",
+                                      "textContent": "$ctrl.leftAddon"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "left-addon-container"
+                                  ],
+                                  "name": "span"
+                                }
+                              ],
+                              "classList": [
+                                "left-input-container"
+                              ],
+                              "name": "div"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "type",
+                                  "value": "{{ $ctrl.type }}"
+                                },
+                                {
+                                  "property": "ng-model-options",
+                                  "value": "{ allowInvalid: true }"
+                                },
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type !== 'text-area' && $ctrl.type !== 'number'"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-blur",
+                                  "value": "$ctrl.value.$setTouched()"
+                                },
+                                {
+                                  "property": "ng-style",
+                                  "value": "$ctrl.getInputStyle()"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "$ctrl.value.$valid"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "$ctrl.value.$invalid"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "formValue": "",
+                              "name": "input"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "type",
+                                  "value": "{{ $ctrl.type }}"
+                                },
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type === 'number'"
+                                },
+                                {
+                                  "property": "min",
+                                  "value": "{{ $ctrl.min }}"
+                                },
+                                {
+                                  "property": "max",
+                                  "value": "{{ $ctrl.max }}"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                },
+                                {
+                                  "property": "ng-style",
+                                  "value": "$ctrl.getInputStyle()"
+                                },
+                                {
+                                  "property": "ng-mouseup",
+                                  "value": "$event.stopPropagation()"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "$ctrl.value.$valid"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "$ctrl.value.$invalid"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "formValue": "",
+                              "name": "input"
+                            },
+                            {
+                              "attributes": [
+                                {
+                                  "property": "placeholder",
+                                  "value": "{{ $ctrl.placeholder || '' }}"
+                                },
+                                {
+                                  "property": "ng-if",
+                                  "value": "$ctrl.type === 'text-area'"
+                                },
+                                {
+                                  "property": "cols",
+                                  "value": "{{ $ctrl.columns }}"
+                                },
+                                {
+                                  "property": "rows",
+                                  "value": "{{ $ctrl.rows }}"
+                                },
+                                {
+                                  "property": "ng-model",
+                                  "value": "$ctrl.inputValue"
+                                },
+                                {
+                                  "property": "ng-on-input",
+                                  "value": "$ctrl.handleInput($event)"
+                                },
+                                {
+                                  "property": "ng-keydown",
+                                  "value": "$ctrl.handleOnKeyDown($event)"
+                                }
+                              ],
+                              "bindTo": "",
+                              "children": [],
+                              "classList": [],
+                              "conditionalClasses": [
+                                {
+                                  "className": "invalid",
+                                  "condition": "!!$ctrl.error"
+                                },
+                                {
+                                  "className": "rounded-sm",
+                                  "condition": "!$ctrl.error"
+                                },
+                                {
+                                  "className": "rounded-t-sm",
+                                  "condition": "!!$ctrl.error"
+                                }
+                              ],
+                              "formDisabled": "$ctrl.disabled || false",
+                              "formReadonly": "$ctrl.readOnly || false",
+                              "name": "textarea"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "$ctrl.type === 'search'"
+                                        },
+                                        {
+                                          "property": "ng-show",
+                                          "value": "$ctrl.hasValue()"
+                                        },
+                                        {
+                                          "property": "ng-click",
+                                          "value": "$ctrl.clearInput()"
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "evaluate": false,
+                                              "name": "text",
+                                              "textContent": "×"
+                                            }
+                                          ],
+                                          "classList": [
+                                            "search-clear-icon"
+                                          ],
+                                          "name": "span"
+                                        }
+                                      ],
+                                      "classList": [
+                                        "search-clear-icon-container"
+                                      ],
+                                      "name": "div"
+                                    },
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "$ctrl.type === \"password\""
+                                        },
+                                        {
+                                          "property": "ng-click",
+                                          "value": "$ctrl.handleToggle()"
+                                        }
+                                      ],
+                                      "children": [
+                                        {
+                                          "attributes": [
+                                            {
+                                              "property": "bln-icon"
+                                            },
+                                            {
+                                              "property": "icon-type",
+                                              "value": "font-icon"
+                                            },
+                                            {
+                                              "property": "icon-style",
+                                              "value": "solid"
+                                            },
+                                            {
+                                              "property": "icon-name",
+                                              "value": "eye"
+                                            }
+                                          ],
+                                          "children": [],
+                                          "classList": [
+                                            "toggle-icon-show"
+                                          ],
+                                          "name": "span"
+                                        },
+                                        {
+                                          "attributes": [
+                                            {
+                                              "property": "bln-icon"
+                                            },
+                                            {
+                                              "property": "icon-type",
+                                              "value": "font-icon"
+                                            },
+                                            {
+                                              "property": "icon-style",
+                                              "value": "solid"
+                                            },
+                                            {
+                                              "property": "icon-name",
+                                              "value": "eye-slash"
+                                            }
+                                          ],
+                                          "children": [],
+                                          "classList": [
+                                            "toggle-icon-hide"
+                                          ],
+                                          "name": "span"
+                                        }
+                                      ],
+                                      "classList": [
+                                        "password-toggle-icon-container"
+                                      ],
+                                      "name": "div"
+                                    },
+                                    {
+                                      "attributes": [
+                                        {
+                                          "property": "ng-if",
+                                          "value": "!!$ctrl.error"
+                                        },
+                                        {
+                                          "property": "bln-icon"
+                                        },
+                                        {
+                                          "property": "icon-type",
+                                          "value": "font-icon"
+                                        },
+                                        {
+                                          "property": "icon-style",
+                                          "value": "solid"
+                                        },
+                                        {
+                                          "property": "icon-name",
+                                          "value": "exclamation-circle"
+                                        }
+                                      ],
+                                      "children": [],
+                                      "classList": [
+                                        "error-icon"
+                                      ],
+                                      "name": "span"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "icons-container"
+                                  ],
+                                  "name": "div"
+                                },
+                                {
+                                  "attributes": [
+                                    {
+                                      "property": "ng-readonly",
+                                      "value": "true"
+                                    },
+                                    {
+                                      "property": "ng-if",
+                                      "value": "$ctrl.rightAddon"
+                                    }
+                                  ],
+                                  "children": [
+                                    {
+                                      "evaluate": true,
+                                      "name": "text",
+                                      "textContent": "$ctrl.rightAddon"
+                                    }
+                                  ],
+                                  "classList": [
+                                    "right-addon-container"
+                                  ],
+                                  "name": "span"
+                                }
+                              ],
+                              "classList": [
+                                "right-input-container"
+                              ],
+                              "name": "div"
+                            }
+                          ],
+                          "classList": [
+                            "input"
+                          ],
+                          "name": "div"
+                        },
+                        {
+                          "attributes": [
+                            {
+                              "property": "ng-if",
+                              "value": "!!$ctrl.error"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "$ctrl.error"
+                            }
+                          ],
+                          "classList": [
+                            "error"
+                          ],
+                          "name": "div"
+                        },
+                        {
+                          "attributes": [
+                            {
+                              "property": "ng-if",
+                              "value": "!!$ctrl.errors"
+                            },
+                            {
+                              "property": "ng-repeat",
+                              "value": "error in $ctrl.errors track by $index"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "error.message"
+                            }
+                          ],
+                          "classList": [
+                            "error"
+                          ],
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [
+                        "input-container"
+                      ],
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [
+                    "bln-core-component",
+                    "bln-text-input"
+                  ],
+                  "conditionalClasses": [
+                    {
+                      "className": "label-top",
+                      "condition": "$ctrl.labelPosition === 'top'"
+                    },
+                    {
+                      "className": "label-left",
+                      "condition": "$ctrl.labelPosition === 'left'"
+                    },
+                    {
+                      "className": "label-right",
+                      "condition": "$ctrl.labelPosition === 'right'"
+                    },
+                    {
+                      "className": "label-bottom",
+                      "condition": "$ctrl.labelPosition === 'bottom'"
+                    },
+                    {
+                      "className": "flex-auto",
+                      "condition": "$ctrl.type !== 'text-area' ? true : !($ctrl.columns > 0)"
+                    }
+                  ],
+                  "name": "div"
+                }
+              ],
+              "classList": [
+                "bln-core-component",
+                "bln-text-input"
+              ],
+              "conditionalClasses": [
+                {
+                  "className": "label-top",
+                  "condition": "$ctrl.labelPosition === 'top'"
+                },
+                {
+                  "className": "label-left",
+                  "condition": "$ctrl.labelPosition === 'left'"
+                },
+                {
+                  "className": "label-right",
+                  "condition": "$ctrl.labelPosition === 'right'"
+                },
+                {
+                  "className": "label-bottom",
+                  "condition": "$ctrl.labelPosition === 'bottom'"
+                },
+                {
+                  "className": "flex-auto",
+                  "condition": "$ctrl.type !== 'text-area' ? true : !($ctrl.columns > 0)"
+                }
+              ],
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "\"Redirect URI\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.form.redirectUri",
+              "to": "value"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "\"Reset Scopes\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.form.resetScopes",
+              "to": "toggled"
+            }
+          ],
+          "formControl": {
+            "modelName": "toggled"
+          },
+          "name": "Toggle",
+          "nodeName": "bln-toggle",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "elementId": "form",
+      "name": "form"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        }
+      ],
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "\"Sync\"",
+          "to": "label"
+        },
+        {
+          "expression": "\"primary\"",
+          "to": "type"
+        },
+        {
+          "expression": "$ctrl.onSyncButtonClick()",
+          "to": "onClick"
+        }
+      ],
+      "name": "Button",
+      "nodeName": "bln-button",
+      "type": "core-component"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        }
+      ],
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "\"Callback\"",
+          "to": "label"
+        },
+        {
+          "expression": "\"primary\"",
+          "to": "type"
+        },
+        {
+          "expression": "$ctrl.onCallback()",
+          "to": "onClick"
+        }
+      ],
+      "name": "Button",
+      "nodeName": "bln-button",
+      "type": "core-component"
+    }
+  ],
+  "name": "sync-test",
+  "params": {},
+  "type": "page",
+  "url": "/sync-test",
+  "variables": [
+    {
+      "body": "// Assuming $ctrl.form has properties like provider, feature, resetScopes,\n// tenantCode, tenantApplication, xAuthorizationToken, and redirectUri\nconst provider = $ctrl.form.provider;\nconst feature = $ctrl.form.feature;\nconst resetScopes = $ctrl.form.resetScopes;\nconst tenantCode = $ctrl.form.tenantCode;\nconst tenantApplication = $ctrl.form.tenantApplication;\nconst xAuthorizationToken = $ctrl.form.xAuthorizationToken;\nconst customRedirectUriInput = $ctrl.form.redirectUri; // Get the input from the form\n\n// Base API URL\nconst apiBaseUrl = \"http://localhost:8080/api/lonti_app_crm/1.0\"; // Adjust if this is dynamic\n\n// Construct the base initiate endpoint\nconst initiateBaseUrl = `${apiBaseUrl}/oauth/initiate`;\n\n// Define the default OAuth callback path (if custom input is not provided)\nconst defaultOauthCallbackPath = '/TORO/io.toro.lonti-app-crm/e/local/index.html'; // <-- IMPORTANT: Adjust this to your actual default callback route\n\n// Determine the final customRedirectUri to send to the backend\nconst finalCustomRedirectUri = customRedirectUriInput\n    ? customRedirectUriInput // Use the form input if it's not null/empty\n    : window.location.origin + defaultOauthCallbackPath; // Otherwise, default to current origin + default path\n\n// Use URL object to safely build query parameters for the /oauth/initiate request\nconst url = new URL(initiateBaseUrl);\n\n// Add parameters only if they have values\nif (provider) {\n    url.searchParams.append('provider', provider);\n}\nif (feature) {\n    url.searchParams.append('feature', feature);\n}\nif (resetScopes) {\n    url.searchParams.append('resetScopes', String(resetScopes));\n}\n// --- ADD THE customRedirectUri PARAMETER HERE (using the determined value) ---\nurl.searchParams.append('customRedirectUri', finalCustomRedirectUri);\n// --- END ADDITION ---\n\n\n// Convert the URL object back to a string\nconst finalInitiateUrl = url.toString();\n\nconst headers = {\n    \"Accept\": \"application/json\",\n    \"X-TENANT-CODE\": tenantCode,\n    \"X-TENANT-APPLICATION\": tenantApplication,\n    \"X-Authorization\": xAuthorizationToken\n};\n\ntry {\n    const response = await fetch(finalInitiateUrl, { // Use the constructed URL\n        method: \"GET\",\n        headers: headers,\n    });\n\n    if (!response.ok) {\n        const errorText = await response.text();\n        console.error(`HTTP error! Status: ${response.status}`, errorText);\n        throw new Error(`Failed to initiate OAuth: ${response.statusText}`);\n    }\n\n    const data = await response.json();\n    console.log(\"OAuth Initiation Success:\", data);\n\n    if (data.externalAuthServerUrl) {\n        console.log(\"Redirecting to:\", data.externalAuthServerUrl);\n        window.location.href = data.externalAuthServerUrl;\n    } else {\n        console.warn(\"External authentication server URL not found in response.\");\n    }\n\n    return data;\n\n} catch (error) {\n    console.error(\"Error during OAuth initiation fetch:\", error);\n    // Handle the error in your UI, e.g., show a toast message\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onSyncButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "body": "// Extract URL parameters from the current window's URL\nconst urlParams = new URLSearchParams(window.location.search);\nconst code = urlParams.get('code');\nconst state = urlParams.get('state');\nconst scope = urlParams.get('scope'); // Scope might be long, depending on what was requested\n\n// If 'code' or 'state' are missing, something went wrong with the OAuth flow.\n// Log an error and exit.\nif (!code || !state) {\n    console.error(\"OAuth callback error: Missing 'code' or 'state' parameters in URL.\");\n    // Consider a user-facing toast/message here.\n    return;\n}\n\n// Define your backend API base URL\nconst apiBaseUrl = \"http://localhost:8080/api/lonti_app_crm/1.0\"; // Adjust if dynamic\n\n// Construct the base callback endpoint\nconst baseCallbackEndpoint = `${apiBaseUrl}/oauth/${$ctrl.form.provider}/callback`;\n\n// Define the default customRedirectUri path\nconst defaultCustomRedirectUriPath = '/TORO/io.toro.lonti-app-crm/e/local/index.html'; // Your specific index.html path\n\n// Determine the final customRedirectUri to send to the backend\nconst finalCustomRedirectUri = $ctrl.form.redirectUri // Check if form input provides it\n    ? $ctrl.form.redirectUri\n    : window.location.origin + defaultCustomRedirectUriPath; // Otherwise, default to current origin + default path\n\n// --- Construct the full callback URL with dynamic query parameters ---\nconst callbackUrl = new URL(baseCallbackEndpoint); // Create a URL object\n\ncallbackUrl.searchParams.append('code', code);\ncallbackUrl.searchParams.append('state', state);\nif (scope) {\n    callbackUrl.searchParams.append('scope', scope);\n}\n// Add the customRedirectUri as a parameter (using the determined value)\ncallbackUrl.searchParams.append('customRedirectUri', finalCustomRedirectUri);\n\n// Convert the URL object back to a string for the fetch request\nconst finalCallbackUrl = callbackUrl.toString();\n// --- End URL construction ---\n\ntry {\n    const response = await fetch(finalCallbackUrl, {\n        method: \"GET\", // Using GET as per your request\n        headers: {\n            \"Accept\": \"application/json\",\n            \"X-TENANT-CODE\": $ctrl.form.tenantCode, // Assuming this is from form\n            \"X-TENANT-APPLICATION\": $ctrl.form.tenantApplication, // Assuming this is from form\n            ...($ctrl.form.xAuthorizationToken && { \"X-Authorization\": $ctrl.form.xAuthorizationToken })\n        },\n    });\n\n    if (!response.ok) {\n        const errorData = await response.json(); // Assuming backend sends JSON for errors\n        console.error(`Callback HTTP error! Status: ${response.status}`, errorData);\n        // Display specific error messages from backend\n        // e.g., $ctrl.utilityService.toast(errorData.message || \"Authentication failed on callback.\", \"ERROR\");\n        throw new Error(`Callback failed: ${errorData.message || response.statusText}`);\n    }\n\n    const data = await response.json();\n    console.log(\"OAuth Callback Success:\", data);\n\n    // Your logic to store tokens and redirect to the dashboard\n    // e.g., localStorage.setItem('authToken', data.authToken);\n    // window.location.href = '/dashboard';\n\n    return data;\n\n} catch (error) {\n    console.error(\"Error sending OAuth callback data:\", error);\n    // Display a general error message to the user\n    // e.g., $ctrl.utilityService.toast(\"An unexpected error occurred during authentication.\", \"ERROR\");\n}\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onCallback",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "form",
+      "properties": [
+        {
+          "description": "",
+          "name": "provider",
+          "type": "property",
+          "value": "\"google\""
+        },
+        {
+          "description": "",
+          "name": "feature",
+          "type": "property",
+          "value": "\"calendar\""
+        },
+        {
+          "description": "",
+          "name": "resetScopes",
+          "type": "property",
+          "value": "false"
+        },
+        {
+          "description": "",
+          "name": "tenantCode",
+          "type": "property",
+          "value": "\"TORO\""
+        },
+        {
+          "description": "",
+          "name": "tenantApplication",
+          "type": "property",
+          "value": "\"CRM\""
+        },
+        {
+          "description": "",
+          "name": "xAuthorizationToken",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "redirectUri",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    },
+    {
+      "name": "$cookies",
+      "type": "service"
+    },
+    {
+      "body": "// Get X-Authorization token from cookies\n$ctrl.form.xAuthorizationToken = $ctrl.$cookies.get(\"access_token\");",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "onInit",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

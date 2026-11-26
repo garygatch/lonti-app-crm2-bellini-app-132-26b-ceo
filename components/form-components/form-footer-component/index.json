@@ -1,0 +1,320 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "autocomplete": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "includeAssets": false,
+      "label": "",
+      "name": "action",
+      "propertyType": "text",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onCancelButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayCancelButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "\"Cancel\"",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "cancelButtonLabel",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayActionButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "disableActionButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "dropdownValue",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "[\n    {\n        \"label\": \"Label\",\n        \"value\": \"Value\"\n    }\n]",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "dropdownValues",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "dropdownTooltip",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "dropdownPlaceholder",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "cancel",
+              "displayExpression": "$ctrl.displayCancelButton",
+              "expressions": [
+                {
+                  "expression": "\"default\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "$ctrl.cancelButtonLabel",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.isLoading",
+                  "to": "showLoading"
+                },
+                {
+                  "expression": "$ctrl.onCancelButtonClick()",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"times\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "action-button",
+              "displayExpression": "$ctrl.displayActionButton",
+              "expressions": [
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "$ctrl.action",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.isLoading",
+                  "to": "showLoading"
+                },
+                {
+                  "expression": "$ctrl.onActionButtonClick()",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": $ctrl.getActionIcon(),\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.disableActionButton",
+                  "to": "isDisabled"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "optional-dropdown",
+              "displayExpression": "$ctrl.displayDropdown",
+              "expressions": [
+                {
+                  "expression": "\"\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.dropdownValues",
+                  "to": "values"
+                },
+                {
+                  "expression": "$ctrl.dropdownValue",
+                  "to": "value"
+                },
+                {
+                  "expression": "$ctrl.dropdownTooltip",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.dropdownPlaceholder",
+                  "to": "placeholder"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "elementId": "form-footer-actions-container",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "elementId": "form-footer-container",
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "form-footer-component",
+  "parentDirectoryId": "R6gKwA9iYxXE9EbAxiJxY",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "body": "const actionMap = {\n    \"ADD\": \"plus\",\n    \"EDIT\": \"edit\",\n    \"UPLOAD\": \"upload\",\n    \"EXPORT\": \"download\",\n    \"LINK\": \"link\",\n    \"UNLINK\": \"unlink\",\n    \"ASSIGN\": \"plus\",\n    \"UNASSIGN\": \"times\"\n};\n\nswitch (true) {\n    case actionMap[$ctrl.action] !== undefined:\n        return actionMap[$ctrl.action];\n    case $ctrl.action?.includes(\"EXPORT\"):\n        return \"download\";\n    case $ctrl.action?.includes(\"LINK\"):\n        return \"link\";\n    default:\n        return \"question\";\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getActionIcon",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

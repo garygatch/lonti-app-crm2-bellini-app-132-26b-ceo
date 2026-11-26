@@ -1,0 +1,290 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentFormTabName",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "formTitle",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "formDescription",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentFormTab",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "```\n[{\n        label: \"Personal\",\n        closable: false\n    },\n    {\n        label: \"Contact\",\n        closable: false\n    },\n    {\n        label: \"Address\",\n        closable: false\n    },\n    {\n        label: \"Profession\",\n        closable: false\n    },\n    {\n        label: \"Engagement\",\n        closable: false\n    }\n]\n```",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tabItems",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "```\n[{\n        label: $ctrl.currentFormTabName,\n        onClick: \"function\",\n        function: $ctrl.formResetfunction\n    },\n    {\n        label: \"All\",\n        onClick: \"function\",\n        function: $ctrl.formResetfunction\n    }\n]\n```",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "resetItems",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayFieldResetDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayTabBar",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "back",
+              "expressions": [
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"angle-left\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "\"Close\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.backButtonDisabled",
+                  "to": "isDisabled"
+                },
+                {
+                  "expression": "$ctrl.backButtonOnClick()",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.backButtonLoading",
+                  "to": "showLoading"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "evaluate": true,
+                      "name": "text",
+                      "textContent": "$ctrl.formTitle"
+                    }
+                  ],
+                  "classList": [],
+                  "name": "h3"
+                },
+                {
+                  "children": [
+                    {
+                      "evaluate": true,
+                      "name": "text",
+                      "textContent": "$ctrl.formDescription"
+                    }
+                  ],
+                  "classList": [],
+                  "displayExpression": "$ctrl.formDescription",
+                  "name": "p"
+                }
+              ],
+              "classList": [],
+              "elementId": "form-header-text-container",
+              "name": "div"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "reset-fields",
+              "displayExpression": "$ctrl.displayFieldResetDropdown",
+              "elementId": "form-header-dropdown-menu",
+              "expressions": [
+                {
+                  "expression": "\"Reset Fields\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.resetItems",
+                  "to": "menuItems"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "!$ctrl.displayFieldResetDropdown",
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "elementId": "form-header-container",
+          "name": "div"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "displayExpression": "$ctrl.displayTabBar",
+          "elementId": "form-header-tab-bar",
+          "expressions": [
+            {
+              "expression": "$ctrl.currentFormTab",
+              "to": "selectedTab"
+            },
+            {
+              "expression": "\"bottom\"",
+              "to": "position"
+            },
+            {
+              "expression": "$ctrl.tabItems",
+              "to": "tabItems"
+            }
+          ],
+          "name": "Tab Bar",
+          "nodeName": "bln-tab-bar",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "elementId": "form-header-component",
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "form-header-component",
+  "parentDirectoryId": "R6gKwA9iYxXE9EbAxiJxY",
+  "styles": [],
+  "type": "custom-component",
+  "variables": []
+}

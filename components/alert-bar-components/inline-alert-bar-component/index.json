@@ -1,0 +1,397 @@
+{
+  "bindings": [],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": [
+                        {
+                          "property": "width",
+                          "value": "20"
+                        },
+                        {
+                          "property": "height",
+                          "value": "20"
+                        },
+                        {
+                          "property": "viewBox",
+                          "value": "0 0 24 24"
+                        },
+                        {
+                          "property": "fill",
+                          "value": "currentColor"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "d",
+                              "value": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                            }
+                          ],
+                          "children": [],
+                          "classList": [],
+                          "name": "path"
+                        }
+                      ],
+                      "classList": [],
+                      "comments": "info",
+                      "displayExpression": "notification.alertType === \"info\"",
+                      "name": "svg"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "property": "width",
+                          "value": "20"
+                        },
+                        {
+                          "property": "height",
+                          "value": "20"
+                        },
+                        {
+                          "property": "viewBox",
+                          "value": "0 0 24 24"
+                        },
+                        {
+                          "property": "fill",
+                          "value": "currentColor"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "d",
+                              "value": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                            }
+                          ],
+                          "children": [],
+                          "classList": [],
+                          "name": "path"
+                        }
+                      ],
+                      "classList": [],
+                      "comments": "success",
+                      "displayExpression": "notification.alertType === \"success\"",
+                      "name": "svg"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "property": "width",
+                          "value": "20"
+                        },
+                        {
+                          "property": "height",
+                          "value": "20"
+                        },
+                        {
+                          "property": "viewBox",
+                          "value": "0 0 24 24"
+                        },
+                        {
+                          "property": "fill",
+                          "value": "currentColor"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "d",
+                              "value": "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                            }
+                          ],
+                          "children": [],
+                          "classList": [],
+                          "name": "path"
+                        }
+                      ],
+                      "classList": [],
+                      "comments": "error",
+                      "displayExpression": "notification.alertType === \"error\"",
+                      "name": "svg"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "property": "width",
+                          "value": "20"
+                        },
+                        {
+                          "property": "height",
+                          "value": "20"
+                        },
+                        {
+                          "property": "viewBox",
+                          "value": "0 0 24 24"
+                        },
+                        {
+                          "property": "fill",
+                          "value": "currentColor"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "attributes": [
+                            {
+                              "property": "d",
+                              "value": "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+                            }
+                          ],
+                          "children": [],
+                          "classList": [],
+                          "name": "path"
+                        }
+                      ],
+                      "classList": [],
+                      "comments": "warning",
+                      "displayExpression": "notification.alertType === \"warning\"",
+                      "name": "svg"
+                    }
+                  ],
+                  "classList": [
+                    "alert-icon"
+                  ],
+                  "name": "div"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "evaluate": true,
+                          "name": "text",
+                          "textContent": "notification.alertTitle"
+                        }
+                      ],
+                      "classList": [
+                        "alert-title"
+                      ],
+                      "displayExpression": "false",
+                      "name": "div"
+                    },
+                    {
+                      "children": [
+                        {
+                          "evaluate": true,
+                          "name": "text",
+                          "textContent": "notification.alertDescription + \" \""
+                        },
+                        {
+                          "children": [
+                            {
+                              "evaluate": true,
+                              "name": "text",
+                              "textContent": "notification.actionTextLabel"
+                            }
+                          ],
+                          "classList": [
+                            "btn-text"
+                          ],
+                          "comments": "action-text",
+                          "displayExpression": "notification.displayActionText",
+                          "events": {
+                            "click": "notification.onActionTextClick()"
+                          },
+                          "link": {
+                            "evaluate": false,
+                            "path": "",
+                            "type": "url"
+                          },
+                          "name": "a"
+                        }
+                      ],
+                      "classList": [
+                        "alert-description"
+                      ],
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [
+                    "alert-message"
+                  ],
+                  "name": "div"
+                }
+              ],
+              "classList": [
+                "alert-content"
+              ],
+              "name": "div"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "action-button",
+                  "displayExpression": "notification.displayActionButton",
+                  "expressions": [
+                    {
+                      "expression": "\"primary\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "notification.actionButtonLabel",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "notification.onActionButtonClick()",
+                      "to": "onClick"
+                    }
+                  ],
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [
+                "alert-actions"
+              ],
+              "name": "div"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "aria-label",
+                  "value": "Dismiss alert"
+                }
+              ],
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "width",
+                      "value": "16"
+                    },
+                    {
+                      "property": "height",
+                      "value": "16"
+                    },
+                    {
+                      "property": "viewBox",
+                      "value": "0 0 24 24"
+                    },
+                    {
+                      "property": "fill",
+                      "value": "currentColor"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "attributes": [
+                        {
+                          "property": "d",
+                          "value": "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        }
+                      ],
+                      "children": [],
+                      "classList": [],
+                      "name": "path"
+                    }
+                  ],
+                  "classList": [],
+                  "name": "svg"
+                }
+              ],
+              "classList": [
+                "alert-dismiss-button"
+              ],
+              "events": {
+                "click": "$ctrl.notificationService.dismiss(notification)"
+              },
+              "formDisabled": "",
+              "name": "button"
+            }
+          ],
+          "classList": [
+            "alert-bar"
+          ],
+          "conditionalClasses": [
+            {
+              "className": "alert-info",
+              "condition": "notification.alertType === \"info\""
+            },
+            {
+              "className": "alert-success",
+              "condition": "notification.alertType === \"success\""
+            },
+            {
+              "className": "alert-error",
+              "condition": "notification.alertType === \"error\""
+            },
+            {
+              "className": "alert-warning",
+              "condition": "notification.alertType === \"warning\""
+            },
+            {
+              "className": "alert-dismissing",
+              "condition": "notification.isDismissingAlert"
+            }
+          ],
+          "iterate": {
+            "array": "$ctrl.notificationMapArray",
+            "variable": "notification"
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "alert-container"
+      ],
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "inline-alert-bar-component",
+  "parentDirectoryId": "hGPOWwcopHezZyTzDIZwQ",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$timeout",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "notificationService",
+      "resourceIdentity": "services/util-services/notification-service",
+      "type": "service"
+    },
+    {
+      "body": "$ctrl.notificationMapArray = [...$ctrl.notificationService.notificationMap.values()]",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "setNotificationMapArray",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.notificationService.notificationCount"
+      ]
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "notificationMapArray",
+      "type": "array"
+    }
+  ]
+}

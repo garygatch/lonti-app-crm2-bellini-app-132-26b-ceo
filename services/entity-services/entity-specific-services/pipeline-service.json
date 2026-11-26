@@ -1,0 +1,208 @@
+{
+  "description": "",
+  "name": "pipeline-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "id": "service",
+      "name": "activityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/activity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"pipeline\""
+    },
+    {
+      "description": "",
+      "name": "pipelineForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "general",
+          "properties": [
+            {
+              "description": "",
+              "name": "name",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "description",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Pipeline Id\",\n        value: \"pipelineId\"\n    },\n    {\n        label: \"Name\",\n        value: \"name\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Modified On\",\n        value: \"modifiedOn\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const defaultColumnConfig = this.getDefaultDisplayColumnConfig();\nreturn this.columnConfigService.getConfig(\"pipeline-management\", defaultColumnConfig);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entity = this.entity;\nconst columnConfig = this.getDisplayColumnConfig();\n\n// if (clearCache) this.entityCacheService.clearCache();\n\nconst entityAction = this.utilityService.buildEntityAction(entity, \"SelectAll\");\nreturn this.entityCacheService.getAll(entityAction, entity, page, limit, columnConfig, query);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getAllPipelines",
+      "parameters": [
+        "page",
+        "limit",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entityType = this.entity;\nconst entityId = opportunityId;\n\n// if (clearCache) this.entityCacheService.clearCache();\n\nreturn this.activityService.getAllActivitiesByEntityByEntityId(page, limit, entityType, entityId, activityType, query);",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getAllPipelineActivities",
+      "parameters": [
+        "page",
+        "limit",
+        "opportunityId",
+        "activityType",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return this.entityCacheService.getCachedEntityValue(this.entity, \"entities\");",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedPipelines",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entityActivities = this.activityService.getCachedActivities(activityType, \"Opportunity\", opportunityId);\nreturn this.utilityService.sortEntitiesByDateProperty(entityActivities, \"createdOn\");",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedPipelineActivities",
+      "parameters": [
+        "activityType",
+        "opportunityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return this.entityCacheService.getCachedEntityValue(this.entity, \"columns\")",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedPipelineColumns",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return {\n    \"property\": \"name\",\n    \"operation\": \"contains\"\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultSearchConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Name\"\n];\n\nconst displayColumnOptions = {\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "columnConfigService",
+      "resourceIdentity": "services/config-services/column-config-service",
+      "type": "service"
+    }
+  ],
+  "visible": [
+    "getAllPipelines",
+    "getCachedPipelines",
+    "entity",
+    "pipelineForm",
+    "description",
+    "getDefaultSearchConfig",
+    "getDefaultDisplayColumnConfig",
+    "getFilterColumnValues",
+    "getDisplayColumnConfig"
+  ]
+}

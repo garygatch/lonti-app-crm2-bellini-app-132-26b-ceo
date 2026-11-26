@@ -1,0 +1,235 @@
+{
+  "description": "",
+  "name": "opportunity-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "id": "service",
+      "name": "activityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/activity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"opportunity\""
+    },
+    {
+      "description": "",
+      "name": "opportunityForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "general",
+          "properties": [
+            {
+              "description": "",
+              "name": "name",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "description",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "status",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "forecastCategory",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "pipelineStageId",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "finance",
+          "properties": [
+            {
+              "description": "",
+              "name": "amount",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "currency",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "probability",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "annualRecurringRevenue",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "timeline",
+          "properties": [
+            {
+              "description": "",
+              "name": "expectedClose",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "actualCloseDate",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "lastActivityDate",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "nextActivityDate",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "engagement",
+          "properties": [
+            {
+              "description": "",
+              "name": "ownerName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "ownerEmail",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "hubspotId",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Deal Id\",\n        value: \"opportunityId\"\n    },\n    {\n        label: \"Name\",\n        value: \"name\"\n    },\n    {\n        label: \"Actual Close Date\",\n        value: \"actualCloseDate\"\n    },\n    {\n        label: \"Expected Close\",\n        value: \"expectedClose\"\n    },\n    {\n        label: \"Amount\",\n        value: \"amount\"\n    },\n    {\n        label: \"Currency\",\n        value: \"currency\"\n    },\n    {\n        label: \"Probability\",\n        value: \"probability\"\n    },\n    {\n        label: \"Annual Recurring Revenue\",\n        value: \"annualRecurringRevenue\"\n    },\n    {\n        label: \"Status\",\n        value: \"status\"\n    },\n    {\n        label: \"Forecast Category\",\n        value: \"forecastCategory\"\n    },\n    {\n        label: \"Last Activity Date\",\n        value: \"lastActivityDate\"\n    },\n    {\n        label: \"Next Activity Date\",\n        value: \"nextActivityDate\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Owner Name\",\n        value: \"ownerName\"\n    },\n    {\n        label: \"Owner Email\",\n        value: \"ownerEmail\"\n    },\n    ...(window.location.hash.includes(\"pipeline-management\")\n        ? []\n        : [\n            {\n                label: \"Pipeline\",\n                value: \"pipelineId\"\n            },\n            {\n                label: \"Pipeline Stage\",\n                value: \"pipelineStageId\"\n            }\n        ]\n    ),\n    {\n        label: \"Hubspot Id\",\n        value: \"hubspotId\"\n    },\n    {\n        label: \"Tenant Id\",\n        value: \"tenantId\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Modified On\",\n        value: \"modifiedOn\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const defaultColumnConfig = this.getDefaultDisplayColumnConfig();\nreturn this.columnConfigService.getConfig(\"deal-management\", defaultColumnConfig);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return {\n    \"property\": \"name\",\n    \"operation\": \"contains\"\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultSearchConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "columnConfigService",
+      "resourceIdentity": "services/config-services/column-config-service",
+      "type": "service"
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Name\",\n    \"Status\",\n    \"Amount\",\n    \"Expected Close\",\n    \"Pipeline Stage\",\n    \"Next Activity Date\"\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"Expected Close Date\": \"expectedClose\",\n        // \"Pipeline Stage\": \"pipelineStageId\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "entity",
+    "getFilterColumnValues",
+    "getDisplayColumnConfig",
+    "getAllOpportunities",
+    "getAllOpportunityActivities",
+    "getCachedOpportunities",
+    "getCachedOpportunityActivities",
+    "getCachedOpportunityColumns",
+    "opportunityForm",
+    "getDefaultSearchConfig",
+    "getDefaultDisplayColumnConfig"
+  ]
+}

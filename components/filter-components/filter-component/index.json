@@ -1,0 +1,435 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterColumn",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterColumnValues",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterOperation",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterTarget",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onFilterChange",
+      "parameters": [
+        "newValue"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayColumnDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayOperationDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayFilterInputField",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displaySearchButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "[\n    {\n        label: \"Label\",\n        value: \"Value\"\n    }\n]",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterTargetValues",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayFilterWithDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayResetButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "filter-column",
+          "displayExpression": "$ctrl.displayColumnDropdown",
+          "expressions": [
+            {
+              "expression": "\"\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.filterColumn",
+              "to": "value"
+            },
+            {
+              "expression": "\"Property\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "$ctrl.filterColumnValues",
+              "to": "values"
+            },
+            {
+              "expression": "\"Select the property you want to filter by.\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "$ctrl.onFilterChange({ newColumnValue: value })",
+              "to": "onValueChange"
+            },
+            {
+              "expression": "500",
+              "to": "debounceDelay"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Dropdown",
+          "nodeName": "bln-dropdown",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "filter-operation",
+          "displayExpression": "$ctrl.displayOperationDropdown",
+          "expressions": [
+            {
+              "expression": "\"\"",
+              "to": "label"
+            },
+            {
+              "expression": "[{\n        label: \"EQUALS\",\n        value: \"eq\"\n    },\n    {\n        label: \"NOT EQUALS\",\n        value: \"noteq\"\n    },\n    {\n        label: \"CONTAINS\",\n        value: \"contains\"\n    },\n    {\n        label: \"STARTS WITH\",\n        value: \"startswith\"\n    },\n    {\n        label: \"ENDS WITH\",\n        value: \"endswith\"\n    },\n    {\n        label: \"GREATER THAN\",\n        value: \"gt\"\n    },\n    {\n        label: \"LESS THAN\",\n        value: \"lt\"\n    },\n    {\n        label: \"BETWEEN\",\n        value: \"between\"\n    },\n    {\n        label: \"BEFORE\",\n        value: \"before\"\n    },\n    {\n        label: \"AFTER\",\n        value: \"after\"\n    },\n    {\n        label: \"IS EMPTY\",\n        value: \"isnull\"\n    },\n    {\n        label: \"IS NOT EMPTY\",\n        value: \"isnotnull\"\n    },\n    {\n        label: \"IN\",\n        value: \"in\"\n    },\n    {\n        label: \"NOT IN\",\n        value: \"notin\"\n    }\n]",
+              "to": "values"
+            },
+            {
+              "expression": "\"Operation\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "$ctrl.filterOperation",
+              "to": "value"
+            },
+            {
+              "expression": "\"Choose the filtering operation to apply to the selected property.\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "$ctrl.onFilterChange({ newOperationValue: value })",
+              "to": "onValueChange"
+            },
+            {
+              "expression": "500",
+              "to": "debounceDelay"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Dropdown",
+          "nodeName": "bln-dropdown",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "filter",
+          "displayExpression": "$ctrl.displayFilterInputField",
+          "expressions": [
+            {
+              "expression": "\"\"",
+              "to": "label"
+            },
+            {
+              "expression": "\"Filter\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "$ctrl.filterTarget",
+              "to": "value"
+            },
+            {
+              "expression": "\"Enter the value to filter the results.\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "500",
+              "to": "debounceDelay"
+            },
+            {
+              "expression": "$ctrl.onFilterChange({\n    newTargetValue: newValue\n})",
+              "to": "onValueChange"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "filter-with-dropdown",
+          "displayExpression": "$ctrl.displayFilterWithDropdown",
+          "expressions": [
+            {
+              "expression": "\"\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.filterTarget",
+              "to": "value"
+            },
+            {
+              "expression": "$ctrl.filterTargetValues",
+              "to": "values"
+            },
+            {
+              "expression": "$ctrl.onFilterChange({\n    newTargetValue: value\n})",
+              "to": "onValueChange"
+            },
+            {
+              "expression": "500",
+              "to": "debounceDelay"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Dropdown",
+          "nodeName": "bln-dropdown",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "search",
+          "displayExpression": "$ctrl.displaySearchButton",
+          "expressions": [
+            {
+              "expression": "null",
+              "to": "label"
+            },
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.onFilterChange({\n    newValue: newValue\n})",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.isLoading",
+              "to": "showLoading"
+            },
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"search\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "reset-filter",
+          "displayExpression": "$ctrl.displayResetButton",
+          "expressions": [
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.buttons.RESET_FILTER.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.buttons.RESET_FILTER.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "!($ctrl.filterColumn || $ctrl.filterOperation || $ctrl.filterTarget)",
+              "to": "isDisabled"
+            },
+            {
+              "expression": "$ctrl.onFilterChange({\n    newColumnValue: null,\n    newOperationValue: null,\n    newTargetValue: null\n})",
+              "to": "onClick"
+            },
+            {
+              "expression": "({\n  \"type\": \"image-icon\",\n  \"url\": \"assets/apps/lonti-app-crm/button-assets/reset-filter-button/filter-circle-xmark-solid-full-white.svg\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "elementId": "filter-container",
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "filter-component",
+  "parentDirectoryId": "7L0qywAZS7MdtDGbi9EmW",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    }
+  ]
+}

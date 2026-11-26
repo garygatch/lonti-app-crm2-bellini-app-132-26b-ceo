@@ -1,0 +1,1057 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "enumOptions": [
+        {
+          "label": "ADD",
+          "value": "ADD"
+        },
+        {
+          "label": "EDIT",
+          "value": "EDIT"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "multi": false,
+      "name": "action",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "companyForm",
+      "propertyType": "object",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "[{\n        label: \"General\",\n        closable: false\n    },\n    {\n        label: \"Contact\",\n        closable: false\n    },\n    {\n        label: \"Address\",\n        closable: false\n    },\n    {\n        label: \"Finance\",\n        closable: false\n    },\n    {\n        label: \"Engagement\",\n        closable: false\n    }\n]",
+          "to": "tabItems"
+        },
+        {
+          "expression": "$ctrl.currentFormTab",
+          "to": "currentFormTab"
+        },
+        {
+          "expression": "$ctrl.action.concat(\" COMPANY\")",
+          "to": "formTitle"
+        },
+        {
+          "expression": "$ctrl.currentFormTabName",
+          "to": "currentFormTabName"
+        },
+        {
+          "expression": "[{\n        label: $ctrl.currentFormTabName,\n        onClick: \"function\",\n        function: () => $ctrl.utilityService.clearForm($ctrl.companyForm[$ctrl.currentFormTabName.toLowerCase()])\n    },\n    {\n        label: \"All\",\n        onClick: \"function\",\n        function: () => $ctrl.utilityService.clearForm($ctrl.companyForm)\n    }\n]",
+          "to": "resetItems"
+        },
+        {
+          "expression": "$ctrl.backButtonOnClick()",
+          "to": "backButtonOnClick"
+        },
+        {
+          "expression": "$ctrl.backButtonDisabled",
+          "to": "backButtonDisabled"
+        },
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "backButtonLoading"
+        }
+      ],
+      "name": "form-header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-header-component",
+      "type": "custom-component"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        },
+        {
+          "property": "name",
+          "value": "form"
+        }
+      ],
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "name",
+              "expressions": [
+                {
+                  "expression": "\"Name *\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.general.name",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Acme Corp\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"The official name of the company.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "true",
+                  "to": "isRequired"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "website",
+              "expressions": [
+                {
+                  "expression": "\"Website\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.general.website",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., https://www.example.com\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the website address of the company.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "true",
+                  "to": "isRequired"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "number-of-employees",
+              "expressions": [
+                {
+                  "expression": "\"Number of Employees\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.general.numberOfEmployees",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 100\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the approximate number of employees working at the company.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "true",
+                  "to": "isRequired"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "description",
+              "expressions": [
+                {
+                  "expression": "\"Description\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.general.description",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"text-area\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"Enter a brief description or summary of the company.\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Provide any relevant details or a brief summary about this company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "general",
+          "displayExpression": "$ctrl.currentFormTab === 1",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "email",
+              "expressions": [
+                {
+                  "expression": "\"Email\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.contact.email",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"email\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., info@example.com\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"The primary email address for the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "phone",
+              "expressions": [
+                {
+                  "expression": "\"Phone\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.contact.phone",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., (123) 456-7890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"The primary phone number for the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "contact",
+          "displayExpression": "$ctrl.currentFormTab === 2",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-street",
+              "expressions": [
+                {
+                  "expression": "\"Address Street\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.address.addressStreet",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 123 Main Street\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the street address of the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-city",
+              "expressions": [
+                {
+                  "expression": "\"Address City\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.address.addressCity",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Angeles City\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the city of the company's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-state-or-province",
+              "expressions": [
+                {
+                  "expression": "\"Address State or Province\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.address.addressStateOrProvince",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Pampanga, California\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the state or province of the company's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-country",
+              "expressions": [
+                {
+                  "expression": "\"Address Country\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.address.addressCountry",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Philippines, United States\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the country of the company's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-postal-code",
+              "expressions": [
+                {
+                  "expression": "\"Address Postal Code\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.address.addressPostalCode",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 2009, 90210\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the postal code or zip code of the company's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "address",
+          "displayExpression": "$ctrl.currentFormTab === 3",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "tax-id-number",
+              "expressions": [
+                {
+                  "expression": "\"Tax ID Number\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.finance.taxIdNumber",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the Tax ID Number of the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "business-reg-number",
+              "expressions": [
+                {
+                  "expression": "\"Business Registration Number\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.finance.businessRegNumber",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the Business Registration Number of the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "annual-revenue",
+              "expressions": [
+                {
+                  "expression": "\"Annual Revenue\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.finance.annualRevenue",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the annual revenue of the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "profit",
+              "expressions": [
+                {
+                  "expression": "\"Profit\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.finance.profit",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the profit of the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "assets",
+              "expressions": [
+                {
+                  "expression": "\"Assets\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.finance.assets",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the assets of the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "liabilities",
+              "expressions": [
+                {
+                  "expression": "\"Liabilities\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.finance.liabilities",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the liabilities of the company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "finance",
+          "displayExpression": "$ctrl.currentFormTab === 4",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "linked-in-profile",
+              "expressions": [
+                {
+                  "expression": "\"Linked In\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.engagement.linkedInProfile",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., linkedin.com/in/acme\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the LinkedIn profile URL of the company, if available.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "notes",
+              "expressions": [
+                {
+                  "expression": "\"Notes\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.engagement.notes",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"text-area\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"Enter any additional notes about this company.\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Add any relevant notes or details regarding this company.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "hubspot-id",
+              "expressions": [
+                {
+                  "expression": "\"Hubspot Id\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.engagement.hubspotId",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the HubSpot ID of this company, if applicable.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "owner-name",
+              "expressions": [
+                {
+                  "expression": "\"Owner Name\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.engagement.ownerName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., John Smith\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the name of the person who owns this company record.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "owner-email",
+              "expressions": [
+                {
+                  "expression": "\"Owner Email\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.companyForm.engagement.ownerEmail",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"email\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., john.smith@example.com\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the email address of the person who owns this company record.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "crm-and-engagement",
+          "displayExpression": "$ctrl.currentFormTab === 5",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "comments": "company-form",
+      "elementId": "form",
+      "name": "form"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.action",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onActionButtonClick()",
+          "to": "onActionButtonClick"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "company-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "currentFormTab",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentFormTabName",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "const tabNameLookup = {\n    1: \"General\",\n    2: \"Contact\",\n    3: \"Address\",\n    4: \"Finance\",\n    5: \"Engagement\"\n}\n\n$ctrl.currentFormTabName = tabNameLookup[$ctrl.currentFormTab];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchCurrentFormTab",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.currentFormTab"
+      ]
+    }
+  ]
+}

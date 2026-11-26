@@ -1,0 +1,988 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "() => {}",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onClose",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "The result of the modal that is returned after the modal is closed.",
+      "enumOptions": [
+        {
+          "value": "ok"
+        },
+        {
+          "value": "cancel"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "result",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterProperties",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterValueChoices",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[\n    {\n        \"property\": null,\n        \"operation\": null,\n        \"value\": \"\"\n    }\n]",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filtersApplied",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filtersAppliedCount",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[\n    {\n        property: null,\n        order: \"ASC\"\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "sortsApplied",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterQueryString",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "sortQueryString",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "sortsAppliedCount",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentPage",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "Create Advanced Filters and Sorts"
+            }
+          ],
+          "classList": [
+            "modal-title"
+          ],
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "×"
+            }
+          ],
+          "classList": [
+            "modal-close"
+          ],
+          "events": {
+            "click": "$ctrl.onCancelButtonClick()"
+          },
+          "name": "div"
+        },
+        {
+          "evaluate": false,
+          "name": "text",
+          "textContent": ""
+        }
+      ],
+      "classList": [
+        "modal-header"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "[{\n        label: \"Filter\",\n        closable: false,\n        icon: {\n            name: \"filter\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        }\n    },\n    {\n        label: \"Sort\",\n        closable: false,\n        icon: {\n            name: \"sort\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        }\n    }\n]",
+              "to": "tabItems"
+            },
+            {
+              "expression": "$ctrl.selectedTab",
+              "to": "selectedTab"
+            }
+          ],
+          "name": "Tab Bar",
+          "nodeName": "bln-tab-bar",
+          "type": "core-component"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "filter-property",
+                  "expressions": [
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.FILTER_PROPERTY.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.FILTER_PROPERTY.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.filterProperties",
+                      "to": "values"
+                    },
+                    {
+                      "expression": "$ctrl.filtersApplied[$index].property",
+                      "to": "value"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Dropdown",
+                  "nodeName": "bln-dropdown",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "filter-operation",
+                  "displayExpression": "filtersApplied.property !== \"pipelineStageId\"\n&&\n(\n    filtersApplied.property !== \"pipelineId\"\n    ||\n    $ctrl.currentPage === \"pipeline-management\"\n)",
+                  "expressions": [
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.FILTER_OPERATION.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.FILTER_OPERATION.values",
+                      "to": "values"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.FILTER_OPERATION.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.filtersApplied[$index].operation",
+                      "to": "value"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Dropdown",
+                  "nodeName": "bln-dropdown",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "filter-value",
+                  "displayExpression": "filtersApplied.operation !== \"isnull\"\n&&\nfiltersApplied.operation !== \"isnotnull\"\n&&\nfiltersApplied.property !== \"pipelineStageId\"\n&&\n(\n    filtersApplied.property !== \"pipelineId\"\n    ||\n    $ctrl.currentPage === \"pipeline-management\"\n)",
+                  "expressions": [
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.fields.FILTER_VALUE.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.fields.FILTER_VALUE.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.filtersApplied[$index].value",
+                      "to": "value"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Text Input",
+                  "nodeName": "bln-text-input",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "filter-values",
+                  "displayExpression": "filtersApplied.property === \"pipelineStageId\"\n||\n(\n    filtersApplied.property === \"pipelineId\"\n    &&\n    $ctrl.currentPage !== \"pipeline-management\"\n)",
+                  "expressions": [
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.fields.FILTER_VALUE.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.filterValueChoices[filtersApplied.property]",
+                      "to": "values"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.fields.FILTER_VALUE.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.filtersApplied[$index].value",
+                      "to": "value"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Dropdown",
+                  "nodeName": "bln-dropdown",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "add-filter",
+                  "displayExpression": "$index === $ctrl.filtersApplied.length - 1",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.ADD_FILTER.label",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "\"primary\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"plus-circle\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.ADD_FILTER.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.onAddButtonClick()",
+                      "to": "onClick"
+                    }
+                  ],
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "remove-filter",
+                  "displayExpression": "$index !== $ctrl.filtersApplied.length - 1",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.REMOVE_FILTER.label",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "\"secondary\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"times-circle\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.REMOVE_FILTER.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.onRemoveButtonClick($index)",
+                      "to": "onClick"
+                    }
+                  ],
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [],
+              "layout": {
+                "container": {
+                  "crossAxisAlignment": "stretch",
+                  "items": [],
+                  "orientation": "row",
+                  "type": "box"
+                }
+              },
+              "name": "div",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "height",
+                  "value": "100% !important"
+                },
+                {
+                  "enabled": true,
+                  "property": "width",
+                  "value": "100% !important"
+                }
+              ]
+            },
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "AND"
+                }
+              ],
+              "classList": [],
+              "comments": "and",
+              "displayExpression": "$index !== $ctrl.filtersApplied.length - 1",
+              "name": "strong"
+            }
+          ],
+          "classList": [],
+          "comments": "filters-applied",
+          "displayExpression": "$ctrl.selectedTab === 1",
+          "iterate": {
+            "array": "$ctrl.filtersApplied",
+            "variable": "filtersApplied"
+          },
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "sort-property",
+                  "expressions": [
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.SORT_PROPERTY.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.SORT_PROPERTY.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.sortsApplied[$index].value",
+                      "to": "value"
+                    },
+                    {
+                      "expression": "$ctrl.filterProperties.filter((f) => !$ctrl.sortsApplied.some(applied => applied\n    .property === f.value))",
+                      "to": "values"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Dropdown",
+                  "nodeName": "bln-dropdown",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "sort-order",
+                  "expressions": [
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.SORT_ORDER.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.SORT_ORDER.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.dropdowns.SORT_ORDER.values",
+                      "to": "values"
+                    },
+                    {
+                      "expression": "$ctrl.sortsApplied[$index].order",
+                      "to": "value"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Dropdown",
+                  "nodeName": "bln-dropdown",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "add-sort",
+                  "displayExpression": "$index === $ctrl.sortsApplied.length - 1",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.ADD_SORT.label",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "\"primary\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"plus-circle\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.ADD_SORT.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.onAddButtonClick()",
+                      "to": "onClick"
+                    }
+                  ],
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "remove-sort",
+                  "displayExpression": "$index !== $ctrl.sortsApplied.length - 1",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.REMOVE_SORT.label",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "\"secondary\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"times-circle\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.REMOVE_SORT.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.onRemoveButtonClick($index)",
+                      "to": "onClick"
+                    }
+                  ],
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [],
+              "layout": {
+                "container": {
+                  "crossAxisAlignment": "stretch",
+                  "items": [],
+                  "orientation": "row",
+                  "type": "box"
+                }
+              },
+              "name": "div",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "height",
+                  "value": "100% !important"
+                },
+                {
+                  "enabled": true,
+                  "property": "width",
+                  "value": "100% !important"
+                }
+              ]
+            },
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "AND"
+                }
+              ],
+              "classList": [],
+              "comments": "and",
+              "displayExpression": "$index !== $ctrl.sortsApplied.length - 1",
+              "name": "strong"
+            }
+          ],
+          "classList": [],
+          "comments": "sorts-applied",
+          "displayExpression": "$ctrl.selectedTab === 2",
+          "iterate": {
+            "array": "$ctrl.sortsApplied",
+            "variable": "sortsApplied"
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "modal-body"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "btn-cancel"
+          ],
+          "expressions": [
+            {
+              "expression": "\"default\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.CANCEL.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.onCancelButtonClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.CANCEL.tooltip",
+              "to": "tooltip"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "btn-clear"
+          ],
+          "expressions": [
+            {
+              "expression": "\"secondary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.CLEAR.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.onClearButtonClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.CLEAR.tooltip",
+              "to": "tooltip"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "btn-ok"
+          ],
+          "expressions": [
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.SHOW_RESULTS.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.onShowResultsButtonClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.enService.modals.advancedFilterModal.buttons.SHOW_RESULTS.tooltip",
+              "to": "tooltip"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        }
+      ],
+      "classList": [
+        "modal-footer"
+      ],
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "advanced-filter-modal",
+  "parentDirectoryId": "bvg1TG4YV7SmL0UCZdwFi",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "body": "try {\n    if ($ctrl.filtersApplied && $ctrl.filtersApplied.length) {\n        $ctrl.filtersApplied.forEach(filter => {\n            if (filter.property === 'pipelineStageId' || filter.property === 'pipelineId') {\n                filter.operation = 'eq';\n            }\n        });\n    }\n\n    const populatedFilters = $ctrl.utilityService.getValidFilters($ctrl.filtersApplied || []);\n    const populatedSorts = ($ctrl.sortsApplied || []).filter(sort => sort && sort.value);\n\n    $ctrl.filtersAppliedCount = populatedFilters.length;\n    $ctrl.sortsAppliedCount = populatedSorts.length;\n\n    $ctrl.filterQueryString = populatedFilters\n        .map(filter => $ctrl.utilityService.buildFilterQuery(filter))\n        .join('&');\n\n    $ctrl.sortQueryString = populatedSorts\n        .map(sort => {\n            const order = sort.order || 'ASC';\n            return `${sort.value}:${order}`;\n        })\n        .join(',');\n\n    $ctrl.result = \"applied\";\n    $ctrl.onClose();\n\n} catch (error) {\n    console.error('Error processing filter logic:', error);\n    $ctrl.filtersAppliedCount = 0;\n    $ctrl.result = null;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onShowResultsButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.result = null;\n$ctrl.onClose();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancelButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "switch ($ctrl.selectedTab) {\n    case 1:\n        $ctrl.filtersApplied = [\n            {\n                property: null,\n                operation: null,\n                value: \"\"\n            }\n        ];\n        break;\n\n    case 2:\n        $ctrl.sortsApplied = [\n            {\n                property: null,\n                order: \"ASC\"\n            }\n        ];\n        break;\n\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onClearButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "switch ($ctrl.selectedTab) {\n    case 1:\n        $ctrl.filtersApplied.push({\n            \"property\": null,\n            \"operation\": null,\n            \"value\": \"\"\n        });\n        break;\n\n    case 2:\n        $ctrl.sortsApplied.push({\n            property: null,\n            order: \"ASC\"\n        });\n        break;\n}\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onAddButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    },
+    {
+      "body": "switch ($ctrl.selectedTab) {\n    case 1:\n        $ctrl.filtersApplied.splice(indexToRemove, 1);\n        break;\n\n    case 2:\n        $ctrl.sortsApplied.splice(indexToRemove, 1);\n        break;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onRemoveButtonClick",
+      "parameters": [
+        "indexToRemove"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "selectedTab",
+      "type": "property",
+      "value": "1"
+    }
+  ]
+}

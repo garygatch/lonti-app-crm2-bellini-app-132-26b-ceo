@@ -1,0 +1,1101 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        label: \"Edit\",\n        icon: {\n            name: \"edit\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\"\n    },\n    {\n        label: \"Delete\",\n        icon: {\n            name: \"trash\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\"\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "actionDropdown",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "autocomplete": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "includeAssets": false,
+      "label": "",
+      "name": "tableDataTitle",
+      "propertyType": "text",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "Array provided should contain objects in the format\n```\n[\n    { \"key\": \"key\", \"value\": \"value\" }\n]\n```",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tableData",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        name: \"key\",\n        hide: false,\n        valueKey: \"key\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [{\n            condition: \"true\",\n            propertyName: \"font-weight\",\n            value: \"bold\"\n        }],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"value\",\n        hide: false,\n        valueKey: \"value\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [{\n            condition: \"value === 'YES'\",\n            propertyName: \"color\",\n            value: \"#006747\"\n        }, {\n            condition: \"value === 'NO'\",\n            propertyName: \"color\",\n            value: \"#D10000\"\n        }, {\n            condition: \"value === 'YES' || value === 'NO'\",\n            propertyName: \"font-weight\",\n            value: \"bold\"\n        }],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tableColumns",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isMobile",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "\"General\"",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentInfoPanelTab",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[]",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "notes",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingNotes",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "saveNote",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "deleteNote",
+      "parameters": [
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onNoteFilterChange",
+      "parameters": [
+        "newTargetValue"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "calls",
+      "propertyType": "array",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "saveCall",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingCalls",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingCallNotes",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "callNotes",
+      "propertyType": "array",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "deleteCallNote",
+      "parameters": [
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "o",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onCallNoteFilterChange",
+      "parameters": [
+        "newTargetValue",
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "saveCallNote",
+      "parameters": [
+        "callActivityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "loadCallNotes",
+      "parameters": [
+        "activityId",
+        "currentPage",
+        "query"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "deleteCall",
+      "parameters": [
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onCallFilterChange",
+      "parameters": [
+        "newTargetValue"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "linkPrimaryEntity",
+      "propertyType": "object",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "linkPrimaryEntityType",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayHeader",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        label: \"General\",\n        closable: false\n    },\n    {\n        label: \"Links\",\n        closable: false\n    },\n    {\n        label: \"Notes\",\n        closable: false\n    },\n    // {\n    //     label: \"Tasks\",\n    //     closable: false\n    // },\n    {\n        label: \"Calls\",\n        closable: false\n    },\n    // {\n    //     label: \"Meetings\",\n    //     closable: false\n    // }\n    {\n        label: \"Attachments\",\n        closable: false\n    },\n    {\n        label: \"Activity Feed\",\n        closable: false\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tabItems",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onFullViewButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLinking",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentTabIndex",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isAddingCall",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayFullViewButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayLogCallButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isAssigning",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "authAssignmentPrimaryEntity",
+      "propertyType": "object",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "authAssignmentPrimaryEntityType",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "authTargetEntityType",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "eventLogs",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "false",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingEventLogs",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayActionDropdown",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "back",
+          "expressions": [
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"angle-left\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            },
+            {
+              "expression": "$ctrl.isMobile ? \"Back\" : \"Close\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.backButtonDisabled || $ctrl.isLinking",
+              "to": "isDisabled"
+            },
+            {
+              "expression": "$ctrl.backButtonOnClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.backButtonLoading",
+              "to": "showLoading"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "full-view",
+              "displayExpression": "!$ctrl.isMobile && $ctrl.displayFullViewButton",
+              "expressions": [
+                {
+                  "expression": "\"Full View\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"expand\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "\"Open in 360-degree View\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.onFullViewButtonClick()",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.isLinking",
+                  "to": "isDisabled"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "log-call",
+              "displayExpression": "$ctrl.displayLogCallButton",
+              "expressions": [
+                {
+                  "expression": "\"Log Call\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"phone-alt\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "\"Log a Call\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.onLogCallButtonClick()",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.isLinking",
+                  "to": "isDisabled"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "action",
+              "displayExpression": "$ctrl.displayActionDropdown",
+              "expressions": [
+                {
+                  "expression": "$ctrl.actionDropdown",
+                  "to": "menuItems"
+                },
+                {
+                  "expression": "\"Action\"",
+                  "to": "label"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "comments": "buttons",
+      "displayExpression": "$ctrl.displayHeader",
+      "elementId": "info-panel-header-container",
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "displayExpression": "$ctrl.displayTabBar",
+          "expressions": [
+            {
+              "expression": "\"bottom\"",
+              "to": "position"
+            },
+            {
+              "expression": "$ctrl.onTabChange(selectedTab)",
+              "to": "onSelectedTabChange"
+            },
+            {
+              "expression": "$ctrl.currentTabIndex",
+              "to": "selectedTab"
+            },
+            {
+              "expression": "$ctrl.tabItems",
+              "to": "tabItems"
+            }
+          ],
+          "name": "Tab Bar",
+          "nodeName": "bln-tab-bar",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "elementId": "info-panel-header-tab-bar-container",
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": ""
+            },
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "No Entity Selected"
+                }
+              ],
+              "classList": [],
+              "name": "strong"
+            },
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Select an Entity to display its information"
+                }
+              ],
+              "classList": [],
+              "name": "em"
+            }
+          ],
+          "classList": [],
+          "displayExpression": "!$ctrl.tableDataTitle\n&&\n(!$ctrl.tableData || !$ctrl.tableData.length)\n",
+          "elementId": "info-panel-body-notice",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "evaluate": true,
+              "name": "text",
+              "textContent": "$ctrl.tableDataTitle"
+            }
+          ],
+          "classList": [],
+          "comments": "table-data-title",
+          "displayExpression": "$ctrl.tableDataTitle",
+          "name": "h3"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "displayExpression": "$ctrl.tableData\n&&\n$ctrl.tableData.length",
+          "expressions": [
+            {
+              "expression": "$ctrl.tableData",
+              "to": "data"
+            },
+            {
+              "expression": "false",
+              "to": "showTableHeader"
+            },
+            {
+              "expression": "false",
+              "to": "enableSorting"
+            },
+            {
+              "expression": "$ctrl.tableColumns",
+              "to": "columns"
+            }
+          ],
+          "name": "Table",
+          "nodeName": "bln-table",
+          "styles": [
+            {
+              "enabled": true,
+              "property": "--bln-table-height",
+              "value": "100%"
+            }
+          ],
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "displayExpression": "$ctrl.currentInfoPanelTab === \"General\"\n||\n$ctrl.currentInfoPanelTab === \"Activity Details\"",
+      "elementId": "info-panel-body-container",
+      "name": "div"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "$ctrl.currentInfoPanelTab === \"Notes\"",
+      "expressions": [
+        {
+          "expression": "$ctrl.notes",
+          "to": "notes"
+        },
+        {
+          "expression": "$ctrl.isLoadingNotes",
+          "to": "isLoadingNotes"
+        },
+        {
+          "expression": "$ctrl.saveNote()",
+          "to": "saveNote"
+        },
+        {
+          "expression": "$ctrl.deleteNote({\n    activityId: activityId\n})",
+          "to": "onDeleteButtonClick"
+        },
+        {
+          "expression": "$ctrl.onNoteFilterChange({\n    newTargetValue: newTargetValue\n})",
+          "to": "onNoteFilterChange"
+        }
+      ],
+      "name": "note-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/info-panel-components/note-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "$ctrl.currentInfoPanelTab === \"Calls\"",
+      "expressions": [
+        {
+          "expression": "$ctrl.calls",
+          "to": "calls"
+        },
+        {
+          "expression": "$ctrl.isAddingCall",
+          "to": "isAddingCall"
+        },
+        {
+          "expression": "$ctrl.saveCall()",
+          "to": "saveCall"
+        },
+        {
+          "expression": "$ctrl.isLoadingCalls",
+          "to": "isLoadingCalls"
+        },
+        {
+          "expression": "$ctrl.callNotes",
+          "to": "notes"
+        },
+        {
+          "expression": "$ctrl.isLoadingCallNotes",
+          "to": "isLoadingNotes"
+        },
+        {
+          "expression": "$ctrl.onCallNoteFilterChange({\n    newTargetValue: newTargetValue,\n    activityId: activityId\n})",
+          "to": "onNoteFilterChange"
+        },
+        {
+          "expression": "$ctrl.saveCallNote({\n    callActivityId: callActivityId\n})",
+          "to": "saveNote"
+        },
+        {
+          "expression": "$ctrl.loadCallNotes({\n    activityId: activityId,\n    currentPage: currentPage,\n    query: query\n})",
+          "to": "loadCallNotes"
+        },
+        {
+          "expression": "$ctrl.deleteCallNote({\n    activityId: activityId\n})",
+          "to": "onDeleteCallNoteButtonClick"
+        },
+        {
+          "expression": "$ctrl.deleteCall({\n    activityId: activityId\n})",
+          "to": "deleteCall"
+        },
+        {
+          "expression": "$ctrl.onCallFilterChange({\n    newTargetValue: newTargetValue\n})",
+          "to": "onCallFilterChange"
+        }
+      ],
+      "name": "call-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/info-panel-components/call-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "$ctrl.currentInfoPanelTab === \"Attachments\"",
+      "expressions": [],
+      "name": "attachment-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/info-panel-components/attachment-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "$ctrl.currentInfoPanelTab === \"Activity Feed\"",
+      "expressions": [
+        {
+          "expression": "$ctrl.eventLogs",
+          "to": "eventLogs"
+        },
+        {
+          "expression": "$ctrl.isLoadingEventLogs",
+          "to": "isLoadingEventLogs"
+        }
+      ],
+      "name": "event-log-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/info-panel-components/event-log-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "$ctrl.currentInfoPanelTab === \"Links\"",
+      "expressions": [
+        {
+          "expression": "$ctrl.linkPrimaryEntityType",
+          "to": "primaryEntityType"
+        },
+        {
+          "expression": "$ctrl.linkPrimaryEntity",
+          "to": "primaryEntity"
+        },
+        {
+          "expression": "$ctrl.isLinking",
+          "to": "isLinking"
+        }
+      ],
+      "layout": {},
+      "name": "entity-assignment-form-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/entity-forms/entity-assignment-form-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "$ctrl.currentInfoPanelTab === \"Roles\"\n||\n$ctrl.currentInfoPanelTab === \"Scopes\"",
+      "expressions": [
+        {
+          "expression": "$ctrl.isAssigning",
+          "to": "isAssigning"
+        },
+        {
+          "expression": "$ctrl.authAssignmentPrimaryEntity",
+          "to": "primaryEntity"
+        },
+        {
+          "expression": "$ctrl.authAssignmentPrimaryEntityType",
+          "to": "primaryEntityType"
+        },
+        {
+          "expression": "$ctrl.authTargetEntityType",
+          "to": "targetEntityType"
+        }
+      ],
+      "name": "auth-assignment-form-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/entity-forms/auth-assignment-form-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "info-panel-component",
+  "nodeName": "info-panel-component",
+  "parentDirectoryId": "1RazoPSP8sShi8sWRi16c",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "body": "const tabItemIndex = selectedTab - 1;\nif ($ctrl.isAddingCall) $ctrl.isAddingCall = false;\n$ctrl.currentInfoPanelTab = $ctrl.tabItems[tabItemIndex].label;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onTabChange",
+      "parameters": [
+        "selectedTab"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if ($ctrl.currentInfoPanelTab !== \"Calls\") {\n    $ctrl.currentTabIndex = $ctrl.tabItems.findIndex(tab => tab.label === \"Calls\");\n    const tabToSelect = $ctrl.currentTabIndex + 1;\n    $ctrl.onTabChange(tabToSelect);\n    $ctrl.currentTabIndex += 1;\n    $ctrl.isAddingCall = true;\n    return;\n}\n\n$ctrl.isAddingCall = !$ctrl.isAddingCall;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onLogCallButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.isAddingCall = false;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchTableData",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.tableData"
+      ]
+    },
+    {
+      "body": "if ($ctrl.displayTabBar) {\n    $ctrl.displayTabBar = false;\n    $ctrl.$timeout(() => {\n        $ctrl.displayTabBar = true;\n    }, 100);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchTabItems",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.tabItems"
+      ]
+    },
+    {
+      "description": "",
+      "name": "displayTabBar",
+      "type": "property",
+      "value": "true"
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    }
+  ]
+}

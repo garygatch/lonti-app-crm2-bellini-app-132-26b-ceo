@@ -1,0 +1,231 @@
+/*
+  --------------------------------------------------
+  Base Alert Bar Styles (Mobile First)
+  --------------------------------------------------
+*/
+
+.alert-container {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: calc(100% - 32px);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column-reverse; /* Stack from bottom up */
+  gap: 12px;
+}
+
+.alert-bar {
+  display: flex;
+  flex-direction: column; /* Stacks content on mobile by default */
+  align-items: flex-start;
+  padding: 12px 16px;
+  gap: 12px;
+  border-radius: 6px;
+  border: 1px solid;
+  
+  /* Remove positioning - handled by container */
+  position: relative;
+  width: 100%;
+  
+  pointer-events: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Fade out animation */
+.alert-bar.alert-dismissing {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* --- Alert Content --- */
+.alert-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Use flex-grow for better space distribution */
+  gap: 12px;
+}
+
+.alert-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.alert-message {
+  flex: 1;
+}
+
+.alert-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.alert-description {
+  line-height: 1.5;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+/* --- Alert Actions --- */
+.alert-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  align-self: stretch; /* Stretches to full width on mobile */
+}
+
+.alert-action-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+/* Button type styles */
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+
+.btn-text {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  opacity: 0.8;
+}
+
+.btn-text:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  opacity: 1;
+  text-decoration-color: currentColor;
+  cursor: pointer
+}
+
+.alert-dismiss-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.2s, background-color 0.2s;
+  align-self: flex-end; /* Keeps the button at the end of the flex-direction: column container */
+}
+
+.alert-dismiss-button:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/*
+  --------------------------------------------------
+  Alert Types (Color Schemes)
+  --------------------------------------------------
+*/
+.alert-success {
+  background-color: #f0f9ff;
+  border-color: #22c55e;
+  color: #065f46;
+}
+
+.alert-success .btn-text,
+.alert-success .btn-learn-more {
+  color: #047857; /* Darker green for better contrast */
+}
+
+.alert-error {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+
+.alert-error .btn-text,
+.alert-error .btn-learn-more {
+  color: #dc2626; /* Darker red for better contrast */
+}
+
+.alert-warning {
+  background-color: #fffbeb;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.alert-warning .btn-text,
+.alert-warning .btn-learn-more {
+  color: #d97706; /* Darker orange for better contrast */
+}
+
+.alert-info {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+
+.alert-info .btn-text,
+.alert-info .btn-learn-more {
+  color: #2563eb; /* Darker blue for better contrast */
+}
+
+/*
+  --------------------------------------------------
+  Desktop Styles (applied at 576px and wider)
+  --------------------------------------------------
+*/
+@media (min-width: 1024px) {
+  .alert-container {
+    left: 56px;
+    transform: none;
+    width: auto;
+    max-width: 50%;
+    min-width: 320px;
+  }
+
+  .alert-bar {
+    flex-direction: row; /* Switches to a horizontal layout on desktop */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .alert-actions {
+    margin-left: 12px;
+    align-self: center; /* Aligns actions vertically in the row */
+  }
+
+  .alert-dismiss-button {
+    margin-left: 12px;
+    align-self: center; /* Aligns dismiss button vertically */
+  }
+}

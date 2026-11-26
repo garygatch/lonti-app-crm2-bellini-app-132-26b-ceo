@@ -1,0 +1,188 @@
+{
+  "description": "",
+  "name": "event-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"eventlog\""
+    },
+    {
+      "body": "return [\n    {\n        label: \"Company Id\",\n        value: \"companyId\"\n    },\n    {\n        label: \"Name\",\n        value: \"name\"\n    },\n    {\n        label: \"Address Street\",\n        value: \"addressStreet\"\n    },\n    {\n        label: \"Phone\",\n        value: \"phone\"\n    },\n    {\n        label: \"Email\",\n        value: \"email\"\n    },\n    {\n        label: \"Website\",\n        value: \"website\"\n    },\n    {\n        label: \"Tax Id Number\",\n        value: \"taxIdNumber\"\n    },\n    {\n        label: \"Business Reg Number\",\n        value: \"businessRegNumber\"\n    },\n    {\n        label: \"Annual Revenue\",\n        value: \"annualRevenue\"\n    },\n    {\n        label: \"Profit\",\n        value: \"profit\"\n    },\n    {\n        label: \"Assets\",\n        value: \"assets\"\n    },\n    {\n        label: \"Liabilities\",\n        value: \"liabilities\"\n    },\n    {\n        label: \"Notes\",\n        value: \"notes\"\n    },\n    {\n        label: \"Hubspot Id\",\n        value: \"hubspotId\"\n    },\n    {\n        label: \"Address City\",\n        value: \"addressCity\"\n    },\n    {\n        label: \"Address State Or Province\",\n        value: \"addressStateOrProvince\"\n    },\n    {\n        label: \"Address Country\",\n        value: \"addressCountry\"\n    },\n    {\n        label: \"Address Postal Code\",\n        value: \"addressPostalCode\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Owner Name\",\n        value: \"ownerName\"\n    },\n    {\n        label: \"Owner Email\",\n        value: \"ownerEmail\"\n    },\n    {\n        label: \"LinkedIn Profile\",\n        value: \"linkedInProfile\"\n    },\n    {\n        label: \"Number Of Employees\",\n        value: \"numberOfEmployees\"\n    },\n    {\n        label: \"Tenant Id\",\n        value: \"tenantId\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Modified On\",\n        value: \"modifiedOn\"\n    }\n];",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Name\",\n    \"Website\",\n    \"Phone\",\n    \"Owner\",\n    \"City\",\n    \"Email\"\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"Owner\": \"ownerName\",\n        \"City\": \"addressCity\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "// 1. Destructure the parameters from the single options object.\nconst { page, limit, query } = options;\n\n// 2. Get context-specific properties from the service instance.\nconst entity = this.entity;\nconst columnConfig = this.getDisplayColumnConfig();\nconst entityAction = this.utilityService.buildEntityAction(entity, \"SelectAll\");\n\n// 3. Use try...catch for robust error handling.\ntry {\n    // Await the result from the cache service and return it.\n    return await this.entityCacheService.getAll(\n        entityAction,\n        entity,\n        page,\n        limit,\n        columnConfig,\n        query\n    );\n} catch (error) {\n    console.error(`Failed to get events for entity '${entity}':`, error);\n    // Re-throw the error so the calling function knows the operation failed\n    // and can display a message to the user.\n    throw error;\n}",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "getAllEvents",
+      "parameters": [
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    // Construct the query specific to event logs\n    const query = `documentTypeId=${entityType}&externalId=${entityId}`;\n    const options = {\n        query: query\n    };\n\n    const apiResponse = await this.dataService.getData(\n        this.entity,\n        options\n    );\n\n    if (apiResponse && Array.isArray(apiResponse.trackerDocuments)) {\n        return apiResponse.trackerDocuments;\n    } else {\n        console.warn(\"Event logs API response missing 'trackerDocuments' array or format unexpected:\", apiResponse);\n        return [];\n    }\n\n} catch (error) {\n    console.error(\"Error loading entity event logs:\", error);\n    this.utilityService.toast(\"Failed to load event logs.\", \"ERROR\");\n    throw error;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "getAllEventsByEntityByEntityId",
+      "parameters": [
+        "entityType",
+        "entityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    const trackerDocuments = await this.getAllEventsByEntityByEntityId(entityType, entityId);\n    const allStates = trackerDocuments.flatMap(doc => doc.states || []);\n\n    const formattedEntityType = this.getUppercasedEntityType(entityType);\n    const allEvents = allStates\n        .map(state => this.formatStateSummary(state, formattedEntityType))\n        .reverse();\n\n    return allEvents;\n} catch (error) {\n    console.error(\"Error loading activity events:\", error);\n    throw error;\n}\n\n// try {\n//     const recentEventTrackerDocuments = await this.getAllEventsByEntityByEntityId(entityType, entityId);\n//     const recentEntityEvent = this.formatTrackerDocumentSummary(recentEventTrackerDocuments?.[0], getUppercasedEntityType(entityType));\n//     return recentEntityEvent;\n// } catch (error) {\n//     console.error(\"Error loading recent entity event logs:\", error);\n//     this.utilityService.toast(\"Failed to load recent event logs.\", \"ERROR\");\n//     throw error;\n// }\n\n// function getUppercasedEntityType(entityType) {\n//     const prefix = \"activity_\";\n//     let processedType = entityType;\n\n//     if (processedType.startsWith(prefix) && processedType.length > prefix.length) {\n//         processedType = processedType.substring(prefix.length);\n//     }\n\n//     if (processedType.length > 0) {\n//         return processedType.charAt(0).toUpperCase() + processedType.slice(1);\n//     }\n\n//     return \"\";\n// }\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "getAllActivityEventsByEntityByEntityId",
+      "parameters": [
+        "entityType",
+        "entityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!trackerDocument) return;\n\nconst stateName = trackerDocument.stateName;\nconst modifiedDate = trackerDocument.timeReceived;\n\nlet performer = \"-\";\nif (trackerDocument.states && trackerDocument.states.length > 0) {\n    const lastState = trackerDocument.states.at(-1);\n    performer = lastState.performer;\n}\n\nlet actionPhrase = \"Unknown Action\";\nif (stateName) {\n    actionPhrase = `${stateName} ${entityType}`;\n}\n\nreturn {\n    action: actionPhrase,\n    performer: performer,\n    modifiedOn: modifiedDate\n};",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "formatTrackerDocumentSummary",
+      "parameters": [
+        "trackerDocument",
+        "entityType"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!stateObj) return null;\n\nconst modifiedDate = stateObj.timeReceived;\nconst performer = stateObj.performer || \"System\";\nlet rawAction = stateObj.stateName || \"Unknown Action\";\n\nrawAction = rawAction.replace(\"Event logged: \", \"\");\nrawAction = rawAction.replace(/_/g, \" \");\nrawAction = rawAction.replace(/\\b\\w/g, char => char.toUpperCase());\n\nconst actionPhrase = `${rawAction}`;\n\nreturn {\n    action: actionPhrase,\n    performer: performer,\n    modifiedOn: modifiedDate,\n    raw: stateObj\n};",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "formatStateSummary",
+      "parameters": [
+        "stateObj",
+        "entityType"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "let entityUrl = this.entity;\nif (activityType && entityType && entityId) entityUrl = `activity/${activityType}/${entityType}/${entityId}`;\n\nreturn this.entityCacheService.getCachedEntityValue(entityUrl, \"entities\");",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedEvents",
+      "parameters": [
+        "activityType",
+        "entityType",
+        "entityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return this.entityCacheService.getCachedEntityValue(this.entity, \"columns\")",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedEventColumns",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "body": "const prefix = \"activity_\";\nlet processedType = entityType;\n\nif (processedType.startsWith(prefix) && processedType.length > prefix.length) {\n    processedType = processedType.substring(prefix.length);\n}\n\nif (processedType.length > 0) {\n    return processedType.charAt(0).toUpperCase() + processedType.slice(1);\n}\n\nreturn \"\";",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getUppercasedEntityType",
+      "parameters": [
+        "entityType"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "getAllEventsByEntityByEntityId",
+    "entity",
+    "getAllActivityEventsByEntityByEntityId"
+  ]
+}

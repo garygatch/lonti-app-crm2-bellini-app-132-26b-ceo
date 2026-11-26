@@ -1,0 +1,380 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "() => {}",
+      "description": "This function should be called to close the modal.",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onClose",
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "The result of the modal that is returned after the modal is closed.",
+      "enumOptions": [
+        {
+          "value": "ok"
+        },
+        {
+          "value": "cancel"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "result",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "modalHeaderTitle",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "modalBodyText",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "modalBodyTableData",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[{\n        name: \"key\",\n        hide: false,\n        valueKey: \"key\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [{\n            condition: \"true\",\n            propertyName: \"font-weight\",\n            value: \"bold\"\n        }],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"value\",\n        hide: false,\n        valueKey: \"value\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [{\n            condition: \"value === 'YES'\",\n            propertyName: \"color\",\n            value: \"#006747\"\n        }, {\n            condition: \"value === 'NO'\",\n            propertyName: \"color\",\n            value: \"#D10000\"\n        }, {\n            condition: \"value === 'YES' || value === 'NO'\",\n            propertyName: \"font-weight\",\n            value: \"bold\"\n        }],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    }\n]",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "modalBodyTableColumns",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "\"OK\"",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "modalOKButtonLabel",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "inputField = {\n    label\n    type\n    value,\n    placeholder\n    tooltip\n}\n\nmodalInputFields = inputField[]",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "modalInputFields",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": true,
+              "name": "text",
+              "textContent": "$ctrl.modalHeaderTitle"
+            }
+          ],
+          "classList": [
+            "modal-title"
+          ],
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "×"
+            }
+          ],
+          "classList": [
+            "modal-close"
+          ],
+          "events": {
+            "click": "$ctrl.onCancelClick()"
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "modal-header"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": true,
+              "name": "text",
+              "textContent": "$ctrl.modalBodyText"
+            }
+          ],
+          "classList": [],
+          "name": "p"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "displayExpression": "$ctrl.modalBodyTableData && $ctrl.modalBodyTableColumns",
+          "expressions": [
+            {
+              "expression": "$ctrl.modalBodyTableData",
+              "to": "data"
+            },
+            {
+              "expression": "false",
+              "to": "showTableHeader"
+            },
+            {
+              "expression": "false",
+              "to": "enableSorting"
+            },
+            {
+              "expression": "$ctrl.modalBodyTableColumns",
+              "to": "columns"
+            }
+          ],
+          "name": "Table",
+          "nodeName": "bln-table",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "name",
+              "value": "form"
+            }
+          ],
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "displayExpression": "modalInputField",
+              "expressions": [
+                {
+                  "expression": "modalInputField.value",
+                  "to": "value"
+                },
+                {
+                  "expression": "modalInputField.type",
+                  "to": "type"
+                },
+                {
+                  "expression": "modalInputField.label",
+                  "to": "label"
+                },
+                {
+                  "expression": "modalInputField.placeholder",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "modalInputField.tooltip",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "modalInputField.number.min",
+                  "to": "min"
+                },
+                {
+                  "expression": "modalInputField.number.max",
+                  "to": "max"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "iterate": {
+                "array": "$ctrl.modalInputFields",
+                "variable": "modalInputField"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "displayExpression": "$ctrl.modalInputFields",
+          "elementId": "form",
+          "name": "form"
+        }
+      ],
+      "classList": [
+        "modal-body"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "btn-cancel"
+          ],
+          "expressions": [
+            {
+              "expression": "\"default\"",
+              "to": "type"
+            },
+            {
+              "expression": "'Cancel'",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.onCancelClick()",
+              "to": "onClick"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "btn-ok"
+          ],
+          "expressions": [
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.modalOKButtonLabel",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.onOkClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.$formValidationManager.forms.form.isInvalid() ? \"A field is invalid\" : null",
+              "to": "tooltip"
+            },
+            {
+              "expression": "$ctrl.$formValidationManager.forms.form.isInvalid()",
+              "to": "isDisabled"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        }
+      ],
+      "classList": [
+        "modal-footer"
+      ],
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "confirm-action-modal",
+  "parentDirectoryId": "bvg1TG4YV7SmL0UCZdwFi",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "body": "$ctrl.result = 'ok'\n$ctrl.onClose()",
+      "description": "This function is called when OK button is clicked.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onOkClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.result = 'cancel'\n$ctrl.onClose()",
+      "description": "This function is called when Cancel button is clicked.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancelClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+/*
+  --------------------------------------------------
+  Spinner Styles
+  --------------------------------------------------
+*/
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 82%;
+}
+
+.spinner-container-for-export {
+  height: 77% !important;
+}
+
+/*
+  --------------------------------------------------
+  Note Spinner Container Styles
+  --------------------------------------------------
+*/
+#note-spinner-container {
+    height: auto;
+    padding-top: 0.3rem;
+}
+
+#note-spinner-container .bln-spinner svg {
+    width: 3rem;
+    height: 3rem;
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+@media (min-height: 700px) {
+  .spinner-container {
+    height: 87%;
+  }
+
+  .spinner-container-for-export {
+  height: 82% !important;
+}
+}
+
+@media (min-height: 1024px) {
+  .spinner-container {
+    height: 92%;
+  }
+
+  .spinner-container-for-export {
+  height: 87% !important;
+}
+}

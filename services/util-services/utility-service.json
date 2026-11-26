@@ -1,0 +1,285 @@
+{
+  "description": "",
+  "name": "utility-service",
+  "parentDirectoryId": "oazhNTC9cpQ-QE-ClEbjF",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "body": "this.notificationService.notify({\n    alertType: type.toLowerCase(),\n    alertDescription: message,\n    dismissIn: 10_000\n});",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "toast",
+      "parameters": [
+        "message",
+        "type"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "    return key.replace(/([A-Z])/g, ' $1') \n        .trim()                    \n        .replace(/^./, (match) => match.toUpperCase());\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "formatKeyForDisplay",
+      "parameters": [
+        "key"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const sensitiveInfoKeys = []; // Define sensitive key parts\nconst booleanLikeKeys = [\"YesNo\"];   // Define keys that imply boolean values\n\nreturn Object.entries(entity)\n    .filter(([key, value]) =>\n        !key.includes(\"$$\") &&\n        !booleanLikeKeys.some(k => key.includes(k)) && // More explicit boolean check\n        value\n    )\n    .map(([key, value]) => {\n        const isSensitive = sensitiveInfoKeys.some(k => key.includes(k));\n        const isBoolean = typeof value === 'boolean'; // More robust boolean check\n        const isArray = Array.isArray(value) && value.length > 0; // Ensure array has elements\n\n        let displayValue;\n\n        if (isSensitive && isArray && typeof value[0] === 'string') {\n            displayValue = \"*\".repeat(value[0].length);\n        } else if (isBoolean) {\n            displayValue = value ? \"YES\" : \"NO\";\n        } else if (isArray) {\n            displayValue = value[0];\n        } else if (isSensitive && typeof value === 'string') {\n            displayValue = \"*\".repeat(value.length);\n        } else {\n            displayValue = value;\n        }\n\n        const formattedKey = this.formatKeyForDisplay(key);\n        return { key: formattedKey, value: displayValue }; // Use the formatted key\n    });",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "formatEntityForDisplay",
+      "parameters": [
+        "entity"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const SPECIAL_CASES = {\n    \"pipelinestage\": \"PipelineStage\"\n};\n\nconst pascalCaseEntity = snakeToPascalCase(entity);\nreturn `${entity}_${operation}${pascalCaseEntity}`;\n\nfunction snakeToPascalCase(str) {\n    if (SPECIAL_CASES[str]) {\n        return SPECIAL_CASES[str];\n    }\n\n    if (!str || !str.includes('_')) {\n        return str.charAt(0).toUpperCase() + str.slice(1);\n    }\n    \n    return str.split('_')\n        .map(word => word.charAt(0).toUpperCase() + word.slice(1))\n        .join('');\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "buildEntityAction",
+      "parameters": [
+        "entity",
+        "operation"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (typeof form !== 'object' || form === null) {\n    console.error(\"Invalid input: Expected a form object.\");\n    return;\n}\n\nfor (const key in form) {\n    if (form.hasOwnProperty(key)) {\n        const value = form[key];\n        if (typeof value === 'object' && value !== null && value.constructor !== Date) {\n            this.clearForm(value);\n        } else if (value instanceof Date) {\n            form[key] = undefined;\n        } else {\n            form[key] = undefined;\n        }\n    }\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "clearForm",
+      "parameters": [
+        "form"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    },
+    {
+      "body": "if (!form || typeof form !== 'object') {\n    console.warn('populateForm: Form is null or undefined.');\n    return;\n}\n\nconst entity = currentEntity || {};\ndefaultValue = defaultValue ?? null;\n\n/**\n * Helper to search for a key within an entity (directly or inside nested objects).\n */\nconst getEntityValue = (obj, targetKey) => {\n    if (!obj || typeof obj !== 'object') return undefined;\n\n    // Direct match on current level\n    if (Object.prototype.hasOwnProperty.call(obj, targetKey)) {\n        return obj[targetKey];\n    }\n\n    // Search within nested objects\n    for (const key in obj) {\n        if (Object.prototype.hasOwnProperty.call(obj, key) &&\n            typeof obj[key] === 'object' &&\n            obj[key] !== null) {\n            const found = getEntityValue(obj[key], targetKey);\n            if (found !== undefined) return found;\n        }\n    }\n\n    return undefined;\n};\n\n// Iterate through all keys defined on the form\nfor (const formKey in form) {\n    if (Object.prototype.hasOwnProperty.call(form, formKey)) {\n        const formValue = form[formKey];\n\n        // If the form field is a nested object (and not an Array/Date), recurse\n        if (typeof formValue === 'object' &&\n            formValue !== null &&\n            !Array.isArray(formValue) &&\n            !(formValue instanceof Date)) {\n            this.populateForm(formValue, entity, defaultValue);\n        } else {\n            // Look up value in currentEntity\n            const entityValue = getEntityValue(entity, formKey);\n\n            // Assign entity value if present and non-null/undefined, otherwise reset to defaultValue\n            if (entityValue !== undefined && entityValue !== null) {\n                form[formKey] = entityValue;\n            } else {\n                form[formKey] = defaultValue;\n            }\n        }\n    }\n}",
+      "description": "Populates a UI form object in place using values from a source entity object, automatically resetting missing or null fields to a specified default value. It recursively traverses nested form structures and performs a deep key search within the source entity to map matching fields.\n\n- **form**: The target form structure object to populate or reset in place.\n- **currentEntity**: The source entity object containing the data to map onto the form.\n- **defaultValue**: *Optional.* The fallback value assigned to form fields when no valid matching entity value is found (defaults to `null`).\n- **Logic**:\n    - **Guard Clause**: Logs a warning and exits early if the provided `form` parameter is missing or not an object.\n    - **Deep Key Lookup**: Uses an internal helper (`getEntityValue`) that recursively searches `currentEntity` levels to locate matching key names even if they reside inside nested entity properties.\n    - **Recursive Structure Traversal**: Iterates through each key in `form`. If a nested object is encountered (excluding `Array` and `Date` instances), it recursively invokes `populateForm` on that branch.\n    - **Value Assignment**: Assigns the located entity value if it exists and is non-null; otherwise, resets the form field to the specified `defaultValue`.\n- **Returns**: `void` (mutates the `form` object directly).",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "populateForm",
+      "parameters": [
+        "form",
+        "currentEntity",
+        "defaultValue"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const now = new Date();\n\nconst year = now.getFullYear();\nconst month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed\nconst day = String(now.getDate()).padStart(2, '0');\nconst hours = String(now.getHours()).padStart(2, '0');\nconst minutes = String(now.getMinutes()).padStart(2, '0');\nconst seconds = String(now.getSeconds()).padStart(2, '0');\n\n// Get the timezone offset in minutes\nconst offsetMinutes = now.getTimezoneOffset();\nconst offsetHours = String(Math.abs(Math.floor(offsetMinutes / 60))).padStart(2, '0');\nconst offsetMinutesPart = String(Math.abs(offsetMinutes % 60)).padStart(2, '0');\nconst offsetSign = offsetMinutes > 0 ? '-' : '+'; // UTC is ahead of local if offset > 0\n\nconst formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}${offsetSign}${offsetHours}${offsetMinutesPart}`;\n\nreturn formattedDate;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCurrentFormattedTime",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!Array.isArray(entitiesArray)) {\n    console.error(\"Input is not an array.\");\n    return []; // Or throw an error\n}\n\nif (typeof datePropertyKey !== 'string' || !datePropertyKey.trim()) {\n    console.error(\"Invalid or missing 'datePropertyKey' parameter. Please provide the name of the date property to sort by.\");\n    return entitiesArray; // Return original array or an empty one, or throw error\n}\n\nentitiesArray.sort((entityA, entityB) => {\n    const dateStringA = entityA[datePropertyKey];\n    const dateStringB = entityB[datePropertyKey];\n\n    if (!dateStringA || !dateStringB) {\n        console.warn(`One or both entities are missing the '${datePropertyKey}' property or its value is empty. Sorting might be inconsistent.`);\n        // Handle missing properties:\n        // If A has no date and B does, A goes to the end.\n        if (!dateStringA && dateStringB) return 1;\n        // If B has no date and A does, B goes to the end.\n        if (dateStringA && !dateStringB) return -1;\n        // If neither has a date, keep their relative order.\n        return 0;\n    }\n\n    const dateA = new Date(dateStringA);\n    const dateB = new Date(dateStringB);\n\n    if (isNaN(dateA.getTime())) {\n        console.warn(`Invalid date format for entity A's property '${datePropertyKey}': ${dateStringA}`);\n        // Treat invalid date A as \"older\" or less important, so it goes to the end.\n        if (isNaN(dateB.getTime())) return 0; // Both invalid, keep order\n        return 1;\n    }\n    if (isNaN(dateB.getTime())) {\n        console.warn(`Invalid date format for entity B's property '${datePropertyKey}': ${dateStringB}`);\n        // Treat invalid date B as \"older\" or less important, so it goes to the end.\n        return -1;\n    }\n\n    // For descending order (most recent first):\n    // if dateB is more recent, its time value is larger.\n    // dateB.getTime() - dateA.getTime() will be positive,\n    // and sort will place entityA before entityB if the result is positive.\n    // To get most recent (larger time value) first, we want b - a.\n    return dateB.getTime() - dateA.getTime();\n});\n\nreturn entitiesArray; // sort() mutates the array, but returning it is common practice.\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "sortEntitiesByDateProperty",
+      "parameters": [
+        "entitiesArray",
+        "datePropertyKey"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!Array.isArray(entities) || entities.length === 0) {\n    console.warn(\"getMostRecentEntityId: Input 'entities' is not a valid array or is empty.\");\n    return null;\n}\n\nif (typeof entityIdKey !== 'string' || entityIdKey.trim() === '') {\n    console.error(\"getMostRecentEntityId: 'entityIdKey' must be a non-empty string.\");\n    return null;\n}\n\nlet mostRecentEntity = null;\nlet mostRecentDate = null;\n\nfor (let i = 0; i < entities.length; i++) {\n    const currentEntity = entities[i];\n    const currentDate = new Date(currentEntity.modifiedOn);\n\n    if (currentEntity.hasOwnProperty(entityIdKey) && !isNaN(currentDate.getTime())) {\n        mostRecentEntity = currentEntity;\n        mostRecentDate = currentDate;\n        break; // Found a valid starting point\n    } else {\n        console.warn(`getMostRecentEntityId: Skipping entity (index ${i}) due to missing/invalid '${entityIdKey}' or 'modifiedOn'.`);\n    }\n}\n\nif (mostRecentEntity === null) {\n    console.warn(\"getMostRecentEntityId: No valid entities found with 'modifiedOn' and specified 'entityIdKey'.\");\n    return null;\n}\n\nfor (let i = 0; i < entities.length; i++) { // Iterate from beginning to ensure all are checked against the initial mostRecent\n    const currentEntity = entities[i];\n    const currentDate = new Date(currentEntity.modifiedOn);\n\n    // Skip if current entity's date is invalid or if it lacks the ID key\n    if (isNaN(currentDate.getTime()) || !currentEntity.hasOwnProperty(entityIdKey)) {\n        continue;\n    }\n\n    // Compare dates: If the current entity is more recent\n    if (currentDate.getTime() > mostRecentDate.getTime()) {\n        mostRecentEntity = currentEntity;\n        mostRecentDate = currentDate;\n    }\n}\n\nreturn mostRecentEntity[entityIdKey];\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getMostRecentEntityId",
+      "parameters": [
+        "entities",
+        "entityIdKey"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "entities.forEach(entity => { \n    let pipelineStageName;\n\n    if (!entity.pipelineStageId) return;\n\n    const pipelineStage = pipelineStages.find(pipelineStage => pipelineStage.pipelineStageId === entity.pipelineStageId);\n    \n    if (pipelineStage) {\n        pipelineStageName = pipelineStage.name;\n    }\n\n    if (pipelineStageName) {\n        entity.pipelineStage = pipelineStageName;\n    }\n});",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "mapPipelineStageIdToPipelineStageName",
+      "parameters": [
+        "entities",
+        "pipelineStages"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const {\n    entityArray,\n    labelKey,\n    valueKey\n} = options;\n\nreturn entityArray.map(entity => {\n    return {\n        label: entity[labelKey],\n        value: entity[valueKey]\n    }\n});",
+      "description": "This function transforms an array of objects into a new array of objects with standardized `label` and `value` properties. This is useful for populating UI components like dropdowns or select lists from an arbitrary data source.\n\n---\n## Parameters\n\n```\nParameter             Type              Description\n--------------------- ----------------- -----------------------------------------------------------------\noptions               Object            The configuration object for the transformation.\noptions.entityArray   Array<Object>     The array of source objects to transform.\noptions.labelKey      string            The name of the property on each source object to use for the `label`.\noptions.valueKey      string            The name of the property on each source object to use for the `value`.\n```\n\n---\n## Return Value\n\n**Type:** `Array<{label: string, value: any}>`\n\nThe function returns a new array of objects, where each object has the following structure:\n* `label`: The value from the `labelKey` property of the source object.\n* `value`: The value from the `valueKey` property of the source object.\n\n---\n## Example\n\n```javascript\nconst users = [\n    { userId: 101, fullName: \"Alice Smith\", role: \"Admin\" },\n    { userId: 102, fullName: \"Bob Johnson\", role: \"Editor\" }\n];\n\nconst userOptions = generateLabelValueArray({\n    entityArray: users,\n    labelKey: \"fullName\",\n    valueKey: \"userId\"\n});\n\nconsole.log(userOptions);\n```\n### Output\n\n```JSON\n\n[\n  { \"label\": \"Alice Smith\", \"value\": 101 },\n  { \"label\": \"Bob Johnson\", \"value\": 102 }\n]\n```",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "generateLabelValueArray",
+      "parameters": [
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "notificationService",
+      "resourceIdentity": "services/util-services/notification-service",
+      "type": "service"
+    },
+    {
+      "body": "try {\n    let { property, operation, value } = filter;\n\n    if (!property || !operation) {\n        return '';\n    }\n\n    const noValueOperations = ['isnull', 'isnotnull'];\n\n    if (noValueOperations.includes(operation)) {\n        return `${property}_${operation}`;\n    }\n\n    if (!value) {\n        return '';\n    }\n\n    return `${property}_${operation}=${value}`;\n\n} catch (error) {\n    console.error('Error constructing filter string:', error);\n    return null;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "buildFilterQuery",
+      "parameters": [
+        "filter"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!Array.isArray(filters)) {\n    return [];\n}\n\nconst noValueOperations = ['isnull', 'isnotnull'];\n\nreturn filters.filter(filter => {\n    // Must have basic properties\n    if (!filter || !filter.property || !filter.operation) {\n        return false;\n    }\n\n    const isUnaryOp = noValueOperations.includes(filter.operation);\n\n    if (isUnaryOp) {\n        // Clear out value for unary operators\n        filter.value = null;\n        return true;\n    }\n\n    // Check for null, undefined, and empty strings\n    const hasValue = filter.value != null && String(filter.value).trim() !== '';\n\n    return hasValue;\n});",
+      "description": "Filters a collection of filter objects to ensure only technically complete and actionable filters are passed to the API. It distinguishes between standard filters that require a value and unary operations that function as standalone checks.\n\n- **filters**: The raw array of filter objects (e.g., from a UI state) to be validated.\n- **Logic**:\n    - **Initialization**: Returns an empty array immediately if the input is not a valid array.\n    - **Core Validation**: Each filter must possess both a `property` and an `operation`.\n    - **Operation Types**: \n        - **Unary Operations**: Operations like `isnull` and `isnotnull` are marked valid regardless of a value.\n        - **Standard Operations**: Requires the `value` to be non-null, defined, and not an empty or whitespace-only string.\n- **Returns**: A new array containing only the valid filter objects.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getValidFilters",
+      "parameters": [
+        "filters"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!Array.isArray(sorts)) {\n    return [];\n}\n\nreturn sorts.filter(({property, order}) => property && order);\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getValidSorts",
+      "parameters": [
+        "sorts"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!dateString) return '';\n\nconst date = new Date(dateString);\nconst now = new Date();\n\n// Check for \"Invalid Date\"\nif (isNaN(date.getTime())) return dateString;\n\nconst isToday = date.toDateString() === now.toDateString();\n\nconst yesterday = new Date();\nyesterday.setDate(now.getDate() - 1);\nconst isYesterday = date.toDateString() === yesterday.toDateString();\n\nconst timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };\n\nif (isToday) {\n    return `Today at ${date.toLocaleTimeString([], timeOptions)}`;\n}\n\nif (isYesterday) {\n    return `Yesterday at ${date.toLocaleTimeString([], timeOptions)}`;\n}\n\n// For older dates in the same year, we can omit the year to save space\nconst isSameYear = date.getFullYear() === now.getFullYear();\nconst dateOptions = {\n    month: 'short',\n    day: 'numeric',\n    year: isSameYear ? undefined : 'numeric'\n};\n\nreturn date.toLocaleDateString([], dateOptions);",
+      "description": "Transforms an ISO date string into a localized, human-readable \"CRM-style\" format. It prioritizes relative time descriptors (Today/Yesterday) for recent events and adjusts the date precision based on the current year to maintain a clean UI.\n\n- **dateString**: The raw ISO date string or timestamp to be formatted.\n- **Logic**:\n    - **Validation**: Returns an empty string if input is missing, or the original string if the date is invalid.\n    - **Relative Formatting**: \n        - If the date is the current calendar day, returns `\"Today at [Time]\"`.\n        - If the date was the previous calendar day, returns `\"Yesterday at [Time]\"`.\n    - **Absolute Formatting**:\n        - If the date is within the current year, returns `\"MMM DD\"` (e.g., `\"Apr 15\"`).\n        - If the date is in a different year, returns `\"MMM DD, YYYY\"` (e.g., `\"Oct 12, 2024\"`).\n- **Returns**: A formatted string used for display in activity feeds, logs, or grids.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "formatDisplayDate",
+      "parameters": [
+        "dateString"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "decimals = decimals ?? 2;\n\nif (!bytes || bytes <= 0 || isNaN(bytes)) {\n    return '0 Bytes';\n}\n\nconst k = 1024;\nconst dm = decimals < 0 ? 0 : decimals;\nconst sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];\nconst i = Math.floor(Math.log(bytes) / Math.log(k));\nreturn `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;",
+      "description": "Converts a raw numeric byte value into a human-readable file size string (e.g., KB, MB, GB). It uses a logarithmic scale to determine the appropriate unit and allows for customizable decimal precision.\n\n- **bytes**: The number of bytes to be formatted.\n- **decimals**: The number of decimal places to include in the output (defaults to `2`).\n- **Logic**:\n    - **Base Factor**: Uses a binary prefix standard where `1 KB = 1024 Bytes`.\n    - **Unit Determination**: Calculates the unit index by using the logarithm of the byte count relative to the base factor.\n    - **Formatting**: Divides the bytes by the power of the unit index and rounds the result to the specified decimal places.\n- **Returns**: A string containing the formatted number and its corresponding size unit (e.g., `\"1.25 MB\"`). Returns `\"0 Bytes\"` if the input is zero or non-numeric.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "formatBytes",
+      "parameters": [
+        "bytes",
+        "decimals"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "formatKeyForDisplay",
+    "buildEntityAction",
+    "clearForm",
+    "sleep",
+    "toast",
+    "formatEntityForDisplay",
+    "getCurrentFormattedTime",
+    "sortEntitiesByDateProperty",
+    "getMostRecentEntityId",
+    "mapPipelineStageIdToPipelineStageName",
+    "generateLabelValueArray",
+    "buildFilterQuery",
+    "buildSortQuery",
+    "getValidFilters",
+    "formatDisplayDate",
+    "formatBytes",
+    "getValidSorts",
+    "populateForm"
+  ]
+}

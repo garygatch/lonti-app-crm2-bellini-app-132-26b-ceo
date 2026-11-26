@@ -1,0 +1,716 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "primaryEntity",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "primaryEntityType",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLinking",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "action-dropdown",
+              "expressions": [
+                {
+                  "expression": "[{\n        label: \"Edit Existing Links\",\n        evaluateLabel: false,\n        icon: {\n            name: \"edit\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onActionChange(\"Edit Existing Links\", \"edit\")\n    },\n    {\n        label: \"Create New Links\",\n        evaluateLabel: false,\n        icon: {\n            name: \"link\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onActionChange(\"Create New Links\", \"link\")\n    },\n    {\n        label: \"Remove Existing Links\",\n        evaluateLabel: false,\n        icon: {\n            name: \"unlink\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onActionChange(\"Remove Existing Links\", \"unlink\")\n    }\n]",
+                  "to": "menuItems"
+                },
+                {
+                  "expression": "$ctrl.currentAction.label",
+                  "to": "label"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": $ctrl.currentAction.icon,\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "entity-dropdown",
+              "expressions": [
+                {
+                  "expression": "[{\n        label: \"Contact\",\n        evaluateLabel: false,\n        icon: {\n            name: \"address-book\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onRelatedEntityChange(\"Contact\", \"address-book\")\n    },\n    {\n        label: \"Company\",\n        evaluateLabel: false,\n        icon: {\n            name: \"building\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onRelatedEntityChange(\"Company\", \"building\")\n    },\n    {\n        label: \"Deal\",\n        evaluateLabel: false,\n        icon: {\n            name: \"handshake\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onRelatedEntityChange(\"Deal\", \"handshake\")\n    }\n]",
+                  "to": "menuItems"
+                },
+                {
+                  "expression": "$ctrl.currentRelatedEntity.type",
+                  "to": "label"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": $ctrl.currentRelatedEntity.icon,\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "displayExpression": "!$ctrl.hasOperationCompleted",
+          "elementId": "assignment-form-dropdown-container",
+          "name": "div"
+        },
+        {
+          "children": [],
+          "classList": [],
+          "displayExpression": "!$ctrl.hasOperationCompleted",
+          "expressions": [
+            {
+              "expression": "$ctrl.currentFilter.column",
+              "to": "filterColumn"
+            },
+            {
+              "expression": "$ctrl.currentFilter.operation",
+              "to": "filterOperation"
+            },
+            {
+              "expression": "$ctrl.currentFilter.target",
+              "to": "filterTarget"
+            },
+            {
+              "expression": "$ctrl.onFilterChange(newColumnValue, newOperationValue, newTargetValue)",
+              "to": "onFilterChange"
+            },
+            {
+              "expression": "$ctrl.currentFilter.columnValues",
+              "to": "filterColumnValues"
+            }
+          ],
+          "name": "filter-component",
+          "ownerId": "6b07c32e48cd88e32d307995",
+          "ownerType": "app",
+          "resourceIdentity": "components/filter-components/filter-component",
+          "type": "custom-component"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "expressions": [],
+                  "name": "Spinner",
+                  "nodeName": "bln-spinner",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [
+                "spinner-container"
+              ],
+              "displayExpression": "$ctrl.isLoading",
+              "name": "div"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "displayExpression": "$ctrl.displayTable",
+              "expressions": [
+                {
+                  "expression": "$ctrl.tableData",
+                  "to": "data"
+                },
+                {
+                  "expression": "[{\n        name: \"Name\",\n        hide: false,\n        valueKey: $ctrl.nameColumnValue,\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enableEditing: false,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: '',\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"Relationship\",\n        hide: false,\n        valueKey: 'relationshipType',\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enableEditing: true,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: '',\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    }\n]",
+                  "to": "columns"
+                },
+                {
+                  "expression": "true",
+                  "to": "enablePagination"
+                },
+                {
+                  "expression": "true",
+                  "to": "enableRowSelection"
+                },
+                {
+                  "expression": "true",
+                  "to": "enableMultiSelection"
+                },
+                {
+                  "expression": "$ctrl.selectedRows",
+                  "to": "selectedRow"
+                },
+                {
+                  "expression": "!$ctrl.currentAction.label.includes(\"Remove\")",
+                  "to": "enableEditing"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "--bln-table-height",
+                  "value": "100%"
+                }
+              ],
+              "type": "core-component"
+            }
+          ],
+          "classList": [
+            "table-container"
+          ],
+          "displayExpression": "!$ctrl.hasOperationCompleted",
+          "name": "div"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "pagination-with-export-footer"
+          ],
+          "displayExpression": "!$ctrl.hasOperationCompleted",
+          "elementId": "assignment-form-pagination",
+          "expressions": [
+            {
+              "expression": "$ctrl.currentPage",
+              "to": "currentPage"
+            },
+            {
+              "expression": "$ctrl.loadData(currentPage, undefined, $ctrl.currentFilter.query, undefined);",
+              "to": "onPageChange"
+            },
+            {
+              "expression": "$ctrl.currentTotalPages",
+              "to": "totalPages"
+            }
+          ],
+          "name": "Pagination",
+          "nodeName": "bln-pagination",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "comments": "assignment-form",
+      "displayExpression": "!$ctrl.hasOperationCompleted",
+      "elementId": "assignment-form-container",
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Successfully Processed:"
+                }
+              ],
+              "classList": [],
+              "name": "h3"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [
+                {
+                  "expression": "$ctrl.successfulLinks",
+                  "to": "data"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "success-table",
+          "displayExpression": "$ctrl.successfulLinks.length",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Failed to Process:"
+                }
+              ],
+              "classList": [],
+              "name": "h3"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [
+                {
+                  "expression": "$ctrl.failedLinks",
+                  "to": "data"
+                },
+                {
+                  "expression": "true",
+                  "to": "resizableColumns"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "error-table",
+          "displayExpression": "$ctrl.failedLinks.length",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "comments": "responses",
+      "displayExpression": "$ctrl.hasOperationCompleted",
+      "elementId": "form",
+      "name": "div"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.currentAction.buttonLabel",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onLinkButtonClick()",
+          "to": "onActionButtonClick"
+        },
+        {
+          "expression": "$ctrl.isLinking",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.hasOperationCompleted",
+          "to": "displayCancelButton"
+        },
+        {
+          "expression": "$ctrl.onCancelButtonClick()",
+          "to": "onCancelButtonClick"
+        },
+        {
+          "expression": "\"Close\"",
+          "to": "cancelButtonLabel"
+        },
+        {
+          "expression": "!$ctrl.hasOperationCompleted",
+          "to": "displayActionButton"
+        },
+        {
+          "expression": "!$ctrl.selectedRows?.length",
+          "to": "disableActionButton"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "entity-assignment-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "description": "",
+      "name": "displayTable",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isLoading",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "hasOperationCompleted",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentPage",
+      "type": "property",
+      "value": "1"
+    },
+    {
+      "description": "",
+      "name": "currentRelatedEntity",
+      "properties": [
+        {
+          "description": "",
+          "name": "type",
+          "type": "property",
+          "value": "\"Contact\""
+        },
+        {
+          "description": "",
+          "name": "icon",
+          "type": "property",
+          "value": "\"address-book\""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "currentAction",
+      "properties": [
+        {
+          "description": "",
+          "name": "label",
+          "type": "property",
+          "value": "\"Edit Existing Links\""
+        },
+        {
+          "description": "",
+          "name": "icon",
+          "type": "property",
+          "value": "\"edit\""
+        },
+        {
+          "description": "",
+          "name": "buttonLabel",
+          "type": "property",
+          "value": "\"EDIT\""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "currentFilter",
+      "properties": [
+        {
+          "description": "",
+          "name": "column",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "operation",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "target",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "query",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "children": [],
+          "description": "",
+          "name": "columnValues",
+          "type": "array"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "nameColumnValue",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "tableData",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "relationshipData",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "selectedRows",
+      "type": "array"
+    },
+    {
+      "id": "service",
+      "name": "companyService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/company-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "contactService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/contact-service",
+      "type": "service"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "successfulLinks",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "failedLinks",
+      "type": "array"
+    },
+    {
+      "body": "// --- 1. INITIAL SETUP ---\n$ctrl.currentPage = page ?? $ctrl.currentPage;\n$ctrl.isLoading = true;\n$ctrl.displayTable = false;\n$ctrl.tableData = [];\n$ctrl.relationshipData = [];\n\ntry {\n    const apiRelatedEntityType = $ctrl.currentRelatedEntity.type === \"Deal\" ? \"Opportunity\" : $ctrl.currentRelatedEntity.type;\n    const lowercasedApiRelatedEntityType = apiRelatedEntityType.toLowerCase();\n    const primaryEntityId = $ctrl.primaryEntity?.[$ctrl.primaryEntityType + \"Id\"]?.toString();\n    const isLinking = $ctrl.currentAction?.buttonLabel === \"LINK\";\n\n    // --- 2. FETCH & PROCESS RELATIONSHIPS ---\n    // Fetch all existing relationships for the primary entity in parallel.\n    $ctrl.relationshipData = await _fetchEntityRelationships(primaryEntityId, apiRelatedEntityType);\n    \n    // Create a lookup map of { relatedEntityId -> relationshipObject }.\n    const relatedEntityMap = _buildRelatedEntityMap($ctrl.relationshipData, primaryEntityId);\n    const relatedEntityIds = [...relatedEntityMap.keys()];\n\n    // --- 3. HANDLE EARLY EXIT ---\n    // If unlinking/editing but there are no relationships, show an empty table.\n    if (!isLinking && relatedEntityIds.length === 0) {\n        $ctrl.currentTotalPages = 1;\n        $ctrl.displayTable = true;\n        return;\n    }\n\n    // --- 4. BUILD THE MAIN ENTITY QUERY ---\n    // Abstract the complex query string logic into a helper.\n    const entityQuery = _buildRelationshipQuery({\n        isLinking,\n        lowercasedApiRelatedEntityType,\n        relatedEntityIds,\n        primaryEntityId,\n        externalQuery: query\n    });\n\n    // --- 5. FETCH THE TARGET ENTITIES (e.g., Contacts, Companies) ---\n    let effectiveLimit = limit ?? 25;\n    const { entities, total, totalFiltered } = await $ctrl.entityService.getAllEntities({\n        page: $ctrl.currentPage,\n        limit: effectiveLimit,\n        query: entityQuery,\n        clearCache,\n        entity: lowercasedApiRelatedEntityType\n    });\n\n    // --- 6. ENRICH DATA & UPDATE STATE ---\n    if (totalFiltered) {\n        $ctrl.currentTotalPages = Math.ceil(totalFiltered / effectiveLimit);\n    } else {\n        $ctrl.currentTotalPages = 1;\n    }\n    \n    const relatedEntityIdKey = `${lowercasedApiRelatedEntityType}Id`;\n\n    // Create a lookup map of the user's currently selected/modified rows\n    const localSelectionMap = new Map();\n    if ($ctrl.selectedRowsForRelationship && $ctrl.selectedRowsForRelationship.length > 0) {\n        $ctrl.selectedRowsForRelationship.forEach(row => {\n            if (row[relatedEntityIdKey]) {\n                localSelectionMap.set(row[relatedEntityIdKey].toString(), row);\n            }\n        });\n    }\n\n    $ctrl.tableData = entities.map(entity => {\n        const entityIdStr = entity[relatedEntityIdKey]?.toString();\n        let activeRelationshipType;\n\n        // Has the user selected/edited this locally?\n        if (localSelectionMap.has(entityIdStr)) {\n            // If so, use that relationship value\n            activeRelationshipType = localSelectionMap.get(entityIdStr).relationshipType;\n        }\n        else {\n            // Otherwise, use original relationship value\n            activeRelationshipType = relatedEntityMap.get(entityIdStr)?.relationshipType;\n        }\n\n        return {\n            ...entity,\n            relationshipType: activeRelationshipType\n        };\n    });\n\n    $ctrl.displayTable = true;\n    $ctrl.$timeout(() => {\n        $ctrl.initializeGridListener(relatedEntityIdKey);\n        _syncGridSelection(relatedEntityIdKey);\n    }, 100);\n\n} catch (error) {\n    console.error(`Error fetching relationship data:`, error);\n    $ctrl.utilityService.toast(\"Failed to load relationship data.\", \"ERROR\");\n} finally {\n    $ctrl.isLoading = false;\n}\n\n/**\n * Fetches both direct and inverse relationships for a given entity in parallel.\n * @private\n */\nasync function _fetchEntityRelationships(primaryEntityId, apiRelatedEntityType) {\n    if (!primaryEntityId) return [];\n\n    const uppercasedPrimaryEntityType = $ctrl.primaryEntityType?.[0]?.toUpperCase() + $ctrl.primaryEntityType?.slice(1);\n    _setFilterColumnValuesAndNameColumnValue(apiRelatedEntityType);\n\n    const [direct, inverse] = await Promise.all([\n        $ctrl.entityService.getAllEntities({\n            limit: \"ALL\",\n            query: `primaryEntityType=${uppercasedPrimaryEntityType}&primaryEntityId=${primaryEntityId}&relatedEntityType=${apiRelatedEntityType}`,\n            entity: \"relationship\"\n        }),\n        $ctrl.entityService.getAllEntities({\n            limit: \"ALL\",\n            query: `relatedEntityType=${uppercasedPrimaryEntityType}&relatedEntityId=${primaryEntityId}&primaryEntityType=${apiRelatedEntityType}`,\n            entity: \"relationship\"\n        })\n    ]);\n\n    // The service returns { entities, ... }, so we need to access the entities array.\n    return [...(direct.entities || []), ...(inverse.entities || [])];\n}\n\n/**\n * Creates a Map of { relatedEntityId -> relationshipObject } for quick lookups.\n * @private\n */\nfunction _buildRelatedEntityMap(allRelationships, primaryEntityId) {\n    const relatedEntityMap = new Map();\n    for (const rel of allRelationships) {\n        const pId = rel.primaryEntityId?.toString();\n        const rId = rel.relatedEntityId?.toString();\n        // Determine which ID is the \"other\" one.\n        const relatedId = pId === primaryEntityId ? rId : pId;\n        if (relatedId) {\n            relatedEntityMap.set(relatedId, rel);\n        }\n    }\n    return relatedEntityMap;\n}\n\n/**\n * Constructs the final query string for fetching target entities.\n * @private\n */\nfunction _buildRelationshipQuery({ isLinking, lowercasedApiRelatedEntityType, relatedEntityIds, primaryEntityId, externalQuery }) {\n    const idKey = `${lowercasedApiRelatedEntityType}Id`;\n    let idFilter = '';\n    \n    // Create a list of all IDs to exclude when linking (related IDs + the primary entity's ID if types match)\n    const idsToFilter = [...relatedEntityIds];\n    if (isLinking && lowercasedApiRelatedEntityType === $ctrl.primaryEntityType) {\n        idsToFilter.push(primaryEntityId);\n    }\n\n    if (idsToFilter.length > 0) {\n        idFilter = isLinking\n            ? `${idKey}_notin=${idsToFilter.join(',')}`\n            : `${idKey}_in=${idsToFilter.join(',')}`;\n    }\n\n    // Combine the ID filter with any external search query.\n    if (idFilter && externalQuery) return `${idFilter}&${externalQuery}`;\n    return idFilter || externalQuery || undefined;\n}\n\n/**\n * Helper function to synchronize the ui-grid's selected rows with a master list.\n * @private\n */\nfunction _syncGridSelection(relatedEntityIdKey) {\n    // Get the parent scope that contains the controller instance\n    const scope = angular.element(document.querySelectorAll('.bln-table')[1]).scope().$parent;\n    const ctrl = scope.$ctrl;\n    const gridApi = ctrl.gridApi;\n\n    if (!$ctrl.selectedRowsForRelationship || $ctrl.selectedRowsForRelationship.length === 0 || !gridApi) {\n        return;\n    }\n\n    // Use the grid's 'rowsRendered' event to reliably wait for the grid to be ready.\n    const deregisterEvent = gridApi.core.on.rowsRendered(null, () => {\n        const selectedIds = new Set($ctrl.selectedRowsForRelationship.map(row => row[relatedEntityIdKey]));\n\n        gridApi.grid.rows.forEach(row => {\n            if (selectedIds.has(row.entity[relatedEntityIdKey])) {\n                gridApi.selection.selectRow(row.entity);\n            }\n        });\n\n        deregisterEvent(); // Clean up the event listener.\n    });\n\n    gridApi.core.refresh();\n}\n\nfunction _setFilterColumnValuesAndNameColumnValue(apiRelatedEntityType) {\n    switch (apiRelatedEntityType) {\n        case \"Contact\":\n            $ctrl.currentFilter.columnValues = $ctrl.contactService.getFilterColumnValues();\n            $ctrl.nameColumnValue = \"fullName\";\n            break;\n        case \"Company\":\n            $ctrl.currentFilter.columnValues = $ctrl.companyService.getFilterColumnValues();\n            $ctrl.nameColumnValue = \"name\";\n            break;\n        case \"Opportunity\":\n            $ctrl.currentFilter.columnValues = $ctrl.opportunityService.getFilterColumnValues();\n            $ctrl.nameColumnValue = \"name\";\n            break;\n    }\n}\n",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": true,
+      "name": "loadData",
+      "parameters": [
+        "page",
+        "limit",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const actionMap = {\n    \"Create New Links\": \"LINK\",\n    \"Edit Existing Links\": \"EDIT\",\n    \"Remove Existing Links\": \"UNLINK\"\n};\n\n$ctrl.currentAction.label = label;\n$ctrl.currentAction.icon = icon;\n$ctrl.currentAction.buttonLabel = actionMap[label];\n\n$ctrl.currentPage = 1;\n\n$ctrl.isInitialLoad = true;\n$ctrl.loadData(undefined, undefined, $ctrl.currentFilter.query, undefined);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onActionChange",
+      "parameters": [
+        "label",
+        "icon"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    if ($ctrl.isLoading) return;\n\n    $ctrl.currentRelatedEntity.type = type;\n    $ctrl.currentRelatedEntity.icon = icon;\n    $ctrl.displayTable = false;\n    \n    $ctrl.onCancelButtonClick();\n} catch (error) {\n    console.error(\"An error occurred in watchCurrentTab:\", error);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onRelatedEntityChange",
+      "parameters": [
+        "type",
+        "icon"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!newColumnValue && !newOperationValue && !newTargetValue) {\n    const { column, operation, target } = $ctrl.currentFilter;\n    $ctrl.currentFilter = {\n        column: null,\n        operation: null,\n        target: null,\n        query: '',\n        columnValues: $ctrl.currentFilter.columnValues\n    }\n    \n    if (!column || !operation || !target) return;\n    \n    $ctrl.loadData(1, undefined, null, undefined);\n    return;\n}\n\n$ctrl.currentFilter.column = newColumnValue ?? $ctrl.currentFilter.column;\n$ctrl.currentFilter.operation = newOperationValue ?? $ctrl.currentFilter.operation;\n$ctrl.currentFilter.target = newTargetValue ?? $ctrl.currentFilter.target;\n\nif (newTargetValue === \"\") {\n    $ctrl.currentFilter.query = undefined;\n    $ctrl.loadData(undefined, undefined, undefined, undefined);\n}\n\nif (!($ctrl.currentFilter.column && $ctrl.currentFilter.operation && $ctrl.currentFilter.target)) return;\n\n$ctrl.currentFilter.query = buildFilterQuery($ctrl.currentFilter);\n\n$ctrl.loadData(1, undefined, $ctrl.currentFilter.query, undefined);\n\nfunction buildFilterQuery(currentFilter) {\n    if (!currentFilter || !currentFilter.column || !currentFilter.target || !currentFilter.operation) {\n        return '';\n    }\n\n    const { column, target, operation } = currentFilter;\n    let apiOperation = operation;\n\n    return `${column}_${apiOperation}=${target}`;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onFilterChange",
+      "parameters": [
+        "newColumnValue",
+        "newOperationValue",
+        "newTargetValue"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.isLinking = true;\n$ctrl.successfulLinks.length = 0;\n$ctrl.failedLinks.length = 0;\n\nconst primaryEntityType = $ctrl.primaryEntityType[0].toUpperCase() + $ctrl.primaryEntityType.slice(1);\nconst primaryEntityIdKey = $ctrl.primaryEntityType + \"Id\";\n\nconst currentRelatedEntityType = $ctrl.currentRelatedEntity?.type;\nconst apiRelatedEntityType = (currentRelatedEntityType === \"Deal\") ? \"Opportunity\" : currentRelatedEntityType;\nconst lowercasedApiRelatedEntityType = apiRelatedEntityType?.toLowerCase();\n\nconst relatedEntityIdKey = lowercasedApiRelatedEntityType + \"Id\";\nconst primaryEntityId = $ctrl.primaryEntity?.[primaryEntityIdKey]?.toString();\n\nconst actionLabel = $ctrl.currentAction?.buttonLabel;\n\ntry {\n    for (const row of $ctrl.selectedRowsForRelationship) {\n        let requestMethod = \"POST\";\n        let relationshipId;\n        const entityName = row.fullName || row.name || \"No identifier available\";\n\n        let requestBody = {\n            relationshipType: row.relationshipType ?? \"--\",\n            primaryEntityType: primaryEntityType,\n            primaryEntityId: primaryEntityId,\n            relatedEntityType: apiRelatedEntityType,\n            relatedEntityId: row[relatedEntityIdKey]?.toString()\n        };\n\n        // --- Action-specific logic (EDIT/UNLINK) ---\n        if (actionLabel === \"EDIT\" || actionLabel === \"UNLINK\") {\n            // Find existing relationship using primary entity ID (current record) and related entity ID (row)\n            const matchingRelationship = $ctrl.relationshipData?.find(rel => {\n                // Both direct and inverse matches need to be checked\n                // And ensure entity IDs are compared as strings\n                const primaryIdMatch = rel.primaryEntityId?.toString() === primaryEntityId;\n                const relatedIdMatch = rel.relatedEntityId?.toString() === requestBody.relatedEntityId; // This is the ID from the selected row\n\n                // Case 1: Our primary entity is the primary in the existing relationship record\n                const isDirectMatch = primaryIdMatch && relatedIdMatch;\n\n                // Case 2: Our primary entity is the related in the existing relationship record,\n                //         and the selected row's entity is the primary in the existing record.\n                const isInverseMatch = rel.relatedEntityId?.toString() === primaryEntityId && rel.primaryEntityId?.toString() === requestBody.relatedEntityId;\n\n                // If you expect `relationshipType` to also match for editing/unlinking a *specific* link, add:\n                // && rel.relationshipType === requestBody.relationshipType\n                return isDirectMatch || isInverseMatch;\n            });\n\n            relationshipId = matchingRelationship?.relationshipId;\n\n            if (!relationshipId) {\n                $ctrl.failedLinks.push({\n                    name: entityName,\n                    message: `Could not find existing relationship ID for ${actionLabel.toLowerCase()}.`,\n                    action: actionLabel\n                });\n                continue; // Skip to the next row\n            }\n\n            if (actionLabel === \"EDIT\") {\n                requestMethod = \"PUT\";\n                requestBody = { ...requestBody, relationshipId: relationshipId };\n            } else if (actionLabel === \"UNLINK\") {\n                requestMethod = \"DELETE\";\n                requestBody = null; // Explicitly set to null for DELETE\n            }\n        }\n        // --- End Action-specific logic ---\n\n        // --- API Call Execution ---\n        let response;\n        let apiEndpoint = \"relationship\";\n\n        if (requestMethod === \"DELETE\") {\n            const unlinkConfirmationLabel = `Relationship with ${entityName}`;\n            const unlinkConfirmationData = { name: entityName, relationshipType: row.relationshipType };\n            const entityDetailsForUnlink = $ctrl.utilityService.formatEntityForDisplay(unlinkConfirmationData);\n\n            const deleteResult = await $ctrl.dataService.deleteData(apiEndpoint, relationshipId, {\n                displayName: unlinkConfirmationLabel,\n                modalData: entityDetailsForUnlink\n            });\n            \n            if (deleteResult?.result === \"cancel\") {\n                $ctrl.failedLinks.push({\n                    name: entityName,\n                    message: \"Deletion cancelled by user.\",\n                    action: actionLabel\n                });\n                continue;\n            }\n            response = deleteResult;\n        } else {\n            response = await $ctrl.dataService.sendData(apiEndpoint, requestMethod, requestBody);\n        }\n\n        // --- Process API Response ---\n        if (response && response.result === \"OK\") {\n            $ctrl.successfulLinks.push({\n                name: entityName,\n                relationship: row.relationshipType,\n                action: actionLabel || \"LINK\"\n            });\n        } else if (response && response.result === \"ERROR\") {\n            $ctrl.failedLinks.push({\n                name: entityName,\n                message: response.message,\n                action: actionLabel || \"LINK\"\n            });\n        } else {\n            $ctrl.failedLinks.push({\n                name: entityName,\n                message: \"Unexpected response format\",\n                action: actionLabel || \"LINK\"\n            });\n        }\n    } // End of for loop\n\n    $ctrl.selectedRowsForRelationship.length = 0;\n    $ctrl.isLinking = false;\n    $ctrl.hasOperationCompleted = true;\n\n    await $ctrl.loadData();\n\n} catch (error) {\n    console.error(`An unexpected error occurred while ${actionLabel?.toLowerCase() || 'linking'} relationships:`, error);\n    $ctrl.utilityService.toast(`An unexpected error occurred during relationship ${actionLabel?.toLowerCase() || 'linking'}`, \"ERROR\");\n    $ctrl.isLinking = false;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onLinkButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const defaultFilter = {\n    column: null,\n    operation: null,\n    target: null,\n    query: null,\n    columnValues: $ctrl.currentFilter.columnValues\n}\n\n$ctrl.currentPage = 1;\n$ctrl.hasOperationCompleted = false;\n$ctrl.currentFilter = { ...defaultFilter };\n$ctrl.selectedRows.length = 0;\n\n$ctrl.loadData();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancelButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "body": "if ($ctrl.isLoading) return;\n$ctrl.loadData();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchPrimaryEntity",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.primaryEntity"
+      ]
+    },
+    {
+      "id": "service",
+      "name": "opportunityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/opportunity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityService",
+      "resourceIdentity": "services/entity-services/entity-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "currentTotalPages",
+      "type": "property",
+      "value": "1"
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    },
+    {
+      "body": "// $ctrl.selectedRows.length = 0;\n// $ctrl.selectedRowsForRelationship.length = 0;\n\n// Get the parent scope that contains the controller instance\nconst scope = angular.element(document.querySelectorAll('.bln-table')[1]).scope().$parent;\n\n// Get the controller instance and gridApi from that scope's controller.\n// We use 'ctrl' inside the event handlers to refer to the controller instance,\n// as '$ctrl' would have a different context inside the function callbacks.\nconst gridApi = scope.$ctrl.gridApi;\n\n// --- Register the listener for single row selection ---\ngridApi.selection.on.rowSelectionChanged(scope, function (row) {\n    // 'row.entity' is the data object for the row that changed.\n    // 'row.isSelected' tells you its new state.\n\n    if (row.isSelected) {\n        // --- ADD TO MASTER LIST ---z\n        // Check if the row is already in the master list to avoid duplicates.\n        const isAlreadySelected = $ctrl.selectedRowsForRelationship.some(selectedRow => selectedRow[relatedEntityIdKey] === row.entity[relatedEntityIdKey]);\n        if (!isAlreadySelected) {\n            $ctrl.selectedRowsForRelationship.push(row.entity);\n        }\n\n    } else {\n        // --- REMOVE FROM MASTER LIST ---\n        // Find the index of the deselected row in the master list and remove it.\n        const indexToRemove = $ctrl.selectedRowsForRelationship.findIndex(selectedRow => selectedRow[relatedEntityIdKey] === row.entity[relatedEntityIdKey]);\n        if (indexToRemove > -1) {\n            $ctrl.selectedRowsForRelationship.splice(indexToRemove, 1);\n        }\n    }\n\n});\n\n// --- Register the listener for \"Select All\" (batch) selection ---\ngridApi.selection.on.rowSelectionChangedBatch(scope, function (rows) {\n    // 'rows' is an array of all the rows on the current page that were changed.\n\n    if (rows.length > 0 && rows[0].isSelected) {\n        // --- ADD BATCH TO MASTER LIST ---\n        // User clicked \"Select All\" for the current page.\n        const selectedIds = new Set($ctrl.selectedRowsForRelationship.map(r => r[relatedEntityIdKey]));\n        rows.forEach(row => {\n            // Add only if it's not already in the master list.\n            if (!selectedIds.has(row.entity[relatedEntityIdKey])) {\n                $ctrl.selectedRowsForRelationship.push(row.entity);\n            }\n        });\n    } else {\n        // --- REMOVE BATCH FROM MASTER LIST ---\n        // User clicked \"Deselect All\" for the current page.\n        const deselectedIdsOnPage = new Set(rows.map(r => r.entity[relatedEntityIdKey]));\n        $ctrl.selectedRowsForRelationship = $ctrl.selectedRowsForRelationship.filter(\n            selectedRow => !deselectedIdsOnPage.has(selectedRow[relatedEntityIdKey])\n        );\n    }\n});",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "initializeGridListener",
+      "parameters": [
+        "relatedEntityIdKey"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "selectedRowsForRelationship",
+      "type": "array"
+    }
+  ]
+}

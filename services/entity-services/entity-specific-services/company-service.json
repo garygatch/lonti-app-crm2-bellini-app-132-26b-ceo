@@ -1,0 +1,277 @@
+{
+  "description": "",
+  "name": "company-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"company\""
+    },
+    {
+      "description": "",
+      "name": "companyForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "general",
+          "properties": [
+            {
+              "description": "",
+              "name": "name",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "website",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "numberOfEmployees",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "description",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "contact",
+          "properties": [
+            {
+              "description": "",
+              "name": "email",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "phone",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "address",
+          "properties": [
+            {
+              "description": "",
+              "name": "addressStreet",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressCity",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressStateOrProvince",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressCountry",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "addressPostalCode",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "finance",
+          "properties": [
+            {
+              "description": "",
+              "name": "taxIdNumber",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "businessRegNumber",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "annualRevenue",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "profit",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "assets",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "liabilities",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "engagement",
+          "properties": [
+            {
+              "description": "",
+              "name": "linkedInProfile",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "notes",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "hubspotId",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "ownerName",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "ownerEmail",
+              "type": "property",
+              "value": ""
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Company Id\",\n        value: \"companyId\"\n    },\n    {\n        label: \"Name\",\n        value: \"name\"\n    },\n    {\n        label: \"Address Street\",\n        value: \"addressStreet\"\n    },\n    {\n        label: \"Phone\",\n        value: \"phone\"\n    },\n    {\n        label: \"Email\",\n        value: \"email\"\n    },\n    {\n        label: \"Website\",\n        value: \"website\"\n    },\n    {\n        label: \"Tax Id Number\",\n        value: \"taxIdNumber\"\n    },\n    {\n        label: \"Business Reg Number\",\n        value: \"businessRegNumber\"\n    },\n    {\n        label: \"Annual Revenue\",\n        value: \"annualRevenue\"\n    },\n    {\n        label: \"Profit\",\n        value: \"profit\"\n    },\n    {\n        label: \"Assets\",\n        value: \"assets\"\n    },\n    {\n        label: \"Liabilities\",\n        value: \"liabilities\"\n    },\n    {\n        label: \"Notes\",\n        value: \"notes\"\n    },\n    {\n        label: \"Hubspot Id\",\n        value: \"hubspotId\"\n    },\n    {\n        label: \"Address City\",\n        value: \"addressCity\"\n    },\n    {\n        label: \"Address State Or Province\",\n        value: \"addressStateOrProvince\"\n    },\n    {\n        label: \"Address Country\",\n        value: \"addressCountry\"\n    },\n    {\n        label: \"Address Postal Code\",\n        value: \"addressPostalCode\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Owner Name\",\n        value: \"ownerName\"\n    },\n    {\n        label: \"Owner Email\",\n        value: \"ownerEmail\"\n    },\n    {\n        label: \"LinkedIn Profile\",\n        value: \"linkedInProfile\"\n    },\n    {\n        label: \"Number Of Employees\",\n        value: \"numberOfEmployees\"\n    },\n    {\n        label: \"Tenant Id\",\n        value: \"tenantId\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Modified On\",\n        value: \"modifiedOn\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const defaultColumnConfig = this.getDefaultDisplayColumnConfig();\nreturn this.columnConfigService.getConfig(this.entity + \"-management\", defaultColumnConfig);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "activityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/activity-service",
+      "type": "service"
+    },
+    {
+      "body": "return {\n    \"property\": \"name\",\n    \"operation\": \"contains\"\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultSearchConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "columnConfigService",
+      "resourceIdentity": "services/config-services/column-config-service",
+      "type": "service"
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Name\",\n    \"Website\",\n    \"Phone\",\n    \"Owner Name\",\n    \"Address City\",\n    \"Email\"\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"Owner\": \"ownerName\",\n        \"City\": \"addressCity\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDefaultDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "getAllCompanies",
+    "getCachedCompanies",
+    "getCachedCompanyColumns",
+    "getFilterColumnValues",
+    "getDisplayColumnConfig",
+    "getAllCompanyActivities",
+    "getCachedCompanyActivities",
+    "companyForm",
+    "getDefaultSearchConfig",
+    "getDefaultDisplayColumnConfig"
+  ]
+}

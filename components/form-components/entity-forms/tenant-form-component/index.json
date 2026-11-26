@@ -1,0 +1,334 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "enumOptions": [
+        {
+          "label": "ADD",
+          "value": "ADD"
+        },
+        {
+          "label": "EDIT",
+          "value": "EDIT"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "multi": false,
+      "name": "action",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "tenantForm",
+      "propertyType": "object",
+      "type": "=",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.currentFormTab",
+          "to": "currentFormTab"
+        },
+        {
+          "expression": "$ctrl.action.concat(\" TENANT\")",
+          "to": "formTitle"
+        },
+        {
+          "expression": "$ctrl.currentFormTabName",
+          "to": "currentFormTabName"
+        },
+        {
+          "expression": "$ctrl.backButtonOnClick()",
+          "to": "backButtonOnClick"
+        },
+        {
+          "expression": "$ctrl.backButtonDisabled",
+          "to": "backButtonDisabled"
+        },
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "backButtonLoading"
+        },
+        {
+          "expression": "false",
+          "to": "displayTabBar"
+        },
+        {
+          "expression": "false",
+          "to": "displayFieldResetDropdown"
+        }
+      ],
+      "name": "form-header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-header-component",
+      "type": "custom-component"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        },
+        {
+          "property": "name",
+          "value": "form"
+        }
+      ],
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "active",
+          "expressions": [
+            {
+              "expression": "\"Active\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.tenantForm.active",
+              "to": "toggled"
+            },
+            {
+              "expression": "\"Determines whether the tenant is active or not\"",
+              "to": "tooltip"
+            }
+          ],
+          "formControl": {
+            "modelName": "toggled"
+          },
+          "name": "Toggle",
+          "nodeName": "bln-toggle",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "code",
+          "expressions": [
+            {
+              "expression": "\"Code *\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.tenantForm.code",
+              "to": "value"
+            },
+            {
+              "expression": "\"e.g. ACME\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "\"The code of the tenant\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "true",
+              "to": "isRequired"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "name",
+          "expressions": [
+            {
+              "expression": "\"Name *\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.tenantForm.name",
+              "to": "value"
+            },
+            {
+              "expression": "\"e.g., ACME Corp.\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "\"The name of the tenant\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "true",
+              "to": "isRequired"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "application",
+          "expressions": [
+            {
+              "expression": "\"Application *\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.tenantForm.application",
+              "to": "value"
+            },
+            {
+              "expression": "\"e.g., APP1\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "\"The application that the tenant can access\"",
+              "to": "tooltip"
+            },
+            {
+              "expression": "true",
+              "to": "isRequired"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "comments": "tenant-form",
+      "elementId": "form",
+      "name": "form"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.action",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onActionButtonClick()",
+          "to": "onActionButtonClick"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "tenant-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    }
+  ]
+}

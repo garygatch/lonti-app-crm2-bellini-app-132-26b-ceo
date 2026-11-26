@@ -1,0 +1,649 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "() => {}",
+      "description": "This function should be called to close the modal.",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onClose",
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "properties",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "operations",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentPageKey",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "defaultConfig",
+      "propertyType": "object",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "columns",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "result",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "Configure Table and Quick Search"
+            }
+          ],
+          "classList": [
+            "modal-title"
+          ],
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "×"
+            }
+          ],
+          "classList": [
+            "modal-close"
+          ],
+          "events": {
+            "click": "$ctrl.buttonHandlers.onCancelClick()"
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "modal-header"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Quick Search Configuration"
+                }
+              ],
+              "classList": [],
+              "name": "strong"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "quick-search-property-config",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.dropdowns.QUICK_SEARCH_PROPERTY_CONFIG.label",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.dropdowns.QUICK_SEARCH_PROPERTY_CONFIG.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.dropdowns.QUICK_SEARCH_PROPERTY_CONFIG.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.quickSearchConfig.property",
+                      "to": "value"
+                    },
+                    {
+                      "expression": "$ctrl.properties",
+                      "to": "values"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Dropdown",
+                  "nodeName": "bln-dropdown",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "quick-search-operation-config",
+                  "expressions": [
+                    {
+                      "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.dropdowns.QUICK_SEARCH_OPERATION_CONFIG.label",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.dropdowns.QUICK_SEARCH_OPERATION_CONFIG.tooltip",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.dropdowns.QUICK_SEARCH_OPERATION_CONFIG.placeholder",
+                      "to": "placeholder"
+                    },
+                    {
+                      "expression": "$ctrl.quickSearchConfig.operation",
+                      "to": "value"
+                    },
+                    {
+                      "expression": "$ctrl.operations",
+                      "to": "values"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "value"
+                  },
+                  "layout": {
+                    "cell": {
+                      "growFactor": 1,
+                      "mainSize": "100%",
+                      "shrinkFactor": 1,
+                      "type": "box-item"
+                    }
+                  },
+                  "name": "Dropdown",
+                  "nodeName": "bln-dropdown",
+                  "type": "core-component"
+                },
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": ""
+                }
+              ],
+              "classList": [],
+              "layout": {
+                "container": {
+                  "crossAxisAlignment": "stretch",
+                  "items": [],
+                  "orientation": "row",
+                  "type": "box"
+                }
+              },
+              "name": "div",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "height",
+                  "value": "100% !important"
+                },
+                {
+                  "enabled": true,
+                  "property": "width",
+                  "value": "100% !important"
+                }
+              ]
+            }
+          ],
+          "classList": [],
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Displayed Table Columns"
+                }
+              ],
+              "classList": [],
+              "name": "strong"
+            },
+            {
+              "children": [
+                {
+                  "evaluate": true,
+                  "name": "text",
+                  "textContent": "$ctrl.columnConfig.checkedColumnCount === 1 ? \"(At least 1 column selected)\" : \"(Up to 6 columns can be displayed at once)\""
+                }
+              ],
+              "classList": [],
+              "name": "em"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "expressions": [
+                    {
+                      "expression": "columns.label",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "columns.checked",
+                      "to": "checked"
+                    },
+                    {
+                      "expression": "$ctrl.columnConfig.onColumnCheckedChange()",
+                      "to": "onCheckedChange"
+                    },
+                    {
+                      "expression": "($ctrl.columnConfig.checkedColumnCount >= 6 && !columns.checked)\n||\n($ctrl.columnConfig.checkedColumnCount === 1 && columns.checked)",
+                      "to": "disabled"
+                    }
+                  ],
+                  "formControl": {
+                    "modelName": "checked"
+                  },
+                  "iterate": {
+                    "array": "$ctrl.columns",
+                    "variable": "columns"
+                  },
+                  "layout": {
+                    "cell": {
+                      "type": "grid-item"
+                    }
+                  },
+                  "name": "Checkbox",
+                  "nodeName": "bln-checkbox",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [],
+              "layout": {
+                "container": {
+                  "columns": [
+                    {
+                      "type": "span",
+                      "value": 1
+                    },
+                    {
+                      "type": "span",
+                      "value": 1
+                    }
+                  ],
+                  "items": [],
+                  "rows": [
+                    {
+                      "type": "span",
+                      "value": 1
+                    },
+                    {
+                      "type": "span",
+                      "value": 1
+                    }
+                  ],
+                  "type": "grid"
+                }
+              },
+              "name": "div",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "height",
+                  "value": "100% !important"
+                },
+                {
+                  "enabled": true,
+                  "property": "width",
+                  "value": "100% !important"
+                }
+              ]
+            }
+          ],
+          "classList": [],
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "modal-body"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "btn-cancel"
+          ],
+          "comments": "cancel",
+          "expressions": [
+            {
+              "expression": "\"default\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.buttons.CANCEL.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.buttonHandlers.onCancelClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.buttons.CANCEL.tooltip",
+              "to": "tooltip"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "restore-defaults",
+          "expressions": [
+            {
+              "expression": "\"secondary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.buttons.RESTORE_DEFAULTS.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.buttonHandlers.onRestoreDefaultsButtonClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.buttons.RESTORE_DEFAULTS.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"undo\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "btn-ok"
+          ],
+          "comments": "save",
+          "expressions": [
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.buttons.SAVE.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.buttonHandlers.onSaveButtonClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.enService.modals.configureTableAndQuickSearchModal.buttons.SAVE.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"save\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        }
+      ],
+      "classList": [
+        "modal-footer"
+      ],
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "configure-table-and-quick-search-modal",
+  "parentDirectoryId": "bvg1TG4YV7SmL0UCZdwFi",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "buttonHandlers",
+      "properties": [
+        {
+          "body": "const checkedColumns = $ctrl.columns.filter((c) => c.checked).map((c) => c.label);\n\n$ctrl.quickSearchConfigService.saveConfig($ctrl.currentPageKey, $ctrl.quickSearchConfig.property, $ctrl.quickSearchConfig.operation);\nif ($ctrl.resetConfig && $ctrl.quickSearchConfig.property === $ctrl.defaultConfig.property && $ctrl.quickSearchConfig.operation === $ctrl.defaultConfig.operation) {\n    $ctrl.quickSearchConfigService.clearConfig($ctrl.currentPageKey);\n    $ctrl.quickSearchConfigService.saveConfig($ctrl.currentPageKey, $ctrl.defaultConfig.property, $ctrl.defaultConfig.operation);\n}\n\nif ($ctrl.resetConfig && $ctrl.columnConfig.checkedColumnCount === $ctrl.defaultConfig.columns.length && $ctrl.columns.filter((c) => c.checked).every((c) => $ctrl.defaultConfig.columns.includes(c.label))) {\n    $ctrl.columnConfigService.clearConfig($ctrl.currentPageKey);\n} else if (checkedColumns.length > 0) {\n    $ctrl.columnConfigService.saveConfig($ctrl.currentPageKey, checkedColumns);\n}\n\n$ctrl.result = \"saved\";\n$ctrl.onClose();",
+          "description": "This function is called when OK button is clicked.",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onSaveButtonClick",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "$ctrl.resetConfig = true;\n$ctrl.quickSearchConfig.property = $ctrl.defaultConfig.property;\n$ctrl.quickSearchConfig.operation = $ctrl.defaultConfig.operation;\n$ctrl.columns.forEach((c) => c.checked = $ctrl.defaultConfig.columns.includes(c.label));\n$ctrl.onComponentInit();",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onRestoreDefaultsButtonClick",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "$ctrl.onClose()",
+          "description": "This function is called when Cancel button is clicked.",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onCancelClick",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "quickSearchConfig",
+      "properties": [
+        {
+          "description": "",
+          "name": "property",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "operation",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "columnConfig",
+      "properties": [
+        {
+          "description": "",
+          "name": "checkedColumnCount",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "body": "$ctrl.columnConfig.checkedColumnCount = $ctrl.columns?.filter((c) => c.checked).length ?? 0;",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onColumnCheckedChange",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "const savedQuickSearchConfig = $ctrl.quickSearchConfigService.getConfig($ctrl.currentPageKey);\nconst savedColumnConfig = $ctrl.columnConfigService.getConfig($ctrl.currentPageKey, $ctrl.defaultConfig?.columns);\nconst savedColumns = Array.isArray(savedColumnConfig) ? savedColumnConfig : savedColumnConfig?.columnNames;\n\n$ctrl.quickSearchConfig.property = $ctrl.quickSearchConfig.property ?? savedQuickSearchConfig?.property;\n$ctrl.quickSearchConfig.operation = $ctrl.quickSearchConfig.operation ?? savedQuickSearchConfig?.operation;\n\nif (!$ctrl.resetConfig) {\n    $ctrl.columns?.forEach((c) => c.checked = savedColumns.includes(c.label));\n}\n\n$ctrl.columnConfig.checkedColumnCount = $ctrl.columns?.filter((c) => c.checked).length ?? 0;",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "onComponentInit",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "quickSearchConfigService",
+      "resourceIdentity": "services/config-services/quick-search-config-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "resetConfig",
+      "type": "property",
+      "value": "false"
+    },
+    {
+      "id": "service",
+      "name": "columnConfigService",
+      "resourceIdentity": "services/config-services/column-config-service",
+      "type": "service"
+    }
+  ]
+}

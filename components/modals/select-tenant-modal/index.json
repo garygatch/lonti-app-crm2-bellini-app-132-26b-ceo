@@ -1,0 +1,257 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "() => {}",
+      "description": "This function should be called to close the modal.",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onClose",
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "result",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "Select Tenant"
+            }
+          ],
+          "classList": [
+            "modal-title"
+          ],
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "evaluate": false,
+              "name": "text",
+              "textContent": "×"
+            }
+          ],
+          "classList": [
+            "modal-close"
+          ],
+          "displayExpression": "$ctrl.authService.currentTenantCode",
+          "events": {
+            "click": "$ctrl.onCancel()"
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "modal-header"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": true,
+                  "name": "text",
+                  "textContent": "$ctrl.errorMessage"
+                }
+              ],
+              "classList": [],
+              "displayExpression": "$ctrl.errorMessage",
+              "name": "span"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "displayExpression": "$ctrl.isLoadingTenants",
+              "expressions": [],
+              "name": "Spinner",
+              "nodeName": "bln-spinner",
+              "type": "core-component"
+            }
+          ],
+          "classList": [
+            "spinner-container"
+          ],
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": true,
+                  "name": "text",
+                  "textContent": "tenant.label"
+                }
+              ],
+              "classList": [],
+              "name": "span"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [
+                {
+                  "expression": "\"Select\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"external-link-alt\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.onTenantCodeChange(tenant.label, tenant.value)",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "$ctrl.authService.currentTenantCode === tenant.value",
+                  "to": "isDisabled"
+                },
+                {
+                  "expression": "$ctrl.authService.currentTenantCode === tenant.value ? \"This Tenant is currently selected\" : null;",
+                  "to": "tooltip"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            }
+          ],
+          "classList": [
+            "modal-options"
+          ],
+          "iterate": {
+            "array": "$ctrl.currentTenants",
+            "variable": "tenant"
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "modal-body"
+      ],
+      "name": "div"
+    },
+    {
+      "children": [],
+      "classList": [
+        "modal-footer"
+      ],
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "select-tenant-modal",
+  "parentDirectoryId": "bvg1TG4YV7SmL0UCZdwFi",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "body": "$ctrl.authService.currentTenantName = label;\n$ctrl.authService.currentTenantCode = value;\n$ctrl.$cookies.put(\"x_tenant_name\", label);\n$ctrl.$cookies.put(\"x_tenant_code\", value);\n$ctrl.onClose();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onTenantCodeChange",
+      "parameters": [
+        "label",
+        "value"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    $ctrl.isLoadingTenants = true;\n    \n    await $ctrl.authService.setSaasAuth();\n\n    const saasUserTenants = $ctrl.authService.getSaasUserTenants();\n\n    if (saasUserTenants && Object.keys(saasUserTenants).length > 0) {\n        $ctrl.currentTenants = Object.entries(saasUserTenants).map(([tenantCode, tenantName]) => {\n            return {\n                label: tenantName,\n                value: tenantCode\n            };\n        });\n    } else {\n        $ctrl.currentTenants = [];\n    }\n\n    $ctrl.isLoadingTenants = false;\n\n} catch (error) {\n    console.error(\"Failed to initialize header component due to an authentication error:\", error);\n    $ctrl.currentTenants = [];\n    $ctrl.isLoadingTenants = false;\n    $ctrl.errorMessage = \"Failed to load Tenants.\";\n}",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": true,
+      "name": "initializeComponent",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentTenants",
+      "type": "array"
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "name": "$cookies",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "isLoadingTenants",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "errorMessage",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "$ctrl.result = \"cancel\";\n$ctrl.onClose();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancel",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

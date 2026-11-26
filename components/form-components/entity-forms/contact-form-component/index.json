@@ -1,0 +1,1486 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonDisabled",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "backButtonOnClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "contactForm",
+      "propertyType": "object",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "enumOptions": [
+        {
+          "label": "ADD",
+          "value": "ADD"
+        },
+        {
+          "label": "EDIT",
+          "value": "EDIT"
+        }
+      ],
+      "example": "",
+      "group": "",
+      "label": "",
+      "multi": false,
+      "name": "action",
+      "propertyType": "enum",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoading",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "[{\n        label: \"Personal\",\n        closable: false\n    },\n    {\n        label: \"Contact\",\n        closable: false\n    },\n    {\n        label: \"Address\",\n        closable: false\n    },\n    {\n        label: \"Profession\",\n        closable: false\n    },\n    {\n        label: \"Engagement\",\n        closable: false\n    }\n]",
+          "to": "tabItems"
+        },
+        {
+          "expression": "$ctrl.currentFormTab",
+          "to": "currentFormTab"
+        },
+        {
+          "expression": "$ctrl.action.concat(\" CONTACT\")",
+          "to": "formTitle"
+        },
+        {
+          "expression": "$ctrl.currentFormTabName",
+          "to": "currentFormTabName"
+        },
+        {
+          "expression": "[{\n        label: $ctrl.currentFormTabName,\n        onClick: \"function\",\n        function: () => $ctrl.utilityService.clearForm($ctrl.contactForm[$ctrl.currentFormTabName.toLowerCase()])\n    },\n    {\n        label: \"All\",\n        onClick: \"function\",\n        function: () => $ctrl.utilityService.clearForm($ctrl.contactForm)\n    }\n]",
+          "to": "resetItems"
+        },
+        {
+          "expression": "$ctrl.backButtonOnClick()",
+          "to": "backButtonOnClick"
+        },
+        {
+          "expression": "$ctrl.backButtonDisabled",
+          "to": "backButtonDisabled"
+        },
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "backButtonLoading"
+        }
+      ],
+      "name": "form-header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-header-component",
+      "type": "custom-component"
+    },
+    {
+      "attributes": [
+        {
+          "property": "core",
+          "value": ""
+        },
+        {
+          "property": "name",
+          "value": "form"
+        }
+      ],
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "salutation",
+              "expressions": [
+                {
+                  "expression": "\"Salutation\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"Select the appropriate title or form of address.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "\"e.g., Mr., Ms., Dr.\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "true",
+                  "to": "allowOtherValues"
+                },
+                {
+                  "expression": "[{\n        label: \"Mr.\",\n        value: \"Mr.\"\n    },\n    {\n        label: \"Ms.\",\n        value: \"Ms.\"\n    },\n    {\n        label: \"Dr.\",\n        value: \"Dr.\"\n    }\n]",
+                  "to": "values"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.salutation",
+                  "to": "value"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "first-name",
+              "expressions": [
+                {
+                  "expression": "\"First Name *\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.firstName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Maria\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the first or given name of the contact.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "true",
+                  "to": "isRequired"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "nickname",
+              "expressions": [
+                {
+                  "expression": "\"Nick Name\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.nickName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Liz, Mike, AJ\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the informal or familiar name the contact goes by.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "middle-name",
+              "expressions": [
+                {
+                  "expression": "\"Middle Name\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.middleName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Marie, Van\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the middle name or initial of the contact, if applicable.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "last-name",
+              "expressions": [
+                {
+                  "expression": "\"Last Name *\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.lastName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Dela Cruz, Smith\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the last name or surname of the contact.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "true",
+                  "to": "isRequired"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "suffix",
+              "expressions": [
+                {
+                  "expression": "\"Enter any suffix to the contact's name (e.g., Jr., Sr., Ph.D.).\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "\"e.g., Jr., Sr., Ph.D.\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.suffix",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"Suffix\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "true",
+                  "to": "allowOtherValues"
+                },
+                {
+                  "expression": "[{\n        label: \"Jr.\",\n        value: \"Jr.\"\n    },\n    {\n        label: \"Sr.\",\n        value: \"Sr.\"\n    },\n    {\n        label: \"Ph.D.\",\n        value: \"Ph.D.\"\n    },\n    {\n        label: \"M.D.\",\n        value: \"M.D.\"\n    }\n]",
+                  "to": "values"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "birth-date",
+              "expressions": [
+                {
+                  "expression": "\"Birth Date\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.birthDate",
+                  "to": "dateValue"
+                },
+                {
+                  "expression": "\"YYYY-MM-DD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the contact's date of birth in YYYY-MM-DD format.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Date Time Picker",
+              "nodeName": "bln-date-time-picker",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "gender",
+              "expressions": [
+                {
+                  "expression": "\"Gender\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"Specify the gender of the contact.\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "\"Select gender\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "true",
+                  "to": "allowOtherValues"
+                },
+                {
+                  "expression": "[{\n        label: \"Male\",\n        value: \"Male\"\n    },\n    {\n        label: \"Female\",\n        value: \"Female\"\n    },\n    {\n        label: \"Other\",\n        value: \"Other\"\n    }\n]",
+                  "to": "values"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.gender",
+                  "to": "value"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "description",
+              "expressions": [
+                {
+                  "expression": "\"Description\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.personal.description",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"text-area\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"Enter a brief description or summary of the contact.\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Provide any relevant details or a brief summary about this contact.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "personal",
+          "displayExpression": "$ctrl.currentFormTab === 1",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "email-address-1",
+              "expressions": [
+                {
+                  "expression": "\"Email Address 1\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.contact.emailAddress1",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"email\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., john.doe@example.com\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the primary email address of the contact.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "email-address-2",
+              "expressions": [
+                {
+                  "expression": "\"Email Address 2\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.contact.emailAddress2",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"email\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., secondary@work.net\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter a secondary email address for the contact, if available.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "email-address-3",
+              "expressions": [
+                {
+                  "expression": "\"Email Address 3\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.contact.emailAddress3",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"email\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., personal.email@another.org\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter an additional email address for the contact, if needed.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "mobile-phone",
+              "expressions": [
+                {
+                  "expression": "\"Mobile Phone\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.contact.mobilePhone",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., +63 917 123 4567\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the contact's mobile phone number, including country code if necessary.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "phone",
+              "expressions": [
+                {
+                  "expression": "\"Phone\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.contact.phone",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., +63 45 987 6543\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the contact's primary phone number, including area code and country code if necessary.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "contact",
+          "displayExpression": "$ctrl.currentFormTab === 2",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-street",
+              "expressions": [
+                {
+                  "expression": "\"Address Street\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.address.addressStreet",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 123 Main Street\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the street address of the contact.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-primary-contact-name",
+              "expressions": [
+                {
+                  "expression": "\"Address Primary Contact Name\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.address.addressPrimaryContactName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Building Reception, Security Desk\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the name of the primary contact person or location at this address, if applicable.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-city",
+              "expressions": [
+                {
+                  "expression": "\"Address City\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.address.addressCity",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Angeles City\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the city of the contact's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-state-or-province",
+              "expressions": [
+                {
+                  "expression": "\"Address State or Province\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.address.addressStateOrProvince",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Pampanga, California\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the state or province of the contact's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-country",
+              "expressions": [
+                {
+                  "expression": "\"Address Country\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.address.addressCountry",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Philippines, United States\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the country of the contact's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-postal-code",
+              "expressions": [
+                {
+                  "expression": "\"Address Postal Code\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.address.addressPostalCode",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 2009, 90210\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the postal code or zip code of the contact's address.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "address-fax",
+              "expressions": [
+                {
+                  "expression": "\"Address Fax\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.address.addressFax",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., +63 45 123 7890\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the fax number for this address, including country and area codes if necessary.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "address",
+          "displayExpression": "$ctrl.currentFormTab === 3",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "job-title",
+              "expressions": [
+                {
+                  "expression": "\"Job Title\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.profession.jobTitle",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Marketing Manager, Software Engineer\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the current professional title of the contact.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "department",
+              "expressions": [
+                {
+                  "expression": "\"Department\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.profession.department",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., Sales, Engineering, Human Resources\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the department the contact belongs to within their organization.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "profession",
+          "displayExpression": "$ctrl.currentFormTab === 4",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "linked-in",
+              "expressions": [
+                {
+                  "expression": "\"Linked In\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.linkedIn",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., linkedin.com/in/johndoe\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the LinkedIn profile URL of the contact, if available.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "contact-type",
+              "expressions": [
+                {
+                  "expression": "\"Contact Type\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"Select contact type\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Specify the type of contact (e.g., Customer, Lead, Partner).\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.contactType",
+                  "to": "value"
+                },
+                {
+                  "expression": "[{\n        label: \"Lead\",\n        value: \"lead\"\n    },\n    {\n        label: \"Prospect\",\n        value: \"prospect\"\n    },\n    {\n        label: \"Customer\",\n        value: \"customer\"\n    },\n    {\n        label: \"Inactive Customer\",\n        value: \"inactive_customer\"\n    },\n    {\n        label: \"Subscriber\",\n        value: \"subscriber\"\n    },\n    {\n        label: \"Referral Source\",\n        value: \"referral_source\"\n    },\n    {\n        label: \"Partner\",\n        value: \"partner\"\n    },\n    {\n        label: \"Vendor\",\n        value: \"vendor\"\n    },\n    {\n        label: \"Influencer\",\n        value: \"influencer\"\n    },\n    {\n        label: \"Internal Contact\",\n        value: \"internal_contact\"\n    },\n    {\n        label: \"Competitor\",\n        value: \"competitor\"\n    },\n    {\n        label: \"Other\",\n        value: \"other\"\n    }\n]",
+                  "to": "values"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "notes",
+              "expressions": [
+                {
+                  "expression": "\"Notes\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.notes",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"text-area\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"Enter any additional notes about this contact.\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Add any relevant notes or details regarding this contact.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "hubspot-id",
+              "expressions": [
+                {
+                  "expression": "\"Hubspot Id\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.hubspotId",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., 1234567\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the HubSpot ID of this contact, if applicable.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "lead-status",
+              "expressions": [
+                {
+                  "expression": "\"Select lead status\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Specify the current status of this lead (e.g., In Progress, Connected).\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.leadStatus",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"Lead Status\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "[{\n        label: \"In Progress\",\n        value: \"IN_PROGRESS\"\n    },\n    {\n        label: \"Connected\",\n        value: \"CONNECTED\"\n    }\n]",
+                  "to": "values"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "owner-name",
+              "expressions": [
+                {
+                  "expression": "\"Owner Name\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.ownerName",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"e.g., John Smith\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the name of the person who owns this contact record.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "owner-email",
+              "expressions": [
+                {
+                  "expression": "\"Owner Email\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.ownerEmail",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"email\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"e.g., john.smith@example.com\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the email address of the person who owns this contact record.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Text Input",
+              "nodeName": "bln-text-input",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "life-cycle-stage",
+              "expressions": [
+                {
+                  "expression": "\"Specify the current lifecycle stage of the contact (e.g., Lead, Marketing Qualified Lead, Opportunity).\"",
+                  "to": "tooltip"
+                },
+                {
+                  "expression": "\"Select lifecycle stage\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.lifeCycleStage",
+                  "to": "value"
+                },
+                {
+                  "expression": "\"Life Cycle Stage\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "[{\n        label: \"Lead\",\n        value: \"lead\"\n    },\n    {\n        label: \"Marketing Qualified Lead\",\n        value: \"marketingqualifiedlead\"\n    },\n    {\n        label: \"Opportunity\",\n        value: \"opportunity\"\n    }\n]",
+                  "to": "values"
+                },
+                {
+                  "expression": "true",
+                  "to": "allowOtherValues"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Dropdown",
+              "nodeName": "bln-dropdown",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "last-contacted",
+              "expressions": [
+                {
+                  "expression": "\"Last Contacted\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.lastContacted",
+                  "to": "dateValue"
+                },
+                {
+                  "expression": "\"YYYY-MM-DD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the date when this contact was last contacted in YYYY-MM-DD format.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Date Time Picker",
+              "nodeName": "bln-date-time-picker",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "last-activity-date",
+              "expressions": [
+                {
+                  "expression": "\"Last Activity Date\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.contactForm.engagement.lastActivityDate",
+                  "to": "dateValue"
+                },
+                {
+                  "expression": "\"YYYY-MM-DD\"",
+                  "to": "placeholder"
+                },
+                {
+                  "expression": "\"Enter the date of the last activity associated with this contact in YYYY-MM-DD format.\"",
+                  "to": "tooltip"
+                }
+              ],
+              "formControl": {
+                "modelName": "value"
+              },
+              "name": "Date Time Picker",
+              "nodeName": "bln-date-time-picker",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "crm-and-engagement",
+          "displayExpression": "$ctrl.currentFormTab === 5",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "comments": "contact-form",
+      "elementId": "form",
+      "name": "form"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.isLoading",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.action",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onActionButtonClick()",
+          "to": "onActionButtonClick"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "contact-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "name": "$formValidationManager",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "currentFormTab",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentFormTabName",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "const tabNameLookup = {\n    1: \"Personal\",\n    2: \"Contact\",\n    3: \"Address\",\n    4: \"Profession\",\n    5: \"Engagement\"\n}\n\n$ctrl.currentFormTabName = tabNameLookup[$ctrl.currentFormTab];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchCurrentFormTab",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.currentFormTab"
+      ]
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    }
+  ]
+}

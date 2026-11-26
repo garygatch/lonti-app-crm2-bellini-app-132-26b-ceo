@@ -1,0 +1,566 @@
+{
+  "authenticationRequired": true,
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "!$ctrl.entityUiStateService.isMobile",
+      "expressions": [
+        {
+          "expression": "$ctrl.entityUiStateService.onPageChange(currentPageParam, externalQueryParam, clearCacheParam)",
+          "to": "loadData"
+        }
+      ],
+      "name": "header-component",
+      "nodeName": "header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/header-components/header-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "classList": [],
+          "elementId": "nav",
+          "expressions": [
+            {
+              "expression": "$ctrl.entityUiStateService.isMobile",
+              "to": "isMobile"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onPageChange(currentPageParam, externalQueryParam, clearCacheParam)",
+              "to": "loadData"
+            }
+          ],
+          "layout": {
+            "cell": {
+              "growFactor": 1,
+              "mainSize": "100%",
+              "shrinkFactor": 1,
+              "type": "box-item"
+            }
+          },
+          "name": "nav-component",
+          "ownerId": "6b07c32e48cd88e32d307995",
+          "ownerType": "app",
+          "resourceIdentity": "components/nav-components/nav-component",
+          "type": "custom-component"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "evaluate": true,
+                                  "name": "text",
+                                  "textContent": "\"Batch Import\""
+                                }
+                              ],
+                              "classList": [],
+                              "name": "h3"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "evaluate": true,
+                                  "name": "text",
+                                  "textContent": "\"Import Companies and Contacts\""
+                                }
+                              ],
+                              "classList": [],
+                              "name": "p"
+                            }
+                          ],
+                          "classList": [],
+                          "elementId": "main-header-text-container",
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [],
+                      "elementId": "main-header-container",
+                      "name": "div"
+                    }
+                  ],
+                  "classList": [],
+                  "name": "div"
+                }
+              ],
+              "classList": [],
+              "elementId": "batch-import-header",
+              "layout": {
+                "cell": {
+                  "growFactor": 1,
+                  "mainSize": "100%",
+                  "shrinkFactor": 1,
+                  "type": "box-item"
+                }
+              },
+              "name": "div"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": [
+                        {
+                          "property": "core",
+                          "value": ""
+                        }
+                      ],
+                      "children": [],
+                      "classList": [],
+                      "expressions": [
+                        {
+                          "expression": "\"Entities to Import\"",
+                          "to": "label"
+                        },
+                        {
+                          "expression": "[{\n        label: \"Contacts\",\n        value: \"contact\"\n    },\n    {\n        label: \"Companies\",\n        value: \"company\"\n    }\n]",
+                          "to": "values"
+                        },
+                        {
+                          "expression": "$ctrl.fileUploadForm.entityToImport",
+                          "to": "value"
+                        }
+                      ],
+                      "formControl": {
+                        "modelName": "value"
+                      },
+                      "name": "Dropdown",
+                      "nodeName": "bln-dropdown",
+                      "type": "core-component"
+                    },
+                    {
+                      "attributes": [
+                        {
+                          "property": "core",
+                          "value": ""
+                        }
+                      ],
+                      "children": [],
+                      "classList": [],
+                      "expressions": [
+                        {
+                          "expression": "[\".xlsx\"]",
+                          "to": "allowedFileTypes"
+                        },
+                        {
+                          "expression": "\"Select .xlsx file\"",
+                          "to": "placeholder"
+                        },
+                        {
+                          "expression": "\"Select Excel file to import\"",
+                          "to": "label"
+                        },
+                        {
+                          "expression": "$ctrl.fileUploadForm.fileToImport",
+                          "to": "value"
+                        }
+                      ],
+                      "formControl": {
+                        "modelName": "value"
+                      },
+                      "layout": {},
+                      "name": "File Input",
+                      "nodeName": "bln-file-input",
+                      "type": "core-component"
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "file-upload-form",
+                  "layout": {},
+                  "name": "form"
+                }
+              ],
+              "classList": [],
+              "elementId": "batch-import-form",
+              "layout": {
+                "cell": {
+                  "growFactor": 1,
+                  "mainSize": "100%",
+                  "shrinkFactor": 1,
+                  "type": "box-item"
+                }
+              },
+              "name": "div"
+            },
+            {
+              "children": [
+                {
+                  "children": [],
+                  "classList": [],
+                  "expressions": [
+                    {
+                      "expression": "\"UPLOAD\"",
+                      "to": "action"
+                    },
+                    {
+                      "expression": "$ctrl.uploadFile()",
+                      "to": "onActionButtonClick"
+                    },
+                    {
+                      "expression": "$ctrl.isUploadingFile",
+                      "to": "isLoading"
+                    }
+                  ],
+                  "layout": {},
+                  "name": "form-footer-component",
+                  "ownerId": "6b07c32e48cd88e32d307995",
+                  "ownerType": "app",
+                  "resourceIdentity": "components/form-components/form-footer-component",
+                  "type": "custom-component"
+                }
+              ],
+              "classList": [],
+              "elementId": "batch-import-form-footer",
+              "layout": {
+                "cell": {
+                  "growFactor": 1,
+                  "mainSize": "100%",
+                  "shrinkFactor": 1,
+                  "type": "box-item"
+                }
+              },
+              "name": "div"
+            }
+          ],
+          "classList": [],
+          "layout": {
+            "cell": {
+              "growFactor": 1,
+              "mainSize": "100%",
+              "shrinkFactor": 1,
+              "type": "box-item"
+            },
+            "container": {
+              "crossAxisAlignment": "stretch",
+              "items": [],
+              "orientation": "column",
+              "type": "box"
+            }
+          },
+          "name": "div",
+          "styles": [
+            {
+              "enabled": true,
+              "property": "height",
+              "value": "100% !important"
+            },
+            {
+              "enabled": true,
+              "property": "width",
+              "value": "100% !important"
+            }
+          ]
+        }
+      ],
+      "classList": [],
+      "elementId": "box",
+      "layout": {
+        "container": {
+          "crossAxisAlignment": "stretch",
+          "items": [],
+          "orientation": "column",
+          "type": "box"
+        }
+      },
+      "name": "div",
+      "styles": [
+        {
+          "enabled": true,
+          "property": "height",
+          "value": "100% !important"
+        },
+        {
+          "enabled": true,
+          "property": "width",
+          "value": "100% !important"
+        }
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "back",
+              "expressions": [
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"angle-left\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isMobile ? \"Back\" : \"Close\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isSidePanelVisible = false;",
+                  "to": "onClick"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "buttons",
+          "elementId": "info-panel-header-container",
+          "layout": {},
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "classList": [],
+                  "comments": "row-number",
+                  "contentType": "html",
+                  "html": {
+                    "content": "\"<strong>Row: </strong>\".concat(error.rowNumber)",
+                    "evaluate": true
+                  },
+                  "name": "div"
+                },
+                {
+                  "children": [],
+                  "classList": [],
+                  "comments": "record-name",
+                  "contentType": "html",
+                  "html": {
+                    "content": "$ctrl.getRecordIdentifier(error)",
+                    "evaluate": true
+                  },
+                  "name": "div"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "classList": [],
+                      "comments": "message",
+                      "contentType": "html",
+                      "html": {
+                        "content": "\"<strong>Error: </strong>\".concat(message)",
+                        "evaluate": true
+                      },
+                      "name": "li"
+                    },
+                    {
+                      "evaluate": false,
+                      "name": "text",
+                      "textContent": ""
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "messages",
+                  "iterate": {
+                    "array": "error.messages",
+                    "variable": "message"
+                  },
+                  "name": "ul"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "classList": [],
+                      "comments": "field-name",
+                      "contentType": "html",
+                      "html": {
+                        "content": "\"<strong>Field: </strong>\".concat(fieldError.fieldName)",
+                        "evaluate": true
+                      },
+                      "name": "li"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "classList": [],
+                          "comments": "error-message",
+                          "contentType": "html",
+                          "html": {
+                            "content": "\"<strong>Error: </strong>\".concat(fieldErrorMessage)",
+                            "evaluate": true
+                          },
+                          "name": "div"
+                        }
+                      ],
+                      "classList": [],
+                      "comments": "errors",
+                      "iterate": {
+                        "array": "fieldError.errors",
+                        "variable": "fieldErrorMessage"
+                      },
+                      "name": "div"
+                    },
+                    {
+                      "evaluate": false,
+                      "name": "text",
+                      "textContent": ""
+                    }
+                  ],
+                  "classList": [],
+                  "comments": "field-errors",
+                  "iterate": {
+                    "array": "error.fieldErrors",
+                    "variable": "fieldError"
+                  },
+                  "name": "ul"
+                }
+              ],
+              "classList": [
+                "error"
+              ],
+              "layout": {},
+              "name": "div"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "name": "hr"
+            }
+          ],
+          "classList": [],
+          "comments": "error",
+          "iterate": {
+            "array": "$ctrl.errors",
+            "variable": "error"
+          },
+          "layout": {},
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "desktop"
+      ],
+      "elementId": "side-panel",
+      "layout": {
+        "container": {
+          "items": [],
+          "position": "right",
+          "type": "side-panel",
+          "visible": "$ctrl.entityUiStateService.isSidePanelVisible",
+          "width": "",
+          "zIndex": 1
+        }
+      },
+      "name": "div"
+    }
+  ],
+  "name": "batch-import",
+  "params": {},
+  "type": "page",
+  "url": "/batch-import",
+  "variables": [
+    {
+      "id": "service",
+      "name": "entityUiStateService",
+      "resourceIdentity": "services/entity-services/entity-ui-state-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "fileUploadForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "entityToImport",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "fileToImport",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "isUploadingFile",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "errors",
+      "type": "array"
+    },
+    {
+      "body": "const entityType = $ctrl.fileUploadForm.entityToImport;\nlet batchEndpoint = \"\";\nlet fileFieldName = \"\";\n\nif (entityType === \"contact\") {\n    batchEndpoint = \"/contact-batch\";\n    fileFieldName = \"contactFile\";\n} else if (entityType === \"company\") {\n    batchEndpoint = \"/company-batch\";\n    fileFieldName = \"companyFile\";\n} else {\n    $ctrl.utilityService.toast(\"Invalid entity type selected\", \"ERROR\");\n    return;\n}\n\nif (!$ctrl.fileUploadForm.fileToImport) {\n    $ctrl.utilityService.toast(\"No file selected\", \"ERROR\");\n    return;\n}\n\nconst endpoint = $ctrl.dataService.apiBaseUrl + batchEndpoint;\nconst validateOnlyEndpoint = `${endpoint}?validateOnly=true`;\nconst uploadEndpoint = `${endpoint}?validateOnly=false`;\n\nconst formData = new FormData();\nformData.append(fileFieldName, $ctrl.fileUploadForm.fileToImport);\n$ctrl.isUploadingFile = true;\n\ntry {\n    await validateFile(formData, batchEndpoint);\n    await confirmAndImport(formData, batchEndpoint);\n} catch (error) {\n    handleFileUploadError(error);\n} finally {\n    $ctrl.isUploadingFile = false;\n}\n\n\nasync function handleFetch(url, options) {\n    const response = await fetch(url, options);\n    if (!response.ok) {\n        const errData = await response.json();\n        throw errData;\n    }\n    return await response.json();\n}\n\nfunction handleFileUploadError(error) {\n    $ctrl.utilityService.toast(\"Errors found\", \"ERROR\");\n    $ctrl.errors = error.errors || [error.message || \"An error occurred during file upload.\"];\n    $ctrl.entityUiStateService.isSidePanelVisible = true;\n}\n\nasync function validateFile(formData, batchEndpoint) {\n    const endpoint = $ctrl.dataService.apiBaseUrl + batchEndpoint + \"?validateOnly=true\";\n    return handleFetch(endpoint, {\n        method: 'POST',\n        headers: $ctrl.authService.getHeaders(),\n        body: formData\n    });\n}\n\nasync function confirmAndImport(formData, batchEndpoint) {\n    try {\n        if ($ctrl.errors?.length) {\n            $ctrl.entityUiStateService.isSidePanelVisible = false;\n            $ctrl.errors.length = 0;\n        }\n\n        const modalResult = await $ctrl.$modal.open(\"confirm-action-modal\", {\n            modalHeaderTitle: \"Confirm Import\",\n            modalBodyText: \"No Errors Found. Confirm Import?\"\n        });\n\n        if (modalResult.result === \"ok\") {\n            const endpoint = $ctrl.dataService.apiBaseUrl + batchEndpoint + \"?validateOnly=false\";\n            return await handleFetch(endpoint, {\n                method: 'POST',\n                headers: $ctrl.authService.getHeaders(),\n                body: formData\n            });\n        }\n        return;\n    } finally {\n        $ctrl.isUploadingFile = false;\n    }\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "uploadFile",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "name": "$modal",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "body": "if (error?.companyRecord?.name) {\n    return \"<strong>Name: </strong>\" + error.companyRecord.name;\n}\nif (error?.companyRecord?.email) {\n    return \"<strong>Email: </strong>\" + error.companyRecord.email;\n}\nif (error?.contactRecord?.fullName) {\n    return \"<strong>Name: </strong>\" + error.contactRecord.fullName;\n}\nif (error?.contactRecord?.emailaddress1) {\n    return \"<strong>Email: </strong>\" + error.contactRecord.emailaddress1;\n}\nreturn \"<strong>Record: </strong>No identifier available\";",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getRecordIdentifier",
+      "parameters": [
+        "error"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+/*
+  --------------------------------------------------
+  Form Styles
+  --------------------------------------------------
+*/
+#form {
+    padding: 0.5rem;
+    margin-top: calc(var(--header-offset) + var(--tab-bar-offset) + 10px);
+    margin-bottom: calc(var(--tab-bar-offset) + 10px);
+    /* Adjusted margin */
+}
+
+/* Form Header */
+#form-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--header-offset);
+    z-index: 1;
+}
+
+#form-header-text-container {
+    padding: 0.1rem 0.3rem;
+}
+
+#form-header-text-container p {
+    margin-top: -1rem;
+    /* Adjust as needed */
+}
+
+/* Form Tab Bar */
+#form-header-tab-bar {
+    position: fixed;
+    top: var(--header-offset);
+    width: 100%;
+    z-index: 1;
+    /* Ensure it's above the form content */
+}
+
+#form-header-component {
+    height: fit-content !important;
+}
+
+/* Form Footer */
+#form-footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--bln-pagination-height);
+    z-index: 1;
+    /* Consider if this should be higher than other fixed elements */
+}
+
+#form-footer-actions-container {
+    display: flex;
+    align-items: center;
+}
+
+#assignment-form-dropdown-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#assignment-form-container {
+    height: 85%;
+}
+
+#assignment-form-container .table-container {
+  height: 70%;
+  margin-top: 1rem;
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+@media (min-width: 1024px) {
+    #form {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #form-header-container,
+    #form-header-tab-bar {
+        position: relative;
+        /* No longer fixed on desktop */
+    }
+
+    /* #form-footer-container {
+        width: 30%;
+    } */
+
+    /* #assignment-form-pagination {
+        width: calc(30% - 6px);
+    } */
+
+    #form-header-tab-bar {
+        top: auto;
+        /* Reset top position */
+    }
+}
+
+@media (min-height: 800px) {
+  #assignment-form-container .table-container {
+    height: 80%;
+  }
+}

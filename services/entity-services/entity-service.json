@@ -1,0 +1,145 @@
+{
+  "description": "",
+  "name": "entity-service",
+  "parentDirectoryId": "H_nDlGsW6d7CjPhG0w4Pi",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "id": "service",
+      "name": "activityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/activity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "entityType",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "displayColumnConfig",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "// 1. Destructure the parameters from the single options object.\nconst {\n    page,\n    limit,\n    query,\n    clearCache,\n    entity: entityFromOptions, // Use an alias to avoid conflict with the final entityType\n    apiType,\n    customEntityKey\n} = options;\n\n// 2. Determine the final entityType, preferring the one from options,\n//    then falling back to the service's current state. This preserves your original logic.\nconst entityType = entityFromOptions ?? this.entityType;\nconst columnConfig = this.displayColumnConfig;\n\n// Uncomment and adapt this if you need to clear the cache.\n// It might be better to clear only the specific cache key.\n// if (clearCache) {\n//     this.entityCacheService.clearCacheFor(entityType);\n// }\n\n// 3. The core logic remains the same. It just uses the destructured variables.\nconst entityAction = this.utilityService.buildEntityAction(entityType, \"SelectAll\");\n\n// Pass the extracted parameters to the cache service.\nreturn this.entityCacheService.getAll(\n    entityAction,\n    entityType,\n    page,\n    limit,\n    columnConfig,\n    query,\n    apiType,\n    customEntityKey\n);",
+      "description": "Retrieves a collection of entities, utilizing a cache service.\nThis function now accepts a single options object for its parameters.\n\n* @param {object} options - The options for the data request.\n* @param {number} [options.page] - The page number for pagination.\n* @param {number} [options.limit] - The number of records per page.\n* @param {string} [options.query] - The query string for filtering.\n* @param {boolean} [options.clearCache] - Flag to clear the cache before fetching.\n* @param {string} [options.entity] - The entity type to fetch.\n* @param {string} [options.apiType] - The API type to use ('crm' or 'auth').\n* @returns {Promise<object>} A promise that resolves with the fetched data object { entities, total, totalFiltered }.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getAllEntities",
+      "parameters": [
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entityType = this.entityType;\n\n// if (clearCache) this.entityCacheService.clearCache();\nconst entityActivities = await this.activityService.getAllActivitiesByEntityByEntityId(page, limit, entityType, entityId, activityType, query);\nentityActivities.ownerId = entityId;\n\nreturn entityActivities;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "getAllEntityActivities",
+      "parameters": [
+        "page",
+        "limit",
+        "entityId",
+        "activityType",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "entityType = entityType ?? this.entityType;\nreturn this.entityCacheService.getCachedEntityValue(entityType, \"entities\");",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedEntities",
+      "parameters": [
+        "entityType"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const titleCasedEntityType = this.entityType[0].toUpperCase() + this.entityType.slice(1);\nconst entityActivities = this.activityService.getCachedActivities(activityType, titleCasedEntityType, entityId);\n\nreturn this.utilityService.sortEntitiesByDateProperty(entityActivities, \"createdOn\");",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedEntityActivities",
+      "parameters": [
+        "activityType",
+        "activityId",
+        "entityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entityType = this.entityType;\n\nreturn this.entityCacheService.getCachedEntityValue(entityType, \"columns\")",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedEntityColumns",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    if (columns) {\n        const cachedEntry = this.entityCacheService.getCachedEntry(this.entityType);\n\n        if (cachedEntry) {\n            cachedEntry.columns = columns;\n            this.entityCacheService.setCachedEntry(this.entityType, cachedEntry);\n        }\n\n    }\n} catch (e) {\n    console.error(\"Error setting cached entity columns: \", e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "setCachedEntityColumns",
+      "parameters": [
+        "columns"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "getFilterColumnValues",
+    "getAllEntityActivities",
+    "getCachedEntities",
+    "getCachedEntityActivities",
+    "getCachedEntityColumns",
+    "entityType",
+    "displayColumnConfig",
+    "getAllEntities",
+    "setCachedEntityColumns"
+  ]
+}

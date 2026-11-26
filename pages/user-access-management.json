@@ -1,0 +1,756 @@
+{
+  "authenticationRequired": true,
+  "children": [
+    {
+      "children": [],
+      "classList": [],
+      "displayExpression": "!$ctrl.entityUiStateService.isMobile",
+      "expressions": [
+        {
+          "expression": "$ctrl.entityUiStateService.onPageChange(currentPageParam, externalQueryParam, clearCacheParam)",
+          "to": "loadData"
+        }
+      ],
+      "name": "header-component",
+      "nodeName": "header-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/header-components/header-component",
+      "type": "custom-component"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "classList": [],
+          "elementId": "nav",
+          "expressions": [
+            {
+              "expression": "$ctrl.entityUiStateService.isMobile",
+              "to": "isMobile"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onPageChange(currentPageParam, externalQueryParam, clearCacheParam)",
+              "to": "loadData"
+            }
+          ],
+          "layout": {
+            "cell": {
+              "growFactor": 1,
+              "mainSize": "100%",
+              "shrinkFactor": 1,
+              "type": "box-item"
+            }
+          },
+          "name": "nav-component",
+          "ownerId": "6b07c32e48cd88e32d307995",
+          "ownerType": "app",
+          "resourceIdentity": "components/nav-components/nav-component",
+          "type": "custom-component"
+        },
+        {
+          "children": [],
+          "classList": [
+            "desktop"
+          ],
+          "displayExpression": "!$ctrl.entityUiStateService.is360ViewActive || $ctrl.entityUiStateService.isMobile",
+          "expressions": [
+            {
+              "expression": "$ctrl.entityUiStateService.isMobile",
+              "to": "isMobile"
+            },
+            {
+              "expression": "true",
+              "to": "enableRowSelection"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.isExportingEntity ? undefined : $ctrl.entityUiStateService.onEntitySelect(row)",
+              "to": "onSelection"
+            },
+            {
+              "expression": "\"User Access Management\"",
+              "to": "pageTitle"
+            },
+            {
+              "expression": "\"Manage Users, Tenants, Roles, and Scopes\"",
+              "to": "pageDescription"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentPage",
+              "to": "currentPage"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentColumns",
+              "to": "tableColumns"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentTable",
+              "to": "tableData"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.isLoadingData",
+              "to": "isLoading"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onPageChange(currentPage)",
+              "to": "onPageChange"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onPageChange($ctrl.entityUiStateService.currentPage, null, true)",
+              "to": "onReloadButtonClick"
+            },
+            {
+              "expression": "[{\n        label: \"Add\",\n        icon: {\n            name: \"plus\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.entityUiStateService.initiateAdd()\n    },\n    {\n        label: \"Import\",\n        onClick: \"link\",\n        openIn: \"current-window\",\n        link: {\n            type: \"state\",\n            state: \"batch-import\",\n            parameters: {}\n        },\n        icon: {\n            name: \"upload\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        hideWhen: true\n    },\n    {\n        label: \"Export\",\n        onClick: \"function\",\n        function: () => $ctrl.entityUiStateService.initiateExport(),\n        icon: {\n            name: \"download\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        hideWhen: true\n    },\n    {\n        label: \"Reload\",\n        onClick: \"function\",\n        function: () => $ctrl.entityUiStateService.onPageChange($ctrl\n            .entityUiStateService.currentPage, null, true),\n        hideWhen: \"!$ctrl.isMobile\",\n        icon: {\n            name: \"sync\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        }\n    }\n]",
+              "to": "actionDropdown"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentFilter.target",
+              "to": "filterTarget"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentFilter.operation",
+              "to": "filterOperation"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentFilter.column",
+              "to": "filterColumn"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentFilter.columnValues",
+              "to": "filterColumnValues"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onFilterChange(newColumnValue, newOperationValue, newTargetValue)",
+              "to": "onFilterChange"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentSelectedRows",
+              "to": "selectedRows"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.isExportingEntity",
+              "to": "isExporting"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.isExportingEntity",
+              "to": "enableMultiSelection"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onExportButtonClick()",
+              "to": "onExportButtonClick"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onCancelExportButtonClick()",
+              "to": "onCancelExportButtonClick"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentRowsForExport && $ctrl.entityUiStateService.currentRowsForExport.length ? `EXPORT SELECTED (${$ctrl.entityUiStateService.currentRowsForExport.length})` : \"EXPORT ALL\"",
+              "to": "exportButtonLabel"
+            },
+            {
+              "expression": "false",
+              "to": "displayOperationDropdown"
+            },
+            {
+              "expression": "false",
+              "to": "displayFilterInputField"
+            },
+            {
+              "expression": "false",
+              "to": "displayColumnDropdown"
+            },
+            {
+              "expression": "true",
+              "to": "displayTabBar"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentTabItems",
+              "to": "tabItems"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.onSelectedTabChange(selectedTab)",
+              "to": "onSelectedTabChange"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentTab",
+              "to": "selectedTabIndex"
+            },
+            {
+              "expression": "false",
+              "to": "displayResetButton"
+            },
+            {
+              "expression": "false",
+              "to": "displayFilter"
+            }
+          ],
+          "layout": {
+            "cell": {
+              "growFactor": 1,
+              "mainSize": "100%",
+              "shrinkFactor": 1,
+              "type": "box-item"
+            }
+          },
+          "name": "main-component",
+          "nodeName": "main-component",
+          "ownerId": "6b07c32e48cd88e32d307995",
+          "ownerType": "app",
+          "resourceIdentity": "components/main-components/main-component",
+          "type": "custom-component"
+        },
+        {
+          "children": [],
+          "classList": [
+            "desktop"
+          ],
+          "displayExpression": "$ctrl.entityUiStateService.is360ViewActive\n&&\n!$ctrl.entityUiStateService.isMobile",
+          "expressions": [
+            {
+              "expression": "$ctrl.entityUiStateService.onEntitySelect($ctrl.entityUiStateService.currentEntity)",
+              "to": "currentEntity"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.notes.currentNotes",
+              "to": "callNotes"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.currentCalls",
+              "to": "calls"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.onDeleteCall(activityId)",
+              "to": "deleteCall"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.notes.onDeleteNote(activityId)",
+              "to": "deleteCallNote"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.notes.onDeleteNote(activityId)",
+              "to": "deleteNote"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.notes.isLoadingNotes",
+              "to": "isLoadingCallNotes"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.isLoadingCalls",
+              "to": "isLoadingCalls"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.notes.isLoadingNotes",
+              "to": "isLoadingNotes"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentEntity",
+              "to": "linkPrimaryEntity"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentEntityType",
+              "to": "linkPrimaryEntityType"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.notes.loadEntityNotes(activityId, currentPage, query)",
+              "to": "loadCallNotes"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.notes.currentNotes",
+              "to": "notes"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.notes.onNoteFilterChange(newTargetValue, activityId)",
+              "to": "onCallNoteFilterChange"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.onCallFilterChange(newTargetValue)",
+              "to": "onCallFilterChange"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.notes.onNoteFilterChange(newTargetValue)",
+              "to": "onNoteFilterChange"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.onSaveCall()",
+              "to": "saveCall"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.calls.notes.onSaveNote(callActivityId)",
+              "to": "saveCallNote"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.notes.onSaveNote()",
+              "to": "saveNote"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.is360ViewActive = false;",
+              "to": "backButtonOnClick"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.isDeletingData",
+              "to": "backButtonLoading"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.eventLogs.currentEventLogs",
+              "to": "recentActivities"
+            },
+            {
+              "expression": "[{\n        label: \"Edit\",\n        icon: {\n            name: \"edit\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.entityUiStateService.initiateEdit()\n    },\n    {\n        label: \"Delete\",\n        icon: {\n            name: \"trash\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.entityUiStateService.onDeleteButtonClick()\n    }\n]",
+              "to": "actionDropdown"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentEntity.fullName || $ctrl.entityUiStateService.currentEntity.name",
+              "to": "currentEntityName"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.currentEntity.jobTitle",
+              "to": "currentEntityDescription"
+            },
+            {
+              "expression": "$ctrl.entityUiStateService.activity.eventLogs.isLoadingEventLogs",
+              "to": "isLoadingEventLogs"
+            }
+          ],
+          "layout": {
+            "cell": {
+              "growFactor": 1,
+              "mainSize": "100%",
+              "shrinkFactor": 1,
+              "type": "box-item"
+            }
+          },
+          "name": "entity-360-degree-view-component",
+          "ownerId": "6b07c32e48cd88e32d307995",
+          "ownerType": "app",
+          "resourceIdentity": "components/entity-360-degree-view-components/entity-360-degree-view-component",
+          "type": "custom-component"
+        }
+      ],
+      "classList": [],
+      "elementId": "box",
+      "layout": {
+        "container": {
+          "crossAxisAlignment": "stretch",
+          "items": [],
+          "orientation": "column",
+          "type": "box"
+        }
+      },
+      "name": "div",
+      "styles": [
+        {
+          "enabled": true,
+          "property": "height",
+          "value": "100% !important"
+        },
+        {
+          "enabled": true,
+          "property": "width",
+          "value": "100% !important"
+        }
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "!$ctrl.entityUiStateService.isAddingEntity\n&&\n!$ctrl.entityUiStateService.isEditingEntity",
+              "expressions": [
+                {
+                  "expression": "$ctrl.entityUiStateService.isMobile",
+                  "to": "isMobile"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentEntityDetails",
+                  "to": "tableData"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.onEntityDeselect()",
+                  "to": "backButtonOnClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentEntity.fullName || $ctrl.entityUiStateService.currentEntity.name",
+                  "to": "tableDataTitle"
+                },
+                {
+                  "expression": "[\n    {\n        label: \"Edit\",\n        icon: {\n            name: \"edit\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.entityUiStateService.initiateEdit()\n    },\n    {\n        label: \"Delete\",\n        icon: {\n            name: \"trash\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.entityUiStateService.onDeleteButtonClick()\n    }\n]",
+                  "to": "actionDropdown"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isDeletingData",
+                  "to": "backButtonLoading"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.notes.currentNotes",
+                  "to": "notes"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.notes.isLoadingNotes",
+                  "to": "isLoadingNotes"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.notes.onSaveNote()",
+                  "to": "saveNote"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.notes.onDeleteNote(activityId)",
+                  "to": "deleteNote"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.notes.onNoteFilterChange(newTargetValue)",
+                  "to": "onNoteFilterChange"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.currentCalls",
+                  "to": "calls"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.onSaveCall()",
+                  "to": "saveCall"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.isLoadingCalls",
+                  "to": "isLoadingCalls"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.notes.isLoadingNotes",
+                  "to": "isLoadingCallNotes"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.notes.currentNotes",
+                  "to": "callNotes"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.notes.onDeleteNote(activityId)",
+                  "to": "deleteCallNote"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.notes.onNoteFilterChange(newTargetValue, activityId)",
+                  "to": "onCallNoteFilterChange"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.notes.onSaveNote(callActivityId)",
+                  "to": "saveCallNote"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.notes.loadEntityNotes(activityId, currentPage, query)",
+                  "to": "loadCallNotes"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.onDeleteCall(activityId)",
+                  "to": "deleteCall"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.activity.calls.onCallFilterChange(newTargetValue)",
+                  "to": "onCallFilterChange"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentEntity",
+                  "to": "linkPrimaryEntity"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentEntityType",
+                  "to": "linkPrimaryEntityType"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.onFullViewButtonClick()",
+                  "to": "onFullViewButtonClick"
+                },
+                {
+                  "expression": "$ctrl.currentInfoPanelTab",
+                  "to": "currentInfoPanelTab"
+                },
+                {
+                  "expression": "$ctrl.infoPanelTabItems",
+                  "to": "tabItems"
+                },
+                {
+                  "expression": "false",
+                  "to": "displayLogCallButton"
+                },
+                {
+                  "expression": "false",
+                  "to": "displayFullViewButton"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentEntityType === \"user\" ? \"role\" : \"scope\"",
+                  "to": "authTargetEntityType"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentEntity",
+                  "to": "authAssignmentPrimaryEntity"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentEntityType",
+                  "to": "authAssignmentPrimaryEntityType"
+                },
+                {
+                  "expression": "$ctrl.currentInfoPanelTabIndex",
+                  "to": "currentTabIndex"
+                }
+              ],
+              "layout": {},
+              "name": "info-panel-component",
+              "nodeName": "info-panel-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/info-panel-components/info-panel-component",
+              "type": "custom-component"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "(\n    $ctrl.entityUiStateService.isAddingEntity\n    ||\n    $ctrl.entityUiStateService.isEditingEntity\n)\n&&\n$ctrl.entityUiStateService.currentEntityType === \"user\"",
+              "expressions": [
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.initiateAdd()\n: $ctrl.entityUiStateService.initiateEdit()",
+                  "to": "backButtonOnClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentForm",
+                  "to": "userForm"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity ? \"ADD\" : \"EDIT\"",
+                  "to": "action"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isSendingData",
+                  "to": "isLoading"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.onAddButtonClick()\n: $ctrl.entityUiStateService.onEditButtonClick()",
+                  "to": "onActionButtonClick"
+                }
+              ],
+              "hasFormValidationManager": true,
+              "layout": {},
+              "name": "user-form-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/form-components/entity-forms/user-form-component",
+              "type": "custom-component"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "(\n    $ctrl.entityUiStateService.isAddingEntity\n    ||\n    $ctrl.entityUiStateService.isEditingEntity\n)\n&&\n$ctrl.entityUiStateService.currentEntityType === \"tenant\"",
+              "expressions": [
+                {
+                  "expression": "$ctrl.entityUiStateService.currentForm",
+                  "to": "tenantForm"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.onAddButtonClick()\n: $ctrl.entityUiStateService.onEditButtonClick()",
+                  "to": "onActionButtonClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isSendingData",
+                  "to": "isLoading"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.initiateAdd()\n: $ctrl.entityUiStateService.initiateEdit()",
+                  "to": "backButtonOnClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity ? \"ADD\" : \"EDIT\"",
+                  "to": "action"
+                }
+              ],
+              "hasFormValidationManager": true,
+              "layout": {},
+              "name": "tenant-form-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/form-components/entity-forms/tenant-form-component",
+              "type": "custom-component"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "(\n    $ctrl.entityUiStateService.isAddingEntity\n    ||\n    $ctrl.entityUiStateService.isEditingEntity\n)\n&&\n$ctrl.entityUiStateService.currentEntityType === \"role\"",
+              "expressions": [
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity ? \"ADD\" : \"EDIT\"",
+                  "to": "action"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.initiateAdd()\n: $ctrl.entityUiStateService.initiateEdit()",
+                  "to": "backButtonOnClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isSendingData",
+                  "to": "isLoading"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.onAddButtonClick()\n: $ctrl.entityUiStateService.onEditButtonClick()",
+                  "to": "onActionButtonClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentForm",
+                  "to": "roleForm"
+                }
+              ],
+              "hasFormValidationManager": true,
+              "layout": {},
+              "name": "role-form-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/form-components/entity-forms/role-form-component",
+              "type": "custom-component"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "displayExpression": "(\n    $ctrl.entityUiStateService.isAddingEntity\n    ||\n    $ctrl.entityUiStateService.isEditingEntity\n)\n&&\n$ctrl.entityUiStateService.currentEntityType === \"scope\"",
+              "expressions": [
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity ? \"ADD\" : \"EDIT\"",
+                  "to": "action"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.initiateAdd()\n: $ctrl.entityUiStateService.initiateEdit()",
+                  "to": "backButtonOnClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isSendingData",
+                  "to": "isLoading"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.isAddingEntity\n? $ctrl.entityUiStateService.onAddButtonClick()\n: $ctrl.entityUiStateService.onEditButtonClick()",
+                  "to": "onActionButtonClick"
+                },
+                {
+                  "expression": "$ctrl.entityUiStateService.currentForm",
+                  "to": "scopeForm"
+                }
+              ],
+              "hasFormValidationManager": true,
+              "layout": {},
+              "name": "scope-form-component",
+              "ownerId": "6b07c32e48cd88e32d307995",
+              "ownerType": "app",
+              "resourceIdentity": "components/form-components/entity-forms/scope-form-component",
+              "type": "custom-component"
+            }
+          ],
+          "classList": [],
+          "layout": {},
+          "name": "div"
+        }
+      ],
+      "classList": [
+        "desktop"
+      ],
+      "elementId": "side-panel",
+      "layout": {
+        "container": {
+          "items": [],
+          "position": "right",
+          "type": "side-panel",
+          "visible": "$ctrl.entityUiStateService.isSidePanelVisible\n&&\n(\n    !$ctrl.entityUiStateService.is360ViewActive\n    || \n    $ctrl.entityUiStateService.isMobile\n    ||\n    $ctrl.entityUiStateService.isEditingEntity\n)\n",
+          "width": "",
+          "zIndex": 1
+        }
+      },
+      "name": "div"
+    }
+  ],
+  "name": "user-access-management",
+  "params": {},
+  "type": "page",
+  "url": "/user-access-management",
+  "variables": [
+    {
+      "id": "service",
+      "name": "entityUiStateService",
+      "resourceIdentity": "services/entity-services/entity-ui-state-service",
+      "type": "service"
+    },
+    {
+      "body": "if (!$ctrl.authService.isCurrentUserAdmin) {\n    $ctrl.$state.go(\"contact-management\");\n    return;\n}\n\n$ctrl.entityUiStateService.currentApiType = \"auth\";\n$ctrl.entityUiStateService.currentEntityType = \"user\";\n\n$ctrl.entityUiStateService.currentTabItems = [\n    {\n        label: \"Users\",\n        closable: false\n    },\n    {\n        label: \"Tenants\",\n        closable: false\n    },\n    {\n        label: \"Roles\",\n        closable: false\n    },\n    {\n        label: \"Scopes\",\n        closable: false\n    }\n];\n\n$ctrl.entityUiStateService.currentForm = $ctrl.userService.userForm;\n$ctrl.entityUiStateService.currentDisplayColumnConfig = $ctrl.userService.getDisplayColumnConfig();\n$ctrl.entityUiStateService.currentFilter.columnValues = $ctrl.userService.getFilterColumnValues();\n$ctrl.entityUiStateService.onPageChange(currentPage, undefined, true);",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "initializePage",
+      "parameters": [
+        "currentPage"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "userService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/user-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "roleService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/role-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "scopeService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/scope-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "tenantService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/tenant-service",
+      "type": "service"
+    },
+    {
+      "body": "const entityServiceMap = {\n    user: $ctrl.userService,\n    tenant: $ctrl.tenantService,\n    role: $ctrl.roleService,\n    scope: $ctrl.scopeService\n};\n\nconst entityType = $ctrl.entityUiStateService.currentEntityType;\nconst uiStateService = $ctrl.entityUiStateService;\nconst targetService = entityServiceMap[entityType];\n\nif (targetService) {\n    const formPropertyName = `${entityType}Form`;\n\n    uiStateService.currentForm = targetService[formPropertyName];\n    uiStateService.currentDisplayColumnConfig = targetService.getDisplayColumnConfig();\n    uiStateService.currentFilter.columnValues = targetService.getFilterColumnValues();\n    $ctrl.entityUiStateService.onPageChange(1);\n} else {\n    console.warn(`No service configured for entity type: ${entityType}`);\n}\n\n$ctrl.currentInfoPanelTabIndex = 1;\n$ctrl.currentInfoPanelTab = \"General\";\n\n$ctrl.infoPanelTabItems = [\n    {\n        label: \"General\",\n        closable: false\n    },\n\n    // Conditionally spread the \"Roles\" object into the array\n    ...(entityType === \"user\" ? [{\n        label: \"Roles\",\n        closable: false\n    }] : []),\n\n    // Conditionally spread the \"Scopes\" object into the array\n    ...(entityType === \"role\" ? [{\n        label: \"Scopes\",\n        closable: false\n    }] : [])\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchCurrentEntityType",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.entityUiStateService.currentEntityType"
+      ]
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "name": "$state",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "infoPanelTabItems",
+      "type": "property",
+      "value": " [\n    {\n        label: \"General\",\n        closable: false\n    },\n    {\n        label: \"Roles\",\n        closable: false\n    }\n];"
+    },
+    {
+      "description": "",
+      "name": "currentInfoPanelTab",
+      "type": "property",
+      "value": "\"General\""
+    },
+    {
+      "description": "",
+      "name": "currentInfoPanelTabIndex",
+      "type": "property",
+      "value": ""
+    }
+  ]
+}

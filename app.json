@@ -1,0 +1,285 @@
+{
+  "config": {
+    "auth": {
+      "enabled": true,
+      "mockedUserAccounts": []
+    },
+    "config": {
+      "parameters": [],
+      "script": ""
+    },
+    "defaultEnvironment": {
+      "active": false,
+      "description": "Connects to MR running locally.",
+      "properties": [
+        {
+          "name": "apiBaseUrl",
+          "value": "http://localhost:8080"
+        }
+      ]
+    },
+    "environments": [
+      {
+        "active": true,
+        "description": "Connects to MR running locally.",
+        "name": "local",
+        "properties": [
+          {
+            "name": "apiBaseUrl",
+            "value": "http://localhost:8080"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "description": "Connects to MR running on dedicated staging instance (i.e., Toro292 Essentials Hosting).",
+        "name": "staging",
+        "properties": [
+          {
+            "name": "apiBaseUrl",
+            "value": "https://toro292.et.martiniserver.com"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "description": "Connects to MR running on dedicated production instance (i.e., Toro287 Essentials Hosting).",
+        "name": "production",
+        "properties": [
+          {
+            "name": "apiBaseUrl",
+            "value": "https://toro287.et.martiniserver.com"
+          }
+        ]
+      }
+    ],
+    "properties": {
+      "description": "The frontend interface for the Customer Relationship Management (CRM) system, built on the Bellini low-code platform. This package delivers the full user-facing CRM lifecycle—from interactive contact directories and drag-and-drop pipeline tracking to activity timelines and integration dashboards—all bound to live APIs with contextual UI rendering for secure, multi-tenant data isolation.",
+      "title": "Lonti CRM App",
+      "version": "1.3.0-SNAPSHOT"
+    }
+  },
+  "defaultPage": "contact-management",
+  "directories": {
+    "assets": [
+      {
+        "id": "wrhvlS0rJH5XrPYnjo54K",
+        "name": "button-assets"
+      },
+      {
+        "id": "C-T3RVbxvR8sQlb1tirN3",
+        "name": "reset-filter-button",
+        "parentDirectoryId": "wrhvlS0rJH5XrPYnjo54K"
+      }
+    ],
+    "components": [
+      {
+        "id": "R6gKwA9iYxXE9EbAxiJxY",
+        "name": "form-components"
+      },
+      {
+        "id": "u1bGevFsO_IjBXNugZ3VK",
+        "name": "entity-forms",
+        "parentDirectoryId": "R6gKwA9iYxXE9EbAxiJxY"
+      },
+      {
+        "id": "-9j3f8gMi52iIWx6Uy4VM",
+        "name": "header-components"
+      },
+      {
+        "id": "bvg1TG4YV7SmL0UCZdwFi",
+        "name": "modals"
+      },
+      {
+        "id": "1RazoPSP8sShi8sWRi16c",
+        "name": "info-panel-components"
+      },
+      {
+        "id": "Z_sFxIulGvGqV4buK1WEU",
+        "name": "main-components"
+      },
+      {
+        "id": "7L0qywAZS7MdtDGbi9EmW",
+        "name": "filter-components"
+      },
+      {
+        "id": "rlYEKcCpmyuJB1IRKl-xr",
+        "name": "entity-360-degree-view-components"
+      },
+      {
+        "id": "1hf8IrcxjhXksUM1xonWz",
+        "name": "dashboard-components"
+      },
+      {
+        "id": "hGPOWwcopHezZyTzDIZwQ",
+        "name": "alert-bar-components"
+      },
+      {
+        "id": "f7Iqv2_hFSXtuyhrS5Tcy",
+        "name": "nav-components"
+      },
+      {
+        "id": "sAyZzUqsykbBh-abqR00l",
+        "name": "pipeline-view-components"
+      }
+    ],
+    "pages": [],
+    "scripts": [],
+    "services": [
+      {
+        "id": "H_nDlGsW6d7CjPhG0w4Pi",
+        "name": "entity-services"
+      },
+      {
+        "id": "jdqLA0sxCMxbSkAwamsYW",
+        "name": "entity-specific-services",
+        "parentDirectoryId": "H_nDlGsW6d7CjPhG0w4Pi"
+      },
+      {
+        "id": "ydaGepWdda1bNl-q1IFy5",
+        "name": "auth-services"
+      },
+      {
+        "id": "vNppa4hFdSWuu-9EN5-t1",
+        "name": "data-services"
+      },
+      {
+        "id": "oazhNTC9cpQ-QE-ClEbjF",
+        "name": "util-services"
+      },
+      {
+        "id": "apF8nc7jWb9yv7Ig7KjLh",
+        "name": "i18n-services"
+      },
+      {
+        "id": "ktp_8ciNpY4P99RJXNxOQ",
+        "name": "config-services"
+      },
+      {
+        "id": "FJUPgtImGqaULCVh6IFF9",
+        "name": "core"
+      },
+      {
+        "id": "cfn_lrJp-q0dOTeu-_jLT",
+        "name": "ui",
+        "parentDirectoryId": "FJUPgtImGqaULCVh6IFF9"
+      },
+      {
+        "id": "d08clVH4An6sTkiA4Wa52",
+        "name": "component",
+        "parentDirectoryId": "cfn_lrJp-q0dOTeu-_jLT"
+      }
+    ],
+    "stylesheets": [
+      {
+        "id": "bwr8NV-uCYcoF8inJChge",
+        "name": "component-styles"
+      },
+      {
+        "id": "GdO3jJSOzKpFA6duI75kl",
+        "name": "header-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "B9scQmSJrzVnMj0ZcBMnJ",
+        "name": "form-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "5zwJHD5VB98pIq-_Cx3Nb",
+        "name": "modal-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "PlB8CfwYBTyAXXXJ2M4Dz",
+        "name": "toast-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "jVMupZMcpuuPTs1J6JWHF",
+        "name": "main-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "v6zYZDVlhkRYRKlrr5cCe",
+        "name": "nav-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "gMAv8_Y1uyIug6BjzAmln",
+        "name": "info-panel-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "MBvpx036Z3BJB1GGOzNst",
+        "name": "filter-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "4MEHKdTDqKxxs-E921h0Q",
+        "name": "spinner-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "ydciip79sFiWqt7KDJjJG",
+        "name": "page-styles"
+      },
+      {
+        "id": "BFBcqAMM4yH5nTOFGvGuA",
+        "name": "entity-360-degree-view-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      },
+      {
+        "id": "MAfJNVs8wIg3KdvKY-wDx",
+        "name": "alert-bar-component-styles",
+        "parentDirectoryId": "bwr8NV-uCYcoF8inJChge"
+      }
+    ]
+  },
+  "localStylesheets": [
+    {
+      "path": "batch-import-page-style.css"
+    },
+    {
+      "path": "filter-component-style.css"
+    },
+    {
+      "path": "form-component-style.css"
+    },
+    {
+      "path": "header-component-style.css"
+    },
+    {
+      "path": "info-panel-component-style.css"
+    },
+    {
+      "path": "inline-alert-bar-component-styles.css"
+    },
+    {
+      "path": "lonti-app-crm.css"
+    },
+    {
+      "path": "main-component-style.css"
+    },
+    {
+      "path": "modal-style.css"
+    },
+    {
+      "path": "nav-component-style.css"
+    },
+    {
+      "path": "note-component-style.css"
+    },
+    {
+      "path": "select-tenant-modal-style.css"
+    },
+    {
+      "path": "spinner-component-style.css"
+    },
+    {
+      "path": "toast-component-style.css"
+    }
+  ],
+  "name": "lonti-app-crm2",
+  "type": "app"
+}

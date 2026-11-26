@@ -1,0 +1,114 @@
+{
+  "description": "",
+  "name": "entity-cache-service",
+  "parentDirectoryId": "H_nDlGsW6d7CjPhG0w4Pi",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "cacheStorage",
+      "properties": [],
+      "type": "object"
+    },
+    {
+      "body": "const TTL = 300_000;\n\nconst cachedEntry = undefined; // this.cacheStorage[entity] || (query ? this.cacheStorage[insertActivityType(entity, getActivityType(query))] : undefined);\nconst now = Date.now();\nconst isExpired = cachedEntry && now - cachedEntry.lastFetched > cachedEntry.ttl;\nconst columnConfigProvided = columnConfig;\n\nif (cachedEntry && !isExpired && this.getCachedEntityValue && (!query || (!query.includes(\"body\") && getActivityType(query)))) {\n  return Promise.resolve(this.getCachedEntityValue(entity, \"entities\"));\n} else {\n  const options = {\n    page: page,\n    limit: limit,\n    query: query,\n    apiType: apiType,\n    customEntityKey: customEntityKey\n  };\n\n  // 1. 'await' the response from the data service\n  const { entities, total, totalFiltered, pageCount, hasNextPage } = await this.dataService.getData(entity, options);\n\n  // 2. Build the cache entry with the new data\n  const cacheEntry = {\n    entities: entities,\n    total: total,\n    totalFiltered: totalFiltered,\n    pageCount: pageCount,\n    hasNextPage: hasNextPage,\n    lastFetched: now,\n    ttl: TTL\n  };\n\n  if (columnConfigProvided) {\n    cacheEntry.columns = this.dataService.processData.generateColumnDefinitions(columnConfig.columnNames, columnConfig.options);\n  }\n\n  // 3. Determine the correct cache key and store the entry\n  let cacheKey = entity;\n  if (query) {\n    cacheKey = insertActivityType(entity, getActivityType(query));\n  }\n  this.cacheStorage[cacheKey] = cacheEntry;\n\n  // 4. Return the full response object for the caller to use\n  return { entities, total, totalFiltered, pageCount, hasNextPage };\n}\n\nfunction getActivityType(query) {\n  const parts = query.split('&');\n  for (const part of parts) {\n    const [key, value] = part.split('=');\n    if (key === \"activityType\") {\n      return value;\n    }\n  }\n  return null;\n}\n\nfunction insertActivityType(originalPath, activityType) {\n  const parts = originalPath.split('/');\n\n  if (parts.length >= 3 && parts[0] === \"activity\") {\n    const newParts = [parts[0], activityType, ...parts.slice(1)];\n    return newParts.join('/');\n  } else {\n    return originalPath;\n  }\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "getAll",
+      "parameters": [
+        "entityAction",
+        "entity",
+        "page",
+        "limit",
+        "columnConfig",
+        "query",
+        "apiType",
+        "customEntityKey"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "body": "const cachedEntry = this.cacheStorage[entity];\n\nif (cachedEntry) {\n    return cachedEntry[key];\n}\n\nreturn undefined;",
+      "description": "### `getCachedEntityValue(entity, key)`\n\nRetrieves a specific value associated with a cached entity.\n\n**Parameters:**\n\n* `entity` (`string`): A string representing the key of the entity in the cache storage. This typically corresponds to the entity type (e.g., 'contact', 'companies', 'deals').\n* `key` (`string`): A string specifying the piece of cached information to retrieve. Valid values are:\n    * `'entities'`: The array of cached entity objects.\n    * `'columns'`: The cached column definitions for the entity.\n    * `'lastFetched'`: The timestamp (in milliseconds) when the entity data was last fetched.\n    * `'ttl'`: The Time-To-Live (in milliseconds) configured for the cached entity data.\n\n**Returns:**\n\n* `any`: The value associated with the specified `key` for the cached `entity`. Returns `undefined` if the `entity` is not found in the cache or if the `key` is not one of the valid options.\n\n**Example:**\n\n```javascript\nconst cachedContactsData = {\n  'contact': {\n    entities: [\n      { id: 1, firstName: 'John' },\n      { id: 2, firstName: 'Jane' },\n    ],\n    columns: [\n      { name: 'First Name', valueKey: 'firstName' }\n    ],\n    lastFetched: 1678886400000,\n    ttl: 300000\n  }\n};\n\nthis.cacheStorage = cachedContactsData;\n\nconst contacts = getCachedEntityValue('contact', 'entities');\nconsole.log(contacts); // Output: [{ id: 1, firstName: 'John' }, { id: 2, firstName: 'Jane' }]\n\nconst contactColumns = getCachedEntityValue('contact', 'columns');\nconsole.log(contactColumns); // Output: [{ name: 'First Name', valueKey: 'firstName' }]\n\nconst lastFetchedTime = getCachedEntityValue('contact', 'lastFetched');\nconsole.log(lastFetchedTime); // Output: 1678886400000\n\nconst ttlValue = getCachedEntityValue('contact', 'ttl');\nconsole.log(ttlValue); // Output: 300000\n\nconst nonExistentEntity = getCachedEntityValue('products', 'entities');\nconsole.log(nonExistentEntity); // Output: undefined\n\nconst invalidKey = getCachedEntityValue('contact', 'data');\nconsole.log(invalidKey); // Output: undefined\n```",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedEntityValue",
+      "parameters": [
+        "entity",
+        "key"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return this.cacheStorage[key];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedEntry",
+      "parameters": [
+        "key"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.cacheStorage[key] = cacheEntry;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "setCachedEntry",
+      "parameters": [
+        "key",
+        "cacheEntry"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.cacheStorage = {};",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "clearCache",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "getAll",
+    "cacheStorage",
+    "getCachedEntities",
+    "getCachedColumns",
+    "getCachedEntityValue",
+    "getEntityNotes",
+    "clearCache",
+    "getCachedEntry",
+    "setCachedEntry"
+  ]
+}

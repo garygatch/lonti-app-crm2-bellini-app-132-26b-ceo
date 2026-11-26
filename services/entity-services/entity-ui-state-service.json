@@ -1,0 +1,1055 @@
+{
+  "description": "",
+  "name": "entity-ui-state-service",
+  "parentDirectoryId": "H_nDlGsW6d7CjPhG0w4Pi",
+  "singleton": false,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "isMobile",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "is360ViewActive",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isPipelineViewActive",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isLoadingData",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isSendingData",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isDeletingData",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isSidePanelVisible",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isExportingEntity",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isAddingEntity",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isEditingEntity",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentTable",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentColumns",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentSelectedRows",
+      "type": "array"
+    },
+    {
+      "description": "",
+      "name": "currentDisplayColumnConfig",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentDefaultColumnConfig",
+      "type": "array"
+    },
+    {
+      "description": "",
+      "name": "currentEntity",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentEntityType",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentEntityTypeHasActivities",
+      "type": "property",
+      "value": "true"
+    },
+    {
+      "description": "",
+      "name": "currentEntityIdKey",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentEntityId",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentEntityDetails",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentForm",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentTab",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentFilter",
+      "properties": [
+        {
+          "description": "",
+          "name": "column",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "operation",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "target",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "query",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "children": [],
+          "description": "",
+          "name": "columnValues",
+          "type": "array"
+        },
+        {
+          "children": [],
+          "description": "",
+          "name": "targetValues",
+          "type": "array"
+        },
+        {
+          "description": "",
+          "name": "filtersApplied",
+          "type": "property",
+          "value": "[\n    {\n        property: null,\n        operation: null,\n        value: null\n    }\n]"
+        },
+        {
+          "description": "",
+          "name": "sortsApplied",
+          "type": "property",
+          "value": "[\n    {\n        property: null,\n        order: \"ASC\"\n    }\n]"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "currentDefaultSearchConfig",
+      "properties": [
+        {
+          "description": "",
+          "name": "property",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "operation",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "currentPage",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentPageCount",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentPageKey",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentDefaultConfig",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "if (!entity) {\n    this.onEntityDeselect();\n    return;\n}\n\nconst idKey = this.currentEntityIdKey;\nif (this.currentEntity && entity[idKey] !== this.currentEntity[idKey]) {\n    this.activity.notes.hasLoadedEntityNotes = false;\n    this.activity.notes.currentNotes.length = 0;\n    this.activity.calls.hasLoadedEntityCalls = false;\n    this.activity.calls.currentCalls.length = 0;\n    \n    this.activity.eventLogs.hasLoadedEntityEventLogs = false;\n    this.activity.eventLogs.currentEventLogs.length = 0;\n}\n\nif (this.isAddingEntity) {\n    this.isSidePanelVisible = false;\n    this.isAddingEntity = false;\n}\n\nthis.currentEntity = entity;\nthis.currentEntityId = this.currentEntity[idKey];\n\n\n\nif (this.isEditingEntity) {\n    this.utilityService.populateForm(this.currentForm, this.currentEntity);\n}\n\nif (this.currentApiType === \"crm\" && this.currentEntityTypeHasActivities) {\n    loadEntityActivities(this);\n    loadEntityAttachments(this);\n}\n\nthis.isSidePanelVisible = true;\n\nthis.currentEntityDetails = this.utilityService.formatEntityForDisplay(this.currentEntity);\n\n/**\n * Loads Notes and Calls, and once complete, loads the Event Logs\n * for the entity and its related activities.\n */\nfunction loadEntityActivities(ctx) {\n    const promises = [];\n\n    if (!ctx.activity.notes.hasLoadedEntityNotes && !ctx.activity.notes.isLoadingNotes) {\n        ctx.activity.notes.isLoadingNotes = true;\n        const notesPromise = ctx.activity.notes.loadEntityNotes()\n            .then(() => ctx.activity.notes.hasLoadedEntityNotes = true)\n            .finally(() => ctx.activity.notes.isLoadingNotes = false);\n        promises.push(notesPromise);\n    }\n\n    if (!ctx.activity.calls.hasLoadedEntityCalls && !ctx.activity.calls.isLoadingCalls) {\n        ctx.activity.calls.isLoadingCalls = true;\n        const callsPromise = ctx.activity.calls.loadEntityCalls()\n            .then(() => ctx.activity.calls.hasLoadedEntityCalls = true)\n            .finally(() => ctx.activity.calls.isLoadingCalls = false);\n        promises.push(callsPromise);\n    }\n\n    if (!ctx.activity.eventLogs.hasLoadedEntityEventLogs && !ctx.activity.eventLogs.isLoadingEventLogs) {\n        ctx.activity.eventLogs.isLoadingEventLogs = true;\n    }\n    \n    Promise.allSettled(promises).then(async () => {\n        const loadLogsForEntityType = (entityType, currentItems, idPropertyName) => {\n            if (currentItems?.length) {\n                const mostRecentEntityId = ctx.utilityService.getMostRecentEntityId(currentItems, idPropertyName);\n                return ctx.activity.eventLogs.loadEntityEventLogs(entityType, mostRecentEntityId);\n            }\n            return Promise.resolve();\n        };\n\n        const logPromises = [];\n\n        logPromises.push(loadLogsForEntityType(\"activity_notes\", ctx.activity.notes.currentNotes, \"activityId\"));\n        logPromises.push(loadLogsForEntityType(\"activity_call\", ctx.activity.calls.currentCalls, \"activityId\"));\n        logPromises.push(ctx.activity.eventLogs.loadEntityEventLogs(ctx.currentEntityType, ctx.currentEntityId));\n\n        await Promise.allSettled(logPromises);\n\n        ctx.activity.eventLogs.hasLoadedEntityEventLogs = true;\n        ctx.activity.eventLogs.isLoadingEventLogs = false;\n\n        if (ctx.activity.eventLogs.currentEventLogs.length > 0) {\n            ctx.utilityService.sortEntitiesByDateProperty(ctx.activity.eventLogs.currentEventLogs, \"modifiedOn\");\n        }\n    });\n}\n\n// Handle Attachments\nfunction loadEntityAttachments(ctx) {\n    ctx.attachmentService.uiState.currentPage = 1;\n    ctx.attachmentService.uiState.targetEntityType = ctx.currentEntityType;\n    ctx.attachmentService.uiState.targetEntityId = ctx.currentEntityId;\n    ctx.attachmentService.uiState.targetEntityName = ctx.currentEntity.fullName ?? ctx.currentEntity.name ?? \"\";\n    ctx.attachmentService.helpers._resetUploadState();\n    ctx.attachmentService.loaders.loadAllAttachmentsByEntity();\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onEntitySelect",
+      "parameters": [
+        "entity"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (this.isPipelineViewActive && !this.isMobile) {\n    this.pipelineViewService.selectedDeal = null;\n    this.pipelineViewService.selectedDealDetails = [];\n} else {\n    this.isSidePanelVisible = false;\n    this.currentEntity = null;\n    this.currentEntityId = null;\n    this.currentSelectedRows = [];\n}\n\nthis.isAssigningEntity = false;\nthis.isAddingEntity = false;\nthis.isEditingEntity = false;\n\n// Reset Notes\nthis.activity.notes.hasLoadedEntityNotes = false;\nthis.activity.notes.currentNotes.length = 0;\n\n// Reset Calls\nthis.activity.calls.hasLoadedEntityCalls = false;\nthis.activity.calls.currentCalls.length = 0;\n\n// Reset Call Notes\nthis.activity.calls.notes.hasLoadedEntityNotes = false;\nthis.activity.calls.notes.currentNotes.length = 0;\n\n// Reset Event Logs\nthis.activity.eventLogs.hasLoadedEntityEventLogs = false;\nthis.activity.eventLogs.currentEventLogs.length = 0;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onEntityDeselect",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const tabItemIndex = selectedTab - 1;\nthis.currentTabName = this.currentTabItems[tabItemIndex].label;\n\nif (this.currentApiType === \"auth\") {\n    this.currentEntityType = this.currentTabName.toLowerCase().slice(0, -1);\n}\n\nif (this.isAddingEntity) {\n    this.isAddingEntity = false;\n}\n\nif (this.isEditingEntity) {\n    this.isEditingEntity = false;\n}\n\nif (this.currentEntity) {\n    this.currentEntity = undefined;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onSelectedTabChange",
+      "parameters": [
+        "selectedTab"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.onPageChange(undefined, queryString, false);\nreturn;\n\nconst { column: newColumn, operation: newOperation, target: newTarget } = changes;\n\nif (newColumn === null && newOperation === null && newTarget === null) {\n    this.onPageChange(this.currentPage, null, true)\n    return;\n}\n\n// --- 1. Handle a change in the filter COLUMN ---\n//    This is the primary trigger for resetting other fields.\nif (newColumn !== undefined) {\n    // When the column changes, always reset the rest of the filter.\n    this.currentFilter.column = newColumn;\n    this.currentFilter.operation = null;\n    this.currentFilter.target = null;\n    this.currentFilter.targetValues = []; // Clear any dropdown options\n    this.isFilteringByPipelineOrPipelineStage = false;\n\n    // Now, apply special logic if the new column is a pipeline/stage.\n    if ([\"pipelineId\", \"pipelineStageId\"].includes(newColumn)) {\n        this.isFilteringByPipelineOrPipelineStage = true;\n        this.currentFilter.operation = \"eq\"; // Force the operation to 'eq'.\n\n        // Populate the dropdown for the target value based on the selected column.\n        const sourceArray = newColumn === \"pipelineId\" ? this.currentPipelines : this.currentPipelineStages;\n        const valueKey = newColumn === \"pipelineId\" ? \"pipelineId\" : \"pipelineStageId\";\n\n        this.currentFilter.targetValues = this.utilityService.generateLabelValueArray({\n            entityArray: sourceArray,\n            labelKey: \"name\",\n            valueKey: valueKey\n        });\n    }\n}\n\n// --- 2. Handle changes to OPERATION and TARGET values ---\nif (newOperation !== undefined) {\n    this.currentFilter.operation = newOperation;\n}\nif (newTarget !== undefined) {\n    this.currentFilter.target = newTarget;\n}\n\n// --- 3. Build the query and trigger a data reload ---\nconst { column, operation, target } = this.currentFilter;\n\n// If the target is explicitly set to empty string, it means the user cleared the filter.\nif (target === \"\") {\n    this.currentFilter.query = '';\n    this.onPageChange(undefined, undefined, true);\n    return;\n}\n\n// Only reload the data if all parts of the filter are complete.\nif (column && operation && target) {\n    this.currentFilter.query = _buildFilterQuery(this.currentFilter);\n    this.onPageChange(undefined, this.currentFilter.query, false);\n}\n\n/**\n * Helper function to build the query string.\n * @private\n */\nfunction _buildFilterQuery(currentFilter) {\n    // This helper remains the same, it's a good separation of concerns.\n    const { column, target, operation } = currentFilter;\n    if (!column || !target || !operation) {\n        return '';\n    }\n    return `${column}_${operation}=${target}`;\n}\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onFilterChange",
+      "parameters": [
+        "queryString"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.currentDataLoadId++;\nconst loadId = this.currentDataLoadId;\nconst limit = this.limit ?? 25;\n\nconst {\n    createdNewEntity,\n    entityId,\n    changedTenant\n} = options || {};\n\nconst currentEntityType = this.currentEntityType;\nconst isOpportunity = currentEntityType === \"opportunity\";\nconst titleCasedEntityType = isOpportunity ? \"Deal\" : currentEntityType[0].toUpperCase() + currentEntityType.slice(1);\nthis.currentDefaultConfig = {\n    ...this.currentDefaultSearchConfig,\n    columns: this.currentDefaultColumnConfig.columnNames\n};\n\nif (changedTenant) {\n    this.is360ViewActive = false;\n    if (this.isPipelineViewActive) {\n        this.isPipelineViewActive = false;\n        this.pipelineViewService.resetKanbanView();\n    }\n}\n\n// Use the provided parameter, defaulting to page 1 if it's null/undefined.\nif (currentPageParam) {\n    this.currentPage = currentPageParam\n} else {\n    this.currentPage = 1;\n}\n\nif (this.currentApiType === \"auth\") {\n    this.currentEntityIdKey = \"id\";\n} else {\n    this.currentEntityIdKey = currentEntityType + \"Id\";\n}\n\nthis.entityService.entityType = currentEntityType;\nthis.entityService.displayColumnConfig = this.currentDisplayColumnConfig;\n\n// --- 1. Update Filter State ---\nif (externalQueryParam === null) {\n    const { column, operation, target } = this.currentFilter;\n    this.currentFilter = {\n        column: null,\n        operation: null,\n        target: null,\n        query: '',\n        columnValues: this.currentFilter.columnValues,\n        filtersApplied: [\n            {\n                property: null,\n                operation: null,\n                value: \"\"\n            }\n        ],\n        sortsApplied: [\n            {\n                property: null,\n                order: \"ASC\"\n            }\n        ]\n    };\n\n    // if (!column || !operation || !target) return;\n\n} else if (externalQueryParam !== undefined) {\n    this.currentFilter.query = externalQueryParam;\n    this.currentPage = 1;\n}\n\nthis.onEntitySelect(null);\n\ntry {\n    this.isLoadingData = true;\n\n    if (createdNewEntity && entityId && !this.currentFilter.query) {\n        this.currentFilter.filtersApplied = [{\n            property: this.currentEntityIdKey,\n            operation: \"eq\",\n            value: entityId\n        }];\n\n        this.currentFilter.query = `${this.currentEntityIdKey}_eq=${entityId}`;\n    }\n\n    // --- 2. Fetch Data ---\n    const { entities, total, totalFiltered, pageCount } = await this.entityService.getAllEntities({\n        page: this.currentPage,\n        limit: limit,\n        query: this.currentFilter.query,\n        clearCache: clearCacheParam,\n        apiType: this.currentApiType,\n        entity: currentEntityType\n    });\n\n    // If the global ID has changed since this function was called, it means a\n    // newer request is in progress. We should discard this response.\n    if (loadId !== this.currentDataLoadId) {\n        return;\n    }\n\n    // Store the results on the controller.\n    this.currentTable = entities;\n    this.currentColumns = this.entityService.getCachedEntityColumns();\n    this.currentTotal = total;\n    this.currentTotalFiltered = totalFiltered;\n    this.currentPageCount = pageCount;\n\n    if (pageCount) {\n        this.currentTotalPages = pageCount;\n    } else {\n        this.currentTotalPages = 1;\n    }\n\n    // --- 3. Conditionally Enrich Data ---\n    if (isOpportunity && this.currentTable.length > 0) {\n        this.isAdmin = this.authService.isCurrentUserAdmin;\n        this.hasPipelineRole = this.authService.hasRoleForCurrentTenant(\"Pipelines Viewer\") || this.authService.hasRoleForCurrentTenant(\"Pipelines Manager\");\n        if (this.isAdmin || this.hasPipelineRole) {\n            const { entities: pipelines } = await this.entityService.getAllEntities({ entity: \"pipeline\", limit: \"ALL\", apiType: this.currentApiType });\n            const { entities: pipelineStages } = await this.entityService.getAllEntities({ entity: \"pipelinestage\", limit: \"ALL\", apiType: this.currentApiType });\n            this.utilityService.mapPipelineStageIdToPipelineStageName(this.currentTable, pipelineStages);\n            this.currentPipelines = pipelines;\n            this.currentPipelineStages = pipelineStages;\n            this.currentFilter.targetValues = {\n                pipelineId: this.utilityService.generateLabelValueArray({\n                    entityArray: pipelines,\n                    labelKey: \"name\",\n                    valueKey: \"pipelineId\"\n                }),\n                pipelineStageId: this.utilityService.generateLabelValueArray({\n                    entityArray: pipelineStages,\n                    labelKey: \"name\",\n                    valueKey: \"pipelineStageId\"\n                })\n            };\n        }\n    }\n\n    // --- 4. Sync Grid Selection ---\n    // if (createdNewEntity && entityId) {\n    //     this.onEntitySelect(null);\n    //     _scrollToAndSelectRow(entityId, this);\n    // } \n\n    if (this.isExportingEntity && this.currentRowsForExport && this.currentRowsForExport.length > 0) {\n        this.initiateExport();\n\n        this.currentSelectedRows = _getExportableRowsFromCurrentPage(this);\n        // _syncGridSelection(this);\n    }\n\n} catch (error) {\n    console.error(\"Error during onPageChange data load:\", error);\n    this.utilityService.toast(\"Failed to load data for current tab.\", \"ERROR\");\n    this.currentTable = []; // Clear table data on error\n} finally {\n    // Delay boolean update to ensure digest cycle trigger\n    this.$timeout(() => {\n        if (loadId === this.currentDataLoadId) {\n            this.isLoadingData = false;\n        }\n    }, 500);\n}\n\n/**\n * Helper function to synchronize the ui-grid's selected rows with a master list.\n * Safe to call even if the table is still loading.\n * @private\n */\nfunction _syncGridSelection(ctx) {\n    const MAX_RETRIES = 20;\n    let attempts = 0;\n\n    function attemptSync() {\n        try {\n            if (!ctx.currentRowsForExport || ctx.currentRowsForExport.length === 0) {\n                return;\n            }\n\n            const tableElement = document.querySelector('bln-table');\n            const scope = tableElement ? angular.element(tableElement).scope() : null;\n\n            const ctrl = scope?.$$childTail?.$ctrl;\n            const gridApi = ctrl?.gridApi;\n\n            if (!gridApi) {\n                if (attempts < MAX_RETRIES) {\n                    attempts++;\n                    setTimeout(attemptSync, 100);\n                } else {\n                    console.warn(\"Timed out waiting for bln-table gridApi in _syncGridSelection\");\n                }\n                return;\n            }\n\n            const deregisterEvent = gridApi.core.on.rowsRendered(null, () => {\n                try {\n                    const selectedIds = new Set(ctx.currentRowsForExport.map(row => row[ctx.currentEntityIdKey]));\n\n                    let hasChanges = false;\n\n                    gridApi.grid.rows.forEach(row => {\n                        if (selectedIds.has(row.entity[ctx.currentEntityIdKey])) {\n                            gridApi.selection.selectRow(row.entity);\n                            hasChanges = true;\n                        }\n                    });\n\n                    if (hasChanges && gridApi) {\n                        gridApi.selection.raise.rowSelectionChangedBatch();\n                    }\n\n                } catch (innerError) {\n                    console.error(\"Error during grid row selection:\", innerError);\n                } finally {\n                    deregisterEvent();\n                }\n            });\n\n        } catch (e) {\n            console.error(\"Critical error in _syncGridSelection:\", e);\n        }\n    }\n\n    attemptSync();\n}\n\n/**\n * Finds a specific entity in the grid by its ID, scrolls to make it visible, and selects it.\n * Waits for the table component to be fully ready before executing.\n * @private\n * @param {string|number} entityId - The ID of the entity to find and select.\n */\nfunction _scrollToAndSelectRow(entityId, ctx) {\n    const MAX_RETRIES = 20;\n    let attempts = 0;\n\n    function attemptScroll() {\n        try {\n            if (!entityId) {\n                return;\n            }\n\n            const tableElement = document.querySelector('bln-table');\n            const scope = tableElement ? angular.element(tableElement).scope() : null;\n\n            const ctrl = scope?.$$childTail?.$ctrl;\n            const gridApi = ctrl?.gridApi;\n\n            if (!gridApi) {\n                if (attempts < MAX_RETRIES) {\n                    attempts++;\n                    setTimeout(attemptScroll, 100);\n                } else {\n                    console.warn(`Timed out waiting for bln-table gridApi in _scrollToAndSelectRow for ID: ${entityId}`);\n                }\n                return;\n            }\n\n            const deregisterEvent = gridApi.core.on.rowsRendered(null, () => {\n                try {\n                    const targetRow = gridApi.grid.rows.find(row =>\n                        row.entity[ctx.currentEntityIdKey] === entityId\n                    );\n\n                    if (targetRow) {\n                        gridApi.core.scrollTo(targetRow.entity, null);\n                        gridApi.selection.selectRow(targetRow.entity);\n\n                        if (gridApi) {\n                            gridApi.selection.raise.rowSelectionChanged();\n                        }\n\n                        deregisterEvent();\n                    } else {\n                        deregisterEvent();\n                    }\n                } catch (innerError) {\n                    console.error(\"Error executing scroll/select logic:\", innerError);\n                    deregisterEvent();\n                }\n            });\n\n        } catch (e) {\n            console.error(\"Critical error in _scrollToAndSelectRow:\", e);\n        }\n    }\n\n    attemptScroll();\n}\n\n/**\n * Iterates over the current table data and returns only the rows that are present in the export list.\n * @returns {Array} The subset of rows from currentTable that are marked for export.\n */\nfunction _getExportableRowsFromCurrentPage(ctx) {\n    try {\n        if (!ctx.currentTable || !ctx.currentTable.length) {\n            return [];\n        }\n\n        if (!ctx.currentRowsForExport || !ctx.currentRowsForExport.length) {\n            return [];\n        }\n\n        const idKey = ctx.currentEntityIdKey;\n        const exportIds = new Set(ctx.currentRowsForExport.map(row => row[idKey]));\n\n        return ctx.currentTable.filter(row => exportIds.has(row[idKey]));\n\n    } catch (e) {\n        console.error(\"Error filtering exportable rows from current page:\", e);\n        return [];\n    }\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onPageChange",
+      "parameters": [
+        "currentPageParam",
+        "externalQueryParam",
+        "clearCacheParam",
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!this.isAddingEntity && this.currentForm !== null) this.utilityService.clearForm(this.currentForm);\n\nthis.isAddingEntity = !this.isAddingEntity;\n\nif (this.isAddingEntity) this.isSidePanelVisible = true;\nelse this.isSidePanelVisible = false;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "initiateAdd",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!this.isEditingEntity && this.currentForm !== null) this.utilityService.clearForm(this.currentForm);\nthis.isEditingEntity = !this.isEditingEntity;\n\nif (this.isEditingEntity) this.utilityService.populateForm(this.currentForm, this.currentEntity);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "initiateEdit",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.is360ViewActive = true;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onFullViewButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.pipelineViewService.loadKanbanData(this.currentEntity.pipelineId);\nthis.pipelineViewService.currentPipeline = this.currentEntity;\nthis.isPipelineViewActive = true;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onViewDealsButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.isSendingData = true;\n\nconst fileNameMap = {\n    contact: \"Exported_Contacts\",\n    company: \"Exported_Companies\",\n    opportunity: \"Exported_Opportunities\"\n};\nconst entityType = this.currentEntityType;\n\nif (!fileNameMap[entityType]) {\n    this.utilityService.toast(\"Invalid entity type for export\", \"ERROR\");\n    this.isSendingData = false;\n    return;\n}\n\nconst capitalizedEntityType = entityType.charAt(0).toUpperCase() + entityType.slice(1);\nconst currentExportFormat = this.currentExportFormat;\nconst fileExtension = currentExportFormat === \"excel\" ? \"xlsx\" : currentExportFormat;\nconst defaultFileName = `${fileNameMap[entityType]}.${fileExtension}`;\nconst batchEndpoint = `/export/${capitalizedEntityType}`;\nconst endpoint = new URL(`${this.dataService.apiBaseUrl}${batchEndpoint}`);\n\nendpoint.searchParams.set('format', currentExportFormat);\n\nif (this.currentRowsForExport?.length) {\n    const idPropertyName = `${entityType}Id`;\n    const entityIds = this.currentRowsForExport.map(row => row[idPropertyName]);\n    endpoint.searchParams.set('entityIds', entityIds.join(','));\n} else {\n    let limit = 20;\n    let offset = 0;\n    const modalInputFields = [\n        {\n            label: \"Limit\",\n            type: \"number\",\n            value: limit,\n            placeholder: \"Default: 20 records\",\n            tooltip: \"Limits how many records to export\",\n            number: {\n                min: 1\n            }\n        },\n        {\n            label: \"Offset\",\n            type: \"number\",\n            value: offset,\n            placeholder: \"Default: 0 records\",\n            tooltip: \"Starts the export from this record number\",\n            number: {\n                min: 0\n            }\n        }\n    ];\n\n    try {\n        const modalResult = await this.$modal.open(\"confirm-action-modal\", {\n            modalHeaderTitle: \"Export All\",\n            modalInputFields: modalInputFields,\n\n            // --- REFACTORED PART ---\n\n            // Pass a FUNCTION for the disabled state.\n            // The modal will call this function whenever the modalInputFields change.\n            // It passes the current state of the fields as an argument.\n            modalOKButtonDisabled: (currentFields) => {\n                const limitValue = currentFields[0].value;\n                const offsetValue = currentFields[1].value;\n\n                // The button is disabled if the condition is true.\n                return limitValue < 1 || offsetValue < 0;\n            },\n\n            // Pass a FUNCTION for the tooltip as well.\n            modalOKButtonTooltip: (currentFields) => {\n                const limitValue = currentFields[0].value;\n                const offsetValue = currentFields[1].value;\n\n                // Using if statements is often clearer than a nested ternary.\n                if (limitValue < 1) {\n                    return \"Limit cannot be less than 1\";\n                }\n                if (offsetValue < 0) {\n                    return \"Offset cannot be less than 0\";\n                }\n\n                // Return null or an empty string when there is no tooltip to show.\n                return null;\n            }\n        });\n\n        if (modalResult?.result === \"ok\") {\n            limit = modalResult.modalInputFields[0].value ?? limit;\n            offset = modalResult.modalInputFields[1].value ?? offset;\n            endpoint.searchParams.set('limit', limit);\n            endpoint.searchParams.set('offset', offset);\n        } else {\n            this.isSendingData = false;\n            return;\n        }\n    } catch (error) {\n        console.error(\"Modal error:\", error);\n        this.utilityService.toast(\"Error during export configuration\", \"ERROR\");\n        this.isSendingData = false;\n        return;\n    }\n}\n\ntry {\n    const response = await fetch(endpoint.toString(), {\n        method: \"GET\",\n        headers: this.authService.getHeaders(),\n    });\n\n    if (!response.ok) {\n        const errorMessage = await response.text();\n        throw new Error(errorMessage || `Failed to export ${entityType}s`);\n    }\n\n    // --- REFACTORED PART: Handle JSON format separately ---\n    let fileBlob;\n\n    if (currentExportFormat === 'json') {\n        // For JSON, we need to parse the response and extract the entity array.\n        const responseData = await response.json();\n\n        // Intelligently find the array within the response object.\n        const entities = responseData[entityType] || responseData.entity || responseData;\n\n        // Re-serialize ONLY the entities array into a nicely formatted string.\n        const jsonString = JSON.stringify(entities, null, 2);\n        fileBlob = new Blob([jsonString], { type: 'application/json' });\n    } else {\n        // For all other formats (xlsx, csv), treat the whole response as the file.\n        fileBlob = await response.blob();\n    }\n\n    // Use a helper to trigger the download.\n    _triggerFileDownload(fileBlob, defaultFileName);\n\n} catch (error) {\n    this.utilityService.toast(error?.message || `An unexpected error occurred during export`, \"ERROR\");\n} finally {\n    this.isSendingData = false;\n}\n\n/**\n * Helper function to create a link and trigger a browser download.\n * @private\n */\nfunction _triggerFileDownload(blob, fileName) {\n    const url = window.URL.createObjectURL(blob);\n    const link = document.createElement(\"a\");\n    link.href = url;\n    link.download = fileName;\n    document.body.appendChild(link);\n    link.click();\n    // Clean up by removing the link and revoking the object URL.\n    document.body.removeChild(link);\n    window.URL.revokeObjectURL(url);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onExportButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const tableContainer = document.querySelector(\"#main-body-container .table-container\");\nif (tableContainer) {\n    tableContainer.removeAttribute(\"style\");\n}\n\nthis.currentSelectedRows.length = 0;\nthis.currentRowsForExport.length = 0;\nthis.isExportingEntity = false;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancelExportButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "// Set loading state at the beginning\nthis.isSendingData = true;\n\ntry {\n    const METHOD = \"POST\";\n    const { currentEntityType, currentApiType, currentForm } = this;\n    const requestBody = this.dataService.buildRequestBody(METHOD, currentForm);\n\n    // --- First API Call ---\n    const initialResponse = await this.dataService.sendData(\n        currentEntityType,\n        METHOD,\n        requestBody,\n        { apiType: currentApiType }\n    );\n\n    // If the result is not OK, throw an error to be caught by the catch block\n    if (initialResponse.result !== \"OK\") {\n        throw new Error(initialResponse.message);\n    }\n\n    // --- Conditional Second API Call ---\n    if (currentEntityType === \"tenant\") {\n        delete requestBody.active; // Modify the request body for the second call\n        const crmResponse = await this.dataService.sendData(\n            currentEntityType,\n            METHOD,\n            requestBody,\n            { apiType: \"crm\" } // Use the new options\n        );\n\n        if (crmResponse.result !== \"OK\") {\n            throw new Error(crmResponse.message);\n        }\n    \n        await this.authService.setSaasAuth();\n    }\n\n    // --- Success Actions ---\n    // These now run only after all API calls have successfully completed\n    this.isAddingEntity = false;\n    this.utilityService.clearForm(currentForm);\n\n    const newEntityId = initialResponse[this.currentEntityType][this.currentEntityIdKey];\n    const newEntityName = initialResponse[this.currentEntityType].name ?? initialResponse[this.currentEntityType].fullName ?? null;\n\n    const onPageChangeOptions = {\n        createdNewEntity: true,\n        entityId: newEntityId\n    };\n\n    if (this.currentFilter.query) {\n        this.notificationService.notify({\n            alertType: \"success\",\n            alertDescription: `New ${this.currentEntityType} ${newEntityName ? `\"${newEntityName}\" `: \"\"} has been created but is not currently visible.`,\n            displayActionText: true,\n            actionTextLabel: \"[Click Here to View]\",\n            onActionTextClick: () => {\n                this.currentFilter.column = this.currentEntityIdKey;\n                this.currentFilter.operation = \"eq\";\n                this.currentFilter.target = newEntityId;\n                this.currentFilter.filtersApplied = [{\n                    property: this.currentEntityIdKey,\n                    operation: \"eq\",\n                    value: newEntityId\n                }];\n                this.onPageChange(undefined, `${this.currentEntityIdKey}=${newEntityId}`, undefined, onPageChangeOptions);\n            },\n            dismissIn: 10_000\n        });\n        return;\n    }\n    \n    this.onPageChange(undefined, undefined, undefined, onPageChangeOptions);\n\n} catch (error) {\n    // Centralized error handling for both network failures and API errors\n    this.utilityService.toast(error.message, \"ERROR\");\n} finally {\n    // This block will always run, ensuring the loading state is reset\n    this.isSendingData = false;\n}\n\n// this.isSendingData = true;\n\n// const METHOD = \"POST\";\n// const currentEntityType = this.currentEntityType;\n// const currentEntityIdKey = this.currentEntityIdKey;\n// const requestBody = this.dataService.buildRequestBody(METHOD, this.currentForm);\n// let options = {\n//     apiType: this.currentApiType\n// };\n\n// this.dataService.sendData(currentEntityType, METHOD, requestBody, options)\n//     .then(res => {\n//         if (res.result !== \"OK\") {\n//             this.utilityService.toast(res.message, \"ERROR\");\n//             return;\n//         }\n\n//         if (currentEntityType === \"tenant\") {\n//             delete requestBody.active;\n//             options = {\n//                 apiType: \"crm\"\n//             };\n\n//             this.dataService.sendData(currentEntityType, METHOD, requestBody, options)\n//             .then(res => {\n//                 if (res.result !== \"OK\") {\n//                     this.utilityService.toast(res.message, \"ERROR\");\n//                     return;\n//                 }\n//             })\n//         }\n\n//         this.isAddingEntity = false;\n//         this.utilityService.clearForm(this.currentForm);\n//         this.currentFilter = {};\n//         this.onPageChange();\n//     })\n//     .catch(rej => this.utilityService.toast(rej.message, \"ERROR\"))\n//     .finally(() => this.isSendingData = false);\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onAddButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.isSendingData = true;\n\ntry {\n    const METHOD = \"PUT\";\n    // Destructure properties for cleaner access\n    const { currentEntityType, currentEntityIdKey, currentEntity, currentForm, currentApiType, currentTable } = this;\n    const entityId = currentEntity[currentEntityIdKey];\n\n    let requestBody = this.dataService.buildRequestBody(\n        METHOD,\n        currentForm,\n        currentEntityType,\n        entityId\n    );\n\n    // --- First API Call ---\n    const initialResponse = await this.dataService.sendData(\n        currentEntityType,\n        METHOD,\n        requestBody,\n        { apiType: currentApiType }\n    );\n\n    if (initialResponse.result !== \"OK\") {\n        throw new Error(initialResponse.message);\n    }\n\n    // --- Conditional Second API Call for \"tenant\" ---\n    if (currentEntityType === \"tenant\") {\n        const { entities: crmTenants } = await this.dataService.getData(currentEntityType, {});\n        let crmTenantId;\n\n        if (Array.isArray(crmTenants)) {\n            const crmTenantToUpdate = crmTenants.find(tenant => tenant.name === currentEntity.name && tenant.code === currentEntity.code && tenant.application === currentEntity.application);\n            if (crmTenantToUpdate) {\n                crmTenantId = crmTenantToUpdate.tenantId;\n            }\n        }\n\n        requestBody = this.dataService.buildRequestBody(\n            METHOD,\n            currentForm,\n            currentEntityType,\n            crmTenantId\n        );\n        \n        delete requestBody.active; // Modify body for the CRM call\n        requestBody.tenantId = crmTenantId;\n        const crmResponse = await this.dataService.sendData(\n            currentEntityType,\n            METHOD,\n            requestBody,\n            { apiType: \"crm\" } // Target the CRM API\n        );\n\n        if (crmResponse.result !== \"OK\") {\n            throw new Error(crmResponse.message);\n        }\n        \n        await this.authService.setSaasAuth();\n    }\n\n    // --- Success Actions ---\n    // This part only runs if all API calls were successful\n    this.isSidePanelVisible = false;\n    this.currentEntity = undefined;\n    this.isEditingEntity = false;\n    this.utilityService.clearForm(currentForm);\n\n    await this.onPageChange();\n    \n    const updatedTable = this.currentTable;\n    const updatedEntityInTable = updatedTable.find(row => row[currentEntityIdKey] === entityId);\n    this.onEntitySelect(updatedEntityInTable);\n\n} catch (error) {\n    this.utilityService.toast(error.message, \"ERROR\");\n} finally {\n    this.isSendingData = false;\n}\n\n// this.isSendingData = true;\n// const idKey = this.currentEntityIdKey;\n\n// const METHOD = \"PUT\";\n\n// const requestBody = this.dataService.buildRequestBody(METHOD, this.currentForm, this.currentEntityType, this.currentEntity[idKey]);\n// const options = {\n//     apiType: this.currentApiType\n// };\n\n// this.dataService.sendData(this.currentEntityType, METHOD, requestBody, options)\n//     .then(res => {\n//         if (res.result !== \"OK\") {\n//             this.utilityService.toast(res.message, \"ERROR\");\n//             return;\n//         }\n\n        \n//         const tempEntityId = this.currentEntity[idKey];\n        \n//         this.isSidePanelVisible = false;\n//         this.currentEntity = undefined;\n//         this.isEditingEntity = false;\n//         this.utilityService.clearForm(this.currentForm);\n//         this.onPageChange().then(() => {\n//             this.onEntitySelect(this.currentTable.find(row => row[idKey] === tempEntityId));\n//         });\n//     })\n//     .catch(rej => this.utilityService.toast(rej.message, \"ERROR\"))\n//     .finally(() => this.isSendingData = false);\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onEditButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.isDeletingData = true;\n\ntry {\n    // --- 1. Gather Entity Information ---\n    // Use destructuring for cleaner, more concise variable declarations\n    const { currentEntityType: type, currentEntityIdKey: idKey, currentEntity, currentApiType } = this;\n    const id = currentEntity[idKey];\n    const displayName = currentEntity.name || currentEntity.fullName;\n\n    // --- 2. Call Delete Service (with user confirmation) ---\n    const mainDeleteOptions = {\n        displayName: displayName,\n        modalData: this.utilityService.formatEntityForDisplay(currentEntity),\n        apiType: currentApiType\n    };\n    const result = await this.dataService.deleteData(type, id, mainDeleteOptions);\n\n    // Exit gracefully if the user cancelled the action in the confirmation modal.\n    // The 'finally' block will still run to reset the loading state.\n    if (result?.result === 'cancel') {\n        return;\n    }\n\n    // --- 3. Conditional Second Deletion for \"tenant\" (no confirmation) ---\n    if (type === 'tenant') {\n        const { entities: crmTenants } = await this.dataService.getData(type, {});\n        let crmTenantId;\n\n        if (Array.isArray(crmTenants)) {\n            const crmTenantToDelete = crmTenants.find(tenant => tenant.name === currentEntity.name && tenant.code === currentEntity.code && tenant.application === currentEntity.application);\n            if (crmTenantToDelete) {\n                crmTenantId = crmTenantToDelete.tenantId;\n            }\n        }\n        \n        // This assumes calling deleteData without modal options skips the confirmation dialog.\n        // It sends a corresponding delete request to the CRM system.\n        await this.dataService.deleteData(type, crmTenantId, { apiType: 'crm', skipModal: true });\n        await this.authService.setSaasAuth();\n    }\n\n    // --- 4. Process Success ---\n    // If we reach here, all deletions were confirmed and successful.\n    this.currentEntity = undefined;\n    this.isSidePanelVisible = false;\n    this.is360ViewActive = false;\n    this.onPageChange(); // Refresh the data list\n\n} catch (error) {\n    // This block now catches errors from EITHER delete call.\n    console.error(\"Deletion failed in onDeleteButtonClick:\", error);\n    // If your service doesn't already show a toast on error, you can add it here:\n    // this.utilityService.toast(error.message, \"ERROR\");\n\n} finally {\n    // This ensures the loading state is always reset.\n    this.isDeletingData = false;\n}\n\n// this.isDeletingData = true;\n\n// const idKey = this.currentEntityType.concat(\"Id\");\n\n// const id = this.currentEntity[idKey];\n// const type = this.currentEntityType;\n// const name = this.currentEntity.name || this.currentEntity.fullName;\n// const data = this.onEntitySelect(this.currentEntity);\n\n// this.dataService.deleteData(id, type, name, data)\n//     .then(res => {\n//         if (res.result === \"cancel\") return;\n//         if (![\"OK\",\"ok\", \"cancel\"].includes(res.result)) {\n//             this.utilityService.toast(res.message, \"ERROR\");\n//             return;\n//         }\n        \n//         this.currentEntity = undefined;\n//         this.isSidePanelVisible = false;\n//         this.is360ViewActive = false;\n//         this.onPageChange();\n//     })\n//     .catch(rej => {\n//         this.utilityService.toast(rej.message, \"ERROR\")\n//     })\n//     .finally(() => this.isDeletingData = false);\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onDeleteButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "body": "this.onPageChange(this.currentPage, undefined, true)",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onReloadButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "activity",
+      "properties": [
+        {
+          "description": "",
+          "name": "notes",
+          "properties": [
+            {
+              "children": [],
+              "description": "",
+              "name": "currentNotes",
+              "type": "array"
+            },
+            {
+              "description": "",
+              "name": "isLoadingNotes",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "hasLoadedEntityNotes",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "body": "const entityId = this.currentEntityId;\nif (!entityId) return;\n\ntry {\n    // 1. Await the service call and destructure the new response object.\n    //    We can alias 'entities' to 'activities' to keep the variable name clear.\n    const {\n        entities: activities,\n        total,\n        totalFiltered,\n        ownerId\n    } = await this.entityService.getAllEntityActivities(currentPage, undefined, entityId, \"Notes\", query, clearCache);\n\n    if (ownerId === this.currentEntityId) {\n        this.activity.notes.currentNotes = activities;\n        this.activity.notes.total = total;\n        this.activity.notes.totalFiltered = totalFiltered;\n    } else {\n        this.activity.notes.hasLoadedEntityNotes = false;\n        this.activity.notes.isLoadingNotes = true;\n        \n        await this.activity.notes.loadEntityNotes();\n        \n        this.activity.notes.hasLoadedEntityNotes = true;\n        this.activity.notes.isLoadingNotes = false;\n    }\n\n} catch (error) {\n    console.error(\"Error loading entity notes:\", error);\n    this.utilityService.toast(\"Failed to load notes.\", \"ERROR\");\n\n    // 4. Ensure a safe, default state on error.\n    this.activity.notes.currentNotes = [];\n    this.activity.notes.total = 0;\n    this.activity.notes.totalFiltered = 0;\n}",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": true,
+              "name": "loadEntityNotes",
+              "parameters": [
+                "currentPage",
+                "limit",
+                "query",
+                "clearCache"
+              ],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            },
+            {
+              "body": "let noteToProcess;\nlet isNewNote = false;\nlet newNoteBodyContent;\n\nconst editingNote = this.activity.notes.currentNotes.find(note => note.isEditingThisNote === true);\n\nif (editingNote) {\n  noteToProcess = editingNote;\n  newNoteBodyContent = editingNote.body;\n  if (!noteToProcess.activityId) {\n    this.utilityService.toast(\"Cannot update note without an activityId.\", \"ERROR\");\n    editingNote.isEditingThisNote = false;\n    return;\n  }\n} else {\n  if (this.activity.notes.currentNotes[0] && !this.activity.notes.currentNotes[0].activityId) {\n    noteToProcess = this.activity.notes.currentNotes[0];\n    newNoteBodyContent = noteToProcess.body;\n    isNewNote = true;\n  } else {\n    this.utilityService.toast(\"No note to save or update.\", \"INFO\");\n    return;\n  }\n}\n\nif (!newNoteBodyContent || !newNoteBodyContent.trim()) {\n  if (isNewNote && noteToProcess && noteToProcess[\"$$hashKey\"]) {\n    popObjectByHashKey(this.activity.notes.currentNotes, noteToProcess[\"$$hashKey\"]);\n  }\n  this.utilityService.toast(\"Note body cannot be empty.\", \"ERROR\");\n  return;\n}\n\nconst METHOD = isNewNote ? \"POST\" : \"PUT\";\nconst relatedEntityType = this.currentEntityType[0].toUpperCase() + this.currentEntityType.slice(1);\nconst idKey = this.currentEntityType.concat(\"Id\");\n\nlet requestBody;\n\nif (METHOD === \"POST\") {\n  requestBody = {\n    \"activityType\": \"Notes\",\n    \"body\": newNoteBodyContent,\n    \"relationships\": [\n      {\n        \"relatedEntityType\": relatedEntityType,\n        \"relatedEntityId\": this.currentEntity[idKey]\n      }\n    ]\n  };\n} else {\n  requestBody = {\n    \"activityId\": noteToProcess.activityId,\n    \"body\": newNoteBodyContent\n  };\n}\n\nthis.dataService.sendData(\"activity\", METHOD, requestBody, undefined, { activityType: \"Notes\" })\n  .then(res => {\n    if (res.result !== \"OK\") {\n      if (isNewNote && noteToProcess && noteToProcess[\"$$hashKey\"]) {\n        popObjectByHashKey(this.activity.notes.currentNotes, noteToProcess[\"$$hashKey\"]);\n      }\n      this.utilityService.toast(res.message || \"Failed to save note.\", \"ERROR\");\n      return;\n    }\n\n    if (METHOD === \"POST\") {\n      const newNotePlaceholder = this.activity.notes.currentNotes.find(note => note[\"$$hashKey\"] === noteToProcess[\"$$hashKey\"]);\n      if (newNotePlaceholder) {\n        newNotePlaceholder.activityId = res.activity.activityId;\n        newNotePlaceholder.modifiedOn = this.utilityService.getCurrentFormattedTime();\n        newNotePlaceholder.createdOn = this.utilityService.getCurrentFormattedTime();\n      } else {\n        console.error(\"Could not find new note placeholder to update.\");\n      }\n    } else {\n      const updatedNote = this.activity.notes.currentNotes.find(note => note.activityId === noteToProcess.activityId);\n      if (updatedNote) {\n        updatedNote.body = newNoteBodyContent;\n        updatedNote.modifiedOn = this.utilityService.getCurrentFormattedTime();\n        updatedNote.isEditingThisNote = false;\n      } else {\n        console.error(\"Could not find the note to update in currentNotes array after PUT.\");\n      }\n    }\n  })\n  .catch(rej => {\n    if (isNewNote && noteToProcess && noteToProcess[\"$$hashKey\"]) {\n      popObjectByHashKey(this.activity.notes.currentNotes, noteToProcess[\"$$hashKey\"]);\n    } else {\n      if (editingNote) editingNote.isEditingThisNote = false;\n    }\n    this.utilityService.toast(rej.message || \"An error occurred while saving the note.\", \"ERROR\");\n  });\n\nfunction popObjectByHashKey(arr, targetHashKey) {\n  const indexToRemove = arr.findIndex(obj => obj.$$hashKey === targetHashKey);\n  if (indexToRemove !== -1) {\n    return arr.splice(indexToRemove, 1)[0];\n  } else {\n    return undefined;\n  }\n}",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": false,
+              "name": "onSaveNote",
+              "parameters": [],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            },
+            {
+              "body": "// 1. Find the target note and its index in the local array.\nconst targetNoteIndex = this.activity.notes.currentNotes.findIndex(note => note.activityId === activityId);\n\n// Exit if the note isn't found in the local data.\nif (targetNoteIndex === -1) {\n    console.error(\"Could not find the note to delete.\");\n    return;\n}\nconst targetNote = this.activity.notes.currentNotes[targetNoteIndex];\n\n// 2. Set loading state and ensure it's always reset.\nthis.isDeletingData = true;\n\ntry {\n    // Prepare the data to show in the confirmation modal.\n    const modalData = this.utilityService.formatEntityForDisplay(targetNote);\n\n    // 3. Call the unified deleteData service with the correct signature.\n    const result = await this.dataService.deleteData(\"activity\", activityId, {\n        displayName: \"Note\", // Sets the title in the confirmation modal.\n        modalData: modalData,\n        // 'apiType' defaults to 'crm', which is appropriate for an \"activity\".\n    }, {\n        activityType: \"Notes\"\n    });\n\n    // 4. Process the result.\n    // If the user cancelled the modal, the 'deleteData' function returns the modal's result.\n    if (result?.result === 'cancel') {\n        return; // Exit without doing anything.\n    }\n\n    // On successful deletion, remove the note from the local array to update the UI.\n    this.activity.notes.currentNotes.splice(targetNoteIndex, 1);\n    // this.utilityService.toast(\"Note deleted successfully.\", \"SUCCESS\");\n\n} catch (error) {\n    // Errors (e.g., API failures) are thrown by 'deleteData' and caught here.\n    // The error is already logged and toasted by the service, so we just log for context.\n    console.error(`Failed to delete note (Activity ID: ${activityId}):`, error);\n\n} finally {\n    // Reset the loading state regardless of success or failure.\n    this.isDeletingData = false;\n}\n\n// const targetNote = this.activity.notes.currentNotes.find(note => note.activityId === activityId);\n// const targetNoteIndex = this.activity.notes.currentNotes.findIndex(note => note.activityId === targetNote.activityId);\n// const data = this.utilityService.formatEntityForDisplay(targetNote);\n\n// this.dataService.deleteData(activityId, \"activity\", \"Note\", data)\n//     .then(res => {\n//         if (res.result === \"cancel\") return;\n//         if (![\"OK\", \"ok\", \"cancel\"].includes(res.result)) {\n//             this.utilityService.toast(res.message, \"ERROR\");\n//             return;\n//         }\n//         this.activity.notes.currentNotes.splice(targetNoteIndex, 1);\n//     })\n//     .catch(rej => this.utilityService.toast(rej.message, \"ERROR\"))\n//     .finally(() => this.isDeletingData = false);\n",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": true,
+              "name": "onDeleteNote",
+              "parameters": [
+                "activityId"
+              ],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            },
+            {
+              "body": "if (newTargetValue === \"\") {\n    this.activity.notes.isLoadingNotes = true;\n    this.activity.notes.loadEntityNotes()\n        .finally(() => this.activity.notes.isLoadingNotes = false);\n}\n\nif (!newTargetValue) return;\n\nthis.activity.notes.isLoadingNotes = true;\nconst query = \"body_contains=\".concat(newTargetValue);\n\nthis.activity.notes.loadEntityNotes(undefined, undefined, query)\n    .finally(() => this.activity.notes.isLoadingNotes = false);",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": false,
+              "name": "onNoteFilterChange",
+              "parameters": [
+                "newTargetValue"
+              ],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "calls",
+          "properties": [
+            {
+              "description": "",
+              "name": "notes",
+              "properties": [
+                {
+                  "children": [],
+                  "description": "",
+                  "name": "currentNotes",
+                  "type": "array"
+                },
+                {
+                  "description": "",
+                  "name": "isLoadingNotes",
+                  "type": "property",
+                  "value": ""
+                },
+                {
+                  "description": "",
+                  "name": "hasLoadedEntityNotes",
+                  "type": "property",
+                  "value": ""
+                },
+                {
+                  "body": "try {\n    // 1. Await the service call and destructure the response object directly.\n    //    We no longer need the inefficient second call to getCachedActivities().\n    const {\n        entities: callNotes,\n        total,\n        totalFiltered\n    } = await this.activityService.getAllActivitiesByEntityByEntityId(\n        currentPage,\n        undefined, // limit\n        \"Call\",    // The parent entity type\n        activityId, // The ID of the specific call\n        \"Notes\",   // The sub-activity type to fetch\n        query,\n        false      // clearCache (as in the original)\n    );\n\n    // 2. Sort the notes that were returned directly from the API call.\n    const sortedNotes = this.utilityService.sortEntitiesByDateProperty(callNotes, \"createdOn\");\n\n    // 3. Assign the sorted data and total counts to your state.\n    this.activity.calls.notes.currentNotes = sortedNotes;\n    this.activity.calls.notes.total = total;\n    this.activity.calls.notes.totalFiltered = totalFiltered;\n\n} catch (error) {\n    console.error(`Error loading notes for call activity '${activityId}':`, error);\n    this.utilityService.toast(\"Failed to load call notes.\", \"ERROR\");\n\n    // 4. Ensure a safe, default state on error.\n    this.activity.calls.notes.currentNotes = [];\n    this.activity.calls.notes.total = 0;\n    this.activity.calls.notes.totalFiltered = 0;\n}\n\n// return this.activityService.getAllActivitiesByEntityByEntityId(undefined, undefined, \"Call\", activityId, \"Notes\", query, false)\n//     .then(() => this.activity.calls.notes.currentNotes = this.utilityService.sortEntitiesByDateProperty(this.activityService.getCachedActivities(\"Notes\", \"Call\", activityId), \"createdOn\"));\n",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": true,
+                  "name": "loadEntityNotes",
+                  "parameters": [
+                    "activityId",
+                    "currentPage",
+                    "query"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "let noteToProcess;\nlet isNewNote = false;\nlet newNoteBodyContent;\n\nconst editingNote = this.activity.calls.notes.currentNotes.find(note => note.isEditingThisNote === true);\n\nif (editingNote) {\n  noteToProcess = editingNote;\n  newNoteBodyContent = editingNote.body;\n  if (!noteToProcess.activityId) {\n    this.utilityService.toast(\"Cannot update note without an activityId.\", \"ERROR\");\n    editingNote.isEditingThisNote = false;\n    return;\n  }\n} else {\n  if (this.activity.calls.notes.currentNotes[0] && !this.activity.calls.notes.currentNotes[0].activityId) {\n    noteToProcess = this.activity.calls.notes.currentNotes[0];\n    newNoteBodyContent = noteToProcess.body;\n    isNewNote = true;\n  } else {\n    this.utilityService.toast(\"No note to save or update.\", \"INFO\");\n    return;\n  }\n}\n\nif (!newNoteBodyContent || !newNoteBodyContent.trim()) {\n  if (isNewNote && noteToProcess && noteToProcess[\"$$hashKey\"]) {\n    popObjectByHashKey(this.activity.calls.notes.currentNotes, noteToProcess[\"$$hashKey\"]);\n  }\n  this.utilityService.toast(\"Note body cannot be empty.\", \"ERROR\");\n  return;\n}\n\nconst METHOD = isNewNote ? \"POST\" : \"PUT\";\n\nlet requestBody;\n\nif (METHOD === \"POST\") {\n  requestBody = {\n    \"activityType\": \"Notes\",\n    \"body\": newNoteBodyContent,\n    \"relationships\": [\n      {\n        \"relatedEntityType\": \"Activity\",\n        \"relatedEntityId\": callActivityId\n      }\n    ]\n  };\n} else {\n  requestBody = {\n    \"activityId\": noteToProcess.activityId,\n    \"body\": newNoteBodyContent\n  };\n}\n\nthis.dataService.sendData(\"activity\", METHOD, requestBody, undefined, { activityType: \"Notes\" })\n  .then(res => {\n    if (res.result !== \"OK\") {\n      if (isNewNote && noteToProcess && noteToProcess[\"$$hashKey\"]) {\n        popObjectByHashKey(this.activity.calls.notes.currentNotes, noteToProcess[\"$$hashKey\"]);\n      }\n      this.utilityService.toast(res.message || \"Failed to save note.\", \"ERROR\");\n      return;\n    }\n\n    if (METHOD === \"POST\") {\n      const newNotePlaceholder = this.activity.calls.notes.currentNotes.find(note => note[\"$$hashKey\"] === noteToProcess[\"$$hashKey\"]);\n      if (newNotePlaceholder) {\n        newNotePlaceholder.activityId = res.activity.activityId;\n        newNotePlaceholder.modifiedOn = this.utilityService.getCurrentFormattedTime();\n        newNotePlaceholder.createdOn = this.utilityService.getCurrentFormattedTime();\n      } else {\n        console.error(\"Could not find new note placeholder to update.\");\n      }\n    } else {\n      const updatedNote = this.activity.calls.notes.currentNotes.find(note => note.activityId === noteToProcess.activityId);\n      if (updatedNote) {\n        updatedNote.body = newNoteBodyContent;\n        updatedNote.modifiedOn = this.utilityService.getCurrentFormattedTime();\n        updatedNote.isEditingThisNote = false;\n      } else {\n        console.error(\"Could not find the note to update in currentNotes array after PUT.\");\n      }\n    }\n  })\n  .catch(rej => {\n    if (isNewNote && noteToProcess && noteToProcess[\"$$hashKey\"]) {\n      popObjectByHashKey(this.activity.calls.notes.currentNotes, noteToProcess[\"$$hashKey\"]);\n    } else {\n      if (editingNote) editingNote.isEditingThisNote = false;\n    }\n    this.utilityService.toast(rej.message || \"An error occurred while saving the note.\", \"ERROR\");\n  });\n\nfunction popObjectByHashKey(arr, targetHashKey) {\n  const indexToRemove = arr.findIndex(obj => obj.$$hashKey === targetHashKey);\n  if (indexToRemove !== -1) {\n    return arr.splice(indexToRemove, 1)[0];\n  } else {\n    return undefined;\n  }\n}",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "onSaveNote",
+                  "parameters": [
+                    "callActivityId"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "// 1. Find the target call note and its index from the local array.\nconst notesArray = this.activity.calls.notes.currentNotes;\nconst targetNoteIndex = notesArray.findIndex(note => note.activityId === activityId);\n\n// Exit if the note isn't found, preventing errors.\nif (targetNoteIndex === -1) {\n    console.error(\"Could not find the call note to delete.\");\n    return;\n}\nconst targetNote = notesArray[targetNoteIndex];\n\n// 2. Manage the UI loading state.\nthis.isDeletingData = true;\n\ntry {\n    // Prepare data to display in the confirmation modal.\n    const modalData = this.utilityService.formatEntityForDisplay(targetNote);\n\n    // 3. Call the data service with the correct, modern signature.\n    const result = await this.dataService.deleteData(\"activity\", activityId, {\n        displayName: \"Call Note\", // Using a more specific name for clarity\n        modalData: modalData,\n    }, {\n        activityType: \"Notes\"\n    });\n\n    // 4. Process the result from the service call.\n    // If the user cancelled the modal, do nothing further.\n    if (result?.result === 'cancel') {\n        return;\n    }\n\n    // On success, update the UI by removing the note from the local array.\n    notesArray.splice(targetNoteIndex, 1);\n    // this.utilityService.toast(\"Call note deleted successfully.\", \"SUCCESS\");\n\n} catch (error) {\n    // The service handles toasting the user; we just log for debugging.\n    console.error(`Failed to delete call note (Activity ID: ${activityId}):`, error);\n\n} finally {\n    // Always reset the loading state.\n    this.isDeletingData = false;\n}\n\n// const targetNote = this.activity.calls.notes.currentNotes.find(note => note.activityId === activityId);\n// const targetNoteIndex = this.activity.calls.notes.currentNotes.findIndex(note => note.activityId === targetNote.activityId);\n// const data = this.utilityService.formatEntityForDisplay(targetNote);\n\n// this.dataService.deleteData(activityId, \"activity\", \"Note\", data)\n//     .then(res => {\n//         if (!res) return;\n//         if (res.result !== \"OK\") {\n//             this.utilityService.toast(res.message, \"ERROR\");\n//             return;\n//         }\n//         this.activity.calls.notes.currentNotes.splice(targetNoteIndex, 1);\n//     })\n//     .catch(rej => this.utilityService.toast(rej.message, \"ERROR\"))\n//     .finally(() => this.isDeletingData = false);\n",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": true,
+                  "name": "onDeleteNote",
+                  "parameters": [
+                    "activityId"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                },
+                {
+                  "body": "if (newTargetValue === \"\") {\n    this.activity.calls.notes.isLoadingNotes = true;\n    this.activity.calls.notes.loadEntityNotes(activityId, undefined, undefined, true)\n        .finally(() => this.activity.calls.notes.isLoadingNotes = false);\n}\n\nif (!newTargetValue) return;\n\nthis.activity.calls.notes.isLoadingNotes = true;\nconst query = \"body_contains=\".concat(newTargetValue);\n\nthis.activity.calls.notes.loadEntityNotes(activityId, undefined, query, false)\n    .finally(() => this.activity.calls.notes.isLoadingNotes = false);",
+                  "description": "",
+                  "invokeOnLoad": false,
+                  "isAsync": false,
+                  "name": "onNoteFilterChange",
+                  "parameters": [
+                    "newTargetValue",
+                    "activityId"
+                  ],
+                  "returnType": {
+                    "name": "any"
+                  },
+                  "type": "method",
+                  "watch": []
+                }
+              ],
+              "type": "object"
+            },
+            {
+              "children": [],
+              "description": "",
+              "name": "currentCalls",
+              "type": "array"
+            },
+            {
+              "description": "",
+              "name": "isLoadingCalls",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "hasLoadedEntityCalls",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "body": "const entityId = this.currentEntityId;\nif (!entityId) return;\n\ntry {\n    const {\n        entities: calls,\n        total,\n        totalFiltered,\n        ownerId\n    } = await this.entityService.getAllEntityActivities(currentPage, undefined, entityId, \"Call\", query, clearCache);\n    \n    if (ownerId === this.currentEntityId) {\n        this.activity.calls.currentCalls = calls;\n        this.activity.calls.total = total;\n        this.activity.calls.totalFiltered = totalFiltered;\n    } else {\n        this.activity.calls.hasLoadedEntityCalls = false;\n        this.activity.calls.isLoadingCalls = true;\n\n        await this.activity.calls.loadEntityCalls()\n        \n        this.activity.calls.hasLoadedEntityCalls = true;\n        this.activity.calls.isLoadingCalls = false;\n    }\n    \n} catch (error) {\n    console.error(\"Error loading entity calls:\", error);\n    this.utilityService.toast(\"Failed to load calls.\", \"ERROR\");\n    \n    this.activity.calls.currentCalls = [];\n    this.activity.calls.total = 0;\n    this.activity.calls.totalFiltered = 0;\n}",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": true,
+              "name": "loadEntityCalls",
+              "parameters": [
+                "currentPage",
+                "limit",
+                "query",
+                "clearCache"
+              ],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            },
+            {
+              "body": "let callToProcess;\nlet isNewCall = false;\n\nconst editingCall = this.activity.calls.currentCalls.find(call => call.isEditingThisCall === true);\n\nif (editingCall) {\n  callToProcess = editingCall;\n  if (!callToProcess.activityId) {\n    this.utilityService.toast(\"Cannot update call without an activityId.\", \"ERROR\");\n    editingCall.isEditingThisCall = false;\n    return;\n  }\n} else {\n  if (this.activity.calls.currentCalls[0] && !this.activity.calls.currentCalls[0].activityId) {\n    callToProcess = this.activity.calls.currentCalls[0];\n    isNewCall = true;\n  } else {\n    this.utilityService.toast(\"No call to save or update.\", \"INFO\");\n    return;\n  }\n}\n\nconst METHOD = isNewCall ? \"POST\" : \"PUT\";\nconst isPOST = METHOD === \"POST\";\nconst relatedEntityType = this.currentEntityType[0].toUpperCase() + this.currentEntityType.slice(1);\nconst idKey = this.currentEntityType.concat(\"Id\");\n\nlet requestBody;\n\nconst { createdOn, modifiedOn, body, ...callWithoutAuditFieldsAndBody } = callToProcess;\ncallToProcess.body = undefined;\n\nif (isPOST) {\n  requestBody = {\n    \"activityType\": \"Call\",\n    ...callWithoutAuditFieldsAndBody,\n    \"relationships\": [\n      {\n        \"relatedEntityType\": relatedEntityType,\n        \"relatedEntityId\": this.currentEntity[idKey]\n      }\n    ]\n  };\n} else {\n  requestBody = {\n    \"activityId\": callToProcess.activityId,\n    ...callWithoutAuditFieldsAndBody\n  };\n}\n\nthis.dataService.sendData(\"activity\", METHOD, requestBody, undefined, { activityType: \"Call\" })\n  .then(res => {\n    if (res.result !== \"OK\") {\n      if (isNewCall && callToProcess) {\n        this.activity.calls.currentCalls.shift();\n      }\n      this.utilityService.toast(res.message || \"Failed to save call.\", \"ERROR\");\n      return;\n    }\n\n    // Attach the body as a note to the call if it exists\n    if (isPOST && body) {\n      this.activity.calls.notes.onSaveNote(res.activity.activityId);\n    }\n\n    if (isPOST) {\n      const newCallPlaceholder = this.activity.calls.currentCalls[0];\n      if (newCallPlaceholder) {\n        newCallPlaceholder.activityId = res.activity.activityId;\n        newCallPlaceholder.modifiedOn = this.utilityService.getCurrentFormattedTime();\n        newCallPlaceholder.createdOn = this.utilityService.getCurrentFormattedTime();\n      } else {\n        console.error(\"Could not find new call placeholder to update.\");\n      }\n    } else {\n      const updatedCall = this.activity.calls.currentCalls.find(call => call.activityId === callToProcess.activityId);\n      if (updatedCall) {\n        updatedCall.modifiedOn = this.utilityService.getCurrentFormattedTime();\n        updatedCall.isEditingThisCall = false;\n      } else {\n        console.error(\"Could not find the call to update in currentCalls array after PUT.\");\n      }\n    }\n  })\n  .catch(rej => {\n    if (isNewCall && callToProcess) {\n      this.activity.calls.currentCalls.shift();\n    } else {\n      if (editingCall) editingCall.isEditingThisCall = false;\n    }\n    this.utilityService.toast(rej.message || \"An error occurred while saving the call.\", \"ERROR\");\n  });",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": false,
+              "name": "onSaveCall",
+              "parameters": [],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            },
+            {
+              "body": "// 1. Find the target call and its index in the local array.\nconst callsArray = this.activity.calls.currentCalls;\nconst targetCallIndex = callsArray.findIndex(call => call.activityId === activityId);\n\n// Exit if the call isn't found in the local data.\nif (targetCallIndex === -1) {\n    console.error(\"Could not find the call to delete.\");\n    return;\n}\nconst targetCall = callsArray[targetCallIndex];\n\n// 2. Manage the UI loading state.\nthis.isDeletingData = true;\n\ntry {\n    // Prepare the data to show in the confirmation modal.\n    const modalData = this.utilityService.formatEntityForDisplay(targetCall);\n\n    // 3. Call the data service with the correct, modern signature.\n    const result = await this.dataService.deleteData(\"activity\", activityId, {\n        displayName: \"Call\", // Sets the title in the confirmation modal.\n        modalData: modalData,\n    }, {\n        activityType: \"Call\"\n    });\n\n    // 4. Process the result from the service call.\n    // If the user cancelled the modal, exit without doing anything more.\n    if (result?.result === 'cancel') {\n        return false;\n    }\n\n    // On successful deletion, update the UI by removing the call from the local array.\n    callsArray.splice(targetCallIndex, 1);\n    return true;\n    // this.utilityService.toast(\"Call deleted successfully.\", \"SUCCESS\");\n\n} catch (error) {\n    // Errors from the service are caught here. The service already handles the toast.\n    console.error(`Failed to delete call (Activity ID: ${activityId}):`, error);\n\n} finally {\n    // Always reset the loading state, whether the action succeeded or failed.\n    this.isDeletingData = false;\n}\n\n// const targetCall = this.activity.calls.currentCalls.find(call => call.activityId === activityId);\n// const targetCallIndex = this.activity.calls.currentCalls.findIndex(call => call.activityId === targetCall.activityId);\n// const data = this.utilityService.formatEntityForDisplay(targetCall);\n\n// this.dataService.deleteData(activityId, \"activity\", \"Call\", data)\n//     .then(res => {\n//         if (res.result === \"cancel\") return;\n//         if (![\"OK\", \"ok\", \"cancel\"].includes(res.result)) {\n//             this.utilityService.toast(res.message, \"ERROR\");\n//             return;\n//         }\n//         this.activity.calls.currentCalls.splice(targetCallIndex, 1);\n//     })\n//     .catch(rej => this.utilityService.toast(rej.message, \"ERROR\"))\n//     .finally(() => this.isDeletingData = false);\n",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": true,
+              "name": "onDeleteCall",
+              "parameters": [
+                "activityId"
+              ],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            },
+            {
+              "body": "if (newTargetValue === \"\") {\n    this.activity.calls.isLoadingCalls = true;\n    this.activity.calls.loadEntityCalls()\n        .finally(() => this.activity.calls.isLoadingCalls = false);\n}\n\nif (!newTargetValue) return;\n\nthis.activity.calls.isLoadingCalls = true;\nconst query = \"description_contains=\".concat(newTargetValue);\n\nthis.activity.calls.loadEntityCalls(undefined, undefined, query)\n    .finally(() => this.activity.calls.isLoadingCalls = false);",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": false,
+              "name": "onCallFilterChange",
+              "parameters": [
+                "newTargetValue"
+              ],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            }
+          ],
+          "type": "object"
+        },
+        {
+          "description": "",
+          "name": "eventLogs",
+          "properties": [
+            {
+              "children": [],
+              "description": "",
+              "name": "currentEventLogs",
+              "type": "array"
+            },
+            {
+              "description": "",
+              "name": "isLoadingEventLogs",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "description": "",
+              "name": "hasLoadedEntityEventLogs",
+              "type": "property",
+              "value": ""
+            },
+            {
+              "body": "this.activity.eventLogs.isLoadingEventLogs = true;\ntry {\n    this.activity.eventLogs.currentEventLogs = [];\n\n    const eventLogs = await this.eventService.getAllActivityEventsByEntityByEntityId(entityType, entityId);\n    \n    if (eventLogs && eventLogs.length > 0) {\n        this.activity.eventLogs.currentEventLogs = eventLogs;\n    }\n} catch (error) {\n    console.error(\"Error during loadEntityEventLogs data load:\", error);\n    this.utilityService.toast(\"Failed to load event logs.\", \"ERROR\");\n} finally {\n    this.activity.eventLogs.isLoadingEventLogs = false;\n}\n\n// this.activity.eventLogs.isLoadingEventLogs = true;\n// try {\n//     let eventLogs = [];\n//     eventLogs = await this.eventService.getAllRecentActivityEventsByEntityByEntityId(entityType, entityId);\n//     if (eventLogs) this.activity.eventLogs.currentEventLogs.push(eventLogs);\n// } catch (error) {\n//     console.error(\"Error during loadEntityEventLogs data load:\", error);\n//     this.utilityService.toast(\"Failed to load event logs.\", \"ERROR\");\n//     this.activity.eventLogs.currentEventLogs.length = 0;\n// } finally {\n//     this.activity.eventLogs.isLoadingEventLogs = false;\n// }\n",
+              "description": "",
+              "invokeOnLoad": false,
+              "isAsync": true,
+              "name": "loadEntityEventLogs",
+              "parameters": [
+                "entityType",
+                "entityId"
+              ],
+              "returnType": {
+                "name": "any"
+              },
+              "type": "method",
+              "watch": []
+            }
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "id": "service",
+      "name": "activityService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/activity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    },
+    {
+      "name": "$modal",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityService",
+      "resourceIdentity": "services/entity-services/entity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "eventService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/event-service",
+      "type": "service"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentRowsForExport",
+      "type": "array"
+    },
+    {
+      "body": "if (!this.currentRowsForExport) {\n    this.currentRowsForExport = [];\n}\n\nthis.isExportingEntity = true;\n\nconst MAX_RETRIES = 20;\nlet attempts = 0;\n\nconst attemptRegisterListeners = (ctx) => {\n    try {\n        const tableElement = document.querySelector('bln-table');\n        const scope = tableElement ? angular.element(tableElement).scope() : null;\n        const childScope = scope ? scope.$$childTail : null;\n        const gridCtrl = childScope && childScope.$ctrl;\n        const gridApi = gridCtrl && gridCtrl.gridApi;\n\n    if (!gridApi || !gridApi.selection) {\n            if (attempts < MAX_RETRIES) {\n                attempts++;\n                ctx.$timeout(attemptRegisterListeners, 100);\n            } else {\n                console.warn(\"Timed out waiting for bln-table gridApi.selection in initiateExport.\");\n                this.utilityService.toast(\"Could not initialize table export. Please try again.\", \"WARNING\");\n                // this.isExportingEntity = false;\n            }\n            return;\n        }\n\n        const currentEntityIdKey = this.currentEntityIdKey;\n\n        gridApi.selection.on.rowSelectionChanged(childScope, (row) => {\n            if (row.isSelected) {\n                const isAlreadySelected = this.currentRowsForExport.some(\n                    selectedRow => selectedRow[currentEntityIdKey] === row.entity[currentEntityIdKey]\n                );\n                if (!isAlreadySelected) {\n                    this.currentRowsForExport.push(row.entity);\n                }\n            } else {\n                const indexToRemove = this.currentRowsForExport.findIndex(\n                    selectedRow => selectedRow[currentEntityIdKey] === row.entity[currentEntityIdKey]\n                );\n                if (indexToRemove > -1) {\n                    this.currentRowsForExport.splice(indexToRemove, 1);\n                }\n            }\n        });\n\n        gridApi.selection.on.rowSelectionChangedBatch(childScope, (rows) => {\n            if (rows.length > 0 && rows[0].isSelected) {\n                // Add Batch\n                const selectedIds = new Set(this.currentRowsForExport.map(r => r[currentEntityIdKey]));\n                rows.forEach(row => {\n                    if (!selectedIds.has(row.entity[currentEntityIdKey])) {\n                        this.currentRowsForExport.push(row.entity);\n                    }\n                });\n            } else {\n                const deselectedIdsOnPage = new Set(rows.map(r => r.entity[currentEntityIdKey]));\n                this.currentRowsForExport = this.currentRowsForExport.filter(\n                    selectedRow => !deselectedIdsOnPage.has(selectedRow[currentEntityIdKey])\n                );\n            }\n        });\n\n    } catch (e) {\n        console.error(\"Error initializing export listeners:\", e);\n        // this.isExportingEntity = false;\n    }\n};\n\nattemptRegisterListeners(this);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "initiateExport",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "currentApiType",
+      "type": "property",
+      "value": "\"crm\""
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentTabItems",
+      "type": "array"
+    },
+    {
+      "description": "",
+      "name": "currentTabName",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentTotalPages",
+      "type": "property",
+      "value": "1"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentPipelines",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentPipelineStages",
+      "type": "array"
+    },
+    {
+      "description": "is",
+      "name": "isFilteringByPipelineOrPipelineStage",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentExportFormat",
+      "type": "property",
+      "value": "\"csv\""
+    },
+    {
+      "description": "",
+      "name": "supportedExportFormats",
+      "type": "property",
+      "value": "[\n    {\n        \"label\": \"CSV\",\n        \"value\": \"csv\"\n    },\n    {\n        \"label\": \"EXCEL\",\n        \"value\": \"excel\"\n    },\n    {\n        \"label\": \"JSON\",\n        \"value\": \"json\"\n    }\n]"
+    },
+    {
+      "description": "",
+      "name": "currentDataLoadId",
+      "type": "property",
+      "value": "0"
+    },
+    {
+      "description": "",
+      "name": "currentTotal",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentTotalFiltered",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "id": "service",
+      "name": "notificationService",
+      "resourceIdentity": "services/util-services/notification-service",
+      "type": "service"
+    },
+    {
+      "body": "try {\n    disableNavFlexBasis();\n    onWindowResize(this);\n    window.addEventListener(\"resize\", () => onWindowResize(this));\n} catch (e) {\n    console.error(\"Error initializing layout\", e);\n}\n\nfunction onWindowResize(ctx) {\n    const box = document.getElementById(\"box\");\n    const width = ctx.$window.innerWidth;\n\n    if (width <= 1024) {\n        ctx.isMobile = true;\n        box.style.flexDirection = \"column\";\n    } else {\n        ctx.isMobile = false;\n        box.style.flexDirection = \"row\";\n    }\n}\n\nfunction disableNavFlexBasis() {\n    const nav = document.getElementById(\"nav\");\n    \n    if (nav) {\n        nav.style.flexBasis = null;\n    }\n}",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "onLayoutInit",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "name": "$window",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "isAdmin",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "hasPipelineRole",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "id": "service",
+      "name": "quickSearchConfigService",
+      "resourceIdentity": "services/config-services/quick-search-config-service",
+      "type": "service"
+    },
+    {
+      "body": "const savedQuickSearchConfig = this.quickSearchConfigService.getConfig(this.currentPageKey);\n\nif (!savedQuickSearchConfig) {\n    this.quickSearchConfigService.saveConfig(this.currentPageKey, this.currentDefaultSearchConfig.property, this.currentDefaultSearchConfig.operation);\n}\n",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "initQuickSearchConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const columnNames = columns.map((c) => c.label);\nthis.entityService.setCachedEntityColumns(this.dataService.processData.generateColumnDefinitions(columnNames, {}));\nthis.currentColumns = this.entityService.getCachedEntityColumns();\nthis.currentDisplayColumnConfig = { columnNames, options: {} };",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onColumnConfigChange",
+      "parameters": [
+        "columns"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "attachmentService",
+      "resourceIdentity": "services/entity-services/entity-specific-services/attachment-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "pipelineViewService",
+      "resourceIdentity": "services/core/ui/component/pipeline-view-service",
+      "type": "service"
+    }
+  ],
+  "visible": [
+    "currentTab",
+    "currentPage",
+    "onEntitySelect",
+    "onFilterChange",
+    "initiateAdd",
+    "initiateEdit",
+    "onAddButtonClick",
+    "onEditButtonClick",
+    "onDeleteButtonClick",
+    "onPageChange",
+    "currentTableData",
+    "currentTableColumns",
+    "currentTable",
+    "currentColumns",
+    "isMobile",
+    "onReloadButtonClick",
+    "isSidePanelVisible",
+    "currentForm",
+    "currentEntityType",
+    "isAddingEntity",
+    "isEditingEntity",
+    "isLoadingData",
+    "isSendingData",
+    "isDeletingData",
+    "currentFilter",
+    "currentNotes",
+    "loadEntityNotes",
+    "areNotesLoaded",
+    "hasLoadedEntityNotes",
+    "isLoadingNotes",
+    "onSaveNote",
+    "onDeleteNote",
+    "onNoteFilterChange",
+    "activity",
+    "isExportingEntity",
+    "onExportButtonClick",
+    "currentSelectedRows",
+    "onCancelExportButtonClick",
+    "isAssigningEntity",
+    "initiateAssign",
+    "currentEntityId",
+    "currentEntity",
+    "currentEntityIdKey",
+    "currentDisplayColumnConfig",
+    "is360ViewActive",
+    "onFullViewButtonClick",
+    "idsToReselectForExport",
+    "currentRowsForExport",
+    "initiateExport",
+    "gridApi",
+    "currentApiType",
+    "currentTabItems",
+    "currentTabName",
+    "onSelectedTabChange",
+    "currentTotalPages",
+    "currentPipelines",
+    "currentPipelineStages",
+    "isFilteringByPipelineOrPipelineStage",
+    "currentExportFormat",
+    "supportedExportFormats",
+    "currentDataLoadId",
+    "currentTotal",
+    "currentTotalFiltered",
+    "onLayoutInit",
+    "isAdmin",
+    "hasPipelineRole",
+    "currentDefaultSearchConfig",
+    "currentPageKey",
+    "initQuickSearchConfig",
+    "currentPageCount",
+    "currentDefaultColumnConfig",
+    "currentDefaultConfig",
+    "onColumnConfigChange",
+    "currentEntityDetails",
+    "currentEntityTypeHasActivities",
+    "isPipelineViewActive",
+    "onViewDealsButtonClick",
+    "onEntityDeselect"
+  ]
+}

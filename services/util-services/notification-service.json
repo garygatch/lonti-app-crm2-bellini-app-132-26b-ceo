@@ -1,0 +1,128 @@
+{
+  "description": "",
+  "name": "notification-service",
+  "parentDirectoryId": "oazhNTC9cpQ-QE-ClEbjF",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "notification",
+      "properties": [
+        {
+          "description": "",
+          "name": "actionButtonLabel",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "actionTextLabel",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "alertDescription",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "alertTitle",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "alertType",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "displayActionButton",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "displayActionText",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "onActionButtonClick",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "onActionTextClick",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "dismissIn",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "notificationMap",
+      "type": "property",
+      "value": "new Map()"
+    },
+    {
+      "body": "const notificationId = crypto.randomUUID();\n\n// Create the final notification object, including its own ID.\nconst notification = {\n    id: notificationId, // <-- The important addition\n    ...notificationDetails\n};\n\n// Add it to the map.\nthis.notificationMap.set(notificationId, notification);\nthis.notificationCount++;\n\nif (notification.dismissIn) {\n    this.$timeout(() => this.dismiss(notification), notification.dismissIn);\n}",
+      "description": "# `notificationService.notify(notification)`\n\nDisplays a global toast notification to the user. This is a non-blocking UI element ideal for providing feedback on asynchronous actions, warnings, or general information.\n\n---\n## Parameter\n\nThe function takes a single `notification` object as its parameter with the following properties:\n\n| Property | Type | Required? | Description |\n\n| **`alertTitle`** | `string` | Yes | The main title displayed at the top of the notification. |\n\n| **`alertDescription`** | `string` | Yes | The body text or main message of the notification. |\n\n| **`alertType`** | `string` | Yes | Determines the style and color. Common values: `'SUCCESS'`, `'ERROR'`, `'INFO'`, `'WARNING'`. |\n\n| `displayActionButton` | `boolean` | No | Set to `true` to show the main, styled action button. Defaults to `false`. |\n\n| `actionButtonLabel` | `string` | If `displayActionButton` is true | The text label for the main action button. |\n\n| `onActionButtonClick` | `function` | If `displayActionButton` is true | The callback function to execute when the action button is clicked. |\n\n| `displayActionText` | `boolean` | No | Set to `true` to show a secondary, text-based action link. Defaults to `false`. |\n\n| `actionTextLabel` | `string` | If `displayActionText` is true | The text for the secondary action link. |\n\n| `onActionTextClick` | `function` | If `displayActionText` is true | The callback function to execute when the action text is clicked. |\n\n---\n## Examples\n\n### 1. Simple Informational Notification\n\nThis example shows a basic notification with no actions.\n```javascript\nnotificationService.notify({\n    alertType: 'INFO',\n    alertTitle: 'Update In Progress',\n    alertDescription: 'Your profile is being updated in the background.'\n});\n```",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "notify",
+      "parameters": [
+        "notificationDetails"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "// 1. Validate the input.\nif (!notification || !notification.id) {\n        return;\n}\n\nconst FADE_OUT_DURATION_MS = 500; // 0.5 seconds\nconst notificationId = notification.id;\n\n// 2. Get the actual notification object that is stored in the Map.\nconst notificationInMap = this.notificationMap.get(notificationId);\n\n// 3. Check if the notification exists and is not already in the process of dismissing.\n//    This prevents errors if the dismiss button is clicked multiple times.\nif (notificationInMap && !notificationInMap.isDismissingAlert) {\n        // 4. Set the flag to true. This will trigger the CSS animation.\n        notificationInMap.isDismissingAlert = true;\n\n        // 5. Use $timeout to wait for the animation to finish before removing the notification.\n        //    The duration here MUST match your CSS animation/transition duration.\n        this.$timeout(() => {\n                this.notificationMap.delete(notificationId);\n                this.notificationCount--;\n        }, FADE_OUT_DURATION_MS);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "dismiss",
+      "parameters": [
+        "notification"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "notificationCount",
+      "type": "property",
+      "value": "0"
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    }
+  ],
+  "visible": [
+    "notify",
+    "dismiss",
+    "notificationMap",
+    "notificationCount"
+  ]
+}

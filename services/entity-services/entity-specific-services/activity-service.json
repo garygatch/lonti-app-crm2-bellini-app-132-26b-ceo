@@ -1,0 +1,130 @@
+{
+  "description": "",
+  "name": "activity-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "id": "service",
+      "name": "entityCacheService",
+      "resourceIdentity": "services/entity-services/entity-cache-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"activity\""
+    },
+    {
+      "body": "return [\n    {\n        label: \"Company Id\",\n        value: \"companyId\"\n    },\n    {\n        label: \"Name\",\n        value: \"name\"\n    },\n    {\n        label: \"Address Street\",\n        value: \"addressStreet\"\n    },\n    {\n        label: \"Phone\",\n        value: \"phone\"\n    },\n    {\n        label: \"Email\",\n        value: \"email\"\n    },\n    {\n        label: \"Website\",\n        value: \"website\"\n    },\n    {\n        label: \"Tax Id Number\",\n        value: \"taxIdNumber\"\n    },\n    {\n        label: \"Business Reg Number\",\n        value: \"businessRegNumber\"\n    },\n    {\n        label: \"Annual Revenue\",\n        value: \"annualRevenue\"\n    },\n    {\n        label: \"Profit\",\n        value: \"profit\"\n    },\n    {\n        label: \"Assets\",\n        value: \"assets\"\n    },\n    {\n        label: \"Liabilities\",\n        value: \"liabilities\"\n    },\n    {\n        label: \"Notes\",\n        value: \"notes\"\n    },\n    {\n        label: \"Hubspot Id\",\n        value: \"hubspotId\"\n    },\n    {\n        label: \"Address City\",\n        value: \"addressCity\"\n    },\n    {\n        label: \"Address State Or Province\",\n        value: \"addressStateOrProvince\"\n    },\n    {\n        label: \"Address Country\",\n        value: \"addressCountry\"\n    },\n    {\n        label: \"Address Postal Code\",\n        value: \"addressPostalCode\"\n    },\n    {\n        label: \"Description\",\n        value: \"description\"\n    },\n    {\n        label: \"Owner Name\",\n        value: \"ownerName\"\n    },\n    {\n        label: \"Owner Email\",\n        value: \"ownerEmail\"\n    },\n    {\n        label: \"LinkedIn Profile\",\n        value: \"linkedInProfile\"\n    },\n    {\n        label: \"Number Of Employees\",\n        value: \"numberOfEmployees\"\n    },\n    {\n        label: \"Tenant Id\",\n        value: \"tenantId\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Modified On\",\n        value: \"modifiedOn\"\n    }\n];",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Name\",\n    \"Website\",\n    \"Phone\",\n    \"Owner\",\n    \"City\",\n    \"Email\"\n];\n\nconst displayColumnOptions = {\n    valueKey: {\n        \"Owner\": \"ownerName\",\n        \"City\": \"addressCity\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "TODO",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const entity = this.entity;\nconst columnConfig = this.getDisplayColumnConfig();\n\nconst entityAction = this.utilityService.buildEntityAction(entity, \"SelectAll\");\nreturn this.entityCacheService.getAll(entityAction, entity, page, limit, columnConfig, query);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getAllActivities",
+      "parameters": [
+        "page",
+        "limit",
+        "query"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "// Assumes this logic is inside a function where entityType, entityId, activityType, etc. are available.\n\nlet entityUrl;\n\n// --- REFACTORED URL LOGIC ---\n// Check for the special case: getting the activities of another Activity.\n// For example, getting the 'Notes' (this.entity) of a 'Call' (entityType: 'Activity').\nif (entityType === 'Activity' && this.entity === 'activity') {\n    // Use the special endpoint format: /Activity/{sub-activity type}/{parent activity id}/activity\n    entityUrl = `Activity/${activityType}/${entityId}/activity`;\n} else {\n    // Use the standard endpoint format for all other cases.\n    const capitalizedEntityType = entityType.charAt(0).toUpperCase() + entityType.slice(1);\n    entityUrl = `${capitalizedEntityType}/${entityId}/${this.entity}`;\n}\n\n// --- Improved Query String Combination ---\n// This is a more robust way to combine query strings that avoids errors if one is missing.\nconst queryParts = [];\nif (activityType) {\n    queryParts.push(`activityType=${activityType}`);\n}\nif (query) {\n    queryParts.push(query);\n}\nconst combinedQuery = queryParts.join('&');\n\n// The rest of your logic remains the same.\nconst result = await this.entityCacheService.getAll(undefined, entityUrl, page, limit, undefined, combinedQuery, undefined, this.entity);\n\n// Ensure the 'entities' property is always an array.\nif (result.entities === undefined) {\n    result.entities = [];\n}\n\nreturn result;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "getAllActivitiesByEntityByEntityId",
+      "parameters": [
+        "page",
+        "limit",
+        "entityType",
+        "entityId",
+        "activityType",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "let entityUrl = this.entity;\nif (activityType && entityType && entityId) entityUrl = `activity/${activityType}/${entityType}/${entityId}`;\n\nreturn this.entityCacheService.getCachedEntityValue(entityUrl, \"entities\");",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedActivities",
+      "parameters": [
+        "activityType",
+        "entityType",
+        "entityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "return this.entityCacheService.getCachedEntityValue(this.entity, \"columns\")",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getCachedActivityColumns",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "getFilterColumnValues",
+    "getDisplayColumnConfig",
+    "getAllActivities",
+    "getCachedActivities",
+    "getCachedActivityColumns",
+    "getAllActivitiesByEntityByEntityId",
+    "getAllActivityLogsByEntityByEntityId"
+  ]
+}

@@ -1,0 +1,632 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isLoadingNotes",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "notes",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "saveNote",
+      "parameters": [
+        "relatedEntityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onDeleteButtonClick",
+      "parameters": [
+        "activityId"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onNoteFilterChange",
+      "parameters": [],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "relatedEntityId",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [],
+          "classList": [],
+          "elementId": "notes-filter",
+          "expressions": [
+            {
+              "expression": "false",
+              "to": "displayColumnDropdown"
+            },
+            {
+              "expression": "false",
+              "to": "displayOperationDropdown"
+            },
+            {
+              "expression": "$ctrl.onNoteFilterChange({\n    newTargetValue: newTargetValue\n})",
+              "to": "onFilterChange"
+            },
+            {
+              "expression": "$ctrl.filterTarget",
+              "to": "filterTarget"
+            },
+            {
+              "expression": "false",
+              "to": "displayResetButton"
+            }
+          ],
+          "name": "filter-component",
+          "ownerId": "6b07c32e48cd88e32d307995",
+          "ownerType": "app",
+          "resourceIdentity": "components/filter-components/filter-component",
+          "type": "custom-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "new",
+          "expressions": [
+            {
+              "expression": "$ctrl.onAddButtonClick()",
+              "to": "onClick"
+            },
+            {
+              "expression": "$ctrl.isAddingNote || $ctrl.currentlyEditingNote\n?\n({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"times\",\n  \"position\": \"left\"\n})\n:\n({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"plus\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            },
+            {
+              "expression": "$ctrl.currentlyEditingNote || $ctrl.isAddingNote ? \"Cancel\" : \"New\"",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.currentlyEditingNote || $ctrl.isAddingNote ? \"default\" : \"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.currentlyEditingNote ? \"Cancel editing note\" : $ctrl.isAddingNote ? \"Close Editor\" : \"New Note\"",
+              "to": "tooltip"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "comments": "buttons",
+      "elementId": "new-note-button-container",
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "$ctrl.onEditorInit(editor)",
+              "to": "onEditorInit"
+            },
+            {
+              "expression": "\"Note...\"",
+              "to": "placeholder"
+            },
+            {
+              "expression": "$ctrl.currentTextValue",
+              "to": "textValue"
+            }
+          ],
+          "name": "Rich Text Editor",
+          "nodeName": "bln-rich-text-editor",
+          "type": "core-component"
+        },
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "save",
+              "expressions": [
+                {
+                  "expression": "$ctrl.onSaveButtonClick($event)",
+                  "to": "onClick"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"save\",\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                },
+                {
+                  "expression": "\"Save\"",
+                  "to": "label"
+                },
+                {
+                  "expression": "\"primary\"",
+                  "to": "type"
+                },
+                {
+                  "expression": "\"Save note\"",
+                  "to": "tooltip"
+                }
+              ],
+              "name": "Button",
+              "nodeName": "bln-button",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "buttons",
+          "displayExpression": "$ctrl.editor",
+          "elementId": "note-rich-text-editor-button-container",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "displayExpression": "$ctrl.isAddingNote || $ctrl.currentlyEditingNote",
+      "elementId": "note-rich-text-editor-container",
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "expressions": [
+            {
+              "expression": "\"5rem\"",
+              "to": "size"
+            }
+          ],
+          "name": "Spinner",
+          "nodeName": "bln-spinner",
+          "type": "core-component"
+        }
+      ],
+      "classList": [
+        "spinner-container"
+      ],
+      "displayExpression": "$ctrl.isLoadingNotes",
+      "elementId": "note-spinner-container",
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Currently editing this note..."
+                }
+              ],
+              "classList": [],
+              "comments": "editing-indicator",
+              "displayExpression": "note.isEditingThisNote",
+              "name": "em"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "comments": "body",
+              "contentType": "html",
+              "html": {
+                "content": "note.body",
+                "evaluate": true
+              },
+              "name": "div"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "comments": "owner-name",
+              "contentType": "html",
+              "displayExpression": "note.ownerName && !note.ownerName.includes(\"null\")",
+              "html": {
+                "content": "\"<strong>Owner Name:</strong> \" + note.ownerName",
+                "evaluate": true
+              },
+              "name": "div"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "comments": "modified-on",
+              "contentType": "html",
+              "html": {
+                "content": "\"<strong>Modified On:</strong> \" + note.modifiedOn",
+                "evaluate": true
+              },
+              "name": "div"
+            },
+            {
+              "children": [],
+              "classList": [],
+              "comments": "created-on",
+              "contentType": "html",
+              "html": {
+                "content": "\"<strong>Created On:</strong> \" + note.createdOn",
+                "evaluate": true
+              },
+              "name": "div"
+            },
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "edit",
+                  "expressions": [
+                    {
+                      "expression": "\"default\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"edit\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "\"Edit note\"",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "!note.activityId || note.isEditingThisNote || $ctrl.currentlyEditingNote",
+                      "to": "isDisabled"
+                    },
+                    {
+                      "expression": "$ctrl.onEditButtonClick(note.activityId)",
+                      "to": "onClick"
+                    }
+                  ],
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "type": "core-component"
+                },
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "comments": "delete",
+                  "expressions": [
+                    {
+                      "expression": "\"primary\"",
+                      "to": "type"
+                    },
+                    {
+                      "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"trash-alt\",\n  \"position\": \"left\"\n})",
+                      "to": "icon"
+                    },
+                    {
+                      "expression": "\"\"",
+                      "to": "label"
+                    },
+                    {
+                      "expression": "\"Delete note\"",
+                      "to": "tooltip"
+                    },
+                    {
+                      "expression": "$ctrl.onDeleteButtonClick({\n    activityId: note.activityId\n})",
+                      "to": "onClick"
+                    },
+                    {
+                      "expression": "!note.activityId || note.isEditingThisNote",
+                      "to": "isDisabled"
+                    }
+                  ],
+                  "name": "Button",
+                  "nodeName": "bln-button",
+                  "styles": [
+                    {
+                      "enabled": true,
+                      "property": "--bln-button-primary-bg-color",
+                      "value": "#d10000"
+                    },
+                    {
+                      "enabled": true,
+                      "property": "--bln-button-primary-hovered-bg-color",
+                      "value": "#b10e00"
+                    },
+                    {
+                      "enabled": true,
+                      "property": "--bln-button-primary-active-bg-color",
+                      "value": "#9b0c00"
+                    }
+                  ],
+                  "type": "core-component"
+                }
+              ],
+              "classList": [
+                "note-buttons"
+              ],
+              "comments": "buttons",
+              "name": "div",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "display",
+                  "value": "flex"
+                },
+                {
+                  "enabled": true,
+                  "property": "justify-content",
+                  "value": "flex-end"
+                }
+              ]
+            }
+          ],
+          "classList": [
+            "existing-note"
+          ],
+          "iterate": {
+            "array": "$ctrl.notes",
+            "variable": "note"
+          },
+          "layout": {
+            "cell": {
+              "growFactor": 1,
+              "height": "",
+              "mainSize": "100%",
+              "shrinkFactor": 1,
+              "type": "box-item"
+            }
+          },
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "displayExpression": "!$ctrl.isLoadingNotes",
+      "elementId": "existing-notes-container",
+      "layout": {
+        "container": {
+          "crossAxisAlignment": "stretch",
+          "gap": "0.5rem",
+          "items": [],
+          "orientation": "column",
+          "type": "box"
+        }
+      },
+      "name": "div",
+      "styles": [
+        {
+          "enabled": true,
+          "property": "height",
+          "value": "100% !important"
+        },
+        {
+          "enabled": true,
+          "property": "width",
+          "value": "100% !important"
+        }
+      ]
+    }
+  ],
+  "modules": [],
+  "name": "note-component",
+  "parentDirectoryId": "1RazoPSP8sShi8sWRi16c",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "description": "The current instance of the editor.",
+      "name": "editor",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "$ctrl.editor = editor;\n\nif ($ctrl.currentlyEditingNote) $ctrl.editor.root.innerHTML = $ctrl.currentlyEditingNote.body;\nelse $ctrl.editor.setContents([]);\n\nif (!$ctrl.editor.hasOwnProperty('getHTML')) {\n    $ctrl.editor.getHTML = () => {\n        return $ctrl.editor.root.innerHTML;\n    }\n}",
+      "description": "Handles the initialization of the rich text editor to get the reference of editor and assign it to `$ctrl.editor`.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onEditorInit",
+      "parameters": [
+        "editor"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if($ctrl.currentTextValue) {\n    if(!$ctrl.currentTextValue.trim()) return;\n\n    const newNote = $ctrl.editor.getHTML();\n\n    if (!$ctrl.currentlyEditingNote) {\n        $ctrl.notes.unshift({\n            createdOn: \"...\",\n            modifiedOn: \"...\",\n            body: newNote\n        });\n        $ctrl.scrollToTopOfChild();\n    } else $ctrl.currentlyEditingNote.body = newNote;\n\n    $ctrl.saveNote({\n        relatedEntityId: $ctrl.relatedEntityId\n    });\n\n    if ($ctrl.currentlyEditingNote) $ctrl.currentlyEditingNote = null;\n\n    $ctrl.editor.setContents([]);\n}",
+      "description": "Handles the current content of the editor and append its value to the current list of `notes`.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onSaveButtonClick",
+      "parameters": [
+        "event"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "The current content of the text editor.",
+      "name": "currentTextValue",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "if ($ctrl.notes) {\n    const noteToEdit = $ctrl.notes.find(note => note.activityId === activityId);\n    const noteBody = noteToEdit?.body;\n    if (!noteBody.trim()) return;\n\n    noteToEdit.isEditingThisNote = true;\n    $ctrl.currentlyEditingNote = noteToEdit;\n    $ctrl.editor.root.innerHTML = noteBody;\n\n    // scrollToTopOfChild();\n}\n\nfunction scrollToTopOfChild() {\n  const childScrollableElement = document.querySelector('div[bln-panel-content]');\n  if (childScrollableElement) {\n    // childScrollableElement.scrollTop = 0;\n    childScrollableElement.scrollTo({ top: 0, behavior: 'smooth' });\n  }\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onEditButtonClick",
+      "parameters": [
+        "activityId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "currentlyEditingNote",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "if ($ctrl.notes) {\n    $ctrl.currentlyEditingNote.isEditingThisNote = false;\n    $ctrl.currentlyEditingNote = null;\n    $ctrl.editor.setContents([]);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancelEditButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "filterTarget",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "if ($ctrl.editor) {\n    $ctrl.currentlyEditingNote = null;\n    $ctrl.editor.setContents([]);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchFilterTarget",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.filterTarget"
+      ]
+    },
+    {
+      "body": "if ($ctrl.currentlyEditingNote) {\n    $ctrl.onCancelEditButtonClick();\n    return;\n}\n\n$ctrl.isAddingNote = !$ctrl.isAddingNote",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onAddButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "isAddingNote",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "const childScrollableElement = document.querySelector('div[bln-panel-content]');\nif (childScrollableElement) {\n  childScrollableElement.scrollTo({ top: 0, behavior: 'smooth' });\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "scrollToTopOfChild",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ]
+}

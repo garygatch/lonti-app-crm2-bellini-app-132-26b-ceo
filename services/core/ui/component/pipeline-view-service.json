@@ -1,0 +1,643 @@
+{
+  "description": "",
+  "name": "pipeline-view-service",
+  "parentDirectoryId": "d08clVH4An6sTkiA4Wa52",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "currentDataLoadId",
+      "type": "property",
+      "value": "0"
+    },
+    {
+      "description": "",
+      "name": "currentPipeline",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "selectedDeal",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "selectedDealDetails",
+      "type": "array"
+    },
+    {
+      "description": "",
+      "name": "currentFilter",
+      "properties": [
+        {
+          "description": "",
+          "name": "column",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "operation",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "target",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "query",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "children": [],
+          "description": "",
+          "name": "columnValues",
+          "type": "array"
+        },
+        {
+          "children": [],
+          "description": "",
+          "name": "targetValues",
+          "type": "array"
+        },
+        {
+          "description": "",
+          "name": "filtersApplied",
+          "type": "property",
+          "value": "[\n    {\n        property: null,\n        operation: null,\n        value: null\n    }\n]"
+        },
+        {
+          "description": "",
+          "name": "sortsApplied",
+          "type": "property",
+          "value": "[\n    {\n        property: null,\n        order: \"ASC\"\n    }\n]"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "kanbanColumns",
+      "type": "array"
+    },
+    {
+      "description": "",
+      "name": "isLoadingData",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isSendingData",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isAddingPipelineStage",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isDeletingPipelineStage",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "body": "this.currentDataLoadId++;\nconst loadId = this.currentDataLoadId;\nconst limitPerColumn = 20; // Scalable limit per column\n\ntry {\n    this.isLoadingData = true;\n    this.kanbanColumns = []; // Reset view\n\n    // --- 1. Fetch Pipeline Stages (The Columns) ---\n    const { entities: stages } = await this.entityService.getAllEntities({\n        entity: \"pipelinestage\",\n        query: `pipelineId_eq=${pipelineId}`,\n        limit: 1000\n    });\n\n    if (loadId !== this.currentDataLoadId) return;\n\n    // Initialize column state\n    this.kanbanColumns = (stages ?? []).map(stage => ({\n        ...stage,\n        deals: [],\n        totalDealsInStage: \"00\",\n        currentPage: 1,\n        isLoadingDeals: true,\n        hasNextPage: true,\n        isEditingPipelineStageName: false,\n        originalName: stage.name\n    })).toSorted((a, b) => a.order - b.order);\n\n    // --- 2. Fetch Deals for each column concurrently ---\n    const dealLoadPromises = this.kanbanColumns.map(column =>\n        this.loadDealsForColumn(column, loadId, limitPerColumn)\n    );\n\n    await Promise.all(dealLoadPromises);\n    this.stageColumn.attachScrollListeners();\n\n} catch (error) {\n    console.error(\"Error loading Kanban board:\", error);\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: \"Failed to load pipeline stages.\",\n        dismissIn: 5_000\n    });\n} finally {\n    if (loadId === this.currentDataLoadId) {\n        this.isLoadingData = false;\n    }\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "loadKanbanData",
+      "parameters": [
+        "pipelineId",
+        "options"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "notificationService",
+      "resourceIdentity": "services/util-services/notification-service",
+      "type": "service"
+    },
+    {
+      "body": "try {\n        column.isLoadingDeals = true;\n        let query = `pipelineStageId_eq=${column.pipelineStageId}`;\n        if (this.currentFilter.query) {\n            query += `&${this.currentFilter.query}`;\n        }\n\n        const { entities: deals, totalFiltered, hasNextPage } = await this.entityService.getAllEntities({\n            entity: \"opportunity\",\n            query: query,\n            page: column.currentPage,\n            limit: limit,\n        });\n\n        if (loadId !== this.currentDataLoadId) return;\n\n        column.deals = [...column.deals, ...deals];\n        column.hasNextPage = hasNextPage;\n        \n        this.updateColumnCounter(column);\n\n    } catch (error) {\n        console.error(`Error loading deals for stage ${column.name}:`, error);\n    } finally {\n        column.isLoadingDeals = false;\n    }",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "loadDealsForColumn",
+      "parameters": [
+        "column",
+        "loadId",
+        "limit"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (queryString === null) {\n    this.currentFilter = {\n        ...this.currentFilter,\n        query: '',\n        filtersApplied: [{ property: null, operation: null, value: \"\" }]\n    };\n} else if (queryString !== undefined) {\n    this.currentFilter.query = queryString;\n}\n\nconst activePipelineId = this.currentPipeline.pipelineId;\nawait this.loadKanbanData(activePipelineId);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onKanbanFilterChange",
+      "parameters": [
+        "queryString"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "entityService",
+      "resourceIdentity": "services/entity-services/entity-service",
+      "type": "service"
+    },
+    {
+      "name": "$timeout",
+      "type": "service"
+    },
+    {
+      "body": "this.selectedDeal = deal;\nthis.selectedDealDetails = this.utilityService.formatEntityForDisplay(deal);",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onDealSelect",
+      "parameters": [
+        "deal"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.utilityService.clearForm(form);\nthis.isAddingPipelineStage = false;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onPipelineStageAddFormBackButtonClick",
+      "parameters": [
+        "form"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    const METHOD = \"POST\";\n    const entityType = \"pipelinestage\";\n\n    const { general: { name, order } } = form;\n\n    const newStage = {\n        name: name,\n        order: order,\n        pipelineId: pipelineId ?? this.currentPipeline.pipelineId\n    };\n\n    const response = await this.dataService.sendData(\n        entityType,\n        METHOD,\n        newStage\n    );\n\n    if (response.result !== \"OK\") {\n        throw new Error(response.message || \"Failed to update deal stage.\");\n    }\n    \n    this.isAddingPipelineStage = false;\n    this.utilityService.clearForm(form);\n    await this.loadKanbanData(this.currentPipeline.pipelineId);\n\n} catch (error) {\n    console.error(\"Backend update failed:\", error);\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: error.message,\n        dismissIn: 5_000\n    });\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "addPipelineStage",
+      "parameters": [
+        "form",
+        "pipelineId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if (!stage || !stage.pipelineStageId) {\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: \"Pipeline Stage ID is missing or invalid.\",\n        dismissIn: 5_000\n    });\n    return;\n}\n\nconst { pipelineStageId, name, order, createdOn, modifiedOn, tenantId, pipelineId } = stage;\nconst entityType = \"pipelinestage\"\n\ntry {\n    this.isDeletingPipelineStage = true;\n\n    const cleanStageForDisplay = { \n        pipelineStageId, \n        name, \n        order, \n        createdOn, \n        modifiedOn, \n        tenantId, \n        pipelineId \n    };\n\n    const options = {\n        displayName: name,\n        modalData: this.utilityService.formatEntityForDisplay(cleanStageForDisplay)\n    };\n\n    const result = await this.dataService.deleteData(\n        entityType,\n        pipelineStageId,\n        options\n    );\n\n    if (result?.result !== 'cancel') {\n        this.loadKanbanData(this.currentPipeline.pipelineId);\n    }\n\n} catch (e) {\n    console.error(\"Failed to delete pipeline stage: \", e);\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: e.message,\n        dismissIn: 5_000\n    });\n} finally {\n    this.isDeletingPipelineStage = false;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "deletePipelineStage",
+      "parameters": [
+        "stage"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const sourceCol = this.kanbanColumns.find(c => c.pipelineStageId === sourceStageId);\nconst dealIndex = sourceCol.deals.findIndex(d => d.opportunityId === opportunityId);\n\nif (dealIndex > -1) {\n    const [deal] = sourceCol.deals.splice(dealIndex, 1);\n\n    targetColumn.deals.unshift(deal);\n\n    this.updateColumnCounter(sourceCol);\n    this.updateColumnCounter(targetColumn);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "moveDealLocally",
+      "parameters": [
+        "opportunityId",
+        "sourceStageId",
+        "targetColumn"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    const METHOD = \"PUT\";\n    const entityType = \"opportunity\";\n\n    const requestBody = {\n        opportunityId: opportunityId,\n        pipelineStageId: newStageId,\n    };\n\n    const response = await this.dataService.sendData(\n        entityType,\n        METHOD,\n        requestBody\n    );\n\n    if (response.result !== \"OK\") {\n        throw new Error(response.message || \"Failed to update deal stage.\");\n    }\n\n    // Optional: Sync the Side Panel if the moved deal is the one being viewed\n    if (this.currentEntity && this.currentEntity.opportunityId === opportunityId) {\n        this.currentEntity.pipelineStageId = newStageId;\n        // Optionally refresh side panel data to get the new 'modifiedOn' timestamp\n        // await this.refreshSidePanel(opportunityId);\n    }\n\n} catch (error) {\n    console.error(\"Backend update failed:\", error);\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: error.message,\n        dismissIn: 5_000\n    });\n    await this.loadKanbanData(this.currentPipeline.pipelineId);\n\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "updateDealStage",
+      "parameters": [
+        "opportunityId",
+        "newStageId"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "body": "const localCount = column.deals.length;\n\nif (column.hasNextPage) {\n    // If the server has more pages, the total is at least 20+\n    column.totalDealsInStage = `${localCount}+`;\n} else {\n    // If we've reached the end of the server data, \n    // the local array length is the true total.\n    if (localCount < 10) {\n        column.totalDealsInStage = `0${localCount}`;\n    } else {\n        column.totalDealsInStage = localCount;\n    }\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "updateColumnCounter",
+      "parameters": [
+        "column"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    const METHOD = \"PUT\";\n    const entityType = \"pipelinestage\";\n\n    const requestBody = {\n        pipelineStageId: pipelineStageId,\n        name: newName\n    };\n\n    const response = await this.dataService.sendData(\n        entityType,\n        METHOD,\n        requestBody\n    );\n\n    if (response.result !== \"OK\") {\n        throw new Error(response.message || \"Failed to update deal stage.\");\n    }\n\n} catch (error) {\n    console.error(\"Backend update failed:\", error);\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: error.message,\n        dismissIn: 5_000\n    });\n    await this.loadKanbanData(this.currentPipeline.pipelineId);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "updateStageName",
+      "parameters": [
+        "pipelineStageId",
+        "newName"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    const METHOD = \"PUT\";\n    const entityType = \"pipelinestage\";\n\n    const requestBody = {\n        pipelineStageId: pipelineStageId,\n        order: newOrder\n    };\n\n    const response = await this.dataService.sendData(\n        entityType,\n        METHOD,\n        requestBody\n    );\n\n    if (response.result !== \"OK\") {\n        throw new Error(response.message || \"Failed to update deal stage.\");\n    }\n\n} catch (error) {\n    console.error(\"Backend update failed:\", error);\n    this.notificationService.notify({\n        alertType: \"error\",\n        alertDescription: error.message,\n        dismissIn: 5_000\n    });\n    await this.loadKanbanData(this.currentPipeline.pipelineId);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "updateStageOrder",
+      "parameters": [
+        "pipelineStageId",
+        "newOrder"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.currentFilter.column = \"\";\nthis.currentFilter.operation = \"\";\nthis.currentFilter.target = \"\";\nthis.currentFilter.query = \"\";\n\nthis.currentFilter.filtersApplied = [\n    {\n        property: null,\n        operation: null,\n        value: null\n    }\n];\n\nthis.currentFilter.sortsApplied = [\n    {\n        property: null,\n        order: \"ASC\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "clearKanbanFilter",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const container = document.querySelector('.pipeline-container');\nif (container) container.classList.remove('is-dragging-deal', 'is-reordering-stages');\n\nif (event && event.currentTarget) {\n    event.currentTarget.classList.remove('deal-drag-over', 'stage-drag-over', 'stage-dragging');\n}\n\nconst allStages = document.querySelectorAll('.stage-column');\nallStages.forEach(stage => {\n    stage.classList.remove('deal-drag-over', 'stage-drag-over', 'stage-dragging');\n});\n\nconst allCards = document.querySelectorAll('.deal-card');\nallCards.forEach(card => {\n    card.classList.remove('dragging', 'drag-placeholder');\n});",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "clearDragStyles",
+      "parameters": [
+        "event"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "this.currentPipeline = null;\nthis.selectedDeal = null;\nthis.isLoadingData = false;\nthis.isSendingData = false;\nthis.isAddingPipelineStage = false;\nthis.isDeletingPipelineStage = false;\n\nthis.selectedDealDetails = [];\nthis.kanbanColumns = [];\n\nthis.clearKanbanFilter();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "resetKanbanView",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "dealCard",
+      "properties": [
+        {
+          "body": "deal.isHovering = true;",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onMouseOver",
+          "parameters": [
+            "deal"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "deal.isHovering = false;",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onMouseLeave",
+          "parameters": [
+            "deal"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "const dragData = {\n    opportunityId: deal.opportunityId,\n    sourceStageId: stage.pipelineStageId\n};\nevent.dataTransfer.setData(\"application/json\", JSON.stringify(dragData));\nevent.dataTransfer.effectAllowed = \"move\";\n\nconst container = document.querySelector('.pipeline-container');\ncontainer.classList.add('is-dragging-deal');\n\nconst target = event.target;\ntarget.classList.add('dragging');\n\nthis.$timeout(() => {\n    target.classList.add('drag-placeholder');\n}, 0);",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDragStart",
+          "parameters": [
+            "event",
+            "deal",
+            "stage"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "this.clearDragStyles(event);\n\n// event.target.classList.remove('dragging');\n\n// const columns = document.querySelectorAll('.stage-column');\n// columns.forEach(col => col.classList.remove('drag-over'));\n",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDragEnd",
+          "parameters": [
+            "event"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "stageColumn",
+      "properties": [
+        {
+          "body": "// 1. Select all the scrollable card-list containers\nconst columnElements = document.querySelectorAll('.card-list') ?? [];\n\nif (columnElements.length > 0) {\n    columnElements.forEach((el, index) => {\n        // We use a named function so we can remove it later if needed\n        el.addEventListener('scroll', (event) => {\n            this.stageColumn.onScroll(event, this.kanbanColumns[index]);\n        });\n    });\n} else {\n    this.$timeout(this.stageColumn.attachScrollListeners, 100);\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "attachScrollListeners",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "const columnElements = document.querySelectorAll('card-list');\ncolumnElements.forEach((el) => {\n    el.removeEventListener('scroll', this.handleColumnScroll);\n});",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "detachScrollListeners",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "const element = event.target;\n\n// Calculate distance from bottom\n// scrollHeight: Total height of content\n// scrollTop: How much has been scrolled\n// clientHeight: Height of the visible container\nconst threshold = 10;\nconst isAtBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + threshold;\n\n// Only load if we are at the bottom, not already loading, and there's more data to fetch\nif (isAtBottom && !column.isLoadingDeals && column.hasNextPage) {\n    this.stageColumn.onColumnScrollEnd(column);\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onScroll",
+          "parameters": [
+            "event",
+            "column"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "if (column.hasNextPage && !column.isLoadingDeals) {\n    column.currentPage++;\n    await this.loadDealsForColumn(column, this.currentDataLoadId, 20);\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": true,
+          "name": "onColumnScrollEnd",
+          "parameters": [
+            "column"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "// If the user clicked a deal-card or inside a card-list, \n// ignore the stage drag start.\nif (event.target.closest('.card-list')) {\n    return;\n}\n\nconst container = document.querySelector('.pipeline-container');\ncontainer.classList.add('is-reordering-stages');\n\nevent.dataTransfer.setData(\"application/stage-id\", stage.pipelineStageId);\nevent.dataTransfer.setData(\"application/stage-order\", stage.order);\nevent.target.classList.add('stage-dragging');\n\n",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDragStart",
+          "parameters": [
+            "event",
+            "stage"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "event.preventDefault();\nconst types = event.dataTransfer.types;\n\nif (types.includes(\"application/json\")) {\n    event.currentTarget.classList.add('deal-drag-over');\n} else if (types.includes(\"application/stage-id\")) {\n    event.currentTarget.classList.add('stage-drag-over');\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDragOver",
+          "parameters": [
+            "event"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "event.preventDefault();\nthis.clearDragStyles(event);\n\nconst types = event.dataTransfer.types;\n\n// 1. Handle Deal Drop\nif (types.includes(\"application/json\")) {\n    const rawData = event.dataTransfer.getData(\"application/json\");\n    const { opportunityId, sourceStageId } = JSON.parse(rawData);\n\n    if (sourceStageId !== targetColumn.pipelineStageId) {\n        this.moveDealLocally(opportunityId, sourceStageId, targetColumn);\n        await this.updateDealStage(opportunityId, targetColumn.pipelineStageId);\n    }\n}\n// 2. Handle Stage Drop\nelse if (types.includes(\"application/stage-id\")) {\n    const draggedStageId = event.dataTransfer.getData(\"application/stage-id\");\n    const draggedStageOrder = parseInt(event.dataTransfer.getData(\"application/stage-order\"));\n\n    if (draggedStageOrder !== targetColumn.order) {\n        // newOrder is based on the targetColumn's current position\n        await this.updateStageOrder(draggedStageId, targetColumn.order);\n        await this.loadKanbanData(this.currentPipeline.pipelineId);\n    }\n}\n\n// event.preventDefault();\n// event.currentTarget.classList.remove('drag-over');\n\n// const rawData = event.dataTransfer.getData(\"application/json\");\n// if (!rawData) return;\n\n// const { opportunityId, sourceStageId } = JSON.parse(rawData);\n\n// // If dropped in the same column, do nothing\n// if (sourceStageId === targetColumn.pipelineStageId) return;\n\n// // 1. Optimistic UI Update: Move card locally for instant feedback\n// $ctrl.pipelineViewService.moveDealLocally(opportunityId, sourceStageId, targetColumn);\n\n// // 2. Persistence: Update Martini\n// await this.updateDealStage(opportunityId, targetColumn.pipelineStageId);\n",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": true,
+          "name": "onDrop",
+          "parameters": [
+            "event",
+            "targetColumn"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "event.currentTarget.classList.remove('deal-drag-over', 'stage-drag-over');",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDragLeave",
+          "parameters": [
+            "event"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "event.preventDefault();\n\nconst types = event.dataTransfer.types;\nif (types.includes(\"application/stage-id\")) {\n    event.currentTarget.classList.add('stage-drag-over');\n} else if (types.includes(\"application/json\")) {\n    event.currentTarget.classList.add('deal-drag-over');\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDragEnter",
+          "parameters": [
+            "event"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        },
+        {
+          "body": "this.clearDragStyles(event);",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "onDragEnd",
+          "parameters": [
+            "event"
+          ],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": []
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    }
+  ],
+  "visible": [
+    "pipelineData",
+    "selectedDealId",
+    "currentPipelineId",
+    "isPipelineViewActive",
+    "loadKanbanData",
+    "isLoadingData",
+    "kanbanColumns",
+    "currentDataLoadId",
+    "onColumnScrollEnd",
+    "currentPipeline",
+    "onScroll",
+    "attachScrollListeners",
+    "detachScrollListeners",
+    "loadDealsForColumn",
+    "onKanbanFilterChange",
+    "currentFilter",
+    "moveDealLocally",
+    "onDragStart",
+    "onDragOver",
+    "onDragLeave",
+    "onDrop",
+    "updateDealStage",
+    "updateColumnCounter",
+    "onDragEnd",
+    "updateStageName",
+    "dealCard",
+    "stageColumn",
+    "isAddingPipelineStage",
+    "isSendingData",
+    "addPipelineStage",
+    "deletePipelineStage",
+    "isDeletingPipelineStage",
+    "clearDragStyles",
+    "updateStageOrder",
+    "selectedDeal",
+    "onDealSelect",
+    "selectedDealDetails",
+    "onPipelineStageAddFormBackButtonClick",
+    "clearKanbanFilter",
+    "resetKanbanView"
+  ]
+}

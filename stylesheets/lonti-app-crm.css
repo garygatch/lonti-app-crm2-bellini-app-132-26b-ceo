@@ -1,0 +1,114 @@
+/*
+  --------------------------------------------------
+  Root Variables
+  --------------------------------------------------
+*/
+:root {
+  --header-offset: 50px;
+  --nav-offset: 0px;
+  --tab-bar-offset: 35px;
+  --height-offset: calc(100% - var(--header-offset));
+  --width-offset: calc(100% - var(--nav-offset));
+
+  /* Semantic color variables */
+  --color-border: #cecece;
+  --color-border-gray: #444;
+  --color-white: white;
+
+  /* Bellini style overrides */
+  --bln-button-roundness: 1.5rem !important;
+  /* --bln-button-padding: 0.75rem !important; */
+}
+
+/*
+  --------------------------------------------------
+  Global Styles
+  --------------------------------------------------
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  --------------------------------------------------
+  Bellini Styles Overrides
+  --------------------------------------------------
+*/
+.bln-dropdown-menu-dropdown,
+.bln-dropdown-list {
+  z-index: 1089;
+}
+
+.bln-dropdown-menu-dropdown .menu-label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
+}
+
+.bln-table .grid input:checked~.checkmark {
+  border-color: rgba(160, 174, 192, var(--border-opacity));
+  background-color: transparent;
+}
+
+.bln-table .grid .checkmark .check {
+  /* visibility: hidden; */
+  color: #006747;
+  /* font-size: calc(var(--bln-checkbox-size) * 0.6); */
+}
+
+.bln-table .grid .ui-grid-render-container-body .ui-grid-viewport {
+  overflow-x: hidden !important;
+
+}
+
+.bln-table .grid .ui-grid-row {
+  max-height: unset !important;
+}
+
+.bln-table .grid .ui-grid-row {
+  max-height: unset !important;
+}
+
+.ui-grid-viewport .ui-grid-cell-contents {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.ui-grid-header-cell-label {
+  white-space: normal;
+}
+
+.ui-grid-row,
+.ui-grid-cell {
+  height: auto !important;
+}
+
+.ui-grid-row div[role=row] {
+  display: flex;
+  align-content: stretch;
+}
+
+.bln-table .grid .ui-grid-cell-contents {
+  max-height: unset !important;
+  height: 100% !important;
+}
+
+/*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+@media (min-width: 1024px) {
+  .desktop {
+    margin-top: var(--header-offset);
+    border: 1px solid var(--color-border);
+  }
+
+  #box {
+    overflow: hidden;
+  }
+}

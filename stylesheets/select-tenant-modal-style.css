@@ -1,0 +1,24 @@
+.modal-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.modal-options span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100px;
+}
+
+/*
+  --------------------------------------------------
+  Desktop/Larger Screen Adjustments
+  --------------------------------------------------
+*/
+@media (min-width: 640px) {
+    .modal-options span {
+        max-width: 200px;
+    }
+}

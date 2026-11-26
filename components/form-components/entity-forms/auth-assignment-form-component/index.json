@@ -1,0 +1,730 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "isAssigning",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "primaryEntity",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "primaryEntityType",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "targetEntityType",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "action-dropdown",
+              "expressions": [
+                {
+                  "expression": "[{\n        label: \"Assign\",\n        evaluateLabel: false,\n        icon: {\n            name: \"plus\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onActionChange(\"Assign\", \"plus\")\n    },\n    {\n        label: \"Unassign\",\n        evaluateLabel: false,\n        icon: {\n            name: \"times\",\n            style: \"solid\",\n            type: \"font-icon\",\n            position: \"left\"\n        },\n        onClick: \"function\",\n        function: () => $ctrl.onActionChange(\"Unassign\", \"times\")\n    }\n]",
+                  "to": "menuItems"
+                },
+                {
+                  "expression": "$ctrl.currentAction.label",
+                  "to": "label"
+                },
+                {
+                  "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": $ctrl.currentAction.icon,\n  \"position\": \"left\"\n})",
+                  "to": "icon"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "tenant-dropdown",
+              "displayExpression": "$ctrl.targetEntityType === \"role\"",
+              "expressions": [
+                {
+                  "expression": "$ctrl.currentTenantMenuItems",
+                  "to": "menuItems"
+                },
+                {
+                  "expression": "$ctrl.targetTenant.name",
+                  "to": "label"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "comments": "permission-dropdown",
+              "displayExpression": "$ctrl.targetEntityType === \"scope\"",
+              "expressions": [
+                {
+                  "expression": "$ctrl.currentScopePermission",
+                  "to": "label"
+                },
+                {
+                  "expression": "[{\n        label: \"READ\",\n        evaluateLabel: false,\n        onClick: \"function\",\n        function: () => $ctrl.onCurrentScopePermissionChange(\"READ\")\n    },\n    {\n        label: \"WRITE\",\n        evaluateLabel: false,\n        onClick: \"function\",\n        function: () => $ctrl.onCurrentScopePermissionChange(\"WRITE\")\n    }\n]",
+                  "to": "menuItems"
+                }
+              ],
+              "name": "Dropdown Menu",
+              "nodeName": "bln-dropdown-menu",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "elementId": "assignment-form-dropdown-container",
+          "name": "div"
+        },
+        {
+          "children": [],
+          "classList": [],
+          "displayExpression": "false",
+          "expressions": [
+            {
+              "expression": "$ctrl.currentFilter.column",
+              "to": "filterColumn"
+            },
+            {
+              "expression": "$ctrl.currentFilter.operation",
+              "to": "filterOperation"
+            },
+            {
+              "expression": "$ctrl.currentFilter.target",
+              "to": "filterTarget"
+            },
+            {
+              "expression": "$ctrl.onFilterChange(newColumnValue, newOperationValue, newTargetValue)",
+              "to": "onFilterChange"
+            },
+            {
+              "expression": "$ctrl.currentFilter.columnValues",
+              "to": "filterColumnValues"
+            }
+          ],
+          "name": "filter-component",
+          "ownerId": "6b07c32e48cd88e32d307995",
+          "ownerType": "app",
+          "resourceIdentity": "components/filter-components/filter-component",
+          "type": "custom-component"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "attributes": [
+                    {
+                      "property": "core",
+                      "value": ""
+                    }
+                  ],
+                  "children": [],
+                  "classList": [],
+                  "expressions": [],
+                  "name": "Spinner",
+                  "nodeName": "bln-spinner",
+                  "type": "core-component"
+                }
+              ],
+              "classList": [
+                "spinner-container"
+              ],
+              "displayExpression": "$ctrl.isLoading",
+              "name": "div"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "displayExpression": "$ctrl.displayTable",
+              "expressions": [
+                {
+                  "expression": "$ctrl.tableData",
+                  "to": "data"
+                },
+                {
+                  "expression": "true",
+                  "to": "enablePagination"
+                },
+                {
+                  "expression": "true",
+                  "to": "enableRowSelection"
+                },
+                {
+                  "expression": "true",
+                  "to": "enableMultiSelection"
+                },
+                {
+                  "expression": "$ctrl.selectedRows",
+                  "to": "selectedRow"
+                },
+                {
+                  "expression": "[{\n        name: $ctrl.targetEntityType === \"role\" ? \"Name\" : \"API Endpoint\",\n        hide: false,\n        valueKey: $ctrl.targetEntityType === \"role\" ? \"name\" : \"apiEndpoint\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enableEditing: true,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    },\n    {\n        name: \"Description\",\n        hide: false,\n        valueKey: \"description\",\n        textAlign: \"left\",\n        enableSorting: true,\n        sortBy: \"none\",\n        enableFiltering: false,\n        enableEditing: true,\n        enablePinning: false,\n        type: \"string\",\n        cellTemplate: \"default\",\n        cellTooltip: \"\",\n        cellConditionalStyle: [],\n        cellActions: [],\n        classes: [],\n        conditionalClasses: []\n    }\n]",
+                  "to": "columns"
+                },
+                {
+                  "expression": "$ctrl.currentPage",
+                  "to": "currentPage"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "styles": [
+                {
+                  "enabled": true,
+                  "property": "--bln-table-height",
+                  "value": "100%"
+                }
+              ],
+              "type": "core-component"
+            }
+          ],
+          "classList": [
+            "table-container"
+          ],
+          "displayExpression": "!$ctrl.hasOperationCompleted",
+          "name": "div"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [
+            "pagination-with-export-footer"
+          ],
+          "displayExpression": "!$ctrl.hasOperationCompleted",
+          "elementId": "assignment-form-pagination",
+          "expressions": [
+            {
+              "expression": "false",
+              "to": "showFirstPageButton"
+            },
+            {
+              "expression": "false",
+              "to": "showLastPageButton"
+            },
+            {
+              "expression": "\"currentPageOnly\"",
+              "to": "display"
+            },
+            {
+              "expression": "$ctrl.currentPage",
+              "to": "currentPage"
+            }
+          ],
+          "name": "Pagination",
+          "nodeName": "bln-pagination",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "comments": "assignment-form",
+      "displayExpression": "!$ctrl.hasOperationCompleted",
+      "elementId": "assignment-form-container",
+      "name": "div"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Successfully Processed:"
+                }
+              ],
+              "classList": [],
+              "name": "h3"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [
+                {
+                  "expression": "$ctrl.successfulAssignments",
+                  "to": "data"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "success-table",
+          "displayExpression": "$ctrl.successfulAssignments.length",
+          "name": "div"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "evaluate": false,
+                  "name": "text",
+                  "textContent": "Failed to Process:"
+                }
+              ],
+              "classList": [],
+              "name": "h3"
+            },
+            {
+              "attributes": [
+                {
+                  "property": "core",
+                  "value": ""
+                }
+              ],
+              "children": [],
+              "classList": [],
+              "expressions": [
+                {
+                  "expression": "$ctrl.failedAssignments",
+                  "to": "data"
+                },
+                {
+                  "expression": "true",
+                  "to": "resizableColumns"
+                }
+              ],
+              "name": "Table",
+              "nodeName": "bln-table",
+              "type": "core-component"
+            }
+          ],
+          "classList": [],
+          "comments": "error-table",
+          "displayExpression": "$ctrl.failedAssignments.length",
+          "name": "div"
+        }
+      ],
+      "classList": [],
+      "comments": "responses",
+      "displayExpression": "$ctrl.hasOperationCompleted",
+      "elementId": "form",
+      "name": "div"
+    },
+    {
+      "children": [],
+      "classList": [],
+      "expressions": [
+        {
+          "expression": "$ctrl.currentAction.buttonLabel",
+          "to": "action"
+        },
+        {
+          "expression": "$ctrl.onActionButtonClick()",
+          "to": "onActionButtonClick"
+        },
+        {
+          "expression": "$ctrl.isAssigning",
+          "to": "isLoading"
+        },
+        {
+          "expression": "$ctrl.hasOperationCompleted",
+          "to": "displayCancelButton"
+        },
+        {
+          "expression": "$ctrl.onCancelButtonClick()",
+          "to": "onCancelButtonClick"
+        },
+        {
+          "expression": "\"Close\"",
+          "to": "cancelButtonLabel"
+        },
+        {
+          "expression": "!$ctrl.hasOperationCompleted",
+          "to": "displayActionButton"
+        },
+        {
+          "expression": "!$ctrl.selectedRows?.length",
+          "to": "disableActionButton"
+        }
+      ],
+      "name": "form-footer-component",
+      "ownerId": "6b07c32e48cd88e32d307995",
+      "ownerType": "app",
+      "resourceIdentity": "components/form-components/form-footer-component",
+      "type": "custom-component"
+    }
+  ],
+  "modules": [],
+  "name": "auth-assignment-form-component",
+  "parentDirectoryId": "u1bGevFsO_IjBXNugZ3VK",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "dataService",
+      "resourceIdentity": "services/data-services/data-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "entityService",
+      "resourceIdentity": "services/entity-services/entity-service",
+      "type": "service"
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "displayTable",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "isLoading",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "hasOperationCompleted",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "currentPage",
+      "type": "property",
+      "value": "1"
+    },
+    {
+      "description": "",
+      "name": "currentAction",
+      "properties": [
+        {
+          "description": "",
+          "name": "label",
+          "type": "property",
+          "value": "\"Assign\""
+        },
+        {
+          "description": "",
+          "name": "icon",
+          "type": "property",
+          "value": "\"plus\""
+        },
+        {
+          "description": "",
+          "name": "buttonLabel",
+          "type": "property",
+          "value": "\"ASSIGN\""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "description": "",
+      "name": "currentFilter",
+      "properties": [
+        {
+          "description": "",
+          "name": "column",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "operation",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "target",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "query",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "children": [],
+          "description": "",
+          "name": "columnValues",
+          "type": "array"
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "tableData",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "assignmentData",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "selectedRows",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "successfulAssignments",
+      "type": "array"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "failedAssignments",
+      "type": "array"
+    },
+    {
+      "body": "if (!$ctrl.primaryEntity) return;\n\n// --- 1. Set Initial UI State ---\n$ctrl.currentPage = page ?? $ctrl.currentPage;\n$ctrl.isLoading = true;\n$ctrl.displayTable = false;\n$ctrl.tableData.length = 0;\n$ctrl.selectedRows.length = 0;\n\nconst limit = null;\nconst targetEntityType = $ctrl.targetEntityType;\n\ntry {\n    if (targetEntityType === 'role') {\n        const isAssigning = $ctrl.currentAction?.buttonLabel === \"ASSIGN\";\n        const primaryEntityId = $ctrl.primaryEntity?.id;\n\n        if (!primaryEntityId) {\n            throw new Error(\"A primary entity (like a user) must be selected to assign roles.\");\n        }\n\n        // const [allRoles, allTenants, allUserRolesResponse] = await Promise.all([\n        //     $ctrl.entityService.getAllEntities(1, limit, null, false, 'role', 'auth'),\n        //     $ctrl.entityService.getAllEntities(1, limit, null, false, 'tenant', 'auth'),\n        //     $ctrl.entityService.getAllEntities(1, limit, null, false, 'user_role', 'auth')\n        // ]);\n\n        // Use the options object for API calls and destructure the 'entities' from each response.\n        const [rolesResponse, tenantsResponse, userRolesResponse] = await Promise.all([\n            $ctrl.entityService.getAllEntities({ entity: 'role', apiType: 'auth', limit: limit }),\n            $ctrl.entityService.getAllEntities({ entity: 'tenant', apiType: 'auth', limit: limit }),\n            $ctrl.entityService.getAllEntities({ entity: 'user_role', apiType: 'auth', limit: limit, customEntityKey: 'userrole' })\n        ]);\n\n        const allRoles = rolesResponse.entities || [];\n        const allTenants = tenantsResponse.entities || [];\n        const allUserRoleAssignments = userRolesResponse.entities || [];\n\n        $ctrl.currentTenantMenuItems = allTenants.map(tenant => ({\n            label: tenant.name,\n            evaluateLabel: false,\n            onClick: \"function\",\n            function: () => $ctrl.onTargetTenantChange(tenant)\n        }));\n\n        // Safely set a default target tenant if one isn't selected\n        if (!$ctrl.targetTenant?.id && allTenants.length > 0) {\n            const firstTenant = allTenants[0];\n            $ctrl.targetTenant.id = firstTenant.id;\n            $ctrl.targetTenant.name = firstTenant.name;\n        }\n\n        if (!$ctrl.targetTenant?.id) {\n            $ctrl.tableData = []; // No tenants exist, show an empty table\n            return;\n        }\n        const targetTenantId = $ctrl.targetTenant.id;\n\n        const roleMap = new Map(allRoles.map(role => [role.id, role]));\n\n        // Filter for the primary entity FIRST\n        const primaryEntityRoles = allUserRoleAssignments.filter(ur => ur.userId === primaryEntityId);\n        const existingRoleSet = new Set(primaryEntityRoles.map(ur => `${ur.roleId}-${ur.tenantId}`));\n\n        let rolesToDisplay = [];\n\n        if (isAssigning) {\n            // For ASSIGN, create all role combinations for the SELECTED tenant\n            const possibleCombinations = allRoles.map(role => ({\n                roleId: role.id,\n                tenantId: targetTenantId\n            }));\n            // Only show combinations that the user does not already have\n            rolesToDisplay = possibleCombinations.filter(combo =>\n                !existingRoleSet.has(`${combo.roleId}-${combo.tenantId}`)\n            );\n        } else { // For UNASSIGN\n            // Show only the roles the primary entity has for the SELECTED tenant\n            rolesToDisplay = primaryEntityRoles.filter(ur => ur.tenantId === targetTenantId);\n        }\n\n        // Enrich and create final table data\n        $ctrl.tableData = rolesToDisplay.map(role => {\n            // Get the full role object from our map\n            const fullRole = roleMap.get(role.roleId);\n\n            return {\n                id: role.id,\n                roleId: role.roleId,\n                tenantId: role.tenantId,\n                name: fullRole ? fullRole.name : 'Unknown Role',\n                description: fullRole ? fullRole.description : '',\n                tenantName: $ctrl.targetTenant.name\n            };\n        });\n\n    } else if (targetEntityType === 'scope') {\n        const isAssigning = $ctrl.currentAction?.buttonLabel === \"ASSIGN\";\n        const primaryEntityId = $ctrl.primaryEntity?.id; // The selected ROLE's ID\n\n        if (!primaryEntityId) {\n            throw new Error(\"A primary entity (a role) must be selected to assign scopes.\");\n        }\n\n        // const [allScopesResponse, allRoleScopesResponse] = await Promise.all([\n        //     $ctrl.entityService.getAllEntities(1, limit, null, false, 'scope', 'auth'),\n        //     $ctrl.entityService.getAllEntities(1, limit, null, false, 'role_scope', 'auth')\n        // ]);\n\n          const [scopesResponse, roleScopesResponse] = await Promise.all([\n                $ctrl.entityService.getAllEntities({ entity: 'scope', apiType: 'auth', limit: limit }),\n                $ctrl.entityService.getAllEntities({ entity: 'role_scope', apiType: 'auth', limit: limit, customEntityKey: 'rolescope' })\n            ]);\n\n        const allScopes = scopesResponse.entities || [];\n        const allRoleScopeAssignments = roleScopesResponse.entities || [];\n\n        // const allScopes = allScopesResponse || [];\n        // const allRoleScopeAssignments = allRoleScopesResponse.rolescope || [];\n\n        const assignedRoleScopes = allRoleScopeAssignments.filter(\n            assignment => assignment.roleId === primaryEntityId\n        );\n\n        const scopeMap = new Map(allScopes.map(scope => [scope.id, scope]));\n\n        // --- 1. REVISED: Create a more specific Set of existing scope-permission pairs ---\n        // Instead of just scope IDs, we store a composite key like \"scopeId-permission\".\n        const existingScopePermissionSet = new Set(\n            assignedRoleScopes.map(rs => `${rs.scopeId}-${rs.permission}`)\n        );\n\n        let scopesToDisplay = [];\n\n        if (isAssigning) {\n            // You must have a permission selected to know what you are assigning.\n            if (!$ctrl.currentScopePermission) {\n                scopesToDisplay = [];\n                console.warn(\"No permission selected. Cannot show scopes to assign.\");\n            } else {\n                // --- 2. REVISED: Filter based on the specific scope-permission combination ---\n                // Now we filter out a scope only if it's already assigned with the\n                // currently selected permission.\n                scopesToDisplay = allScopes.filter(scope =>\n                    !existingScopePermissionSet.has(`${scope.id}-${$ctrl.currentScopePermission}`)\n                );\n            }\n\n        } else { // For UNASSIGN, the existing logic is still correct.\n            let assignedScopesToFilter = assignedRoleScopes;\n\n            if ($ctrl.currentScopePermission) {\n                assignedScopesToFilter = assignedScopesToFilter.filter(\n                    assignment => assignment.permission === $ctrl.currentScopePermission\n                );\n            }\n\n            scopesToDisplay = assignedScopesToFilter.map(assignment => {\n                const scopeDetails = scopeMap.get(assignment.scopeId) || {};\n                return {\n                    ...assignment,\n                    apiEndpoint: scopeDetails.apiEndpoint,\n                    description: scopeDetails.description\n                };\n            });\n        }\n\n        $ctrl.tableData = scopesToDisplay;\n    } else {\n        const entities = await $ctrl.entityService.getAllEntities(page, limit, query, clearCache, targetEntityType, 'auth');\n        $ctrl.tableData = entities;\n    }\n\n    $ctrl.displayTable = true;\n\n} catch (error) {\n    console.error(`Error fetching entities for '${targetEntityType}':`, error);\n    $ctrl.utilityService.toast(\"Failed to load data. Please try again.\", \"ERROR\");\n} finally {\n    $ctrl.isLoading = false;\n}",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": true,
+      "name": "loadData",
+      "parameters": [
+        "page",
+        "limit",
+        "query",
+        "clearCache"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const actionMap = {\n    \"Assign\": \"ASSIGN\",\n    \"Unassign\": \"UNASSIGN\"\n};\n\n$ctrl.currentAction.label = label;\n$ctrl.currentAction.icon = icon;\n$ctrl.currentAction.buttonLabel = actionMap[label];\n\n$ctrl.currentPage = 1;\n\n$ctrl.loadData()",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onActionChange",
+      "parameters": [
+        "label",
+        "icon"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "$ctrl.currentFilter.column = newColumnValue ?? $ctrl.currentFilter.column;\n$ctrl.currentFilter.operation = newOperationValue ?? $ctrl.currentFilter.operation;\n$ctrl.currentFilter.target = newTargetValue ?? $ctrl.currentFilter.target;\n\nif (newTargetValue === \"\") {\n    $ctrl.currentFilter.query = undefined;\n    $ctrl.loadData(undefined, undefined, undefined, undefined);\n}\n\nif (!($ctrl.currentFilter.column && $ctrl.currentFilter.operation && $ctrl.currentFilter.target)) return;\n\n$ctrl.currentFilter.query = buildFilterQuery($ctrl.currentFilter);\n\n$ctrl.loadData(undefined, undefined, $ctrl.currentFilter.query, undefined);\n\nfunction buildFilterQuery(currentFilter) {\n    if (!currentFilter || !currentFilter.column || !currentFilter.target || !currentFilter.operation) {\n        return '';\n    }\n\n    const { column, target, operation } = currentFilter;\n    let apiOperation = operation;\n\n    return `${column}_${apiOperation}=${target}`;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onFilterChange",
+      "parameters": [
+        "newColumnValue",
+        "newOperationValue",
+        "newTargetValue"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "// --- 1. Set Initial State ---\n$ctrl.isAssigning = true;\n$ctrl.successfulAssignments.length = 0;\n$ctrl.failedAssignments.length = 0;\n$ctrl.hasOperationCompleted = true; // Indicate that an operation has been run\n\n// --- 2. Get Key Information ---\nconst options = {\n    apiType: \"auth\"\n};\n\nconst deleteOptions = {\n    apiType: \"auth\",\n    skipModal: true\n};\n\nconst targetEntityType = $ctrl.targetEntityType;\nconst actionLabel = $ctrl.currentAction?.buttonLabel; // Should be \"ASSIGN\" or \"UNASSIGN\"\nconst primaryEntityId = $ctrl.primaryEntity?.id;\n\nif (!primaryEntityId) {\n    $ctrl.utilityService.toast(\"No primary entity (e.g., user) selected.\", \"ERROR\");\n    $ctrl.isAssigning = false;\n    return;\n}\nif ($ctrl.selectedRows.length === 0) {\n    $ctrl.utilityService.toast(\"Please select one or more roles to proceed.\", \"INFO\");\n    $ctrl.isAssigning = false;\n    return;\n}\n\ntry {\n    if (targetEntityType === \"role\") {\n        // --- 3. Loop Through Each Selected Role ---\n        for (const row of $ctrl.selectedRows) {\n            const nameForDisplay = row.name || \"Unknown Name\";\n            let response;\n\n            // --- 4. Perform Action based on the Button Label ---\n            if (actionLabel === \"ASSIGN\") {\n                // Construct the body to create a new user_role link\n                const requestBody = {\n                    userId: primaryEntityId,\n                    roleId: row.roleId,\n                    tenantId: row.tenantId\n                };\n\n                response = await $ctrl.dataService.sendData('user_role', 'POST', requestBody, options);\n\n            } else if (actionLabel === \"UNASSIGN\") {\n                // For unassigning, the 'row.id' is the ID of the user_role record itself.\n                const userRoleId = row.id;\n                if (!userRoleId) {\n                    $ctrl.failedAssignments.push({ name: nameForDisplay, message: \"Missing assignment ID.\", action: actionLabel });\n                    continue; // Skip to the next row\n                }\n\n                // Use the delete service, which can handle confirmation popups\n                response = await $ctrl.dataService.deleteData('user_role', userRoleId, deleteOptions);\n\n                if (response?.result === \"cancel\") {\n                    $ctrl.failedAssignments.push({ name: nameForDisplay, message: \"User cancelled.\", action: actionLabel });\n                    continue; // Skip to the next row\n                }\n            } else {\n                $ctrl.failedAssignments.push({ name: nameForDisplay, message: `Unknown action: ${actionLabel}`, action: actionLabel });\n                continue; // Skip to the next row\n            }\n\n            // --- 5. Tally Successes and Failures ---\n            if (response?.result === \"OK\") {\n                $ctrl.successfulAssignments.push({ name: nameForDisplay, action: actionLabel });\n            } else {\n                $ctrl.failedAssignments.push({ name: nameForDisplay, message: response?.message || \"An unknown error occurred.\", action: actionLabel });\n            }\n        } // End of for...of loop\n        \n        await $ctrl.authService.setSaasAuth();\n\n    } else if (targetEntityType === 'scope') {\n        // --- [NEW Logic for Assigning SCOPES to ROLES] ---\n        if (actionLabel === \"ASSIGN\" && !$ctrl.currentScopePermission) {\n            $ctrl.utilityService.toast(\"Please select a permission (READ/WRITE) to assign.\", \"INFO\");\n            $ctrl.isAssigning = false;\n            return;\n        }\n\n        for (const row of $ctrl.selectedRows) {\n            const nameForDisplay = row.apiEndpoint || \"this scope\";\n            let response;\n\n            if (actionLabel === \"ASSIGN\") {\n                const requestBody = {\n                    roleId: primaryEntityId, // The primary entity is the role\n                    scopeId: row.id,         // The selected row is the scope\n                    permission: $ctrl.currentScopePermission // Use the selected permission\n                };\n                response = await $ctrl.dataService.sendData('role_scope', 'POST', requestBody, options);\n\n            } else if (actionLabel === \"UNASSIGN\") {\n                const roleScopeId = row.id; // The 'row.id' is the ID of the role_scope assignment\n                if (!roleScopeId) {\n                    $ctrl.failedAssignments.push({ name: nameForDisplay, message: \"Missing assignment ID.\", action: actionLabel });\n                    continue;\n                }\n\n                response = await $ctrl.dataService.deleteData('role_scope', roleScopeId, deleteOptions);\n\n                if (response?.result === \"cancel\") {\n                    $ctrl.failedAssignments.push({ name: nameForDisplay, message: \"User cancelled.\", action: actionLabel });\n                    continue;\n                }\n            }\n\n            // Tally successes and failures for scopes\n            if (response?.result === \"OK\") {\n                $ctrl.successfulAssignments.push({ name: nameForDisplay, action: actionLabel });\n            } else {\n                $ctrl.failedAssignments.push({ name: nameForDisplay, message: response?.message || \"An unknown error occurred.\", action: actionLabel });\n            }\n        }\n    }\n\n    // --- 6. Refresh the Data Table ---\n    await $ctrl.loadData();\n\n} catch (error) {\n    console.error(`An unexpected error occurred during the '${actionLabel}' action:`, error);\n    $ctrl.utilityService.toast(\"An unexpected error occurred. Please try again.\", \"ERROR\");\n} finally {\n    // This block runs whether the try succeeded or failed, ensuring the loading state is turned off.\n    $ctrl.isAssigning = false;\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onActionButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const defaultFilter = {\n    column: null,\n    operation: null,\n    target: null,\n    query: null,\n    columnValues: $ctrl.currentFilter.columnValues\n}\n\n$ctrl.currentPage = 1;\n$ctrl.hasOperationCompleted = false;\n$ctrl.currentFilter = { ...defaultFilter };\n$ctrl.selectedRows.length = 0;\n\n$ctrl.loadData();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCancelButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "if ($ctrl.isLoading) return;\n$ctrl.loadData();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "watchPrimaryEntity",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": [
+        "$ctrl.primaryEntity"
+      ]
+    },
+    {
+      "body": "$ctrl.targetTenant.id = tenant.id;\n$ctrl.targetTenant.name = tenant.name;\n\n$ctrl.loadData();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onTargetTenantChange",
+      "parameters": [
+        "tenant"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "targetTenant",
+      "properties": [
+        {
+          "description": "",
+          "name": "name",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "id",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "children": [],
+      "description": "",
+      "name": "currentTenantMenuItems",
+      "type": "array"
+    },
+    {
+      "description": "",
+      "name": "currentScopePermission",
+      "type": "property",
+      "value": "\"READ\""
+    },
+    {
+      "body": "$ctrl.currentScopePermission = permission;\n\n$ctrl.loadData();",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onCurrentScopePermissionChange",
+      "parameters": [
+        "permission"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "id": "service",
+      "name": "authService",
+      "resourceIdentity": "services/auth-services/auth-service",
+      "type": "service"
+    }
+  ]
+}

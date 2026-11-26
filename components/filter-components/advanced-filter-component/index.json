@@ -1,0 +1,789 @@
+{
+  "bindings": [
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayQuickSearchField",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayAdvancedFiltersButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayConfigureTableAndQuickSearchButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "true",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "displayClearFiltersButton",
+      "propertyType": "boolean",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterProperties",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filterValueChoices",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onFilterChange",
+      "parameters": [
+        "queryString"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[\n    {\n        property: null,\n        operation: null,\n        value: \"\"\n    }\n]",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "filtersApplied",
+      "propertyType": "property",
+      "type": "=",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "currentPageKey",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "defaultConfig",
+      "propertyType": "object",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "elementsProperties": [],
+      "enumOptions": [],
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "columns",
+      "propertyType": "array",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "onColumnConfigChange",
+      "parameters": [
+        "columns"
+      ],
+      "propertyType": "function",
+      "type": "<",
+      "visibleWhen": ""
+    },
+    {
+      "actions": [],
+      "default": "[\n    {\n        value: null,\n        order: \"ASC\"\n    }\n]",
+      "description": "",
+      "example": "",
+      "group": "",
+      "label": "",
+      "name": "sortsApplied",
+      "propertyType": "property",
+      "type": "<",
+      "visibleWhen": ""
+    }
+  ],
+  "children": [
+    {
+      "children": [
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "configure-table-and-quick-search",
+          "displayExpression": "$ctrl.displayConfigureTableAndQuickSearchButton",
+          "expressions": [
+            {
+              "expression": "$ctrl.enService.components.filterComponent.buttons.CONFIGURE_TABLE_AND_QUICK_SEARCH.label",
+              "to": "label"
+            },
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"cog\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.buttons.CONFIGURE_TABLE_AND_QUICK_SEARCH.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "$ctrl.onConfigureTableAndQuickSearchButtonClick()",
+              "to": "onClick"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "advanced-filters",
+          "displayExpression": "$ctrl.displayAdvancedFiltersButton",
+          "expressions": [
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.advancedFiltersButtonLabel",
+              "to": "label"
+            },
+            {
+              "expression": "({\n  \"type\": \"font-icon\",\n  \"style\": \"solid\",\n  \"name\": \"filter\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.buttons.ADVANCED_FILTERS.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "$ctrl.onAdvancedFiltersButtonClick()",
+              "to": "onClick"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "quick-search",
+          "displayExpression": "$ctrl.displayQuickSearchField\n&&\n!$ctrl.isUsingAdvancedFilters\n&&\n!$ctrl.isUsingSorts",
+          "expressions": [
+            {
+              "expression": "$ctrl.enService.components.filterComponent.fields.QUICK_SEARCH.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.quickSearchFieldLabel",
+              "to": "placeholder"
+            },
+            {
+              "expression": "$ctrl.onQuickSearchChange(newValue)",
+              "to": "onValueChange"
+            },
+            {
+              "expression": "500",
+              "to": "debounceDelay"
+            },
+            {
+              "expression": "$ctrl.quickSearchFieldValue",
+              "to": "value"
+            }
+          ],
+          "formControl": {
+            "modelName": "value"
+          },
+          "name": "Text Input",
+          "nodeName": "bln-text-input",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "applied-advanced-filters",
+          "displayExpression": "$ctrl.filtersAppliedCount\n&&\n$ctrl.isUsingAdvancedFilters",
+          "expressions": [
+            {
+              "expression": "$ctrl.enService.components.filterComponent.fields.APPLIED_ADVANCED_FILTERS.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.fields.APPLIED_ADVANCED_FILTERS.placeholder",
+              "to": "placeholder"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.fields.APPLIED_ADVANCED_FILTERS.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "false",
+              "to": "textInputEditable"
+            },
+            {
+              "expression": "false",
+              "to": "allowMoveChip"
+            },
+            {
+              "expression": "false",
+              "to": "allowEditChip"
+            },
+            {
+              "expression": "false",
+              "to": "allowTransferChip"
+            },
+            {
+              "expression": "$ctrl.appliedAdvancedFiltersChipListValues",
+              "to": "values"
+            },
+            {
+              "expression": "250",
+              "to": "debounceDelay"
+            },
+            {
+              "expression": "$ctrl.onAppliedAdvancedFiltersChipListValuesChange(newValues)",
+              "to": "onValuesChange"
+            }
+          ],
+          "formControl": {
+            "modelName": "values"
+          },
+          "name": "Chip List",
+          "nodeName": "bln-chip-list",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "applied-sorts",
+          "displayExpression": "$ctrl.sortsAppliedCount\n&&\n$ctrl.isUsingSorts",
+          "expressions": [
+            {
+              "expression": "$ctrl.enService.components.filterComponent.fields.APPLIED_SORTS.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.fields.APPLIED_SORTS.placeholder",
+              "to": "placeholder"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.fields.APPLIED_SORTS.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "false",
+              "to": "textInputEditable"
+            },
+            {
+              "expression": "false",
+              "to": "allowMoveChip"
+            },
+            {
+              "expression": "false",
+              "to": "allowEditChip"
+            },
+            {
+              "expression": "false",
+              "to": "allowTransferChip"
+            },
+            {
+              "expression": "$ctrl.appliedSortsChipListValues",
+              "to": "values"
+            },
+            {
+              "expression": "250",
+              "to": "debounceDelay"
+            },
+            {
+              "expression": "$ctrl.onAppliedSortsChipListValuesChange(newValues)",
+              "to": "onValuesChange"
+            }
+          ],
+          "formControl": {
+            "modelName": "values"
+          },
+          "name": "Chip List",
+          "nodeName": "bln-chip-list",
+          "type": "core-component"
+        },
+        {
+          "attributes": [
+            {
+              "property": "core",
+              "value": ""
+            }
+          ],
+          "children": [],
+          "classList": [],
+          "comments": "clear-filters",
+          "displayExpression": "$ctrl.displayClearFiltersButton",
+          "expressions": [
+            {
+              "expression": "\"primary\"",
+              "to": "type"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.buttons.RESET_FILTER.label",
+              "to": "label"
+            },
+            {
+              "expression": "$ctrl.enService.components.filterComponent.buttons.RESET_FILTER.tooltip",
+              "to": "tooltip"
+            },
+            {
+              "expression": "// !$ctrl.filtersAppliedCount\n// &&\n// !$ctrl.sortsAppliedCount\n// &&\n// !$ctrl.quickSearchFieldValue?.trim()",
+              "to": "isDisabled"
+            },
+            {
+              "expression": "({\n  \"type\": \"image-icon\",\n  \"url\": \"assets/apps/lonti-app-crm/button-assets/reset-filter-button/filter-circle-xmark-solid-full-white.svg\",\n  \"position\": \"left\"\n})",
+              "to": "icon"
+            },
+            {
+              "expression": "$ctrl.onClearFiltersButtonClick()",
+              "to": "onClick"
+            }
+          ],
+          "name": "Button",
+          "nodeName": "bln-button",
+          "type": "core-component"
+        }
+      ],
+      "classList": [],
+      "elementId": "filter-container",
+      "name": "div"
+    }
+  ],
+  "modules": [],
+  "name": "advanced-filter-component",
+  "parentDirectoryId": "7L0qywAZS7MdtDGbi9EmW",
+  "styles": [],
+  "type": "custom-component",
+  "variables": [
+    {
+      "id": "service",
+      "name": "enService",
+      "resourceIdentity": "services/i18n-services/en-service",
+      "type": "service"
+    },
+    {
+      "name": "$modal",
+      "type": "service"
+    },
+    {
+      "body": "try {\n    const operationOptions = $ctrl.enService.modals.advancedFilterModal.dropdowns.FILTER_OPERATION.values || [];\n    $ctrl.operationMap = new Map(\n        operationOptions.map(op => [op.value, op.label])\n    );\n\n    $ctrl.propertyMap = new Map();\n    if ($ctrl.filterProperties) {\n        Object.entries($ctrl.filterProperties).forEach(([label, value]) => {\n            $ctrl.propertyMap.set(value, label);\n        });\n    }\n\n    $ctrl.onQuickSearchConfigUpdate();\n\n    const validFilters = $ctrl.utilityService.getValidFilters($ctrl.filtersApplied);\n    const validSorts = $ctrl.utilityService.getValidSorts($ctrl.sortsApplied);\n    \n    $ctrl.updateAdvancedFiltersCountAndButtonLabel(validFilters?.length, validSorts?.length);\n    $ctrl.processAppliedAdvancedFiltersChipListValues();\n    $ctrl.processAppliedSortsChipListValues();\n} catch (e) {\n    console.error(\"Error initializing advanced filter component\", e);\n}",
+      "description": "",
+      "invokeOnLoad": true,
+      "isAsync": false,
+      "name": "onComponentInit",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    let queryString;\n\n    if ($ctrl.isUsingQuickSearch && $ctrl.quickSearchFieldValue) {\n        $ctrl.isAdvancedFiltersModalOpen = true;\n        $ctrl.filtersApplied = [{\n            property: $ctrl.quickSearchCustomColumnValue,\n            operation: $ctrl.quickSearchCustomOperation,\n            value: $ctrl.quickSearchFieldValue\n        }];\n    }\n    const originalFiltersApplied = structuredClone($ctrl.filtersApplied);\n    const originalSortsApplied = structuredClone($ctrl.sortsApplied);\n\n    const modalResponse = await $ctrl.$modal.open(\"advanced-filter-modal\", {\n        filterProperties: $ctrl.filterProperties,\n        filterValueChoices: $ctrl.filterValueChoices,\n        filtersApplied: $ctrl.filtersApplied,\n        sortsApplied: $ctrl.sortsApplied,\n        currentPage: $ctrl.currentPageKey\n    });\n\n    if (modalResponse.result !== \"cancel\" && modalResponse.result !== null) {\n        $ctrl.filtersApplied = modalResponse.filtersApplied;\n        $ctrl.filtersAppliedCount = modalResponse.filtersAppliedCount;\n\n        let filterPart = null;\n\n        if ($ctrl.filtersAppliedCount > 0) {\n            $ctrl.quickSearchFieldValue = \"\";\n            $ctrl.isUsingAdvancedFilters = true;\n            $ctrl.filterQueryString = modalResponse.filterQueryString;\n            filterPart = modalResponse.filterQueryString;\n        } else {\n            $ctrl.isUsingAdvancedFilters = false;\n            $ctrl.filterQueryString = null;\n            $ctrl.filtersApplied = [\n                {\n                    property: null,\n                    operation: null,\n                    value: \"\"\n                }\n            ];\n            filterPart = null;\n        }\n\n        if (modalResponse.sortsApplied) {\n            $ctrl.sortsApplied = modalResponse.sortsApplied;\n        }\n\n        $ctrl.sortsAppliedCount = modalResponse.sortsAppliedCount;\n        let sortPart = null;\n\n        if ($ctrl.sortsAppliedCount > 0) {\n            $ctrl.isUsingSorts = true;\n            $ctrl.sortQueryString = modalResponse.sortQueryString;\n            sortPart = modalResponse.sortQueryString;\n        } else {\n            $ctrl.isUsingSorts = false;\n            $ctrl.sortQueryString = null;\n            $ctrl.sortsApplied = [\n                {\n                    value: null,\n                    order: \"ASC\"\n                }\n            ];\n            sortPart = null;\n        }\n\n        const queryParts = [];\n\n        if (filterPart) queryParts.push(filterPart);\n\n        if (sortPart) {\n            queryParts.push(`sort=${sortPart}`);\n        }\n\n        queryString = queryParts.length > 0 ? queryParts.join('&') : null;\n\n        $ctrl.updateAdvancedFiltersCountAndButtonLabel($ctrl.filtersAppliedCount, $ctrl.sortsAppliedCount);\n        $ctrl.processAppliedAdvancedFiltersChipListValues();\n        $ctrl.processAppliedSortsChipListValues();\n\n        $ctrl.onFilterChange({\n            queryString: queryString\n        });\n    } else {\n        $ctrl.filtersApplied = originalFiltersApplied;\n        $ctrl.sortsApplied = originalSortsApplied;\n    }\n\n    $ctrl.isAdvancedFiltersModalOpen = false;\n} catch (e) {\n    console.error(\"Error encountered in advanced filter creation\", e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onAdvancedFiltersButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    const operations = $ctrl.enService.modals.advancedFilterModal.dropdowns.FILTER_OPERATION.values.filter((operation) => operation.value !== \"isnull\" && operation.value !== \"isnotnull\");\n    const configModal = await $ctrl.$modal.open(\"configure-table-and-quick-search-modal\", {\n        properties: $ctrl.filterProperties,\n        operations: operations,\n        defaultConfig: $ctrl.defaultConfig,\n        currentPageKey: $ctrl.currentPageKey,\n        columns: $ctrl.columns,\n    });\n    \n    if (configModal.result === \"saved\") {\n        $ctrl.onQuickSearchConfigUpdate();\n        $ctrl.onColumnConfigChange({\n            columns: configModal.columns.filter((c) => c.checked)\n    });\n    }\n    \n} catch (e) {\n    console.error(\"Error encountered in table and quick search configuration\", e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": true,
+      "name": "onConfigureTableAndQuickSearchButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const savedConfig = $ctrl.quickSearchConfigService.getConfig($ctrl.currentPageKey);\n\n$ctrl.quickSearchCustomColumnValue = savedConfig?.property;\n$ctrl.quickSearchCustomOperation = savedConfig?.operation;\n\n$ctrl.quickSearchFieldLabel = `${$ctrl.enService.components.filterComponent.fields.QUICK_SEARCH.placeholder}${$ctrl.quickSearchCustomOperation} ${$ctrl.quickSearchCustomColumnValue}`;",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onQuickSearchConfigUpdate",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    $ctrl.filtersApplied = [\n        {\n            property: null,\n            operation: null,\n            value: \"\"\n        }\n    ];\n\n    $ctrl.sortsApplied = [\n        {\n            property: null,\n            order: \"ASC\"\n        }\n    ];\n    $ctrl.sortsAppliedCount = 0;\n\n    $ctrl.updateAdvancedFiltersCountAndButtonLabel(0);\n    $ctrl.processAppliedAdvancedFiltersChipListValues();\n    $ctrl.quickSearchFieldValue = \"\";\n    $ctrl.filterQueryString = null;\n    $ctrl.sortQueryString = null;\n    $ctrl.isUsingAdvancedFilters = false;\n    $ctrl.isUsingSorts = false;\n\n    $ctrl.onFilterChange({\n        queryString: null\n    });\n} catch (e) {\n    console.error(\"Error clearing filters\", e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onClearFiltersButtonClick",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    let queryString = null;\n\n    if (newValue?.trim()) {\n        const filter = {\n            property: $ctrl.quickSearchCustomColumnValue,\n            operation: $ctrl.quickSearchCustomOperation,\n            value: newValue\n        };\n\n        queryString = $ctrl.utilityService.buildFilterQuery(filter);\n        // $ctrl.filtersApplied = [filter];\n        $ctrl.updateAdvancedFiltersCountAndButtonLabel(1);\n        $ctrl.isUsingQuickSearch = true;\n    } else {\n        // $ctrl.filtersApplied = [{\n        //     property: null,\n        //     operation: null,\n        //     value: \"\"\n        // }];\n        $ctrl.updateAdvancedFiltersCountAndButtonLabel(0);\n    }\n\n    $ctrl.onFilterChange({\n        queryString: queryString\n    });\n} catch (e) {\n    console.error(\"Error executing quick search\", e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onQuickSearchChange",
+      "parameters": [
+        "newValue"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    let appliedFiltersCount;\n    if (!newValues?.length) {\n        $ctrl.filtersApplied = [\n            {\n                property: null,\n                operation: null,\n                value: \"\"\n            }\n        ];\n        appliedFiltersCount = 0;\n        $ctrl.isUsingAdvancedFilters = false;\n        $ctrl.filterQueryString = null;\n    } else {\n        $ctrl.filtersApplied = $ctrl.filtersApplied.filter((filterObj) => {\n            const displayString = $ctrl.generateReadableFilterLabel(filterObj);\n            return newValues.includes(displayString);\n        });\n\n        appliedFiltersCount = $ctrl.filtersApplied?.length;\n        \n        $ctrl.filterQueryString = $ctrl.filtersApplied\n            .map(f => $ctrl.utilityService.buildFilterQuery(f))\n            .filter(str => str && str !== '')\n            .join('&');\n    }\n\n    $ctrl.updateAdvancedFiltersCountAndButtonLabel(appliedFiltersCount);\n\n    const queryParts = [];\n    if ($ctrl.filterQueryString) {\n        queryParts.push($ctrl.filterQueryString);\n    }\n    \n    if ($ctrl.sortQueryString) {\n        queryParts.push($ctrl.sortQueryString.startsWith('sort=') \n            ? $ctrl.sortQueryString \n            : `sort=${$ctrl.sortQueryString}`);\n    }\n\n    const finalQueryString = queryParts.length > 0 ? queryParts.join('&') : null;\n    $ctrl.onFilterChange({\n        queryString: finalQueryString\n    });\n\n} catch (e) {\n    console.error(\"Error applying advanced filter chip list value changes\", e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onAppliedAdvancedFiltersChipListValuesChange",
+      "parameters": [
+        "newValues"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    let appliedSortsCount;\n    if (!newValues?.length) {\n        $ctrl.sortsApplied = [\n            {\n                value: null,\n                order: \"ASC\"\n            }\n        ];\n        $ctrl.sortQueryString = null;\n        appliedSortsCount = 0;\n        $ctrl.isUsingSorts = false;\n    } else {\n        $ctrl.sortsApplied = $ctrl.sortsApplied.filter((sortObj) => {\n            const displayString = $ctrl.generateReadableSortLabel(sortObj);\n            return newValues.includes(displayString);\n        });\n\n        appliedSortsCount = $ctrl.sortsApplied.length;\n        $ctrl.isUsingSorts = true;\n\n        const validSorts = $ctrl.sortsApplied.filter(s => s.value);\n        \n        if (validSorts.length > 0) {\n            $ctrl.sortQueryString = validSorts\n                .map(s => {\n                    const order = s.order || 'ASC';\n                    return `${s.value}:${order}`;\n                })\n                .join(',');\n        } else {\n            $ctrl.sortQueryString = null;\n        }\n    }\n\n    $ctrl.sortsAppliedCount = appliedSortsCount;\n    $ctrl.updateAdvancedFiltersCountAndButtonLabel($ctrl.filtersAppliedCount, appliedSortsCount);\n\n    const queryParts = [];\n\n    if ($ctrl.filterQueryString) {\n        queryParts.push($ctrl.filterQueryString);\n    }\n\n    if ($ctrl.sortQueryString) {\n        queryParts.push($ctrl.sortQueryString.startsWith('sort=') \n            ? $ctrl.sortQueryString \n            : `sort=${$ctrl.sortQueryString}`);\n    }\n\n    const finalQueryString = queryParts.length > 0 ? queryParts.join('&') : null;\n\n    $ctrl.onFilterChange({\n        queryString: finalQueryString\n    });\n\n} catch (e) {\n    console.error(\"Error applying sort chip list value changes\", e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "onAppliedSortsChipListValuesChange",
+      "parameters": [
+        "newValues"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    if ($ctrl.filtersApplied && $ctrl.filtersApplied.length) {\n        \n        $ctrl.appliedAdvancedFiltersChipListValues = $ctrl.filtersApplied\n            .map(filter => $ctrl.generateReadableFilterLabel(filter))\n            .filter(label => label && label !== \"\");\n\n        if ($ctrl.appliedAdvancedFiltersChipListValues?.length) {\n            $ctrl.isUsingAdvancedFilters = true;\n        }\n            \n    } else {\n        $ctrl.appliedAdvancedFiltersChipListValues = [];\n    }\n} catch (e) {\n    console.error(\"Error processing applied advanced filter chip list values\", e);\n    $ctrl.appliedAdvancedFiltersChipListValues = [];\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "processAppliedAdvancedFiltersChipListValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    if ($ctrl.sortsApplied && $ctrl.sortsApplied.length) {\n\n        $ctrl.appliedSortsChipListValues = $ctrl.sortsApplied\n            .filter(sort => sort && sort.value)\n            .map(sort => $ctrl.generateReadableSortLabel(sort))\n            .filter(label => label && label !== \"\");\n\n        if ($ctrl.appliedSortsChipListValues?.length) {\n            $ctrl.isUsingSorts = true;\n        }\n\n    } else {\n        $ctrl.appliedSortsChipListValues = [];\n    }\n} catch (e) {\n    console.error(\"Error processing applied sort chip list values\", e);\n    $ctrl.appliedSortsChipListValues = [];\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "processAppliedSortsChipListValues",
+      "parameters": [
+        "modalResponse"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "try {\n    $ctrl.filtersAppliedCount = overrideFiltersAppliedCount ?? $ctrl.filtersAppliedCount ?? $ctrl.filtersApplied?.length ?? 0;\n    $ctrl.sortsAppliedCount = overrideSortsAppliedCount ?? $ctrl.sortsAppliedCount ?? $ctrl.sortsApplied?.length ?? 0;\n    $ctrl.advancedFiltersButtonLabel = `Filters (${$ctrl.filtersAppliedCount}) | Sorts (${$ctrl.sortsAppliedCount})`;\n} catch (e) {\n    console.error(\"Error updating advanced filter count and button labels\" , e);\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "updateAdvancedFiltersCountAndButtonLabel",
+      "parameters": [
+        "overrideFiltersAppliedCount",
+        "overrideSortsAppliedCount"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const { property, operation, value } = filter;\nif (!property || !operation) return '';\n\nconst readableProp = $ctrl.propertyMap?.get(property) || property;\nconst readableOp = $ctrl.operationMap?.get(operation) || operation.toUpperCase();\n\nlet displayValue = value;\n\nif (property === 'pipelineId' || property === 'pipelineStageId') {\n    const choices = $ctrl.filterValueChoices && $ctrl.filterValueChoices[property];\n    if (Array.isArray(choices)) {\n        const match = choices.find(c => String(c.value) === String(value));\n        if (match) {\n            displayValue = match.label;\n        }\n    }\n}\n\nif (value !== undefined && value !== null) {\n    return `${readableProp} ${readableOp} \"${displayValue}\"`;\n}\n\nreturn `${readableProp} ${readableOp}`;",
+      "description": "Converts a filter object into the human-readable string displayed in the chips.",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "generateReadableFilterLabel",
+      "parameters": [
+        "filter"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const { value, order } = sort;\nif (!value) return '';\n\nconst readableProp = $ctrl.propertyMap?.get(value) || value;\nconst readableOrder = (order && order.toUpperCase() === 'DESC') ? 'DESCENDING' : 'ASCENDING';\n\nreturn `${readableProp} ${readableOrder}`;\n",
+      "description": "\nConverts a sort object into the human-readable string displayed in the chips.\n",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "generateReadableSortLabel",
+      "parameters": [
+        "sort"
+      ],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "description": "",
+      "name": "advancedFiltersButtonLabel",
+      "type": "property",
+      "value": "`Filters (${$ctrl.filtersAppliedCount ?? 0}) | Sorts (${$ctrl.sortsAppliedCount ?? 0})`"
+    },
+    {
+      "description": "",
+      "name": "filtersAppliedCount",
+      "type": "property",
+      "value": "0"
+    },
+    {
+      "description": "",
+      "name": "sortsAppliedCount",
+      "type": "property",
+      "value": "0"
+    },
+    {
+      "description": "",
+      "name": "quickSearchFieldLabel",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "quickSearchCustomColumnValue",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "quickSearchCustomOperation",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "id": "service",
+      "name": "utilityService",
+      "resourceIdentity": "services/util-services/utility-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "quickSearchFieldValue",
+      "type": "property",
+      "value": "\"\""
+    },
+    {
+      "description": "",
+      "name": "appliedAdvancedFiltersChipListValues",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "appliedSortsChipListValues",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "propertyMap",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "operationMap",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "id": "service",
+      "name": "quickSearchConfigService",
+      "resourceIdentity": "services/config-services/quick-search-config-service",
+      "type": "service"
+    },
+    {
+      "description": "",
+      "name": "isAdvancedFiltersModalOpen",
+      "type": "property",
+      "value": "false"
+    },
+    {
+      "description": "",
+      "name": "isUsingQuickSearch",
+      "type": "property",
+      "value": "false"
+    },
+    {
+      "description": "",
+      "name": "isUsingAdvancedFilters",
+      "type": "property",
+      "value": "false"
+    },
+    {
+      "description": "",
+      "name": "isUsingSorts",
+      "type": "property",
+      "value": "false"
+    },
+    {
+      "description": "",
+      "name": "filterQueryString",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "sortQueryString",
+      "type": "property",
+      "value": ""
+    },
+    {
+      "description": "",
+      "name": "watchers",
+      "properties": [
+        {
+          "body": "if ($ctrl.isAdvancedFiltersModalOpen) return;\n\nconst noValueOperations = ['isnull', 'isnotnull'];\nconst populatedFilters = $ctrl.utilityService.getValidFilters($ctrl.filtersApplied ?? []);\n\nconst filtersCount = populatedFilters.length;\n\nif (filtersCount > 0) {\n    $ctrl.updateAdvancedFiltersCountAndButtonLabel(filtersCount);\n    $ctrl.processAppliedAdvancedFiltersChipListValues();\n    $ctrl.isUsingAdvancedFilters = true;\n}",
+          "description": "",
+          "invokeOnLoad": false,
+          "isAsync": false,
+          "name": "watchFiltersApplied",
+          "parameters": [],
+          "returnType": {
+            "name": "any"
+          },
+          "type": "method",
+          "watch": [
+            "$ctrl.filtersApplied"
+          ]
+        }
+      ],
+      "type": "object"
+    }
+  ]
+}

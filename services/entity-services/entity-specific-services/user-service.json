@@ -1,0 +1,79 @@
+{
+  "description": "",
+  "name": "user-service",
+  "parentDirectoryId": "jdqLA0sxCMxbSkAwamsYW",
+  "singleton": true,
+  "type": "app-service",
+  "variables": [
+    {
+      "description": "",
+      "name": "entity",
+      "type": "property",
+      "value": "\"user\""
+    },
+    {
+      "description": "",
+      "name": "userForm",
+      "properties": [
+        {
+          "description": "",
+          "name": "directoryUserId",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "email",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "name",
+          "type": "property",
+          "value": ""
+        },
+        {
+          "description": "",
+          "name": "active",
+          "type": "property",
+          "value": ""
+        }
+      ],
+      "type": "object"
+    },
+    {
+      "body": "return [\n    {\n        label: \"Id\",\n        value: \"id\"\n    },\n    {\n        label: \"Directory User Id\",\n        value: \"directoryUserId\"\n    },\n    {\n        label: \"Email\",\n        value: \"email\"\n    },\n    {\n        label: \"Name\",\n        value: \"name\"\n    },\n    {\n        label: \"Active\",\n        value: \"active\"\n    },\n    {\n        label: \"Created On\",\n        value: \"createdOn\"\n    },\n    {\n        label: \"Updated On\",\n        value: \"updatedOn\"\n    }\n];",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getFilterColumnValues",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    },
+    {
+      "body": "const displayColumnNames = [\n    \"Name\",\n    \"Email\",\n    \"Directory User Id\",\n    \"Active\",\n];\n\nconst displayColumnOptions = {\n    type: {\n        \"Active\": \"boolean\"\n    }\n};\n\nreturn {\n    columnNames: displayColumnNames,\n    options: displayColumnOptions\n}",
+      "description": "",
+      "invokeOnLoad": false,
+      "isAsync": false,
+      "name": "getDisplayColumnConfig",
+      "parameters": [],
+      "returnType": {
+        "name": "any"
+      },
+      "type": "method",
+      "watch": []
+    }
+  ],
+  "visible": [
+    "entity",
+    "getFilterColumnValues",
+    "getDisplayColumnConfig",
+    "userForm",
+    "directoryUserId"
+  ]
+}

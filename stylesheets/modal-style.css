@@ -1,0 +1,108 @@
+/*
+  --------------------------------------------------
+  Modal Styles
+  --------------------------------------------------
+*/
+/* .modal-component {
+  border-radius: 1rem;
+}
+
+.bln-modal {
+  z-index: 1089;
+}
+
+.bln-modal-backdrop {
+  z-index: 1088;
+} */
+
+/*
+  --------------------------------------------------
+  Minimal Modal Variables
+  --------------------------------------------------
+*/
+:root {
+    --modal-bg-color: #ffffff;
+    --modal-border-radius: 12px; /* Soft rounding */
+    --modal-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05); /* Subtle but noticeable shadow */
+    --backdrop-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    --z-index-modal: 1089;
+    --z-index-backdrop: 1088;
+}
+
+/*
+  --------------------------------------------------
+  Modal Backdrop (Overlay)
+  --------------------------------------------------
+*/
+.bln-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--backdrop-color);
+    z-index: var(--z-index-backdrop);
+    transition: opacity 0.3s ease;
+}
+
+/*
+  --------------------------------------------------
+  Modal Container (Wrapper)
+  --------------------------------------------------
+*/
+.bln-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-index-modal);
+    
+    /* Center the modal content using Flexbox */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/*
+  --------------------------------------------------
+  Modal Content (The actual box)
+  --------------------------------------------------
+*/
+.modal-component {
+    /* Mobile-first sizing: takes up most of the screen */
+    width: 90%; 
+    max-height: 95vh;
+    margin: 16px; /* Ensure some space around the modal */
+
+    background-color: var(--modal-bg-color);
+    border-radius: var(--modal-border-radius);
+    box-shadow: var(--modal-shadow);
+    
+    /* Ensure content inside scrolls if it overflows */
+    overflow-y: auto;
+    
+    /* Start slightly below center for the slide-up effect */
+    transform: translateY(20px); 
+    transition: transform 0.3s ease;
+}
+
+.bln-modal.is-open .modal-component {
+    transform: translateY(0);
+}
+
+/*
+  --------------------------------------------------
+  Desktop/Larger Screen Adjustments
+  --------------------------------------------------
+*/
+@media (min-width: 640px) {
+    .modal-component {
+        /* Restrict max width for better readability on desktop */
+        max-width: 500px; 
+        width: 100%; /* Use max-width to control the size */
+    }
+}

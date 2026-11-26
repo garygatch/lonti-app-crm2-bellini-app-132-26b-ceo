@@ -1,0 +1,34 @@
+call-component {
+    #call-filter-container filter-component {
+        height: fit-content;
+    }
+
+    #call-rich-text-editor-button-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #call-notes-button-container {
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+        border-bottom-style: var(--bln-rich-text-editor-border-style);
+        border-bottom-color: var(--bln-rich-text-editor-border-color);
+        border-bottom-width: var(--bln-rich-text-editor-border-width);
+    }
+
+    #call-table-container {
+        height: 70%;
+    }
+
+    /*
+  --------------------------------------------------
+  Media Queries
+  --------------------------------------------------
+*/
+    @media (min-height: 800px) {
+        #call-table-container {
+            height: 80%;
+        }
+    }
+}
